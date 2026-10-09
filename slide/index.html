@@ -50,6 +50,7 @@
     .image-frame{position:relative;overflow:hidden;border-radius:28px;min-height:470px}
     .image-frame .photo{position:absolute;inset:0}
     .image-frame::after{content:"Prototype 模擬畫面";position:absolute;top:20px;right:20px;padding:8px 14px;border-radius:999px;background:rgba(7,17,31,.78);color:#fff;font-size:14px;font-weight:800;letter-spacing:.06em}
+    .image-frame.concept-frame::after{content:"概念示意"}
     .tag{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--cyan-soft);color:#087989;font-weight:800;font-size:16px}
     .tag.warn{background:var(--orange-soft);color:#c4481a}
     .flow{display:flex;align-items:stretch;gap:12px;margin-top:26px}
@@ -90,11 +91,13 @@
     .dense p,.dense li{font-size:18px;line-height:1.42}.dense h3{font-size:23px;margin-bottom:9px}
     .fact-row{display:grid;grid-template-columns:210px 1fr 300px;gap:24px;padding:15px 0;border-bottom:1px solid var(--line);align-items:start}.fact-row h3,.fact-row p{margin:0}.fact-row p{font-size:17px;line-height:1.4}.fact-row .result{font-size:17px;font-weight:800;color:#087989}
     .pipeline{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:24px}.pipeline-item{position:relative;padding:18px 14px 14px;background:#f4f8fa;border-top:5px solid var(--cyan);min-height:190px}.pipeline-item:nth-child(n+5){border-color:var(--orange)}.pipeline-item:not(:last-child)::after{content:"›";position:absolute;right:-11px;top:70px;color:#7aaeb4;font-size:28px;font-weight:900;z-index:2}.pipeline-item b{display:block;font-size:19px;line-height:1.25;margin:8px 0}.pipeline-item p{font-size:14px;line-height:1.38;color:var(--muted);margin:0}.pipeline-item .io{font-size:12px;font-weight:900;color:var(--cyan-dark);letter-spacing:.06em}
+    .audience-heading{display:flex;align-items:center;gap:16px;margin-top:22px;font-size:17px;font-weight:900;color:#31485c}.audience-heading::after{content:"";height:1px;background:var(--line);flex:1}.audience-timeline{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(4,32px);gap:6px 12px;margin-top:12px}.audience-bar{display:flex;align-items:center;padding:0 14px;border-radius:6px;font-size:14px;font-weight:900;white-space:nowrap}.audience-user{grid-column:1 / 4;grid-row:1;background:#dff8fb;color:#087989;border-left:5px solid var(--cyan)}.audience-service{grid-column:4 / 7;grid-row:2;background:#e7f1fb;color:#286a9f;border-left:5px solid #3f91d3}.audience-ops{grid-column:5 / 8;grid-row:3;background:#fff0e9;color:#b84b22;border-left:5px solid var(--orange)}.audience-field{grid-column:6 / 8;grid-row:4;background:#f1eafd;color:#6f42b5;border-left:5px solid #8b5cf6}.audience-note{font-size:14px;line-height:1.35;color:var(--muted);margin:10px 0 0}
     .scan-stage{display:grid;grid-template-columns:230px 1fr 280px;gap:24px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}.scan-stage h3,.scan-stage p{margin:0}.scan-stage p{font-size:16px;line-height:1.38}.scan-stage .out{font-size:15px;color:var(--muted)}
     .proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.proto-shot{min-width:0}.proto-shot img{width:100%;height:300px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.proto-shot h3{font-size:20px;margin:12px 0 5px}.proto-shot p{font-size:14px;line-height:1.35;color:var(--muted);margin:0}
     .backend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.backend-shot img{width:100%;height:285px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.backend-shot h3{font-size:21px;margin:12px 0 5px}.backend-shot p{font-size:15px;line-height:1.38;color:var(--muted);margin:0}
     .logic-table{display:grid;grid-template-columns:170px 1fr 1fr 250px;border-top:1px solid var(--line)}.logic-table>div{padding:12px 14px;border-bottom:1px solid var(--line);font-size:16px;line-height:1.36}.logic-table .head{background:var(--navy-900);color:#fff;font-weight:900}.logic-table .level{font-weight:900}.logic-table>div:nth-child(8n+5),.logic-table>div:nth-child(8n+6),.logic-table>div:nth-child(8n+7),.logic-table>div:nth-child(8n+8){background:#f7fafc}
     .mini-note{font-size:14px;line-height:1.35;color:var(--muted)}
+    .concept-item{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--line)}.concept-item:first-child{border-top:4px solid var(--cyan)}.concept-index{font-size:32px;font-weight:900;color:#b9d7dd;line-height:1}.concept-item h3{font-size:23px;margin:0 0 7px}.concept-item p{font-size:17px;line-height:1.42;color:var(--muted);margin:0}
     .overlay-label{position:absolute;background:rgba(7,17,31,.86);color:white;border:1px solid rgba(22,199,215,.75);padding:12px 16px;border-radius:12px;font-weight:800;font-size:17px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
     .label-interior{right:38px;bottom:42px}.label-claim{right:38px;top:38px}.label-ops{left:35px;bottom:35px}.label-complete{right:38px;bottom:38px}
     #controls{display:flex;align-items:center;justify-content:center;gap:16px;background:#07111f;color:#d4e3ed;border-top:1px solid #1d3045;padding:8px 18px;z-index:20}
@@ -180,11 +183,14 @@
         <div class="pipeline-item"><span class="io">WORKFLOW</span><b>案件與任務</b><p>更新車輛狀態，建立清潔、巡檢、維修或索賠待審。</p></div>
         <div class="pipeline-item"><span class="io">FEEDBACK</span><b>完工複檢</b><p>以相同區域重新掃描，通過後恢復上線並更新基準。</p></div>
       </div>
-      <div class="grid-3 dense" style="margin-top:30px">
-        <div><h3>正常路徑</h3><p>六區影像均合格，且未發現異常，完成後直接保存車況紀錄。</p></div>
-        <div><h3>異常路徑</h3><p>系統框選異常並要求補掃，將影像、位置與前後差異送入後台。</p></div>
-        <div><h3>不確定路徑</h3><p>視角不可比或歷史影像不足時標示證據不足，交由人工確認。</p></div>
+      <div class="audience-heading">目標客群參與區段</div>
+      <div class="audience-timeline" aria-label="Pipeline 節點與目標客群對應時間條">
+        <div class="audience-bar audience-user">租車使用者｜建立檢查、即時掃描與異常補掃</div>
+        <div class="audience-bar audience-service">客服與索賠人員｜查看比對證據並覆核案件</div>
+        <div class="audience-bar audience-ops">營運人員｜確認分流、安排任務與管理車輛狀態</div>
+        <div class="audience-bar audience-field">清潔與維修人員｜執行任務並回傳完工證據</div>
       </div>
+      <p class="audience-note">若未發現異常，使用者完成掃描後即可結束流程。只有發現異常或證據不足時，後續角色才會依案件需要接續處理。</p>
     </section>
 
     <section class="slide soft" data-label="5 / 15">
@@ -220,18 +226,21 @@
 
     <section class="slide soft dense" data-label="7 / 15">
       <div class="eyebrow">3. 解決方案設計</div>
-      <h2>雲端車況判讀將照片轉成可解釋的 Finding</h2>
-      <p class="doc-lead">手機端已在掃描過程中完成拍攝位置與影像品質檢查，因此只有符合標準的照片會進入雲端。雲端收到影像後，會直接尋找同一車輛、相同區域且視角接近的歷史照片，再透過影像對齊與前後差異分析產生 Finding，讓後台人員可以從判讀結果回到原始證據進行確認。</p>
-      <table class="table">
-        <thead><tr><th style="width:19%">處理階段</th><th style="width:30%">方法</th><th style="width:29%">輸出</th><th>例外處理</th></tr></thead>
-        <tbody>
-          <tr><td><b>基準檢索</b></td><td>以車號、區域、時間與視角相似度尋找最近的有效歷史照片。</td><td>可比較基準及其來源訂單。</td><td>找不到基準時，不判定為本次新增。</td></tr>
-          <tr><td><b>影像對齊</b></td><td>利用車身特徵點修正尺度、旋轉及局部透視差異。</td><td>對齊分數與可比較區域。</td><td>對齊不足時轉人工覆核。</td></tr>
-          <tr><td><b>異常判讀</b></td><td>辨識刮痕、凹陷、破裂、污漬、垃圾與遺留物，並比較前後差異。</td><td>Finding：位置、類型、嚴重度、新增與否、信心。</td><td>反光或遮蔽造成不確定時降低信心。</td></tr>
-          <tr><td><b>證據聚合</b></td><td>結合廣角、近照、多角度、時間軸與既有車損紀錄。</td><td>案件證據包及建議分流。</td><td>證據相互矛盾時保留人工決策。</td></tr>
-        </tbody>
-      </table>
-      <div class="panel warn" style="margin-top:22px"><p style="font-size:17px;margin:0"><b>髒污處理：</b>若髒污本身需要處理，建立清潔任務。若髒污遮住可能的刮痕，先清潔再用相同區域重新掃描，避免直接判成車損。</p></div>
+      <h2>雲端車況比對的概念</h2>
+      <p class="doc-lead">手機端已確保上傳照片具備一致的拍攝位置與品質，因此雲端的主要任務，是確認本次車況與先前紀錄相比是否出現值得處理的變化。系統會以同一車輛、相同區域的歷史照片作為基準，對齊前後影像後整理差異，供後台人員安排後續工作。</p>
+      <div class="grid-2 wide-left" style="align-items:start;gap:42px">
+        <div class="image-frame concept-frame" style="min-height:430px">
+          <img class="photo" src="assets/condition-comparison.png" alt="同一車輛相同區域的歷史與本次車況比對概念圖" />
+          <div class="overlay-label" style="left:24px;bottom:24px">歷史車況基準</div>
+          <div class="overlay-label" style="right:24px;bottom:24px;border-color:var(--orange)">本次影像變化</div>
+        </div>
+        <div>
+          <div class="concept-item"><div class="concept-index">01</div><div><h3>跟什麼比對</h3><p>取得同一車輛、相同區域且時間較早的有效照片，作為本次檢查的車況基準。</p></div></div>
+          <div class="concept-item"><div class="concept-index">02</div><div><h3>大概檢查什麼</h3><p>比較前後外觀是否出現明顯變化，例如新的表面損傷、髒污或車內整潔問題。</p></div></div>
+          <div class="concept-item"><div class="concept-index">03</div><div><h3>這一步的目的</h3><p>將差異整理成簡明的車況摘要，協助後台判斷是否需要建立清潔、巡檢、維修或索賠覆核任務。</p></div></div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:25px"><p style="font-size:18px;margin:0"><b>判讀原則：</b>雲端負責找出並整理前後變化，後台人員仍可查看原始影像，再依營運規則決定實際處理方式。</p></div>
     </section>
 
     <section class="slide" data-label="8 / 15">

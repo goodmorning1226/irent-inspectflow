@@ -1,0 +1,160 @@
+{
+   "checksum": "a3d64f65ba2a5134d7c9a3670213fd90",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13199714455105513",
+            "date_last_used": "0",
+            "guid": "c0c754a4-3996-46a5-9b0c-8393c9c6da24",
+            "id": "8",
+            "name": "「亞洲萬里通」機票獎勵",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://www.asiamiles.com/zh/redeem-awards/flight-awards/facade.html",
+            "visit_count": 0
+         }, {
+            "date_added": "13211129410631642",
+            "date_last_used": "0",
+            "guid": "1e16e7ff-6534-4e74-a828-db72e5adde72",
+            "id": "9",
+            "name": "TutorABC - 英文測試",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://www.tutorabc.com/TestQuestions/start.asp?Listening=Listening",
+            "visit_count": 0
+         }, {
+            "date_added": "13216555455528748",
+            "date_last_used": "0",
+            "guid": "27a0840e-d8bf-4ff9-84db-28e8cecab426",
+            "id": "10",
+            "name": "Electronic Diversity Visa Lottery",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://www.dvlottery.state.gov/application.aspx",
+            "visit_count": 0
+         }, {
+            "date_added": "13237207239223816",
+            "date_last_used": "0",
+            "guid": "8e66f8de-4c0c-4a43-bfa8-06a09aa03f26",
+            "id": "11",
+            "name": "綜合所得稅電子結算申報繳稅系統",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://efile.tax.nat.gov.tw/irxw/main.jsp#modal-password",
+            "visit_count": 0
+         }, {
+            "date_added": "13269610533644791",
+            "date_last_used": "0",
+            "guid": "a00b2b8f-9a68-49c6-97e1-bc58b94109c4",
+            "id": "12",
+            "name": "XRay Texture Pack 1.17 / 1.16.5 → 1.8 • Texture-Packs.com",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://texture-packs.com/resourcepack/x-ray-minecraft/",
+            "visit_count": 0
+         }, {
+            "children": [ {
+               "date_added": "13200213383298342",
+               "date_last_used": "0",
+               "guid": "e771712c-3e91-4c55-9d11-14d8b5cbfb85",
+               "id": "14",
+               "name": "Dell Auction",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "http://www.dellauction.com/",
+               "visit_count": 0
+            }, {
+               "date_added": "13200213383345204",
+               "date_last_used": "0",
+               "guid": "cc79eae0-958c-4fbe-ad61-1a7800565964",
+               "id": "15",
+               "name": "Dell",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "http://www1.ap.dell.com/content/default.aspx?c=tw&l=en&s=gen",
+               "visit_count": 0
+            }, {
+               "date_added": "13200213383345204",
+               "date_last_used": "0",
+               "guid": "2ee53717-8a8c-41c6-a98a-e57d38aa55b8",
+               "id": "16",
+               "name": "Support.Dell.Com",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "http://www.dell.com/support/home",
+               "visit_count": 0
+            } ],
+            "date_added": "13289108559036731",
+            "date_last_used": "0",
+            "date_modified": "13289108559036731",
+            "guid": "da3875ae-c511-4053-9ba0-cc71fde8125c",
+            "id": "13",
+            "name": "Dell",
+            "source": "unknown",
+            "type": "folder"
+         }, {
+            "date_added": "13436046431947589",
+            "date_last_used": "0",
+            "guid": "dd0730b4-3062-4091-9426-5e1a2bea5c15",
+            "id": "7",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         } ],
+         "date_added": "13436046431738764",
+         "date_last_used": "0",
+         "date_modified": "13436046431947589",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "我的最愛列",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13436046431738764",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "其他 [我的最愛]",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13436046431738764",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "行動裝置的 [我的最愛]",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "workspaces_v2": {
+         "children": [  ],
+         "date_added": "13436046431738764",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "75aa6670-344f-549d-b742-660f029506ab",
+         "id": "5",
+         "name": "工作區",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CjEKDgiIgQISCGxGxSGhAQAAEgAqGGpKbzlEcGErQkozMnBmeTVQb0dFWVE9PUgDoAYHEowBCAUShwEKHHdSQnJaTCs2UEE5YXZLZ2pOUDdKWERMY2Z2cz0SJDY4M2ZiMTg5LTJlODEtNTY0MS1hYTQ1LTY4OWUzNGM3MjE1NxgAIAAoADD9p4aHszM4/KmGh7MzQPyphoezM0ocbm14NjVzUUR2eEk4VGdFZXYrQStudHRvU240PWUAAAAAwj4CYAASjAEIAhKHAQocWWNTVG9udkVTUHdxQ3M0TDJjclZodjY4TDk4PRIkMmZiZGZmZmEtYTBkZC01ZTBmLThhMTktZjNmZWUyYzc0YmYwGAAgACgAMOWu/u+xMDjv/LzA7i9A7/y8wO4vShxvUFZraHdCUmJWNjVLQ1dSMitJT05IV29PdTg9ZQAAAADCPgJgABKtAQgJEqgBChxNVFhqS0s1dmlhMk5RMitzVy8xeUlwTnJZS289EiRhZjc4NzZhMC04NzA0LTQxMTAtYTAyZS1iNzhkOTdhMTY1NWEYACAAKAAwzO+7obUyOImovcDuL0CJqL3A7i9KHDUxcC9PQmxtTmRhaFR0eTEydGRtN3daWHl0OD1aHyIds1k5bDNBN25BeFN0cDRyU3lRbzJWallJZnROST1lMjgDg8I+AmAFEq0BCAwSqAEKHFU4VW1KQ1puSldjaHN4Z3dnWGFVSDk3dFZtTT0SJGEwMGIyYjhmLTlhNjgtNDljNi05N2UxLWJjNThiOTQxMDljNBgAIAAoADDN77uhtTI4mai9wO4vQJmovcDuL0ocQjZlWVZuNWkwV2lrcnFnUXpvampvaU9uNnhVPVofIh32OE5yclhuTm1wMzVaQ2lqb2FKdDJKV1R2bjVzPWXPQPnMwj4CYAUSrAEIDxKnAQocZ1krRUoxTDhzRDF2SHJyTjZDTzd1eG1UVnQwPRIkY2M3OWVhZTAtOTU4Yy00ZmJlLWFkNjEtMWE3ODAwNTY1OTY0GAAgACgAMIHWh9/uLzjt14ff7i9A7deH3+4vShxGY2svY2k2U2lyc2pZYmI2SlpzQlBST2tEWWs9Wh4iHFFaM0FDeEtxSktqMlVOTFhYWVM5T3BZZGRiOD1lAAAAAMI+AmAFEqwBCA4SpwEKHGdwMmw1MXNXSWFZSjFKNTYyUjd5bElQQkYrYz0SJGU3NzE3MTJjLTNlOTEtNGM1NS05ZDExLTE0ZDhiNWNiZmI4NRgAIAAoADCB1off7i84zteH3+4vQM7Xh9/uL0ocZEF2aEVCTjNKTFJQNDUzVktQSkthb2FPWjFZPVoeIhxMZThjSktTcE1ybjJBcXI1WmZFdC9uN0NqUFU9ZQAAAADCPgJgBRKtAQgNEqgBChxBTCs0UEcxZ0pwL3BCZnBsZ2huWGQzUGMvRmc9EiRkYTM4NzVhZS1jNTExLTQwNTMtOWJhMC1jYzcxZmRlODEyNWMYACAAKAAwgdaH3+4vONHWh9/uL0DR1off7i9KHDZPTGltblJlK0ppVlFvZFI3QUZ2bUFwa2Fhbz1aHyId+3BKWmhrVTdhS2l6Rzl5ZWRhbllNcVJEN3daQT1lAAAAAMI+AmAAEq0BCAsSqAEKHCtRSHlJcFcxSGMxR2NYc2tpQ1RobGZqaXZUcz0SJDVlNzQ0ZGQ5LWZiNDQtNGE5ZS1iYzJkLWRlZjAzNTNiOGY0ZRgAIAAoADDK77uhtTI4tam9wO4vQLWpvcDuL0ocdnp6UW5VSGhBZGJ3TkNRUlorRWwrbTRxSFNFPVofIh3sbFBwamxxM0VmZkd3cHlZU0s2anFrNHg2VWhzPWWOzqOVwj4CYAUSjAEIARKHAQoceXhKLzZmdmtlY3I3a3A1RVF6QjR0V0xwZGJFPRIkNjY3NmMwNzktMzE2Mi01Mjg4LTk0ZWQtZGJhYjE2NmFiNTY2GAAgACgAMOWu/u+xMDjf/LzA7i9A3/y8wO4vShxhUkNXTGdoRjliNUlucUtJRHZ1Si9qdlFrRmM9ZQAAAADCPgJgABKsAQgIEqcBChxrWWJadHFSWnk5TFRrTHVqaUVHKzRJZnBwa1k9EiRkMmU2ODAzNi01NGYyLTQ3NjktYWFhZi01NTJhMTQ2YjM1MjIYACAAKAAwy++7obUyONunvcDuL0Dbp73A7i9KHHhIMzh5YWIzdUdJYWtmRlROZWp0ek9hcHRzMD1aHiIcZ3NvWHRrUHcvdDYzYmZwOXhrajZqTkxFU1BvPWUKwrHSwj4CYAUSrQEIChKoAQocRVRFRnZNK1krS09OMnBINmIxMys3R0twd01NPRIkNjJlOGU5MzEtZWE2Mi00MmQ2LThiZDctNTRkNDJjZDgzNGJlGAAgACgAMIeur87wLjjc/bzA7i9A3P28wO4vShxML2l0Smp1aFNqQ2l2bVhzVi9WSU9ndDUrRTg9Wh8iHdlFL1NuS3ZidFNjZlZRU1FpOUdDbHZoQjl0YnM9ZQAAAADCPgJgBRKtAQgQEqgBChxSUjdOeFhMOHhIL3RlOTNFKzBUaU9jTHdkT0E9EiQyZWU1MzcxNy04YThjLTQxYzYtYTk4YS1lNTdkMzhhYTU1YjgYACAAKAAwgdaH3+4vOP3Xh9/uL0D914ff7i9KHEU3ZGVHOElxdlVMRVB0aC9vMW9lZXVCdU1OYz1aHyIdqEE0cTc4akdFQnE0dWY0Y0xwbXU0cFMzWWtRYz1lAAAAAMI+AmAFEowBCAMShwEKHG5qZ0R1ODhlQ3J2WHA4NnBEN2ZIR2NxRnA4OD0SJDAxNmFiYzM0LTA2MmUtNTRhNC1iYTYwLWQzNzFhNmFkYjYyNBgAIAAoADDlrv7vsTA4zP28wO4vQMz9vMDuL0oceXpOQjAxY241NEE3Y1JVMHVUKy9QZ21UdFVvPWUAAAAAwj4CYAAwADgA",
+   "version": 1
+}

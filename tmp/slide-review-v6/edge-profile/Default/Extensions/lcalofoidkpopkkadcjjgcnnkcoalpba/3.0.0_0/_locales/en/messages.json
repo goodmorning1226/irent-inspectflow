@@ -1,0 +1,20 @@
+{
+   "AppDesc": {
+      "message": "Visual Effects for Google Meet"
+   },
+   "AppName": {
+      "message": "Visual Effects Google Meet"
+   },
+   "Drive": {
+      "message": "Drive feature"
+   },
+   "Help": {
+      "message": "Choose filter. If it isn't work turn off -> turn on the camera"
+   },
+   "Home": {
+      "message": "Homepage"
+   },
+   "RateUs": {
+      "message": "Rate us"
+   }
+}

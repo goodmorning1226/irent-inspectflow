@@ -1,0 +1,20 @@
+{
+   "AppDesc": {
+      "message": "Vizuálne efekty pre stretnutie Google"
+   },
+   "AppName": {
+      "message": "Vizuálne efekty Google Meet"
+   },
+   "Drive": {
+      "message": "Funkcia jazdy"
+   },
+   "Help": {
+      "message": "Vyberte filter. Ak to nefunguje, vypnite -&gt; zapnite fotoaparát"
+   },
+   "Home": {
+      "message": "Úvodná stránka"
+   },
+   "RateUs": {
+      "message": "Ohodnoť nás"
+   }
+}

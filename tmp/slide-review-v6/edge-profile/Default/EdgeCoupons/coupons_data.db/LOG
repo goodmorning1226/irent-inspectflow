@@ -1,0 +1,5 @@
+2026/10/10-01:40:56.314 6738 Creating DB D:\github\irent-inspectflow\tmp\slide-review-v6\edge-profile\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/10/10-01:40:56.534 6738 Reusing MANIFEST D:\github\irent-inspectflow\tmp\slide-review-v6\edge-profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/10-01:41:10.046 444c Level-0 table #5: started
+2026/10/10-01:41:10.049 444c Level-0 table #5: 683284 bytes OK
+2026/10/10-01:41:10.052 444c Delete type=0 #3

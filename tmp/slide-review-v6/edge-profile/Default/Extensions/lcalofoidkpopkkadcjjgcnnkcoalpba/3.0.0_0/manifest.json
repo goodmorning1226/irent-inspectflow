@@ -1,0 +1,37 @@
+{
+   "action": {
+      "default_icon": {
+         "128": "img/128.png",
+         "16": "img/16.png",
+         "32": "img/32.png",
+         "48": "img/48.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "__MSG_AppName__"
+   },
+   "background": {
+      "service_worker": "/js/background-mv3.js"
+   },
+   "container": [ "GOOGLE_DRIVE" ],
+   "default_locale": "en",
+   "description": "__MSG_AppDesc__",
+   "homepage_url": "https://visual-effects-meet.dllplayer.com",
+   "icons": {
+      "128": "img/128.png",
+      "16": "img/16.png",
+      "256": "img/256.png",
+      "48": "img/48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgI1yGTZwdlVA23XK4e2OzkE1Cw6XQXCIl1FWMpAmDSXPIdNqBfNF7Eh3TzLAQynDi2b4JERSuSlwsP3b8Opgk8ucpq8xAlDqMEucdIAVGER1iYmK8l+jf9IZc+urA+o/SM6zPk3c3yb9YtUisCNYlkQ8aup1yrutkbks8tU9YKHGCFiguSDIqe59INqhBKavyhR5zt2hdnvue9+kEglDWNLex/3AIBEsd5ilJUDuhI2pu38clLq27dJA83j7I9Mz4udntxawiGW1Gj4ay/dNo+4NdLbrKLBdvcwkG0TP4MZPaejc0+fFY27+aDmSwaM0Z7qe6dN06CKyFy3rPDuN2wIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_AppName__",
+   "offline_enabled": true,
+   "permissions": [ "activeTab", "scripting" ],
+   "short_name": "VisualEffectsForMeet",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "3.0.0",
+   "web_accessible_resources": [ {
+      "matches": [ "\u003Call_urls>" ],
+      "resources": [ "js/mediaSourceSwap.js", "img/*.jpg", "/dist/*" ]
+   } ]
+}

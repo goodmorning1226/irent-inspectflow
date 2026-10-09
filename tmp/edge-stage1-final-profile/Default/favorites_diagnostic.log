@@ -1,0 +1,18 @@
+2026-10-09 19:17:15.594: [INFO] CurrentProfilePath: D:\github\irent-inspectflow\tmp\edge-stage1-final-profile\Default
+2026-10-09 19:17:15.594: [INFO] Profiles total count: 1
+2026-10-09 19:17:15.594: [INFO] Profile: name=設定檔 1 path=D:\github\irent-inspectflow\tmp\edge-stage1-final-profile\Default lastActive=2026-10-09T19:17:15.562Z
+2026-10-09 19:17:15.594: [INFO] LastUsedProfileDir: D:\github\irent-inspectflow\tmp\edge-stage1-final-profile\Default
+2026-10-09 19:17:15.594: [INFO] MostRecentlyActiveProfile: name=設定檔 1 path=D:\github\irent-inspectflow\tmp\edge-stage1-final-profile\Default lastActive=2026-10-09T19:17:15.562Z
+2026-10-09 19:17:15.594: [INFO] OnDoneLoading sync enabled: 0
+2026-10-09 19:17:15.594: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-09 19:17:15.594: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-09 19:17:15.594: [INFO] BookmarksSnapshot Startup total=1 bar=1 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-09 19:17:15.649: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-09 19:17:15.966: [INFO] VisibilityChanged: 0
+2026-10-09 19:17:17.623: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-09 19:17:17.629: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-09 19:17:17.633: [INFO] Primary account changed.
+2026-10-09 19:17:17.633: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2026-10-09 19:17:17.647: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-09 19:17:17.678: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-09 19:17:18.763: [INFO] BookmarksSnapshot Shutdown total=1 bar=1 other=0 mobile=0 showBar=0 showBarNTP=1

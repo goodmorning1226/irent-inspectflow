@@ -1,0 +1,20 @@
+{
+   "AppDesc": {
+      "message": "Google Meet的视觉效果"
+   },
+   "AppName": {
+      "message": "视觉效果Google Meet"
+   },
+   "Drive": {
+      "message": "驱动功能"
+   },
+   "Help": {
+      "message": "选择过滤器。如果不起作用，请关闭-&gt;开启相机"
+   },
+   "Home": {
+      "message": "主页"
+   },
+   "RateUs": {
+      "message": "评价我们"
+   }
+}

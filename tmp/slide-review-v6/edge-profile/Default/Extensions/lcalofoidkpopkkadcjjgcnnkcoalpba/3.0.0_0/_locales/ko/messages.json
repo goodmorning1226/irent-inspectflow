@@ -1,0 +1,20 @@
+{
+   "AppDesc": {
+      "message": "Google Meet 용 시각 효과"
+   },
+   "AppName": {
+      "message": "시각 효과 Google Meet"
+   },
+   "Drive": {
+      "message": "드라이브 기능"
+   },
+   "Help": {
+      "message": "필터를 선택하십시오. 작동하지 않으면 전원을 끄고 카메라를 켭니다."
+   },
+   "Home": {
+      "message": "홈페이지"
+   },
+   "RateUs": {
+      "message": "우리를 평가"
+   }
+}

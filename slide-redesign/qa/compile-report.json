@@ -1,0 +1,121 @@
+{
+  "input": "slide-redesign\\slides",
+  "output_pdf": "slide-redesign\\final\\iRent_InspectFlow_重新設計版.pdf",
+  "target_size": "1920x1080",
+  "fit": "contain",
+  "strict": true,
+  "slides": [
+    {
+      "index": 1,
+      "source": "slide-redesign\\slides\\slide-01-cover.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 2,
+      "source": "slide-redesign\\slides\\slide-02-summary.png",
+      "original_size": "1672x940",
+      "aspect_error": 0.000532,
+      "warnings": []
+    },
+    {
+      "index": 3,
+      "source": "slide-redesign\\slides\\slide-03-problem.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 4,
+      "source": "slide-redesign\\slides\\slide-04-audience.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 5,
+      "source": "slide-redesign\\slides\\slide-05-pipeline.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 6,
+      "source": "slide-redesign\\slides\\slide-06-live-scan.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 7,
+      "source": "slide-redesign\\slides\\slide-07-mobile-flow.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 8,
+      "source": "slide-redesign\\slides\\slide-08-cloud.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 9,
+      "source": "slide-redesign\\slides\\slide-09-scenario.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 10,
+      "source": "slide-redesign\\slides\\slide-10-backoffice.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 11,
+      "source": "slide-redesign\\slides\\slide-11-claim.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 12,
+      "source": "slide-redesign\\slides\\slide-12-feasibility.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 13,
+      "source": "slide-redesign\\slides\\slide-13-controls.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 14,
+      "source": "slide-redesign\\slides\\slide-14-differentiation.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 15,
+      "source": "slide-redesign\\slides\\slide-15-kpi.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    },
+    {
+      "index": 16,
+      "source": "slide-redesign\\slides\\slide-16-rollout.png",
+      "original_size": "1672x941",
+      "aspect_error": 0.000531,
+      "warnings": []
+    }
+  ]
+}
