@@ -1,0 +1,30 @@
+2026-10-09 12:50:11.874: [INFO] CurrentProfilePath: D:\github\irent-inspectflow\tmp\slide-review-v5\edge-profile\Default
+2026-10-09 12:50:11.874: [INFO] Profiles total count: 1
+2026-10-09 12:50:11.874: [INFO] Profile: name=設定檔 1 path=D:\github\irent-inspectflow\tmp\slide-review-v5\edge-profile\Default lastActive=2026-10-09T12:50:11.858Z
+2026-10-09 12:50:11.874: [INFO] LastUsedProfileDir: D:\github\irent-inspectflow\tmp\slide-review-v5\edge-profile\Default
+2026-10-09 12:50:11.874: [INFO] MostRecentlyActiveProfile: name=設定檔 1 path=D:\github\irent-inspectflow\tmp\slide-review-v5\edge-profile\Default lastActive=2026-10-09T12:50:11.858Z
+2026-10-09 12:50:11.874: [INFO] OnDoneLoading sync enabled: 0
+2026-10-09 12:50:11.874: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-09 12:50:11.874: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-09 12:50:11.874: [INFO] BookmarksSnapshot Startup total=1 bar=1 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-09 12:50:11.922: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-09 12:50:12.280: [INFO] VisibilityChanged: 0
+2026-10-09 12:50:15.445: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-10-09 12:50:15.479: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-09 12:50:15.507: [INFO] Primary account changed.
+2026-10-09 12:50:15.507: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2026-10-09 12:50:15.536: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-09 12:50:15.591: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-10-09 12:50:23.061: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.063: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.063: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.064: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.069: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.069: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.069: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.070: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.070: [INFO] BookmarkNodeAdded, ABU: 0
+2026-10-09 12:50:23.127: [INFO] BookmarkBarPrefChanged showBar=0 showBarNTP=0
+2026-10-09 12:50:23.162: [INFO] VisibilityChanged: 1
+2026-10-09 12:50:23.590: [INFO] Sync initialization duration: 6474ms
+2026-10-09 12:50:32.155: [INFO] BookmarksSnapshot Shutdown total=9 bar=7 other=0 mobile=0 showBar=1 showBarNTP=0
