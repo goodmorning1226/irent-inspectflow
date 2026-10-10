@@ -1,7 +1,7 @@
 # iRent InspectFlow 專案交接文件
 
 最後更新：2026-10-10  
-目前階段：初賽提案簡報修改中；手機端 Prototype 第 1 階段已完成，等待第 2 階段指示
+目前階段：初賽提案簡報修改中；手機端 Prototype 第 8 階段與完整總驗證已完成，等待使用者確認手機端定稿
 
 本文件提供後續參與本專案的人員與 AI Agent 快速接手使用。開始修改前，請先閱讀本文件及 `plan/iRent_智能車況管家_完整產品設計與落地計畫書.md`，並確認目前檔案狀態，避免把 Prototype 模擬內容誤認為已完成的正式功能。
 
@@ -160,7 +160,7 @@ Prototype 的目的，是完整呈現產品流程並作為 3 分鐘展示影片�
 
 ### 4.3 建議的未來目錄
 
-目前尚未建立 Prototype 程式碼。後續實作時建議使用：
+目前已建立 Flutter 手機端 Prototype，後續後台與共用資料仍沿用以下結構：
 
 ```text
 prototype/
@@ -251,17 +251,30 @@ prototype/
 - Flutter 手機端 Prototype 第 1 階段：Android、Web、Windows 工程骨架、App Router、iRent 風格 Theme、淺色流程 Scaffold、深色掃描 Scaffold、Prototype 標示、最小假資料、入口頁及第 2 階段佔位頁。
 - 第 1 階段後續調整已加入一般流程直向、掃描 Scaffold 橫向及離開掃描恢復直向的方向控制。
 - 第 1 階段已通過 `flutter analyze`、啟動與導覽 Widget Test、390×844 版面測試、Web Debug Build 及實際 Web 畫面檢查。
+- Flutter 手機端 Prototype 第 2 階段：六區車況總覽、未開始／已選取／已完成／需補掃狀態樣式、四個固定完成區影像摘要，以及左側與後座的掃描佔位入口。
+- 第 2 階段已依精簡規則通過 `dart format` 與 `flutter analyze --no-pub`。
+- Flutter 手機端 Prototype 第 3 階段：橫向共用掃描工作區、本機 MP4 播放器封裝、JSON 時間軸解析、`WAITING → ALIGNING → STABLE → CAPTURED` 狀態機、獨立 Overlay，以及長按 Prototype 標示開啟的隱藏 Demo 控制器。
+- 第 3 階段使用通用佔位影片與腳本，尚未實作正式無損、有損或車內污損案例；已通過 `dart format`、`flutter analyze --no-pub` 及單一時間軸解析測試。
+- Flutter 手機端 Prototype 第 4 階段：左側無損車側素材、最佳影格、專用時間軸、距離與位置調整、品質鎖定、自動擷取、「未發現明顯異常」結果、重播，以及完成後返回總覽並更新左側狀態。
+- 第 4 階段的車側原始影像由 ImageGen 產生，App 影片及最佳影格不包含燒錄 UI；已依精簡規則通過 `dart format` 與 `flutter analyze --no-pub`。
+- Flutter 手機端 Prototype 第 5 階段：隱藏控制器可真正切換左側無損／有損素材與腳本；有損路徑包含廣角疑似刮痕框、中央／左側／右側三視角補掃、固定 Finding、補充證據結果及中立責任文案。
+- 第 5 階段的有損影像由 ImageGen 依無損車側素材局部編輯，再產生廣角、三張近距離影格與本機影片；UI、異常框及提示仍由 Flutter 疊加。已依精簡規則通過 `dart format` 與 `flutter analyze --no-pub`。
+- Flutter 手機端 Prototype 第 6 階段：後座入口已串接獨立車內污損影片、最佳影格及時間軸，以座椅與腳踏區導引取代車外輪廓，框選右側座墊飲料污漬並形成固定車內 Finding。
+- 第 6 階段完成後，後座會標記為已完成並顯示等待後續處理；會員端維持中立文案，不顯示清潔費或責任判定。車內原始影像由 ImageGen 產生，UI 與異常框由 Flutter 疊加，並已通過 `dart format` 與 `flutter analyze --no-pub`。
+- Flutter 手機端 Prototype 第 7 階段：新增六區摘要、逐區模擬上傳、固定一次失敗與續傳、背景分析完成頁、展示重設，以及包含 session、zone captures、Finding、來源影像與 Prototype 標記的穩定本機 JSON。
+- 第 7 階段補齊取車、還車及完工複檢三種最低必要入口。完工複檢會顯示原異常，沿用左側影片與時間軸完成橫向同區域重掃，並可由隱藏控制切換「通過／仍需補處理」。已通過 `dart format`、`flutter analyze --no-pub` 及輸出 JSON 最小測試。
+- Flutter 手機端 Prototype 第 8 階段：新增三組直向與三組橫向尺寸矩陣、完整送出與重設流程、三視角補掃、隱藏控制器及代表性視覺快照測試；所有正式影片、時間軸與影格均完成離線素材檢查。
+- 第 8 階段修正 844×390 有損結果頁與 Demo 控制器溢位，並為影片載入中或失敗加入最佳影格備援。最終 `flutter analyze --no-pub` 無問題、20 項測試全數通過、Web Debug Build 及 Chrome 啟動成功。完整紀錄位於 `prototype/mobile/docs/stage8-validation-report.md`。
 
 ### 6.2 正在進行
 
 - 修改簡報敘事、文字密度與頁面內容。
 - 確認每頁能在沒有口頭說明的情況下獨立閱讀。
-- 手機端依分階段計畫執行；目前停在第 1 階段完成點，必須等待使用者指示才可開始第 2 階段六區總覽與區域選擇。
+- 手機端第 8 階段已完成，目前等待使用者確認定稿；未取得確認前不得開始後台端或跨端實作。
 - 等待官方解題資源，以修正流程假設及企業介接需求。
 
 ### 6.3 尚未開始
 
-- Flutter 手機 Prototype 第 2 至第 8 階段。
 - 後台 Prototype 程式碼。
 - Mock API 與假資料結構。
 - 正式 AI 模型或推論服務。
@@ -330,6 +343,18 @@ slide-redesign/
   qa/
     視覺檢查紀錄與嚴格編譯報告。
   本資料夾只作為視覺參考，不是目前採用的提案簡報；後續簡報修改以 slide/ 為準。
+
+prototype/mobile/
+  README.md
+    Flutter 手機端執行方式、操作路徑與目前完成範圍。
+  lib/
+    手機端六區檢查、掃描、摘要、上傳、完成與完工複檢程式碼。
+  assets/
+    本機掃描影片、時間軸 JSON 與車況影格。
+  test/
+    流程、資料、尺寸矩陣、掃描情境與視覺快照測試。
+  docs/stage8-validation-report.md
+    第 8 階段完整總驗證、修正項目、展示路徑與已知限制。
 
 tmp/
   簡報 PDF、PNG 及其他視覺檢查用暫存檔。不是正式交付內容。

@@ -13,11 +13,13 @@ class ScanScaffold extends StatefulWidget {
     required this.body,
     super.key,
     this.bottom,
+    this.onPrototypeLongPress,
   });
 
   final String title;
   final Widget body;
   final Widget? bottom;
+  final VoidCallback? onPrototypeLongPress;
 
   @override
   State<ScanScaffold> createState() => _ScanScaffoldState();
@@ -59,10 +61,15 @@ class _ScanScaffoldState extends State<ScanScaffold> {
           foregroundColor: AppColors.white,
           surfaceTintColor: AppColors.scanBackground,
           title: Text(widget.title),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.only(right: AppSpacing.md),
-              child: Center(child: PrototypeBanner(dark: true)),
+              padding: const EdgeInsets.only(right: AppSpacing.md),
+              child: Center(
+                child: GestureDetector(
+                  onLongPress: widget.onPrototypeLongPress,
+                  child: const PrototypeBanner(dark: true),
+                ),
+              ),
             ),
           ],
         ),

@@ -1,0 +1,50 @@
+{
+  "scenarioId": "exterior_damage",
+  "durationMs": 6000,
+  "events": [
+    {
+      "atMs": 0,
+      "phase": "waiting",
+      "prompt": "將左側車身放入框內",
+      "quality": 0.0
+    },
+    {
+      "atMs": 650,
+      "phase": "aligning",
+      "prompt": "請向後退半步",
+      "quality": 0.25,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 1650,
+      "phase": "aligning",
+      "prompt": "請再向右移動",
+      "quality": 0.5,
+      "box": {"left": 0.09, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 2750,
+      "phase": "stable",
+      "prompt": "保持手機穩定",
+      "quality": 0.76,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 3900,
+      "phase": "stable",
+      "prompt": "影像品質已達標",
+      "quality": 0.94,
+      "capture": true,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 5000,
+      "phase": "detailRequired",
+      "prompt": "發現疑似刮痕，請補充近距離影像",
+      "quality": 1.0,
+      "capture": true,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62},
+      "anomalyBox": {"left": 0.61, "top": 0.48, "width": 0.2, "height": 0.2}
+    }
+  ]
+}

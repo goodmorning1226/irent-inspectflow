@@ -1,3 +1,4 @@
+import 'inspection_zone.dart';
 import 'rental_order.dart';
 import 'vehicle.dart';
 
@@ -9,6 +10,7 @@ class InspectionSession {
     required this.type,
     required this.vehicle,
     required this.order,
+    required this.zones,
     required this.isPrototype,
   });
 
@@ -16,5 +18,6 @@ class InspectionSession {
   final InspectionType type;
   final Vehicle vehicle;
   final RentalOrder order;
+  final List<InspectionZone> zones;
   final bool isPrototype;
 }

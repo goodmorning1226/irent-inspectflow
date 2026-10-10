@@ -1,0 +1,48 @@
+{
+  "scenarioId": "exterior_clean",
+  "durationMs": 6000,
+  "events": [
+    {
+      "atMs": 0,
+      "phase": "waiting",
+      "prompt": "將左側車身放入框內",
+      "quality": 0.0
+    },
+    {
+      "atMs": 650,
+      "phase": "aligning",
+      "prompt": "請向後退半步",
+      "quality": 0.24,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 1600,
+      "phase": "aligning",
+      "prompt": "請再向右移動",
+      "quality": 0.48,
+      "box": {"left": 0.09, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 2700,
+      "phase": "stable",
+      "prompt": "保持手機穩定",
+      "quality": 0.72,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 3700,
+      "phase": "stable",
+      "prompt": "影像品質已達標",
+      "quality": 0.92,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62}
+    },
+    {
+      "atMs": 4600,
+      "phase": "captured",
+      "prompt": "已自動擷取最佳影格",
+      "quality": 1.0,
+      "capture": true,
+      "box": {"left": 0.08, "top": 0.18, "width": 0.84, "height": 0.62}
+    }
+  ]
+}

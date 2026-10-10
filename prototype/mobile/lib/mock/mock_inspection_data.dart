@@ -1,4 +1,5 @@
 import '../models/inspection_session.dart';
+import '../models/inspection_zone.dart';
 import '../models/rental_order.dart';
 import '../models/vehicle.dart';
 
@@ -17,5 +18,39 @@ abstract final class MockInspectionData {
       returnLocation: '台北市信義區・市府停車場',
       returnTimeLabel: '今日 18:30 前',
     ),
+    zones: [
+      InspectionZone(
+        type: InspectionZoneType.front,
+        status: ZoneStatus.completed,
+        completedAt: '今日 18:04',
+        qualitySummary: '位置、清晰度與曝光均符合標準',
+      ),
+      InspectionZone(
+        type: InspectionZoneType.leftSide,
+        status: ZoneStatus.notStarted,
+      ),
+      InspectionZone(
+        type: InspectionZoneType.rear,
+        status: ZoneStatus.completed,
+        completedAt: '今日 18:05',
+        qualitySummary: '位置、清晰度與曝光均符合標準',
+      ),
+      InspectionZone(
+        type: InspectionZoneType.rightSide,
+        status: ZoneStatus.completed,
+        completedAt: '今日 18:06',
+        qualitySummary: '位置、清晰度與曝光均符合標準',
+      ),
+      InspectionZone(
+        type: InspectionZoneType.frontSeat,
+        status: ZoneStatus.completed,
+        completedAt: '今日 18:07',
+        qualitySummary: '位置、清晰度與曝光均符合標準',
+      ),
+      InspectionZone(
+        type: InspectionZoneType.rearSeat,
+        status: ZoneStatus.notStarted,
+      ),
+    ],
   );
 }

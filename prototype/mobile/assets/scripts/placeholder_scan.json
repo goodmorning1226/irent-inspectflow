@@ -1,0 +1,41 @@
+{
+  "scenarioId": "placeholder_scan",
+  "durationMs": 6000,
+  "events": [
+    {
+      "atMs": 0,
+      "phase": "waiting",
+      "prompt": "將車身放入框內",
+      "quality": 0.0
+    },
+    {
+      "atMs": 800,
+      "phase": "aligning",
+      "prompt": "請再向右移動",
+      "quality": 0.28,
+      "box": {"left": 0.13, "top": 0.25, "width": 0.7, "height": 0.46}
+    },
+    {
+      "atMs": 2200,
+      "phase": "stable",
+      "prompt": "保持手機穩定",
+      "quality": 0.68,
+      "box": {"left": 0.15, "top": 0.24, "width": 0.7, "height": 0.48}
+    },
+    {
+      "atMs": 3500,
+      "phase": "stable",
+      "prompt": "正在鎖定影像品質",
+      "quality": 0.88,
+      "box": {"left": 0.15, "top": 0.24, "width": 0.7, "height": 0.48}
+    },
+    {
+      "atMs": 4700,
+      "phase": "captured",
+      "prompt": "已自動擷取最佳影格",
+      "quality": 1.0,
+      "capture": true,
+      "box": {"left": 0.15, "top": 0.24, "width": 0.7, "height": 0.48}
+    }
+  ]
+}

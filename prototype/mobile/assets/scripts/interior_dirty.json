@@ -1,0 +1,49 @@
+{
+  "scenarioId": "interior_dirty",
+  "durationMs": 6000,
+  "events": [
+    {
+      "atMs": 0,
+      "phase": "waiting",
+      "prompt": "將後座與腳踏區放入框內",
+      "quality": 0.0
+    },
+    {
+      "atMs": 750,
+      "phase": "aligning",
+      "prompt": "請稍微抬高手機",
+      "quality": 0.3,
+      "box": {"left": 0.22, "top": 0.14, "width": 0.68, "height": 0.72}
+    },
+    {
+      "atMs": 1750,
+      "phase": "aligning",
+      "prompt": "請向後移動一點",
+      "quality": 0.54,
+      "box": {"left": 0.2, "top": 0.13, "width": 0.7, "height": 0.73}
+    },
+    {
+      "atMs": 2850,
+      "phase": "stable",
+      "prompt": "保持手機穩定",
+      "quality": 0.79,
+      "box": {"left": 0.2, "top": 0.13, "width": 0.7, "height": 0.73}
+    },
+    {
+      "atMs": 3900,
+      "phase": "stable",
+      "prompt": "後座影像品質已達標",
+      "quality": 0.95,
+      "box": {"left": 0.2, "top": 0.13, "width": 0.7, "height": 0.73}
+    },
+    {
+      "atMs": 4900,
+      "phase": "captured",
+      "prompt": "已記錄後座污漬",
+      "quality": 1.0,
+      "capture": true,
+      "box": {"left": 0.2, "top": 0.13, "width": 0.7, "height": 0.73},
+      "anomalyBox": {"left": 0.49, "top": 0.62, "width": 0.18, "height": 0.2}
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_routes.dart';
 import '../../mock/mock_inspection_data.dart';
+import '../../models/inspection_session.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
 import '../../widgets/irent_flow_scaffold.dart';
@@ -34,7 +35,7 @@ class InspectionEntryPage extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.sm),
           Text(
-            'InspectFlow 會引導拍攝位置並確認影像品質。正式掃描功能將在後續階段加入。',
+            'InspectFlow 會把車況分成六個區域，先確認已留下的影像，再引導完成尚未掃描的部分。',
             style: Theme.of(
               context,
             ).textTheme.bodyLarge?.copyWith(color: AppColors.mutedInk),
@@ -51,9 +52,56 @@ class InspectionEntryPage extends StatelessWidget {
             timeLabel: session.order.returnTimeLabel,
           ),
           const SizedBox(height: AppSpacing.xl),
-          const _StageNotice(),
+          const _DemoEntrances(),
+          const SizedBox(height: AppSpacing.xl),
+          const _InspectionNotice(),
         ],
       ),
+    );
+  }
+}
+
+class _DemoEntrances extends StatelessWidget {
+  const _DemoEntrances();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Prototype 展示入口', style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: AppSpacing.xs),
+        Text(
+          '三種入口共用車況證據格式；取車與還車進入六區檢查，完工複檢則由員工確認原異常區域。',
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),
+        ),
+        const SizedBox(height: AppSpacing.md),
+        Row(
+          children: [
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: () => Navigator.of(context).pushNamed(
+                  AppRoutes.inspection,
+                  arguments: InspectionType.pickup,
+                ),
+                icon: const Icon(Icons.key_rounded),
+                label: const Text('取車檢查'),
+              ),
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.completionReview),
+                icon: const Icon(Icons.fact_check_outlined),
+                label: const Text('完工複檢'),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -218,8 +266,8 @@ class _DetailRow extends StatelessWidget {
   }
 }
 
-class _StageNotice extends StatelessWidget {
-  const _StageNotice();
+class _InspectionNotice extends StatelessWidget {
+  const _InspectionNotice();
 
   @override
   Widget build(BuildContext context) {
@@ -234,7 +282,7 @@ class _StageNotice extends StatelessWidget {
         const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: Text(
-            '目前為第 1 階段工程骨架，尚未啟用六區選擇、影片掃描或 AI 判讀。',
+            '目前為 Prototype 模擬流程。左側與後座會保留為掃描入口，其餘區域使用固定完成影像。',
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),

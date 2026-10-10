@@ -3,9 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:inspectflow_mobile/app/inspectflow_app.dart';
 
 void main() {
-  testWidgets('app starts and opens the inspection placeholder', (
-    tester,
-  ) async {
+  testWidgets('app starts and opens the six-zone overview', (tester) async {
     await tester.pumpWidget(const InspectFlowApp());
 
     expect(find.text('確認還車車況'), findsOneWidget);
@@ -16,7 +14,12 @@ void main() {
     await tester.tap(find.byKey(const Key('enter-inspection-button')));
     await tester.pumpAndSettle();
 
-    expect(find.text('車況檢查'), findsOneWidget);
-    expect(find.text('準備建立六區車況總覽'), findsOneWidget);
+    expect(find.text('選擇要確認的區域'), findsOneWidget);
+    expect(find.byKey(const Key('zone-front')), findsOneWidget);
+    expect(find.byKey(const Key('zone-leftSide')), findsOneWidget);
+    expect(find.byKey(const Key('zone-rear')), findsOneWidget);
+    expect(find.byKey(const Key('zone-rightSide')), findsOneWidget);
+    expect(find.byKey(const Key('zone-frontSeat')), findsOneWidget);
+    expect(find.byKey(const Key('zone-rearSeat')), findsOneWidget);
   });
 }
