@@ -12,13 +12,8 @@ import '../submission/inspection_summary_page.dart';
 import 'zone_summary_page.dart';
 
 class InspectionOverviewPage extends StatefulWidget {
-  const InspectionOverviewPage({
-    this.inspectionType = InspectionType.returnVehicle,
-    this.initialZones,
-    super.key,
-  });
+  const InspectionOverviewPage({this.initialZones, super.key});
 
-  final InspectionType inspectionType;
   final List<InspectionZone>? initialZones;
 
   @override
@@ -27,7 +22,6 @@ class InspectionOverviewPage extends StatefulWidget {
 
 class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
   late List<InspectionZone> _zones;
-  InspectionZoneType? _selectedType;
 
   @override
   void initState() {
@@ -40,7 +34,6 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
   void _resetDemo() {
     setState(() {
       _zones = List<InspectionZone>.of(MockInspectionData.currentSession.zones);
-      _selectedType = null;
     });
   }
 
@@ -48,7 +41,7 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => InspectionSummaryPage(
-          inspectionType: widget.inspectionType,
+          inspectionType: InspectionType.returnVehicle,
           zones: List.unmodifiable(_zones),
           onReset: _resetDemo,
         ),
@@ -56,62 +49,49 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
     );
   }
 
-  InspectionZone? get _selectedZone {
-    if (_selectedType == null) return null;
-    return _zones.firstWhere((zone) => zone.type == _selectedType);
-  }
-
-  void _selectZone(InspectionZone zone) {
-    setState(() {
-      _selectedType = zone.type;
-      for (var index = 0; index < _zones.length; index++) {
-        final current = _zones[index];
-        if (current.status == ZoneStatus.selected) {
-          _zones[index] = current.copyWith(status: ZoneStatus.notStarted);
-        }
-      }
-      if (zone.status == ZoneStatus.notStarted) {
-        final index = _zones.indexWhere((item) => item.type == zone.type);
-        _zones[index] = zone.copyWith(status: ZoneStatus.selected);
-      }
-    });
-  }
-
-  Future<void> _openSelectedZone() async {
-    final zone = _selectedZone;
-    if (zone == null) return;
-
-    if (zone.hasRecordedImage) {
-      await Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (_) => ZoneSummaryPage(zone: zone)),
-      );
-      return;
-    }
-
-    final shouldStart = await _showOrientationPrompt(zone);
+  Future<void> _openFullScan() async {
+    final shouldStart = await _showOrientationPrompt();
     if (!mounted || !shouldStart) return;
     final completion = await Navigator.of(context).push<ScanCompletion>(
       MaterialPageRoute<ScanCompletion>(
-        builder: (_) => ScanPrototypePage(zone: zone),
+        builder: (_) => const ScanPrototypePage(),
       ),
     );
     if (!mounted || completion == null) return;
-    final index = _zones.indexWhere((item) => item.type == zone.type);
     setState(() {
-      _zones[index] = _zones[index].copyWith(
-        status: ZoneStatus.completed,
-        completedAt: '剛剛完成',
-        qualitySummary: switch (completion) {
-          ScanCompletion.clean => '位置、清晰度與曝光均符合標準',
-          ScanCompletion.evidenceCaptured => '已取得廣角與三個近距離補充影像',
-          ScanCompletion.interiorEvidenceCaptured => '已記錄後座污漬，等待後續處理',
-        },
-      );
-      _selectedType = zone.type;
+      _zones = _zones
+          .map(
+            (zone) => zone.copyWith(
+              status: ZoneStatus.completed,
+              completedAt: '剛剛完成',
+              qualitySummary:
+                  (completion == ScanCompletion.evidenceCaptured ||
+                          completion ==
+                              ScanCompletion.evidenceAndInteriorCaptured) &&
+                      zone.type == InspectionZoneType.leftSide
+                  ? '發現疑似刮痕，已取得廣角與三個補充影像，等待後續處理'
+                  : (completion == ScanCompletion.interiorEvidenceCaptured ||
+                            completion ==
+                                ScanCompletion.evidenceAndInteriorCaptured) &&
+                        zone.type == InspectionZoneType.rearSeat
+                  ? '已記錄後座右側座墊污漬，等待後續處理'
+                  : '位置、清晰度與曝光均符合標準',
+            ),
+          )
+          .toList(growable: false);
     });
+    await Future<void>.delayed(Duration.zero);
+    if (mounted) _openSummary();
   }
 
-  Future<bool> _showOrientationPrompt(InspectionZone zone) async {
+  Future<void> _openZoneSummary(InspectionZone zone) async {
+    if (!zone.hasRecordedImage) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => ZoneSummaryPage(zone: zone)),
+    );
+  }
+
+  Future<bool> _showOrientationPrompt() async {
     return await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
@@ -122,7 +102,7 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
             ),
             title: const Text('請將手機橫放'),
             content: Text(
-              '接下來將以橫向畫面掃描${zone.type.label}，較寬的取景範圍能完整保留車況。',
+              '接下來會以橫向畫面連續掃描全車。系統會自動辨識目前區域，完成後直接引導您移動到下一區。',
               textAlign: TextAlign.center,
             ),
             actions: [
@@ -146,22 +126,15 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
     final completedCount = _zones
         .where((zone) => zone.status == ZoneStatus.completed)
         .length;
-    final selectedZone = _selectedZone;
     final allCompleted = completedCount == _zones.length;
 
     return IrentFlowScaffold(
-      title: widget.inspectionType == InspectionType.pickup
-          ? '確認取車車況'
-          : '確認還車車況',
+      title: '確認還車車況',
       showBackButton: true,
       bottom: FilledButton(
         key: const Key('zone-primary-action'),
-        onPressed: allCompleted
-            ? _openSummary
-            : selectedZone == null
-            ? null
-            : _openSelectedZone,
-        child: Text(allCompleted ? '查看六區檢查摘要' : _actionLabel(selectedZone)),
+        onPressed: allCompleted ? _openSummary : _openFullScan,
+        child: Text(allCompleted ? '查看六區檢查摘要' : '開始全車掃描'),
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
@@ -177,33 +150,21 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
             completedCount: completedCount,
           ),
           const SizedBox(height: AppSpacing.lg),
-          Text('選擇要確認的區域', style: Theme.of(context).textTheme.titleLarge),
+          Text('一次掃描，系統自動辨識六區', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: AppSpacing.xs),
           Text(
-            widget.inspectionType == InspectionType.pickup
-                ? '取車前確認六個區域，建立本次租借的車況基準；左側與後座等待本次掃描。'
-                : '六個區域都會留下標準化影像。已完成的區域可回看；左側與後座等待本次掃描。',
+            '開啟掃描後直接繞車並查看車內，系統會自動辨識六個區域、鎖定品質並逐區保存影像。',
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),
           ),
           const SizedBox(height: AppSpacing.lg),
-          _ZoneTrack(
-            zones: _zones,
-            selectedType: _selectedType,
-            onSelected: _selectZone,
-          ),
+          _ZoneTrack(zones: _zones, onOpenSummary: _openZoneSummary),
           const SizedBox(height: AppSpacing.lg),
           const _ScanExplanation(),
         ],
       ),
     );
-  }
-
-  String _actionLabel(InspectionZone? zone) {
-    if (zone == null) return '請先選擇區域';
-    if (zone.hasRecordedImage) return '查看${zone.type.label}影像';
-    return '開始${zone.type.label}掃描';
   }
 }
 
@@ -256,7 +217,9 @@ class _VehicleStrip extends StatelessWidget {
             Text(
               '$completedCount / 6 已完成',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppColors.successGreen,
+                color: completedCount == 0
+                    ? AppColors.mutedInk
+                    : AppColors.successGreen,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -268,15 +231,10 @@ class _VehicleStrip extends StatelessWidget {
 }
 
 class _ZoneTrack extends StatelessWidget {
-  const _ZoneTrack({
-    required this.zones,
-    required this.selectedType,
-    required this.onSelected,
-  });
+  const _ZoneTrack({required this.zones, required this.onOpenSummary});
 
   final List<InspectionZone> zones;
-  final InspectionZoneType? selectedType;
-  final ValueChanged<InspectionZone> onSelected;
+  final ValueChanged<InspectionZone> onOpenSummary;
 
   @override
   Widget build(BuildContext context) {
@@ -293,8 +251,9 @@ class _ZoneTrack extends StatelessWidget {
                 width: itemWidth,
                 child: _ZoneTile(
                   zone: zone,
-                  isSelected: selectedType == zone.type,
-                  onTap: () => onSelected(zone),
+                  onTap: zone.hasRecordedImage
+                      ? () => onOpenSummary(zone)
+                      : null,
                 ),
               ),
           ],
@@ -305,32 +264,24 @@ class _ZoneTrack extends StatelessWidget {
 }
 
 class _ZoneTile extends StatelessWidget {
-  const _ZoneTile({
-    required this.zone,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const _ZoneTile({required this.zone, required this.onTap});
 
   final InspectionZone zone;
-  final bool isSelected;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final visualStatus = isSelected && zone.status == ZoneStatus.notStarted
-        ? ZoneStatus.selected
-        : zone.status;
+    final visualStatus = zone.status;
     final colors = _ZoneColors.fromStatus(visualStatus);
 
     return Semantics(
-      button: true,
-      selected: isSelected,
+      button: onTap != null,
       label: '${zone.type.label}，${visualStatus.label}',
       child: Material(
         color: colors.background,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: colors.border, width: isSelected ? 2 : 1),
+          side: BorderSide(color: colors.border),
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -364,7 +315,7 @@ class _ZoneTile extends StatelessWidget {
                 Icon(
                   visualStatus == ZoneStatus.completed
                       ? Icons.check_circle_rounded
-                      : Icons.chevron_right_rounded,
+                      : Icons.radio_button_unchecked_rounded,
                   color: colors.foreground,
                   size: 20,
                 ),

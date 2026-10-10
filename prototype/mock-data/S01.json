@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "prototype-1.0",
+  "meta": {
+    "id": "S01",
+    "name": "正常還車",
+    "purpose": "無異常基準",
+    "summary": "六區影像均可判讀，沒有發現需要立即處理的異常，車輛維持可出租。",
+    "dataNotice": "案例、信心與時間皆為 Prototype 固定假資料，不代表企業實際 KPI。"
+  },
+  "vehicles": [
+    {
+      "id": "VEH-AXF-1027",
+      "plateNumber": "AXF-1027",
+      "modelName": "TOYOTA YARIS",
+      "colorName": "極光銀",
+      "availability": "READY"
+    }
+  ],
+  "rentals": [
+    {
+      "id": "RNT-20261010-001",
+      "vehicleId": "VEH-AXF-1027",
+      "memberIdMasked": "MBR-****-1842",
+      "pickupAt": "2026-10-10T12:10:00+08:00",
+      "pickupLocation": "台北市大安區・信義安和站",
+      "returnAt": "2026-10-10T18:12:00+08:00",
+      "returnLocation": "台北市信義區・市府停車場"
+    }
+  ],
+  "inspectionSessions": [
+    {
+      "id": "INS-DEMO-001",
+      "rentalId": "RNT-20261010-001",
+      "vehicleId": "VEH-AXF-1027",
+      "type": "return",
+      "capturedAt": "2026-10-10T18:12:00+08:00",
+      "zoneCaptures": [
+        {
+          "zone": "leftSide",
+          "capturedAt": "2026-10-10T18:08:00+08:00",
+          "qualitySummary": "位置、清晰度與曝光均符合標準",
+          "sourceImages": [
+            "prototype/mobile/assets/frames/exterior_clean_best.png"
+          ]
+        }
+      ],
+      "isPrototype": true
+    }
+  ],
+  "findings": [],
+  "cases": [
+    {
+      "id": "CASE-S01-001",
+      "scenarioId": "S01",
+      "title": "正常還車自動摘要",
+      "status": "RESOLVED",
+      "priority": "normal",
+      "vehicleId": "VEH-AXF-1027",
+      "rentalId": "RNT-20261010-001",
+      "inspectionSessionIds": ["INS-DEMO-001"],
+      "findingIds": [],
+      "suggestedAction": "維持 READY，不建立即時任務",
+      "createdAt": "2026-10-10T18:13:00+08:00",
+      "updatedAt": "2026-10-10T18:14:00+08:00",
+      "isPrototype": true
+    }
+  ],
+  "tasks": [],
+  "workers": [
+    {
+      "id": "WRK-OPS-01",
+      "displayName": "王小安",
+      "team": "台北營運組",
+      "skills": ["inspection", "cleaning"],
+      "isPrototype": true
+    }
+  ],
+  "assignments": [],
+  "vehicleStatusEvents": [],
+  "reviewDecisions": [],
+  "completionReviews": [],
+  "releaseAuthorizations": [],
+  "claimDecisions": [],
+  "auditEvents": [
+    {
+      "id": "AUD-S01-001",
+      "entityType": "case",
+      "entityId": "CASE-S01-001",
+      "action": "CASE_RESOLVED",
+      "detail": "影像可判讀且未發現需處理異常",
+      "actorId": "SYSTEM-PROTOTYPE",
+      "occurredAt": "2026-10-10T18:14:00+08:00",
+      "isPrototype": true
+    }
+  ]
+}

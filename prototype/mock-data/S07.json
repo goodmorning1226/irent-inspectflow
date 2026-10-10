@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "prototype-1.0",
+  "meta": {
+    "id": "S07",
+    "name": "左前車燈破裂",
+    "purpose": "安全異常",
+    "summary": "左前車燈燈罩破裂，車輛立即下線並建立優先維修任務，完工覆核後才能重新上線。",
+    "dataNotice": "安全分級、維修 ETA 與人員資料皆為 Prototype 假資料。"
+  },
+  "vehicles": [
+    {
+      "id": "VEH-KTZ-6088",
+      "plateNumber": "KTZ-6088",
+      "modelName": "TOYOTA YARIS",
+      "colorName": "極光銀",
+      "availability": "OFFLINE"
+    }
+  ],
+  "rentals": [
+    {
+      "id": "RNT-20261010-001",
+      "vehicleId": "VEH-KTZ-6088",
+      "memberIdMasked": "MBR-****-1842",
+      "pickupAt": "2026-10-10T12:10:00+08:00",
+      "pickupLocation": "台北市大安區・信義安和站",
+      "returnAt": "2026-10-10T18:12:00+08:00",
+      "returnLocation": "台北市信義區・市府停車場"
+    }
+  ],
+  "inspectionSessions": [
+    {
+      "id": "INS-DEMO-001",
+      "rentalId": "RNT-20261010-001",
+      "vehicleId": "VEH-KTZ-6088",
+      "type": "return",
+      "capturedAt": "2026-10-10T18:12:00+08:00",
+      "zoneCaptures": [
+        {
+          "zone": "front",
+          "capturedAt": "2026-10-10T18:09:00+08:00",
+          "qualitySummary": "左前車燈燈罩裂紋與缺角清楚可見",
+          "sourceImages": [
+            "/headlight_damage_wide.png",
+            "/headlight_damage_detail.png"
+          ]
+        }
+      ],
+      "isPrototype": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "FND-S07-HEADLAMP-001",
+      "inspectionSessionId": "INS-DEMO-001",
+      "location": "左前車燈",
+      "zone": "front",
+      "type": "crack",
+      "severity": "high",
+      "possiblyNew": true,
+      "confidence": 0.95,
+      "evidenceState": "sufficient",
+      "sourceImages": [
+        "/headlight_damage_wide.png",
+        "/headlight_damage_detail.png"
+      ],
+      "limitations": ["模型分級仍需人員確認，安全異常優先採保守處置"],
+      "isPrototype": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "CASE-S07-001",
+      "scenarioId": "S07",
+      "title": "左前車燈破裂安全異常",
+      "status": "PENDING_REPAIR",
+      "priority": "urgent",
+      "vehicleId": "VEH-KTZ-6088",
+      "rentalId": "RNT-20261010-001",
+      "inspectionSessionIds": ["INS-DEMO-001"],
+      "findingIds": ["FND-S07-HEADLAMP-001"],
+      "suggestedAction": "車輛下線並優先維修，完工影像通過覆核後才能恢復 READY",
+      "createdAt": "2026-10-10T18:13:00+08:00",
+      "updatedAt": "2026-10-10T18:14:00+08:00",
+      "isPrototype": true
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TSK-S07-REPAIR-001",
+      "caseId": "CASE-S07-001",
+      "type": "repair",
+      "status": "ASSIGNED",
+      "title": "更換左前車燈總成",
+      "location": "台北市信義區・合作維修廠",
+      "etaLabel": "展示 ETA：2 小時",
+      "isPrototype": true
+    }
+  ],
+  "workers": [
+    {
+      "id": "WRK-REPAIR-01",
+      "displayName": "張技師",
+      "team": "合作維修組",
+      "skills": ["repair", "inspection"],
+      "isPrototype": true
+    },
+    {
+      "id": "WRK-REPAIR-02",
+      "displayName": "李俊明",
+      "team": "信義道路維修組",
+      "skills": ["repair"],
+      "currentWorkload": 2,
+      "etaLabel": "約 35 分鐘可到場",
+      "isPrototype": true
+    }
+  ],
+  "assignments": [
+    {
+      "id": "ASN-S07-001",
+      "taskId": "TSK-S07-REPAIR-001",
+      "workerId": "WRK-REPAIR-01",
+      "assignedAt": "2026-10-10T18:14:00+08:00",
+      "assignedBy": "USR-OPS-001",
+      "isPrototype": true
+    }
+  ],
+  "vehicleStatusEvents": [
+    {
+      "id": "VSE-S07-001",
+      "vehicleId": "VEH-KTZ-6088",
+      "from": "READY",
+      "to": "OFFLINE",
+      "reason": "車燈破裂屬安全異常",
+      "occurredAt": "2026-10-10T18:13:00+08:00",
+      "actorId": "SYSTEM-PROTOTYPE",
+      "isPrototype": true
+    }
+  ],
+  "reviewDecisions": [],
+  "completionReviews": [],
+  "releaseAuthorizations": [],
+  "claimDecisions": [],
+  "auditEvents": [
+    {
+      "id": "AUD-S07-001",
+      "entityType": "vehicle",
+      "entityId": "VEH-KTZ-6088",
+      "action": "VEHICLE_OFFLINED",
+      "detail": "安全異常優先下線，等待人工確認與維修",
+      "actorId": "SYSTEM-PROTOTYPE",
+      "occurredAt": "2026-10-10T18:13:00+08:00",
+      "isPrototype": true
+    }
+  ]
+}

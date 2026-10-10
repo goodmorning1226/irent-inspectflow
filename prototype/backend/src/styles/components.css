@@ -1,0 +1,110 @@
+.prototype-badge,
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.2;
+  border-radius: 999px;
+}
+
+.prototype-badge {
+  color: var(--color-brand-dark);
+  background: var(--color-brand-soft);
+  border: 1px solid #efb8b8;
+}
+
+.status-chip--neutral {
+  color: var(--color-muted);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+}
+
+.status-chip--success {
+  color: var(--color-success);
+  background: var(--color-success-soft);
+}
+
+.status-chip--warning {
+  color: #a64c19;
+  background: var(--color-warning-soft);
+}
+
+.button {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 var(--space-4);
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+}
+
+.button--primary {
+  color: var(--color-white);
+  background: var(--color-brand);
+}
+
+.button--primary:hover {
+  background: var(--color-brand-dark);
+}
+
+.button--secondary {
+  color: var(--color-ink);
+  background: transparent;
+  border-color: var(--color-border-strong);
+}
+
+.button--secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.data-table {
+  width: 100%;
+  border-spacing: 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table th {
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 750;
+  background: #fafafa;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 11px;
+  color: var(--color-ink);
+  background: var(--color-white);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}

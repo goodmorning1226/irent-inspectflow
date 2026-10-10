@@ -26,10 +26,6 @@ class InspectionZone {
 
   bool get hasRecordedImage => status == ZoneStatus.completed;
 
-  bool get hasInteractiveScan =>
-      type == InspectionZoneType.leftSide ||
-      type == InspectionZoneType.rearSeat;
-
   InspectionZone copyWith({
     ZoneStatus? status,
     String? completedAt,

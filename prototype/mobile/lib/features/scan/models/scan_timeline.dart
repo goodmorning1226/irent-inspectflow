@@ -1,6 +1,22 @@
 import 'dart:convert';
 
-enum ScanPhase { waiting, aligning, stable, captured, detailRequired }
+import '../../../models/inspection_zone.dart';
+
+enum ScanPhase {
+  waiting,
+  moving,
+  aligning,
+  stable,
+  captured,
+  interiorTransition,
+  detailRequired,
+  evidenceCapturing,
+  completed,
+}
+
+enum EvidenceView { center, left, right }
+
+enum ScanFindingKind { stain }
 
 class NormalizedScanBox {
   const NormalizedScanBox({
@@ -32,6 +48,13 @@ class ScanTimelineEvent {
     required this.prompt,
     required this.quality,
     required this.capture,
+    this.zone,
+    this.requiresDetail = false,
+    this.deferCompletion = false,
+    this.evidenceView,
+    this.evidenceStep,
+    this.evidenceTotal,
+    this.finding,
     this.box,
     this.anomalyBox,
   });
@@ -44,6 +67,22 @@ class ScanTimelineEvent {
       prompt: json['prompt'] as String,
       quality: (json['quality'] as num).toDouble().clamp(0, 1),
       capture: json['capture'] as bool? ?? false,
+      zone: switch (json['zone']) {
+        final String zone => InspectionZoneType.values.byName(zone),
+        _ => null,
+      },
+      requiresDetail: json['requiresDetail'] as bool? ?? false,
+      deferCompletion: json['deferCompletion'] as bool? ?? false,
+      evidenceView: switch (json['evidenceView']) {
+        final String view => EvidenceView.values.byName(view),
+        _ => null,
+      },
+      evidenceStep: json['evidenceStep'] as int?,
+      evidenceTotal: json['evidenceTotal'] as int?,
+      finding: switch (json['finding']) {
+        final String finding => ScanFindingKind.values.byName(finding),
+        _ => null,
+      },
       box: switch (json['box']) {
         final Map<String, dynamic> box => NormalizedScanBox.fromJson(box),
         _ => null,
@@ -60,6 +99,13 @@ class ScanTimelineEvent {
   final String prompt;
   final double quality;
   final bool capture;
+  final InspectionZoneType? zone;
+  final bool requiresDetail;
+  final bool deferCompletion;
+  final EvidenceView? evidenceView;
+  final int? evidenceStep;
+  final int? evidenceTotal;
+  final ScanFindingKind? finding;
   final NormalizedScanBox? box;
   final NormalizedScanBox? anomalyBox;
 }

@@ -1,1 +1,6 @@
-enum ScanCompletion { clean, evidenceCaptured, interiorEvidenceCaptured }
+enum ScanCompletion {
+  clean,
+  evidenceCaptured,
+  interiorEvidenceCaptured,
+  evidenceAndInteriorCaptured,
+}

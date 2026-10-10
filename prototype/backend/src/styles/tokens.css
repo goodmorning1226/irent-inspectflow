@@ -1,0 +1,32 @@
+:root {
+  color-scheme: light;
+  --color-brand: #dd2525;
+  --color-brand-dark: #b71920;
+  --color-brand-soft: #fff0f0;
+  --color-ink: #252525;
+  --color-muted: #68686b;
+  --color-white: #ffffff;
+  --color-workspace: #f3f4f6;
+  --color-border: #dedfe2;
+  --color-border-strong: #a9adb3;
+  --color-sidebar: #202327;
+  --color-success: #2f9e69;
+  --color-success-soft: #eaf6f0;
+  --color-warning: #f47a32;
+  --color-warning-soft: #fff3eb;
+  --color-danger-soft: #fff0f0;
+  --font-sans:
+    'Noto Sans TC', 'Microsoft JhengHei', 'PingFang TC', system-ui, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-subtle: 0 8px 24px rgba(37, 37, 37, 0.05);
+  --sidebar-width: 244px;
+  --topbar-height: 78px;
+}

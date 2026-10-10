@@ -21,9 +21,7 @@ abstract final class MockInspectionData {
     zones: [
       InspectionZone(
         type: InspectionZoneType.front,
-        status: ZoneStatus.completed,
-        completedAt: '今日 18:04',
-        qualitySummary: '位置、清晰度與曝光均符合標準',
+        status: ZoneStatus.notStarted,
       ),
       InspectionZone(
         type: InspectionZoneType.leftSide,
@@ -31,21 +29,15 @@ abstract final class MockInspectionData {
       ),
       InspectionZone(
         type: InspectionZoneType.rear,
-        status: ZoneStatus.completed,
-        completedAt: '今日 18:05',
-        qualitySummary: '位置、清晰度與曝光均符合標準',
+        status: ZoneStatus.notStarted,
       ),
       InspectionZone(
         type: InspectionZoneType.rightSide,
-        status: ZoneStatus.completed,
-        completedAt: '今日 18:06',
-        qualitySummary: '位置、清晰度與曝光均符合標準',
+        status: ZoneStatus.notStarted,
       ),
       InspectionZone(
         type: InspectionZoneType.frontSeat,
-        status: ZoneStatus.completed,
-        completedAt: '今日 18:07',
-        qualitySummary: '位置、清晰度與曝光均符合標準',
+        status: ZoneStatus.notStarted,
       ),
       InspectionZone(
         type: InspectionZoneType.rearSeat,

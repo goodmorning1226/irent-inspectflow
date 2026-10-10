@@ -91,7 +91,7 @@
     .dense p,.dense li{font-size:18px;line-height:1.42}.dense h3{font-size:23px;margin-bottom:9px}
     .fact-row{display:grid;grid-template-columns:210px 1fr 300px;gap:24px;padding:15px 0;border-bottom:1px solid var(--line);align-items:start}.fact-row h3,.fact-row p{margin:0}.fact-row p{font-size:17px;line-height:1.4}.fact-row .result{font-size:17px;font-weight:800;color:#087989}
     .pipeline{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:24px}.pipeline-item{position:relative;padding:18px 14px 14px;background:#f4f8fa;border-top:5px solid var(--cyan);min-height:190px}.pipeline-item:nth-child(n+5){border-color:var(--orange)}.pipeline-item:not(:last-child)::after{content:"›";position:absolute;right:-11px;top:70px;color:#7aaeb4;font-size:28px;font-weight:900;z-index:2}.pipeline-item b{display:block;font-size:19px;line-height:1.25;margin:8px 0}.pipeline-item p{font-size:14px;line-height:1.38;color:var(--muted);margin:0}.pipeline-item .io{font-size:12px;font-weight:900;color:var(--cyan-dark);letter-spacing:.06em}
-    .audience-heading{display:flex;align-items:center;gap:16px;margin-top:22px;font-size:17px;font-weight:900;color:#31485c}.audience-heading::after{content:"";height:1px;background:var(--line);flex:1}.audience-timeline{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(4,32px);gap:6px 12px;margin-top:12px}.audience-bar{display:flex;align-items:center;padding:0 14px;border-radius:6px;font-size:14px;font-weight:900;white-space:nowrap}.audience-user{grid-column:1 / 4;grid-row:1;background:#dff8fb;color:#087989;border-left:5px solid var(--cyan)}.audience-service{grid-column:4 / 7;grid-row:2;background:#e7f1fb;color:#286a9f;border-left:5px solid #3f91d3}.audience-ops{grid-column:5 / 8;grid-row:3;background:#fff0e9;color:#b84b22;border-left:5px solid var(--orange)}.audience-field{grid-column:6 / 8;grid-row:4;background:#f1eafd;color:#6f42b5;border-left:5px solid #8b5cf6}.audience-note{font-size:14px;line-height:1.35;color:var(--muted);margin:10px 0 0}
+    .audience-heading{display:flex;align-items:center;gap:16px;margin-top:22px;font-size:17px;font-weight:900;color:#31485c}.audience-heading::after{content:"";height:1px;background:var(--line);flex:1}.audience-timeline{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(3,32px);gap:6px 12px;margin-top:12px}.audience-bar{display:flex;align-items:center;padding:0 14px;border-radius:6px;font-size:14px;font-weight:900;white-space:nowrap}.audience-user{grid-column:1 / 4;grid-row:1;background:#dff8fb;color:#087989;border-left:5px solid var(--cyan)}.audience-ops{grid-column:4 / 8;grid-row:2;background:#fff0e9;color:#b84b22;border-left:5px solid var(--orange)}.audience-field{grid-column:6 / 8;grid-row:3;background:#f1eafd;color:#6f42b5;border-left:5px solid #8b5cf6}.audience-note{font-size:14px;line-height:1.35;color:var(--muted);margin:10px 0 0}
     .scan-stage{display:grid;grid-template-columns:230px 1fr 280px;gap:24px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}.scan-stage h3,.scan-stage p{margin:0}.scan-stage p{font-size:16px;line-height:1.38}.scan-stage .out{font-size:15px;color:var(--muted)}
     .proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.proto-shot{min-width:0}.proto-shot img{width:100%;height:300px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.proto-shot h3{font-size:20px;margin:12px 0 5px}.proto-shot p{font-size:14px;line-height:1.35;color:var(--muted);margin:0}
     .backend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.backend-shot img{width:100%;height:285px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.backend-shot h3{font-size:21px;margin:12px 0 5px}.backend-shot p{font-size:15px;line-height:1.38;color:var(--muted);margin:0}
@@ -135,7 +135,7 @@
         <div class="key">團隊名稱</div><div class="value">待填寫完整團隊名稱</div>
         <div class="key">產品／服務名稱</div><div class="value"><b>iRent InspectFlow：AI 智能車況檢查與整備管家</b></div>
         <div class="key">企業挑戰題目</div><div class="value">運用 AI 打造 iRent 智能車況管家：優化租還車體驗與營運效率</div>
-        <div class="key">目標對象</div><div class="value">iRent 租車使用者，以及負責車況判斷、客服處理、整備派工與索賠覆核的營運人員。</div>
+        <div class="key">目標對象</div><div class="value">iRent 租車使用者、負責車況比對與任務安排的後台營運人員，以及實際執行清潔與維修的現場人員。</div>
         <div class="key">解決方案設計重點<br><span class="small">至多 3 項</span></div>
         <div class="value"><ol><li>即時導引掃描：拍攝當下檢查位置、距離、角度、清晰度與覆蓋率，合格後自動擷取。</li><li>歷史車況比對：比對同車輛相同區域的有效影像，辨識新車損、既有損傷與車內髒污。</li><li>營運與索賠閉環：將異常轉成整備或索賠待審案件，完工後以相同區域影像驗證。</li></ol></div>
         <div class="key">運用到的 AI 技術、服務或模型等資源</div><div class="value">裝置端影像品質判斷、車身與內裝部件定位、影像特徵對齊、損傷與髒污分割、整潔度分類、信心校準、規則引擎及任務優先排序。</div>
@@ -156,14 +156,13 @@
 
     <section class="slide soft dense" data-label="3 / 15">
       <div class="eyebrow">2. 目標對象與痛點分析</div>
-      <h2>同一筆車況資料必須同時回答四類角色的問題</h2>
-      <p class="doc-lead">我們將整體流程中的使用者分為租車使用者、客服與索賠人員、營運人員，以及清潔與維修人員。四類角色的工作彼此相連，但現行照片無法直接支援後續處理，因此每個角色都需要重新確認資訊。下表整理各角色面臨的痛點，以及 InspectFlow 提供的對應解方。</p>
+      <h2>一筆可信的車況資料，串起前台、後台與現場處理</h2>
+      <p class="doc-lead">我們將目標對象收斂為租車使用者、後台營運人員，以及清潔與維修人員三類。使用者負責取得合格影像，營運人員在單一工作台完成車況比對、任務安排與索賠審查，現場人員則依任務處理異常。三者共用同一筆車況證據，不必在不同角色與系統間反覆查找資訊。</p>
       <table class="table">
         <thead><tr><th style="width:20%">目標角色</th><th style="width:40%">主要痛點</th><th>對應解方</th></tr></thead>
         <tbody>
           <tr><td><b>租車使用者</b></td><td>不知道是否拍對位置，失焦、反光或漏拍通常要等到照片上傳後才被發現。</td><td>以即時掃描提供位置與品質提示，畫面連續合格後自動擷取，只有異常區域需要補掃。</td></tr>
-          <tr><td><b>客服與索賠人員</b></td><td>需要人工尋找前後照片，也難以穩定區分新損、既有損傷、髒污與反光。</td><td>自動整理同區域歷史影像、時間軸與多角度證據，再由授權人員完成覆核。</td></tr>
-          <tr><td><b>營運人員</b></td><td>異常資訊散落在照片與訊息中，無法直接轉成車輛狀態與可執行的任務。</td><td>依判讀類型建立清潔、巡檢、維修或索賠待審任務，並追蹤處理進度。</td></tr>
+          <tr><td><b>後台營運人員</b></td><td>需要人工尋找前後照片，並在不同流程中完成車況判斷、派工與索賠確認。</td><td>以單一工作台集中前後比對、清潔與維修派工，以及依嚴重度排序的索賠候選清單。</td></tr>
           <tr><td><b>清潔與維修人員</b></td><td>工單缺少明確的異常位置與影像，完工後也沒有一致的複檢方式。</td><td>在任務中附上異常位置與照片，處理完成後要求同區域重新掃描並回傳證據。</td></tr>
         </tbody>
       </table>
@@ -186,8 +185,7 @@
       <div class="audience-heading">目標客群參與區段</div>
       <div class="audience-timeline" aria-label="Pipeline 節點與目標客群對應時間條">
         <div class="audience-bar audience-user">租車使用者｜建立檢查、即時掃描與異常補掃</div>
-        <div class="audience-bar audience-service">客服與索賠人員｜查看比對證據並覆核案件</div>
-        <div class="audience-bar audience-ops">營運人員｜確認分流、安排任務與管理車輛狀態</div>
+        <div class="audience-bar audience-ops">後台營運人員｜比對車況、安排任務並審查索賠候選</div>
         <div class="audience-bar audience-field">清潔與維修人員｜執行任務並回傳完工證據</div>
       </div>
       <p class="audience-note">若未發現異常，使用者完成掃描後即可結束流程。只有發現異常或證據不足時，後續角色才會依案件需要接續處理。</p>

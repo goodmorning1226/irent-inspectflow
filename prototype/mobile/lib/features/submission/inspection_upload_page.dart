@@ -9,7 +9,7 @@ import '../../theme/app_spacing.dart';
 import '../../widgets/irent_flow_scaffold.dart';
 import 'submission_complete_page.dart';
 
-enum _UploadStatus { waiting, uploading, failed, completed }
+enum _UploadStatus { waiting, uploading, completed }
 
 class InspectionUploadPage extends StatefulWidget {
   const InspectionUploadPage({
@@ -27,10 +27,8 @@ class InspectionUploadPage extends StatefulWidget {
 
 class _InspectionUploadPageState extends State<InspectionUploadPage> {
   late final List<_UploadStatus> _statuses;
-  bool _hasSimulatedFailure = false;
   bool _isRunning = false;
 
-  bool get _hasFailure => _statuses.contains(_UploadStatus.failed);
   bool get _isComplete =>
       _statuses.every((status) => status == _UploadStatus.completed);
 
@@ -52,14 +50,6 @@ class _InspectionUploadPageState extends State<InspectionUploadPage> {
       setState(() => _statuses[index] = _UploadStatus.uploading);
       await Future<void>.delayed(const Duration(milliseconds: 280));
       if (!mounted) return;
-      if (!_hasSimulatedFailure && index == 1) {
-        setState(() {
-          _statuses[index] = _UploadStatus.failed;
-          _hasSimulatedFailure = true;
-          _isRunning = false;
-        });
-        return;
-      }
       setState(() => _statuses[index] = _UploadStatus.completed);
     }
     _isRunning = false;
@@ -85,18 +75,8 @@ class _InspectionUploadPageState extends State<InspectionUploadPage> {
       title: '上傳車況紀錄',
       showBackButton: true,
       bottom: FilledButton(
-        onPressed: _hasFailure
-            ? () => unawaited(_runUpload())
-            : _isComplete
-            ? _continue
-            : null,
-        child: Text(
-          _hasFailure
-              ? '重試未完成項目'
-              : _isComplete
-              ? '繼續'
-              : '正在上傳…',
-        ),
+        onPressed: _isComplete ? _continue : null,
+        child: Text(_isComplete ? '繼續' : '正在上傳…'),
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
@@ -134,7 +114,7 @@ class _InspectionUploadPageState extends State<InspectionUploadPage> {
           ),
           const SizedBox(height: AppSpacing.sm),
           Text(
-            'Prototype 會固定模擬一次連線中斷，點選重試即可繼續。資料只保留在本機。',
+            '六區影像會依序整理完成；Prototype 資料只保留在本機，不會實際上傳。',
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),
@@ -157,26 +137,6 @@ class _InspectionUploadPageState extends State<InspectionUploadPage> {
               ],
             ),
           ),
-          if (_hasFailure) ...[
-            const SizedBox(height: AppSpacing.lg),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF4F4),
-                border: Border.all(color: const Color(0xFFF0B6B6)),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(AppSpacing.md),
-                child: Row(
-                  children: [
-                    Icon(Icons.wifi_off_rounded, color: AppColors.brandRed),
-                    SizedBox(width: AppSpacing.sm),
-                    Expanded(child: Text('左側影像尚未完成，已完成的項目不會重複上傳。')),
-                  ],
-                ),
-              ),
-            ),
-          ],
         ],
       ),
     );
@@ -206,11 +166,6 @@ class _UploadRow extends StatelessWidget {
         Icons.sync_rounded,
         AppColors.brandRed,
         '上傳中',
-      ),
-      _UploadStatus.failed => (
-        Icons.error_outline_rounded,
-        AppColors.brandRed,
-        '需要重試',
       ),
       _UploadStatus.completed => (
         Icons.check_circle_rounded,

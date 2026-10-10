@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../app/app_routes.dart';
 import '../../models/mobile_inspection_result.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_spacing.dart';
@@ -26,19 +25,12 @@ class SubmissionCompletePage extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: FilledButton(
-              onPressed: () =>
-                  Navigator.of(context).popUntil((route) => route.isFirst),
-              child: const Text('返回 iRent 取還車流程'),
+              onPressed: () {
+                onReset();
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+              child: const Text('返回 iRent 還車流程'),
             ),
-          ),
-          TextButton(
-            onPressed: () {
-              onReset();
-              Navigator.of(context).popUntil(
-                (route) => route.settings.name == AppRoutes.inspection,
-              );
-            },
-            child: const Text('重設 Prototype，再次展示'),
           ),
         ],
       ),
@@ -96,13 +88,6 @@ class SubmissionCompletePage extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          OutlinedButton.icon(
-            onPressed: () =>
-                Navigator.of(context).pushNamed(AppRoutes.completionReview),
-            icon: const Icon(Icons.fact_check_outlined),
-            label: const Text('查看完工複檢示意'),
           ),
         ],
       ),

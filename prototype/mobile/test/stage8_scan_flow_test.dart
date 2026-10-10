@@ -51,7 +51,7 @@ void main() {
     expect(completed, isTrue);
   });
 
-  testWidgets('hidden controller exposes three repeatable scenarios', (
+  testWidgets('hidden controller exposes repeatable continuous scan controls', (
     tester,
   ) async {
     _setLandscape(tester);
@@ -72,10 +72,10 @@ void main() {
     await tester.longPress(find.text('Prototype 模擬結果'));
     await tester.pumpAndSettle();
 
-    expect(find.text('展示案例'), findsWidgets);
-    expect(find.text('左側無損'), findsWidgets);
-    expect(find.text('左側有損'), findsWidgets);
-    expect(find.text('後座污損'), findsWidgets);
+    expect(find.text('全車掃描 Demo 控制器'), findsOneWidget);
+    expect(find.text('重播完整流程'), findsOneWidget);
+    expect(find.text('下一事件'), findsOneWidget);
+    expect(find.text('重設'), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

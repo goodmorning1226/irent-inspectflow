@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inspectflow_mobile/features/scan/models/scan_timeline.dart';
+import 'package:inspectflow_mobile/models/inspection_zone.dart';
 
 void main() {
   test('timeline parser returns the event active at a playback position', () {
@@ -55,5 +56,56 @@ void main() {
     expect(interior.events.last.phase, ScanPhase.captured);
     expect(interior.events.last.anomalyBox, isNotNull);
     expect(interior.events.last.capture, isTrue);
+  });
+
+  test('full vehicle timeline covers six zones in one continuous session', () {
+    final script = ScanTimelineScript.fromJsonString(
+      File('assets/scripts/full_vehicle_scan.json').readAsStringSync(),
+    );
+    final completedZones = script.events
+        .where(
+          (event) =>
+              event.phase == ScanPhase.captured ||
+              (event.phase == ScanPhase.evidenceCapturing &&
+                  event.capture &&
+                  event.evidenceStep == event.evidenceTotal),
+        )
+        .map((event) => event.zone)
+        .toSet();
+    final evidenceCaptures = script.events.where(
+      (event) => event.phase == ScanPhase.evidenceCapturing && event.capture,
+    );
+
+    expect(completedZones, InspectionZoneType.values.toSet());
+    expect(
+      script.events.any(
+        (event) =>
+            event.phase == ScanPhase.detailRequired &&
+            event.zone == InspectionZoneType.leftSide &&
+            event.anomalyBox != null,
+      ),
+      isTrue,
+    );
+    expect(evidenceCaptures.length, 3);
+    expect(evidenceCaptures.map((event) => event.evidenceView), [
+      EvidenceView.center,
+      EvidenceView.left,
+      EvidenceView.right,
+    ]);
+    final rearSeatFinding = script.events.singleWhere(
+      (event) => event.finding == ScanFindingKind.stain,
+    );
+    expect(rearSeatFinding.zone, InspectionZoneType.rearSeat);
+    expect(rearSeatFinding.capture, isTrue);
+    expect(rearSeatFinding.anomalyBox, isNotNull);
+    expect(
+      script.events.any(
+        (event) =>
+            event.zone == InspectionZoneType.rearSeat && event.deferCompletion,
+      ),
+      isTrue,
+    );
+    expect(script.events.last.phase, ScanPhase.completed);
+    expect(script.duration, const Duration(milliseconds: 23800));
   });
 }

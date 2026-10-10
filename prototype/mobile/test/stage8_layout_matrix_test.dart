@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:inspectflow_mobile/app/inspectflow_app.dart';
 import 'package:inspectflow_mobile/features/completion_review/completion_review_page.dart';
 import 'package:inspectflow_mobile/features/inspection/inspection_overview_page.dart';
+import 'package:inspectflow_mobile/features/scan/scan_prototype_page.dart';
 import 'package:inspectflow_mobile/theme/app_theme.dart';
 
 void _setSize(WidgetTester tester, Size size) {
@@ -49,16 +50,19 @@ void main() {
   }
 
   for (final size in landscapeSizes) {
-    testWidgets('scan shell fits ${size.width}x${size.height}', (tester) async {
+    testWidgets('continuous scan fits ${size.width}x${size.height}', (
+      tester,
+    ) async {
       _setSize(tester, size);
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
 
       await tester.pumpWidget(
-        MaterialApp(theme: AppTheme.light, home: const CompletionRescanPage()),
+        MaterialApp(theme: AppTheme.light, home: const ScanPrototypePage()),
       );
-      await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('左側完工重掃'), findsOneWidget);
+      await tester.pump(const Duration(seconds: 1));
+      expect(find.text('全車連續掃描'), findsOneWidget);
+      expect(find.text('Prototype 模擬結果'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
   }

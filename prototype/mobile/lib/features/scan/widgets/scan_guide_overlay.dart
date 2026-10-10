@@ -35,24 +35,28 @@ class ScanGuideOverlay extends StatelessWidget {
 
           return Stack(
             children: [
-              Positioned.fromRect(
-                rect: frame,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color:
-                          event.phase == ScanPhase.detailRequired ||
-                              event.anomalyBox != null
-                          ? AppColors.warningOrange
-                          : event.phase == ScanPhase.captured
-                          ? AppColors.successGreen
-                          : AppColors.captureCyan,
-                      width: 3,
+              if (event.phase != ScanPhase.moving &&
+                  event.phase != ScanPhase.interiorTransition &&
+                  event.phase != ScanPhase.completed)
+                Positioned.fromRect(
+                  rect: frame,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color:
+                            event.phase == ScanPhase.detailRequired ||
+                                event.phase == ScanPhase.evidenceCapturing ||
+                                event.anomalyBox != null
+                            ? AppColors.warningOrange
+                            : event.phase == ScanPhase.captured
+                            ? AppColors.successGreen
+                            : AppColors.captureCyan,
+                        width: 3,
+                      ),
+                      borderRadius: BorderRadius.circular(18),
                     ),
-                    borderRadius: BorderRadius.circular(18),
                   ),
                 ),
-              ),
               if (event.anomalyBox case final NormalizedScanBox anomalyBox)
                 Positioned(
                   left: constraints.maxWidth * anomalyBox.left,
@@ -81,19 +85,25 @@ class ScanGuideOverlay extends StatelessWidget {
                     ),
                   ),
                 ),
-              Center(
-                child: Icon(
-                  event.phase == ScanPhase.captured
-                      ? Icons.check_circle_rounded
-                      : isInterior
-                      ? Icons.event_seat_rounded
-                      : Icons.directions_car_filled_rounded,
-                  size: event.phase == ScanPhase.captured ? 60 : 76,
-                  color: AppColors.white.withValues(
-                    alpha: event.phase == ScanPhase.captured ? 0.94 : 0.38,
+              if (event.phase != ScanPhase.moving &&
+                  event.phase != ScanPhase.interiorTransition)
+                Center(
+                  child: Icon(
+                    event.phase == ScanPhase.captured ||
+                            event.phase == ScanPhase.completed
+                        ? Icons.check_circle_rounded
+                        : event.phase == ScanPhase.evidenceCapturing ||
+                              event.phase == ScanPhase.detailRequired
+                        ? Icons.search_rounded
+                        : isInterior
+                        ? Icons.event_seat_rounded
+                        : Icons.directions_car_filled_rounded,
+                    size: event.phase == ScanPhase.captured ? 60 : 76,
+                    color: AppColors.white.withValues(
+                      alpha: event.phase == ScanPhase.captured ? 0.94 : 0.38,
+                    ),
                   ),
                 ),
-              ),
             ],
           );
         },

@@ -14,7 +14,10 @@ void main() {
     await tester.tap(find.byKey(const Key('enter-inspection-button')));
     await tester.pumpAndSettle();
 
-    expect(find.text('選擇要確認的區域'), findsOneWidget);
+    expect(find.text('一次掃描，系統自動辨識六區'), findsOneWidget);
+    expect(find.text('開始全車掃描'), findsOneWidget);
+    expect(find.text('0 / 6 已完成'), findsOneWidget);
+    expect(find.text('待掃描'), findsNWidgets(6));
     expect(find.byKey(const Key('zone-front')), findsOneWidget);
     expect(find.byKey(const Key('zone-leftSide')), findsOneWidget);
     expect(find.byKey(const Key('zone-rear')), findsOneWidget);

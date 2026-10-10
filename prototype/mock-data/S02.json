@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "prototype-1.0",
+  "meta": {
+    "id": "S02",
+    "name": "後座飲料污漬",
+    "purpose": "清潔閉環主線",
+    "summary": "後座右側座墊發現飲料污漬，等待人工覆核並安排清潔與同區域複檢。",
+    "dataNotice": "污漬信心、清潔 ETA 與人員姓名均為 Prototype 展示資料。"
+  },
+  "vehicles": [
+    {
+      "id": "VEH-BKR-5832",
+      "plateNumber": "BKR-5832",
+      "modelName": "TOYOTA YARIS",
+      "colorName": "極光銀",
+      "availability": "REVIEW_REQUIRED"
+    }
+  ],
+  "rentals": [
+    {
+      "id": "RNT-20261010-001",
+      "vehicleId": "VEH-BKR-5832",
+      "memberIdMasked": "MBR-****-1842",
+      "pickupAt": "2026-10-10T12:10:00+08:00",
+      "pickupLocation": "台北市大安區・信義安和站",
+      "returnAt": "2026-10-10T18:12:00+08:00",
+      "returnLocation": "台北市信義區・市府停車場"
+    }
+  ],
+  "inspectionSessions": [
+    {
+      "id": "INS-DEMO-001",
+      "rentalId": "RNT-20261010-001",
+      "vehicleId": "VEH-BKR-5832",
+      "type": "return",
+      "capturedAt": "2026-10-10T18:12:00+08:00",
+      "zoneCaptures": [
+        {
+          "zone": "rearSeat",
+          "capturedAt": "2026-10-10T18:10:00+08:00",
+          "qualitySummary": "已記錄後座污漬，等待後續處理",
+          "sourceImages": [
+            "prototype/mobile/assets/frames/interior_dirty_best.png"
+          ]
+        }
+      ],
+      "isPrototype": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "FND-DEMO-INTERIOR-001",
+      "inspectionSessionId": "INS-DEMO-001",
+      "location": "後座右側座墊",
+      "zone": "rearSeat",
+      "type": "stain",
+      "severity": "medium",
+      "possiblyNew": true,
+      "confidence": 0.91,
+      "evidenceState": "sufficient",
+      "sourceImages": [
+        "prototype/mobile/assets/frames/interior_dirty_best.png"
+      ],
+      "limitations": ["需由人員確認清潔方式，不自動判定費用或責任"],
+      "isPrototype": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "CASE-S02-001",
+      "scenarioId": "S02",
+      "title": "後座右側座墊飲料污漬",
+      "status": "PENDING_REVIEW",
+      "priority": "normal",
+      "vehicleId": "VEH-BKR-5832",
+      "rentalId": "RNT-20261010-001",
+      "inspectionSessionIds": ["INS-DEMO-001"],
+      "findingIds": ["FND-DEMO-INTERIOR-001"],
+      "suggestedAction": "人工確認後建立清潔任務，完工後同區域複檢",
+      "createdAt": "2026-10-10T18:13:00+08:00",
+      "updatedAt": "2026-10-10T18:13:00+08:00",
+      "isPrototype": true
+    }
+  ],
+  "tasks": [],
+  "workers": [
+    {
+      "id": "WRK-CLEAN-01",
+      "displayName": "林清潔",
+      "team": "台北整備組",
+      "skills": ["cleaning", "inspection"],
+      "isPrototype": true
+    }
+  ],
+  "assignments": [],
+  "vehicleStatusEvents": [
+    {
+      "id": "VSE-S02-001",
+      "vehicleId": "VEH-BKR-5832",
+      "from": "READY",
+      "to": "REVIEW_REQUIRED",
+      "reason": "後座污漬待人工覆核",
+      "occurredAt": "2026-10-10T18:13:00+08:00",
+      "actorId": "SYSTEM-PROTOTYPE",
+      "isPrototype": true
+    }
+  ],
+  "reviewDecisions": [],
+  "completionReviews": [],
+  "releaseAuthorizations": [],
+  "claimDecisions": [],
+  "auditEvents": [
+    {
+      "id": "AUD-S02-001",
+      "entityType": "case",
+      "entityId": "CASE-S02-001",
+      "action": "CASE_CREATED",
+      "detail": "由後座污漬 Finding 建立待覆核案件",
+      "actorId": "SYSTEM-PROTOTYPE",
+      "occurredAt": "2026-10-10T18:13:00+08:00",
+      "isPrototype": true
+    }
+  ]
+}
