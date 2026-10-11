@@ -10,7 +10,8 @@
   "bitrise": {},
   "ios": {
     "path": "prototype/mobile/ios",
-    "bundleId": "tw.irent.inspectflow.mobile"
+    "bundleId": "tw.irent.inspectflow.mobile",
+    "configuration": "Release"
   },
   "flutter": {
     "version": "3.41.7",
