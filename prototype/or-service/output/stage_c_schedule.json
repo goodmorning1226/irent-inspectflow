@@ -1,0 +1,1010 @@
+{
+  "stage": "C",
+  "scenario_id": "TAIPEI-BASE-001",
+  "input_sha256": "339c3edba7961c114333cc57944ad9444be1e0fc86a933ffed4940fecdfe48fd",
+  "has_solution": true,
+  "status_code": 9,
+  "status": "TIME_LIMIT",
+  "runtime_seconds": 30.002907037734985,
+  "time_limit_seconds": 30.0,
+  "mip_gap_setting": 0.02,
+  "speed_kmh": 22,
+  "progress": [
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.1268000602722168
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.13108205795288086
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.1376209259033203
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.13876891136169434
+    },
+    {
+      "event": "objective_pass_finished",
+      "runtime_seconds": 0.13898110389709473,
+      "completed_objective_count": 1
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.13923907279968262
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.23087096214294434
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.2433629035949707
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.24465203285217285
+    },
+    {
+      "event": "objective_pass_finished",
+      "runtime_seconds": 0.24483203887939453,
+      "completed_objective_count": 2
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.2450239658355713
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.3573141098022461
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.35846900939941406
+    },
+    {
+      "event": "objective_pass_finished",
+      "runtime_seconds": 0.3586111068725586,
+      "completed_objective_count": 3
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.3587610721588135
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.42876696586608887
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.47754812240600586
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.49259209632873535
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.4950559139251709
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.4990251064300537
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.4993901252746582
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.4995710849761963
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.5051751136779785
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.5135269165039062
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.5336699485778809
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.5857019424438477
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.6192660331726074
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.6394948959350586
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.7603769302368164
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.7922530174255371
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.7923901081085205
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.792496919631958
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.8105199337005615
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.8106670379638672
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.984687089920044
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.9851200580596924
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 0.9918761253356934
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.1218340396881104
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.2560551166534424
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.2678101062774658
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.279675006866455
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.2841010093688965
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.5416600704193115
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.5428431034088135
+    },
+    {
+      "event": "objective_pass_finished",
+      "runtime_seconds": 1.5431890487670898,
+      "completed_objective_count": 4
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.5436010360717773
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.6337780952453613
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.734663963317871
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.7347500324249268
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.734816074371338
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.7484550476074219
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.74931001663208
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.9468541145324707
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 1.9753239154815674
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.231959104537964
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.4343769550323486
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.4346790313720703
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.5044329166412354
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.708440065383911
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.740602970123291
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.860265016555786
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 2.8604230880737305
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 3.346363067626953
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 4.590173959732056
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 5.007944107055664
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 5.595618963241577
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 7.976033926010132
+    },
+    {
+      "event": "objective_pass_finished",
+      "runtime_seconds": 11.538049936294556,
+      "completed_objective_count": 5
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 11.54900598526001
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 11.884719133377075
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 12.723711967468262
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 27.029830932617188
+    },
+    {
+      "event": "objective_pass_finished",
+      "runtime_seconds": 27.03006100654602,
+      "completed_objective_count": 6
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 27.037282943725586
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 27.141716957092285
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 27.188064098358154
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 27.306803941726685
+    },
+    {
+      "event": "incumbent",
+      "runtime_seconds": 30.00116801261902
+    },
+    {
+      "event": "objective_pass_finished",
+      "runtime_seconds": 30.001343965530396,
+      "completed_objective_count": 7
+    }
+  ],
+  "is_synthetic": true,
+  "notice": "使用座標直線距離與22 km/h估計交通；含班次、休息、前置與軟期限。不是實際導航或企業營運驗證。",
+  "assignments": [
+    {
+      "task_id": "TSK-001",
+      "worker_id": "WRK-04"
+    },
+    {
+      "task_id": "TSK-002",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-003",
+      "worker_id": "WRK-02"
+    },
+    {
+      "task_id": "TSK-004",
+      "worker_id": "WRK-04"
+    },
+    {
+      "task_id": "TSK-005",
+      "worker_id": "WRK-01"
+    },
+    {
+      "task_id": "TSK-006",
+      "worker_id": "WRK-02"
+    },
+    {
+      "task_id": "TSK-007",
+      "worker_id": "WRK-04"
+    },
+    {
+      "task_id": "TSK-008",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-009",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-010",
+      "worker_id": "WRK-03"
+    },
+    {
+      "task_id": "TSK-011",
+      "worker_id": "WRK-01"
+    },
+    {
+      "task_id": "TSK-012",
+      "worker_id": "WRK-02"
+    },
+    {
+      "task_id": "TSK-013",
+      "worker_id": "WRK-03"
+    },
+    {
+      "task_id": "TSK-014",
+      "worker_id": "WRK-01"
+    },
+    {
+      "task_id": "TSK-015",
+      "worker_id": "WRK-02"
+    },
+    {
+      "task_id": "TSK-016",
+      "worker_id": "WRK-06"
+    },
+    {
+      "task_id": "TSK-017",
+      "worker_id": "WRK-01"
+    },
+    {
+      "task_id": "TSK-018",
+      "worker_id": "WRK-02"
+    },
+    {
+      "task_id": "TSK-019",
+      "worker_id": "WRK-06"
+    },
+    {
+      "task_id": "TSK-020",
+      "worker_id": "WRK-01"
+    },
+    {
+      "task_id": "TSK-021",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-022",
+      "worker_id": "WRK-06"
+    },
+    {
+      "task_id": "TSK-023",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-024",
+      "worker_id": "WRK-05"
+    }
+  ],
+  "routes": [
+    {
+      "worker_id": "WRK-01",
+      "task_ids": [
+        "TSK-014",
+        "TSK-020",
+        "TSK-011",
+        "TSK-005",
+        "TSK-017"
+      ],
+      "legs": [
+        {
+          "from_location_id": "LOC-01",
+          "to_location_id": "LOC-02",
+          "departure_minute": 0,
+          "arrival_minute": 4.868008885601424
+        },
+        {
+          "from_location_id": "LOC-02",
+          "to_location_id": "LOC-08",
+          "departure_minute": 34.86800888560143,
+          "arrival_minute": 44.83316929548543
+        },
+        {
+          "from_location_id": "LOC-08",
+          "to_location_id": "LOC-11",
+          "departure_minute": 74.83316929548496,
+          "arrival_minute": 100.18923618437819
+        },
+        {
+          "from_location_id": "LOC-11",
+          "to_location_id": "LOC-05",
+          "departure_minute": 120.18923618437762,
+          "arrival_minute": 131.86590364795958
+        },
+        {
+          "from_location_id": "LOC-05",
+          "to_location_id": "LOC-05",
+          "departure_minute": 151.86590364795927,
+          "arrival_minute": 151.86590364795927
+        },
+        {
+          "from_location_id": "LOC-05",
+          "to_location_id": "LOC-01",
+          "departure_minute": 211.86590364795813,
+          "arrival_minute": 224.82976906759916
+        }
+      ],
+      "break": {
+        "start_minute": 181.86590364795813,
+        "end_minute": 211.86590364795813,
+        "location_id": "LOC-05"
+      },
+      "distance_km": 23.770915324787275,
+      "travel_minutes": 64.82976906760166,
+      "service_minutes": 130,
+      "work_minutes": 194.82976906760166,
+      "capacity_minutes": 450,
+      "break_minutes": 30,
+      "return_minute": 224.82976906759916,
+      "work_utilization": 0.43295504237244814
+    },
+    {
+      "worker_id": "WRK-02",
+      "task_ids": [
+        "TSK-015",
+        "TSK-003",
+        "TSK-006",
+        "TSK-018",
+        "TSK-012"
+      ],
+      "legs": [
+        {
+          "from_location_id": "LOC-03",
+          "to_location_id": "LOC-03",
+          "departure_minute": 0,
+          "arrival_minute": 0.0
+        },
+        {
+          "from_location_id": "LOC-03",
+          "to_location_id": "LOC-03",
+          "departure_minute": 20.0,
+          "arrival_minute": 20.0
+        },
+        {
+          "from_location_id": "LOC-03",
+          "to_location_id": "LOC-06",
+          "departure_minute": 70.0,
+          "arrival_minute": 84.55204975071376
+        },
+        {
+          "from_location_id": "LOC-06",
+          "to_location_id": "LOC-06",
+          "departure_minute": 114.55204975071373,
+          "arrival_minute": 114.55204975071373
+        },
+        {
+          "from_location_id": "LOC-06",
+          "to_location_id": "LOC-12",
+          "departure_minute": 134.55204975071373,
+          "arrival_minute": 144.8451320585601
+        },
+        {
+          "from_location_id": "LOC-12",
+          "to_location_id": "LOC-03",
+          "departure_minute": 210.0,
+          "arrival_minute": 229.34756802584286
+        }
+      ],
+      "break": {
+        "start_minute": 180.0,
+        "end_minute": 210.0,
+        "location_id": "LOC-12"
+      },
+      "distance_km": 16.203990030947764,
+      "travel_minutes": 44.19270008440299,
+      "service_minutes": 140,
+      "work_minutes": 184.192700084403,
+      "capacity_minutes": 450,
+      "break_minutes": 30,
+      "return_minute": 229.34756802584286,
+      "work_utilization": 0.4093171112986733
+    },
+    {
+      "worker_id": "WRK-03",
+      "task_ids": [
+        "TSK-010",
+        "TSK-013"
+      ],
+      "legs": [
+        {
+          "from_location_id": "LOC-05",
+          "to_location_id": "LOC-10",
+          "departure_minute": 0,
+          "arrival_minute": 9.127259358294383
+        },
+        {
+          "from_location_id": "LOC-10",
+          "to_location_id": "LOC-01",
+          "departure_minute": 84.12725935829438,
+          "arrival_minute": 102.81436255023137
+        },
+        {
+          "from_location_id": "LOC-01",
+          "to_location_id": "LOC-05",
+          "departure_minute": 210.0,
+          "arrival_minute": 222.96386541964102
+        }
+      ],
+      "break": {
+        "start_minute": 180.0,
+        "end_minute": 210.0,
+        "location_id": "LOC-01"
+      },
+      "distance_km": 14.95201692228655,
+      "travel_minutes": 40.77822796987241,
+      "service_minutes": 150,
+      "work_minutes": 190.7782279698724,
+      "capacity_minutes": 450,
+      "break_minutes": 30,
+      "return_minute": 222.96386541964102,
+      "work_utilization": 0.42395161771082757
+    },
+    {
+      "worker_id": "WRK-04",
+      "task_ids": [
+        "TSK-007",
+        "TSK-004",
+        "TSK-001"
+      ],
+      "legs": [
+        {
+          "from_location_id": "LOC-07",
+          "to_location_id": "LOC-07",
+          "departure_minute": 0,
+          "arrival_minute": 0.0
+        },
+        {
+          "from_location_id": "LOC-07",
+          "to_location_id": "LOC-04",
+          "departure_minute": 60.0,
+          "arrival_minute": 70.57751613739299
+        },
+        {
+          "from_location_id": "LOC-04",
+          "to_location_id": "LOC-01",
+          "departure_minute": 115.57751613739299,
+          "arrival_minute": 121.32869949002382
+        },
+        {
+          "from_location_id": "LOC-01",
+          "to_location_id": "LOC-07",
+          "departure_minute": 211.32869949002304,
+          "arrival_minute": 224.8940054628969
+        }
+      ],
+      "break": {
+        "start_minute": 181.32869949002304,
+        "end_minute": 211.32869949002304,
+        "location_id": "LOC-01"
+      },
+      "distance_km": 10.961135336395817,
+      "travel_minutes": 29.89400546289768,
+      "service_minutes": 165,
+      "work_minutes": 194.89400546289767,
+      "capacity_minutes": 450,
+      "break_minutes": 30,
+      "return_minute": 224.8940054628969,
+      "work_utilization": 0.4330977899175504
+    },
+    {
+      "worker_id": "WRK-05",
+      "task_ids": [
+        "TSK-008",
+        "TSK-023",
+        "TSK-024",
+        "TSK-021",
+        "TSK-002",
+        "TSK-009"
+      ],
+      "legs": [
+        {
+          "from_location_id": "LOC-09",
+          "to_location_id": "LOC-08",
+          "departure_minute": 0,
+          "arrival_minute": 13.909160014818552
+        },
+        {
+          "from_location_id": "LOC-08",
+          "to_location_id": "LOC-10",
+          "departure_minute": 33.90916001481835,
+          "arrival_minute": 47.88839036922613
+        },
+        {
+          "from_location_id": "LOC-10",
+          "to_location_id": "LOC-03",
+          "departure_minute": 99.12725935829438,
+          "arrival_minute": 123.83636535817742
+        },
+        {
+          "from_location_id": "LOC-03",
+          "to_location_id": "LOC-03",
+          "departure_minute": 138.83636535817743,
+          "arrival_minute": 138.83636535817743
+        },
+        {
+          "from_location_id": "LOC-03",
+          "to_location_id": "LOC-02",
+          "departure_minute": 153.83636535817743,
+          "arrival_minute": 162.93701592188918
+        },
+        {
+          "from_location_id": "LOC-02",
+          "to_location_id": "LOC-09",
+          "departure_minute": 182.9370159218891,
+          "arrival_minute": 204.0635818581291
+        },
+        {
+          "from_location_id": "LOC-09",
+          "to_location_id": "LOC-09",
+          "departure_minute": 264.0635818581291,
+          "arrival_minute": 264.0635818581291
+        }
+      ],
+      "break": {
+        "start_minute": 234.0635818581291,
+        "end_minute": 264.0635818581291,
+        "location_id": "LOC-09"
+      },
+      "distance_km": 30.369061385322407,
+      "travel_minutes": 82.8247128690611,
+      "service_minutes": 115,
+      "work_minutes": 197.8247128690611,
+      "capacity_minutes": 450,
+      "break_minutes": 30,
+      "return_minute": 264.0635818581291,
+      "work_utilization": 0.439610473042358
+    },
+    {
+      "worker_id": "WRK-06",
+      "task_ids": [
+        "TSK-019",
+        "TSK-022",
+        "TSK-016"
+      ],
+      "legs": [
+        {
+          "from_location_id": "LOC-11",
+          "to_location_id": "LOC-07",
+          "departure_minute": 0,
+          "arrival_minute": 11.668983429097015
+        },
+        {
+          "from_location_id": "LOC-07",
+          "to_location_id": "LOC-06",
+          "departure_minute": 71.66898342909701,
+          "arrival_minute": 76.00966615580086
+        },
+        {
+          "from_location_id": "LOC-06",
+          "to_location_id": "LOC-04",
+          "departure_minute": 129.55204975071373,
+          "arrival_minute": 139.2459003196257
+        },
+        {
+          "from_location_id": "LOC-04",
+          "to_location_id": "LOC-11",
+          "departure_minute": 244.24590031962572,
+          "arrival_minute": 264.4906130150149
+        }
+      ],
+      "break": {
+        "start_minute": 214.24590031962572,
+        "end_minute": 244.24590031962572,
+        "location_id": "LOC-04"
+      },
+      "distance_km": 16.847684120704063,
+      "travel_minutes": 45.94822942010199,
+      "service_minutes": 150,
+      "work_minutes": 195.948229420102,
+      "capacity_minutes": 450,
+      "break_minutes": 30,
+      "return_minute": 264.4906130150149,
+      "work_utilization": 0.43544050982244886
+    }
+  ],
+  "task_schedule": [
+    {
+      "task_id": "TSK-001",
+      "worker_id": "WRK-04",
+      "start_minute": 121.32869949002344,
+      "finish_minute": 181.32869949002344,
+      "deadline_minute": 330,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-002",
+      "worker_id": "WRK-05",
+      "start_minute": 162.9370159218891,
+      "finish_minute": 182.9370159218891,
+      "deadline_minute": 330,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-003",
+      "worker_id": "WRK-02",
+      "start_minute": 30.0,
+      "finish_minute": 70.0,
+      "deadline_minute": 165,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-004",
+      "worker_id": "WRK-04",
+      "start_minute": 70.57751613739299,
+      "finish_minute": 115.57751613739299,
+      "deadline_minute": 150,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-005",
+      "worker_id": "WRK-01",
+      "start_minute": 131.86590364795927,
+      "finish_minute": 151.86590364795927,
+      "deadline_minute": 210,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-006",
+      "worker_id": "WRK-02",
+      "start_minute": 84.55204975071373,
+      "finish_minute": 114.55204975071373,
+      "deadline_minute": 135,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-007",
+      "worker_id": "WRK-04",
+      "start_minute": 0.0,
+      "finish_minute": 60.0,
+      "deadline_minute": 210,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-008",
+      "worker_id": "WRK-05",
+      "start_minute": 13.909160014818347,
+      "finish_minute": 33.90916001481835,
+      "deadline_minute": 300,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-009",
+      "worker_id": "WRK-05",
+      "start_minute": 204.0635818581291,
+      "finish_minute": 234.0635818581291,
+      "deadline_minute": 240,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-010",
+      "worker_id": "WRK-03",
+      "start_minute": 9.127259358294381,
+      "finish_minute": 84.12725935829438,
+      "deadline_minute": 75,
+      "late_minutes": 9.127259358294381
+    },
+    {
+      "task_id": "TSK-011",
+      "worker_id": "WRK-01",
+      "start_minute": 100.18923618437762,
+      "finish_minute": 120.18923618437762,
+      "deadline_minute": 240,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-012",
+      "worker_id": "WRK-02",
+      "start_minute": 144.8451320585601,
+      "finish_minute": 174.8451320585601,
+      "deadline_minute": 240,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-013",
+      "worker_id": "WRK-03",
+      "start_minute": 102.81436255023135,
+      "finish_minute": 177.81436255023135,
+      "deadline_minute": 270,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-014",
+      "worker_id": "WRK-01",
+      "start_minute": 4.8680088856014265,
+      "finish_minute": 34.86800888560143,
+      "deadline_minute": 90,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-015",
+      "worker_id": "WRK-02",
+      "start_minute": 0.0,
+      "finish_minute": 20.0,
+      "deadline_minute": 195,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-016",
+      "worker_id": "WRK-06",
+      "start_minute": 139.2459003196257,
+      "finish_minute": 214.2459003196257,
+      "deadline_minute": 300,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-017",
+      "worker_id": "WRK-01",
+      "start_minute": 151.8659036479586,
+      "finish_minute": 181.8659036479586,
+      "deadline_minute": 300,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-018",
+      "worker_id": "WRK-02",
+      "start_minute": 114.55204975071373,
+      "finish_minute": 134.55204975071373,
+      "deadline_minute": 180,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-019",
+      "worker_id": "WRK-06",
+      "start_minute": 11.668983429097011,
+      "finish_minute": 71.66898342909701,
+      "deadline_minute": 210,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-020",
+      "worker_id": "WRK-01",
+      "start_minute": 44.833169295484964,
+      "finish_minute": 74.83316929548496,
+      "deadline_minute": 300,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-021",
+      "worker_id": "WRK-05",
+      "start_minute": 138.83636535817743,
+      "finish_minute": 153.83636535817743,
+      "deadline_minute": 180,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-022",
+      "worker_id": "WRK-06",
+      "start_minute": 114.55204975071373,
+      "finish_minute": 129.55204975071373,
+      "deadline_minute": 150,
+      "late_minutes": 0
+    },
+    {
+      "task_id": "TSK-023",
+      "worker_id": "WRK-05",
+      "start_minute": 84.12725935829438,
+      "finish_minute": 99.12725935829438,
+      "deadline_minute": 90,
+      "late_minutes": 9.127259358294381
+    },
+    {
+      "task_id": "TSK-024",
+      "worker_id": "WRK-05",
+      "start_minute": 123.83636535817742,
+      "finish_minute": 138.83636535817743,
+      "deadline_minute": 210,
+      "late_minutes": 0
+    }
+  ],
+  "unassigned": [],
+  "objective_values": [
+    {
+      "name": "urgent_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "high_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "all_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "weighted_lateness_minutes",
+      "value": 121.02745909097615
+    },
+    {
+      "name": "max_work_utilization",
+      "value": 0.4442986916524916
+    },
+    {
+      "name": "closed_route_distance_km",
+      "value": 113.10480312044388
+    },
+    {
+      "name": "earlier_completion_tiebreak",
+      "value": 4385.185374975356
+    }
+  ],
+  "total_distance_km": 113.10480312044388,
+  "total_travel_minutes": 308.46764487393784,
+  "late_task_count": 2,
+  "total_late_minutes": 18.254518716588763,
+  "quality_notice": "按目标优先序求解；限时结果不代表所有目标均最优。未收集各层界限，不报告虚构的整体gap。",
+  "max_work_utilization": 0.439610473042358,
+  "validation": {
+    "status": "passed",
+    "checks": [
+      "skills_tools",
+      "assignment_uniqueness",
+      "closed_routes",
+      "service_plus_travel_capacity",
+      "release_times",
+      "travel_timing",
+      "cross_worker_precedence",
+      "break_window_no_overlap",
+      "stationary_break_location",
+      "return_before_shift_end",
+      "lateness_recomputed"
+    ]
+  }
+}

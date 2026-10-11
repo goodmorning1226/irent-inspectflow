@@ -1,0 +1,225 @@
+{
+  "stage": "B_WITH_TRAVEL",
+  "scenario_id": "TAIPEI-BASE-001",
+  "status_code": 9,
+  "has_solution": true,
+  "runtime_seconds": 30.094820976257324,
+  "speed_kmh": 22,
+  "distance_method": "haversine",
+  "travel_formula": "distance_km / speed_kmh * 60",
+  "notice": "含起程、任務串接及回程的估計移動時間，無道路倍率或緩衝；尚未計算開始時間、時窗、跨人員前置等待或休息位置，仍非完整排程。",
+  "excluded_tasks": [],
+  "is_synthetic": true,
+  "assignments": [
+    {
+      "task_id": "TSK-001",
+      "worker_id": "WRK-03"
+    },
+    {
+      "task_id": "TSK-002",
+      "worker_id": "WRK-01"
+    },
+    {
+      "task_id": "TSK-003",
+      "worker_id": "WRK-02"
+    },
+    {
+      "task_id": "TSK-004",
+      "worker_id": "WRK-03"
+    },
+    {
+      "task_id": "TSK-005",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-006",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-007",
+      "worker_id": "WRK-04"
+    },
+    {
+      "task_id": "TSK-008",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-009",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-010",
+      "worker_id": "WRK-03"
+    },
+    {
+      "task_id": "TSK-011",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-012",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-013",
+      "worker_id": "WRK-03"
+    },
+    {
+      "task_id": "TSK-014",
+      "worker_id": "WRK-01"
+    },
+    {
+      "task_id": "TSK-015",
+      "worker_id": "WRK-02"
+    },
+    {
+      "task_id": "TSK-016",
+      "worker_id": "WRK-03"
+    },
+    {
+      "task_id": "TSK-017",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-018",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-019",
+      "worker_id": "WRK-04"
+    },
+    {
+      "task_id": "TSK-020",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-021",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-022",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-023",
+      "worker_id": "WRK-05"
+    },
+    {
+      "task_id": "TSK-024",
+      "worker_id": "WRK-05"
+    }
+  ],
+  "routes": [
+    {
+      "worker_id": "WRK-01",
+      "task_ids": [
+        "TSK-002",
+        "TSK-014"
+      ],
+      "distance_km": 3.5698731827743777,
+      "travel_minutes": 9.736017771202848,
+      "service_minutes": 50,
+      "work_minutes": 59.736017771202846,
+      "capacity_minutes": 450,
+      "break_minutes": 30
+    },
+    {
+      "worker_id": "WRK-02",
+      "task_ids": [
+        "TSK-003",
+        "TSK-015"
+      ],
+      "distance_km": 0.0,
+      "travel_minutes": 0.0,
+      "service_minutes": 60,
+      "work_minutes": 60.0,
+      "capacity_minutes": 450,
+      "break_minutes": 30
+    },
+    {
+      "worker_id": "WRK-03",
+      "task_ids": [
+        "TSK-013",
+        "TSK-001",
+        "TSK-016",
+        "TSK-004",
+        "TSK-010"
+      ],
+      "distance_km": 14.976999538309068,
+      "travel_minutes": 40.846362377206546,
+      "service_minutes": 330,
+      "work_minutes": 370.84636237720656,
+      "capacity_minutes": 450,
+      "break_minutes": 30
+    },
+    {
+      "worker_id": "WRK-04",
+      "task_ids": [
+        "TSK-019",
+        "TSK-007"
+      ],
+      "distance_km": 0.0,
+      "travel_minutes": 0.0,
+      "service_minutes": 120,
+      "work_minutes": 120.0,
+      "capacity_minutes": 450,
+      "break_minutes": 30
+    },
+    {
+      "worker_id": "WRK-05",
+      "task_ids": [
+        "TSK-009",
+        "TSK-008",
+        "TSK-020",
+        "TSK-023",
+        "TSK-011",
+        "TSK-005",
+        "TSK-017",
+        "TSK-006",
+        "TSK-022",
+        "TSK-018",
+        "TSK-012",
+        "TSK-024",
+        "TSK-021"
+      ],
+      "distance_km": 42.91249035883479,
+      "travel_minutes": 117.03406461500397,
+      "service_minutes": 290,
+      "work_minutes": 407.03406461500396,
+      "capacity_minutes": 450,
+      "break_minutes": 30
+    },
+    {
+      "worker_id": "WRK-06",
+      "task_ids": [],
+      "distance_km": 0,
+      "travel_minutes": 0.0,
+      "service_minutes": 0,
+      "work_minutes": 0.0,
+      "capacity_minutes": 450,
+      "break_minutes": 30
+    }
+  ],
+  "unassigned": [],
+  "objective_values": [
+    {
+      "name": "urgent_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "high_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "all_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "closed_route_distance_km",
+      "value": 61.45936307991824
+    }
+  ],
+  "optimal_status": false,
+  "total_distance_km": 61.45936307991823,
+  "total_travel_minutes": 167.61644476341337,
+  "status": "TIME_LIMIT"
+}

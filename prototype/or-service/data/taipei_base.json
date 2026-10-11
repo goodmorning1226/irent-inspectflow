@@ -1,0 +1,1337 @@
+{
+  "schema_version": "or-taipei-1.0",
+  "scenario_id": "TAIPEI-BASE-001",
+  "seed": 20261011,
+  "is_synthetic": true,
+  "notice": "所有人員、車輛、工時、期限及交通均為假資料；座標為區域示意，非真實服務站。",
+  "planning": {
+    "date": "2026-10-12",
+    "timezone": "Asia/Taipei",
+    "start_at": "2026-10-12T09:00:00+08:00",
+    "horizon_minutes": 480,
+    "time_unit": "minute",
+    "route_end_policy": "return_to_start",
+    "repair_policy": "on_site_only",
+    "break_policy": "stationary_at_current_location",
+    "reservation_buffer_minutes": 0
+  },
+  "assumptions": {
+    "travel_model": "ceil(straight_line_km * 1.35 / 22 * 60 + 5)",
+    "travel_speed_kmh": 22,
+    "travel_matrix_static": true,
+    "travel_matrix_symmetric": true,
+    "same_location_travel_minutes": 0,
+    "tools_non_consumable": true,
+    "skills_boolean": true,
+    "predicted_readiness_excludes_human_approval_delay": true,
+    "actual_release_requires_review": true
+  },
+  "locations": [
+    {
+      "id": "LOC-01",
+      "district": "中正",
+      "name": "模擬服務點・台北車站周邊",
+      "latitude": 25.0478,
+      "longitude": 121.517,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-02",
+      "district": "大同",
+      "name": "模擬服務點・大橋頭周邊",
+      "latitude": 25.0632,
+      "longitude": 121.512,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-03",
+      "district": "萬華",
+      "name": "模擬服務點・龍山寺周邊",
+      "latitude": 25.0353,
+      "longitude": 121.4998,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-04",
+      "district": "中山",
+      "name": "模擬服務點・行天宮周邊",
+      "latitude": 25.0597,
+      "longitude": 121.5333,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-05",
+      "district": "松山",
+      "name": "模擬服務點・南京三民周邊",
+      "latitude": 25.0516,
+      "longitude": 121.564,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-06",
+      "district": "大安",
+      "name": "模擬服務點・信義安和周邊",
+      "latitude": 25.033,
+      "longitude": 121.5527,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-07",
+      "district": "信義",
+      "name": "模擬服務點・市政府周邊",
+      "latitude": 25.041,
+      "longitude": 121.5658,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-08",
+      "district": "士林",
+      "name": "模擬服務點・士林站周邊",
+      "latitude": 25.0934,
+      "longitude": 121.5263,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-09",
+      "district": "北投",
+      "name": "模擬服務點・北投站周邊",
+      "latitude": 25.1318,
+      "longitude": 121.4986,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-10",
+      "district": "內湖",
+      "name": "模擬服務點・港墘周邊",
+      "latitude": 25.08,
+      "longitude": 121.575,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-11",
+      "district": "南港",
+      "name": "模擬服務點・南港站周邊",
+      "latitude": 25.052,
+      "longitude": 121.6065,
+      "is_synthetic": true
+    },
+    {
+      "id": "LOC-12",
+      "district": "文山",
+      "name": "模擬服務點・萬芳醫院周邊",
+      "latitude": 24.9994,
+      "longitude": 121.558,
+      "is_synthetic": true
+    }
+  ],
+  "workers": [
+    {
+      "id": "WRK-01",
+      "name": "模擬員工01",
+      "skills": [
+        "cleaning"
+      ],
+      "tools": [
+        "cleaning_kit"
+      ],
+      "start_location_id": "LOC-01",
+      "end_location_id": "LOC-01",
+      "available_from_minute": 0,
+      "shift_end_minute": 480,
+      "break_window": [
+        180,
+        300
+      ],
+      "break_duration_minutes": 30,
+      "transport_mode": "service_vehicle",
+      "is_synthetic": true
+    },
+    {
+      "id": "WRK-02",
+      "name": "模擬員工02",
+      "skills": [
+        "cleaning"
+      ],
+      "tools": [
+        "cleaning_kit"
+      ],
+      "start_location_id": "LOC-03",
+      "end_location_id": "LOC-03",
+      "available_from_minute": 0,
+      "shift_end_minute": 480,
+      "break_window": [
+        180,
+        300
+      ],
+      "break_duration_minutes": 30,
+      "transport_mode": "service_vehicle",
+      "is_synthetic": true
+    },
+    {
+      "id": "WRK-03",
+      "name": "模擬員工03",
+      "skills": [
+        "repair"
+      ],
+      "tools": [
+        "repair_kit"
+      ],
+      "start_location_id": "LOC-05",
+      "end_location_id": "LOC-05",
+      "available_from_minute": 0,
+      "shift_end_minute": 480,
+      "break_window": [
+        180,
+        300
+      ],
+      "break_duration_minutes": 30,
+      "transport_mode": "service_vehicle",
+      "is_synthetic": true
+    },
+    {
+      "id": "WRK-04",
+      "name": "模擬員工04",
+      "skills": [
+        "repair"
+      ],
+      "tools": [
+        "repair_kit"
+      ],
+      "start_location_id": "LOC-07",
+      "end_location_id": "LOC-07",
+      "available_from_minute": 0,
+      "shift_end_minute": 480,
+      "break_window": [
+        180,
+        300
+      ],
+      "break_duration_minutes": 30,
+      "transport_mode": "service_vehicle",
+      "is_synthetic": true
+    },
+    {
+      "id": "WRK-05",
+      "name": "模擬員工05",
+      "skills": [
+        "cleaning",
+        "inspection"
+      ],
+      "tools": [
+        "cleaning_kit",
+        "inspection_kit"
+      ],
+      "start_location_id": "LOC-09",
+      "end_location_id": "LOC-09",
+      "available_from_minute": 0,
+      "shift_end_minute": 480,
+      "break_window": [
+        180,
+        300
+      ],
+      "break_duration_minutes": 30,
+      "transport_mode": "service_vehicle",
+      "is_synthetic": true
+    },
+    {
+      "id": "WRK-06",
+      "name": "模擬員工06",
+      "skills": [
+        "repair",
+        "inspection"
+      ],
+      "tools": [
+        "repair_kit",
+        "inspection_kit"
+      ],
+      "start_location_id": "LOC-11",
+      "end_location_id": "LOC-11",
+      "available_from_minute": 0,
+      "shift_end_minute": 480,
+      "break_window": [
+        180,
+        300
+      ],
+      "break_duration_minutes": 30,
+      "transport_mode": "service_vehicle",
+      "is_synthetic": true
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "VEH-001",
+      "plate_number": "DEMO-0001",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-01",
+      "availability": "OFFLINE",
+      "safety_blocked": true,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 330,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-001"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-002",
+      "plate_number": "DEMO-0002",
+      "model_name": "YARIS",
+      "location_id": "LOC-02",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -60,
+      "next_reservation_minute": 330,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-002"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-003",
+      "plate_number": "DEMO-0003",
+      "model_name": "VIOS",
+      "location_id": "LOC-03",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -60,
+      "next_reservation_minute": 180,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-003",
+        "TSK-021"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-004",
+      "plate_number": "DEMO-0004",
+      "model_name": "YARIS",
+      "location_id": "LOC-04",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -15,
+      "next_reservation_minute": 150,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-004"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-005",
+      "plate_number": "DEMO-0005",
+      "model_name": "VIOS",
+      "location_id": "LOC-05",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 210,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-005"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-006",
+      "plate_number": "DEMO-0006",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-06",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 150,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-006",
+        "TSK-022"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-007",
+      "plate_number": "DEMO-0007",
+      "model_name": "YARIS",
+      "location_id": "LOC-07",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 210,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-007"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-008",
+      "plate_number": "DEMO-0008",
+      "model_name": "YARIS",
+      "location_id": "LOC-08",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 300,
+      "demand_weight": 2,
+      "required_task_ids": [
+        "TSK-008"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-009",
+      "plate_number": "DEMO-0009",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-09",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 240,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-009"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-010",
+      "plate_number": "DEMO-0010",
+      "model_name": "YARIS",
+      "location_id": "LOC-10",
+      "availability": "OFFLINE",
+      "safety_blocked": true,
+      "offline_since_minute": -60,
+      "next_reservation_minute": 90,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-010",
+        "TSK-023"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-011",
+      "plate_number": "DEMO-0011",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-11",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -15,
+      "next_reservation_minute": 240,
+      "demand_weight": 2,
+      "required_task_ids": [
+        "TSK-011"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-012",
+      "plate_number": "DEMO-0012",
+      "model_name": "VIOS",
+      "location_id": "LOC-12",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 240,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-012"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-013",
+      "plate_number": "DEMO-0013",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-01",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -60,
+      "next_reservation_minute": 270,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-013"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-014",
+      "plate_number": "DEMO-0014",
+      "model_name": "VIOS",
+      "location_id": "LOC-02",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 90,
+      "demand_weight": 2,
+      "required_task_ids": [
+        "TSK-014"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-015",
+      "plate_number": "DEMO-0015",
+      "model_name": "VIOS",
+      "location_id": "LOC-03",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -60,
+      "next_reservation_minute": 210,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-015",
+        "TSK-024"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-016",
+      "plate_number": "DEMO-0016",
+      "model_name": "VIOS",
+      "location_id": "LOC-04",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -15,
+      "next_reservation_minute": 300,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-016"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-017",
+      "plate_number": "DEMO-0017",
+      "model_name": "VIOS",
+      "location_id": "LOC-05",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 300,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-017"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-018",
+      "plate_number": "DEMO-0018",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-06",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 180,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-018"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-019",
+      "plate_number": "DEMO-0019",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-07",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 210,
+      "demand_weight": 1,
+      "required_task_ids": [
+        "TSK-019"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    },
+    {
+      "id": "VEH-020",
+      "plate_number": "DEMO-0020",
+      "model_name": "COROLLA CROSS",
+      "location_id": "LOC-08",
+      "availability": "REVIEW_REQUIRED",
+      "safety_blocked": false,
+      "offline_since_minute": -30,
+      "next_reservation_minute": 300,
+      "demand_weight": 3,
+      "required_task_ids": [
+        "TSK-020"
+      ],
+      "release_requires_human_approval": true,
+      "is_synthetic": true
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TSK-001",
+      "vehicle_id": "VEH-001",
+      "location_id": "LOC-01",
+      "type": "repair",
+      "finding_type": "light_crack",
+      "priority": "urgent",
+      "required_skills": [
+        "repair"
+      ],
+      "required_tools": [
+        "repair_kit"
+      ],
+      "duration_minutes": 60,
+      "release_minute": 30,
+      "deadline_minute": 330,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-002",
+      "vehicle_id": "VEH-002",
+      "location_id": "LOC-02",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 20,
+      "release_minute": 30,
+      "deadline_minute": 330,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-003",
+      "vehicle_id": "VEH-003",
+      "location_id": "LOC-03",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 40,
+      "release_minute": 30,
+      "deadline_minute": 165,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-004",
+      "vehicle_id": "VEH-004",
+      "location_id": "LOC-04",
+      "type": "repair",
+      "finding_type": "scratch",
+      "priority": "normal",
+      "required_skills": [
+        "repair"
+      ],
+      "required_tools": [
+        "repair_kit"
+      ],
+      "duration_minutes": 45,
+      "release_minute": 60,
+      "deadline_minute": 150,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-005",
+      "vehicle_id": "VEH-005",
+      "location_id": "LOC-05",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "high",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 20,
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-006",
+      "vehicle_id": "VEH-006",
+      "location_id": "LOC-06",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 30,
+      "release_minute": 0,
+      "deadline_minute": 135,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-007",
+      "vehicle_id": "VEH-007",
+      "location_id": "LOC-07",
+      "type": "repair",
+      "finding_type": "scratch",
+      "priority": "normal",
+      "required_skills": [
+        "repair"
+      ],
+      "required_tools": [
+        "repair_kit"
+      ],
+      "duration_minutes": 60,
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-008",
+      "vehicle_id": "VEH-008",
+      "location_id": "LOC-08",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 20,
+      "release_minute": 0,
+      "deadline_minute": 300,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-009",
+      "vehicle_id": "VEH-009",
+      "location_id": "LOC-09",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "high",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 30,
+      "release_minute": 30,
+      "deadline_minute": 240,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-010",
+      "vehicle_id": "VEH-010",
+      "location_id": "LOC-10",
+      "type": "repair",
+      "finding_type": "light_crack",
+      "priority": "urgent",
+      "required_skills": [
+        "repair"
+      ],
+      "required_tools": [
+        "repair_kit"
+      ],
+      "duration_minutes": 75,
+      "release_minute": 0,
+      "deadline_minute": 75,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-011",
+      "vehicle_id": "VEH-011",
+      "location_id": "LOC-11",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 20,
+      "release_minute": 90,
+      "deadline_minute": 240,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-012",
+      "vehicle_id": "VEH-012",
+      "location_id": "LOC-12",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 30,
+      "release_minute": 30,
+      "deadline_minute": 240,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-013",
+      "vehicle_id": "VEH-013",
+      "location_id": "LOC-01",
+      "type": "repair",
+      "finding_type": "scratch",
+      "priority": "high",
+      "required_skills": [
+        "repair"
+      ],
+      "required_tools": [
+        "repair_kit"
+      ],
+      "duration_minutes": 75,
+      "release_minute": 60,
+      "deadline_minute": 270,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-014",
+      "vehicle_id": "VEH-014",
+      "location_id": "LOC-02",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 30,
+      "release_minute": 0,
+      "deadline_minute": 90,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-015",
+      "vehicle_id": "VEH-015",
+      "location_id": "LOC-03",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 20,
+      "release_minute": 0,
+      "deadline_minute": 195,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-016",
+      "vehicle_id": "VEH-016",
+      "location_id": "LOC-04",
+      "type": "repair",
+      "finding_type": "scratch",
+      "priority": "normal",
+      "required_skills": [
+        "repair"
+      ],
+      "required_tools": [
+        "repair_kit"
+      ],
+      "duration_minutes": 75,
+      "release_minute": 90,
+      "deadline_minute": 300,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-017",
+      "vehicle_id": "VEH-017",
+      "location_id": "LOC-05",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "high",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 30,
+      "release_minute": 0,
+      "deadline_minute": 300,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-018",
+      "vehicle_id": "VEH-018",
+      "location_id": "LOC-06",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 20,
+      "release_minute": 90,
+      "deadline_minute": 180,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-019",
+      "vehicle_id": "VEH-019",
+      "location_id": "LOC-07",
+      "type": "repair",
+      "finding_type": "scratch",
+      "priority": "normal",
+      "required_skills": [
+        "repair"
+      ],
+      "required_tools": [
+        "repair_kit"
+      ],
+      "duration_minutes": 60,
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-020",
+      "vehicle_id": "VEH-020",
+      "location_id": "LOC-08",
+      "type": "cleaning",
+      "finding_type": "stain",
+      "priority": "normal",
+      "required_skills": [
+        "cleaning"
+      ],
+      "required_tools": [
+        "cleaning_kit"
+      ],
+      "duration_minutes": 30,
+      "release_minute": 0,
+      "deadline_minute": 300,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-021",
+      "vehicle_id": "VEH-003",
+      "location_id": "LOC-03",
+      "type": "inspection",
+      "finding_type": "completion_review",
+      "priority": "high",
+      "required_skills": [
+        "inspection"
+      ],
+      "required_tools": [
+        "inspection_kit"
+      ],
+      "duration_minutes": 15,
+      "release_minute": 30,
+      "deadline_minute": 180,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [
+        "TSK-003"
+      ],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-022",
+      "vehicle_id": "VEH-006",
+      "location_id": "LOC-06",
+      "type": "inspection",
+      "finding_type": "completion_review",
+      "priority": "high",
+      "required_skills": [
+        "inspection"
+      ],
+      "required_tools": [
+        "inspection_kit"
+      ],
+      "duration_minutes": 15,
+      "release_minute": 0,
+      "deadline_minute": 150,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [
+        "TSK-006"
+      ],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-023",
+      "vehicle_id": "VEH-010",
+      "location_id": "LOC-10",
+      "type": "inspection",
+      "finding_type": "completion_review",
+      "priority": "high",
+      "required_skills": [
+        "inspection"
+      ],
+      "required_tools": [
+        "inspection_kit"
+      ],
+      "duration_minutes": 15,
+      "release_minute": 0,
+      "deadline_minute": 90,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [
+        "TSK-010"
+      ],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    },
+    {
+      "id": "TSK-024",
+      "vehicle_id": "VEH-015",
+      "location_id": "LOC-03",
+      "type": "inspection",
+      "finding_type": "completion_review",
+      "priority": "high",
+      "required_skills": [
+        "inspection"
+      ],
+      "required_tools": [
+        "inspection_kit"
+      ],
+      "duration_minutes": 15,
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "deadline_mode": "soft",
+      "predecessor_task_ids": [
+        "TSK-015"
+      ],
+      "status": "PENDING",
+      "locked_worker_id": null,
+      "locked_start_minute": null,
+      "is_synthetic": true
+    }
+  ],
+  "travel_time_matrix": {
+    "location_ids": [
+      "LOC-01",
+      "LOC-02",
+      "LOC-03",
+      "LOC-04",
+      "LOC-05",
+      "LOC-06",
+      "LOC-07",
+      "LOC-08",
+      "LOC-09",
+      "LOC-10",
+      "LOC-11",
+      "LOC-12"
+    ],
+    "minutes": [
+      [
+        0,
+        12,
+        14,
+        13,
+        23,
+        20,
+        24,
+        24,
+        40,
+        31,
+        39,
+        30
+      ],
+      [
+        12,
+        0,
+        18,
+        14,
+        25,
+        25,
+        27,
+        19,
+        34,
+        30,
+        41,
+        37
+      ],
+      [
+        14,
+        18,
+        0,
+        21,
+        30,
+        25,
+        30,
+        31,
+        45,
+        39,
+        46,
+        32
+      ],
+      [
+        13,
+        14,
+        21,
+        0,
+        17,
+        19,
+        20,
+        20,
+        38,
+        23,
+        33,
+        32
+      ],
+      [
+        23,
+        25,
+        30,
+        17,
+        0,
+        14,
+        10,
+        28,
+        46,
+        18,
+        21,
+        27
+      ],
+      [
+        20,
+        25,
+        25,
+        19,
+        14,
+        0,
+        11,
+        32,
+        51,
+        26,
+        27,
+        19
+      ],
+      [
+        24,
+        27,
+        30,
+        20,
+        10,
+        11,
+        0,
+        31,
+        50,
+        22,
+        21,
+        23
+      ],
+      [
+        24,
+        19,
+        31,
+        20,
+        28,
+        32,
+        31,
+        0,
+        24,
+        24,
+        40,
+        46
+      ],
+      [
+        40,
+        34,
+        45,
+        38,
+        46,
+        51,
+        50,
+        24,
+        0,
+        41,
+        57,
+        64
+      ],
+      [
+        31,
+        30,
+        39,
+        23,
+        18,
+        26,
+        22,
+        24,
+        41,
+        0,
+        22,
+        39
+      ],
+      [
+        39,
+        41,
+        46,
+        33,
+        21,
+        27,
+        21,
+        40,
+        57,
+        22,
+        0,
+        34
+      ],
+      [
+        30,
+        37,
+        32,
+        32,
+        27,
+        19,
+        23,
+        46,
+        64,
+        39,
+        34,
+        0
+      ]
+    ]
+  },
+  "solver_defaults": {
+    "time_limit_seconds": 30,
+    "mip_gap": 0.02
+  }
+}

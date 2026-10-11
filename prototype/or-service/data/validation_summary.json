@@ -1,0 +1,17 @@
+{
+  "locations": 12,
+  "workers": 6,
+  "vehicles": 20,
+  "tasks": 24,
+  "matrix_shape": [
+    12,
+    12
+  ],
+  "structural_validation": "passed",
+  "scheduling_feasibility": "not_yet_solved",
+  "task_types": {
+    "cleaning": 13,
+    "repair": 7,
+    "inspection": 4
+  }
+}

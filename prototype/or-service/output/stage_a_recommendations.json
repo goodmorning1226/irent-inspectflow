@@ -1,0 +1,866 @@
+{
+  "stage": "A",
+  "scenario_id": "TAIPEI-BASE-001",
+  "is_synthetic": true,
+  "policy": "priority_then_deadline; independent_nearest_eligible_worker",
+  "distance_method": "haversine",
+  "distance_unit": "km",
+  "notice": "僅為獨立派工建議，未套用指派。人員位置不隨推薦更新；未檢查班次容量、時間衝突、休息或交通，非可執行排程。release_minute 為最早可處理時間，本階段不判斷是否已到該時間。",
+  "summary": {
+    "total_tasks": 24,
+    "recommended": 20,
+    "waiting_predecessor": 4,
+    "no_eligible_worker": 0,
+    "skipped": 0
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "task_id": "TSK-010",
+      "vehicle_id": "VEH-010",
+      "type": "repair",
+      "priority": "urgent",
+      "location_id": "LOC-10",
+      "district": "內湖",
+      "release_minute": 0,
+      "deadline_minute": 75,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-03",
+      "distance_km": 3.347,
+      "candidates": [
+        {
+          "worker_id": "WRK-03",
+          "worker_name": "模擬員工03",
+          "origin_location_id": "LOC-05",
+          "distance_km": 3.347
+        },
+        {
+          "worker_id": "WRK-04",
+          "worker_name": "模擬員工04",
+          "origin_location_id": "LOC-07",
+          "distance_km": 4.435
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 4.445
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "task_id": "TSK-001",
+      "vehicle_id": "VEH-001",
+      "type": "repair",
+      "priority": "urgent",
+      "location_id": "LOC-01",
+      "district": "中正",
+      "release_minute": 30,
+      "deadline_minute": 330,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-03",
+      "distance_km": 4.753,
+      "candidates": [
+        {
+          "worker_id": "WRK-03",
+          "worker_name": "模擬員工03",
+          "origin_location_id": "LOC-05",
+          "distance_km": 4.753
+        },
+        {
+          "worker_id": "WRK-04",
+          "worker_name": "模擬員工04",
+          "origin_location_id": "LOC-07",
+          "distance_km": 4.974
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 9.028
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "task_id": "TSK-023",
+      "vehicle_id": "VEH-010",
+      "type": "inspection",
+      "priority": "high",
+      "location_id": "LOC-10",
+      "district": "內湖",
+      "release_minute": 0,
+      "deadline_minute": 90,
+      "state": "WAITING_PREDECESSOR",
+      "reason": "前置任務尚未完成，暫不推薦派工",
+      "blocked_by": [
+        "TSK-010"
+      ],
+      "recommended_worker_id": null,
+      "distance_km": null,
+      "candidates": [
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 4.445
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 9.61
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "task_id": "TSK-022",
+      "vehicle_id": "VEH-006",
+      "type": "inspection",
+      "priority": "high",
+      "location_id": "LOC-06",
+      "district": "大安",
+      "release_minute": 0,
+      "deadline_minute": 150,
+      "state": "WAITING_PREDECESSOR",
+      "reason": "前置任務尚未完成，暫不推薦派工",
+      "blocked_by": [
+        "TSK-006"
+      ],
+      "recommended_worker_id": null,
+      "distance_km": null,
+      "candidates": [
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 5.817
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 12.263
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "task_id": "TSK-021",
+      "vehicle_id": "VEH-003",
+      "type": "inspection",
+      "priority": "high",
+      "location_id": "LOC-03",
+      "district": "萬華",
+      "release_minute": 30,
+      "deadline_minute": 180,
+      "state": "WAITING_PREDECESSOR",
+      "reason": "前置任務尚未完成，暫不推薦派工",
+      "blocked_by": [
+        "TSK-003"
+      ],
+      "recommended_worker_id": null,
+      "distance_km": null,
+      "candidates": [
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 10.731
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 10.908
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "task_id": "TSK-005",
+      "vehicle_id": "VEH-005",
+      "type": "cleaning",
+      "priority": "high",
+      "location_id": "LOC-05",
+      "district": "松山",
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 4.753,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 4.753
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 6.717
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 11.086
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "task_id": "TSK-024",
+      "vehicle_id": "VEH-015",
+      "type": "inspection",
+      "priority": "high",
+      "location_id": "LOC-03",
+      "district": "萬華",
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "state": "WAITING_PREDECESSOR",
+      "reason": "前置任務尚未完成，暫不推薦派工",
+      "blocked_by": [
+        "TSK-015"
+      ],
+      "recommended_worker_id": null,
+      "distance_km": null,
+      "candidates": [
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 10.731
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 10.908
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "task_id": "TSK-009",
+      "vehicle_id": "VEH-009",
+      "type": "cleaning",
+      "priority": "high",
+      "location_id": "LOC-09",
+      "district": "北投",
+      "release_minute": 30,
+      "deadline_minute": 240,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-05",
+      "distance_km": 0.0,
+      "candidates": [
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 0.0
+        },
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 9.522
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 10.731
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "task_id": "TSK-013",
+      "vehicle_id": "VEH-013",
+      "type": "repair",
+      "priority": "high",
+      "location_id": "LOC-01",
+      "district": "中正",
+      "release_minute": 60,
+      "deadline_minute": 270,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-03",
+      "distance_km": 4.753,
+      "candidates": [
+        {
+          "worker_id": "WRK-03",
+          "worker_name": "模擬員工03",
+          "origin_location_id": "LOC-05",
+          "distance_km": 4.753
+        },
+        {
+          "worker_id": "WRK-04",
+          "worker_name": "模擬員工04",
+          "origin_location_id": "LOC-07",
+          "distance_km": 4.974
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 9.028
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "task_id": "TSK-017",
+      "vehicle_id": "VEH-017",
+      "type": "cleaning",
+      "priority": "high",
+      "location_id": "LOC-05",
+      "district": "松山",
+      "release_minute": 0,
+      "deadline_minute": 300,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 4.753,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 4.753
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 6.717
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 11.086
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "task_id": "TSK-014",
+      "vehicle_id": "VEH-014",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-02",
+      "district": "大同",
+      "release_minute": 0,
+      "deadline_minute": 90,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 1.785,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 1.785
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 3.337
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 7.746
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "task_id": "TSK-006",
+      "vehicle_id": "VEH-006",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-06",
+      "district": "大安",
+      "release_minute": 0,
+      "deadline_minute": 135,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 3.955,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 3.955
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 5.336
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 12.263
+        }
+      ]
+    },
+    {
+      "rank": 13,
+      "task_id": "TSK-004",
+      "vehicle_id": "VEH-004",
+      "type": "repair",
+      "priority": "normal",
+      "location_id": "LOC-04",
+      "district": "中山",
+      "release_minute": 60,
+      "deadline_minute": 150,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-03",
+      "distance_km": 3.221,
+      "candidates": [
+        {
+          "worker_id": "WRK-03",
+          "worker_name": "模擬員工03",
+          "origin_location_id": "LOC-05",
+          "distance_km": 3.221
+        },
+        {
+          "worker_id": "WRK-04",
+          "worker_name": "模擬員工04",
+          "origin_location_id": "LOC-07",
+          "distance_km": 3.878
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 7.423
+        }
+      ]
+    },
+    {
+      "rank": 14,
+      "task_id": "TSK-003",
+      "vehicle_id": "VEH-003",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-03",
+      "district": "萬華",
+      "release_minute": 30,
+      "deadline_minute": 165,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-02",
+      "distance_km": 0.0,
+      "candidates": [
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 0.0
+        },
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 2.221
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 10.731
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "task_id": "TSK-018",
+      "vehicle_id": "VEH-018",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-06",
+      "district": "大安",
+      "release_minute": 90,
+      "deadline_minute": 180,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 3.955,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 3.955
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 5.336
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 12.263
+        }
+      ]
+    },
+    {
+      "rank": 16,
+      "task_id": "TSK-015",
+      "vehicle_id": "VEH-015",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-03",
+      "district": "萬華",
+      "release_minute": 0,
+      "deadline_minute": 195,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-02",
+      "distance_km": 0.0,
+      "candidates": [
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 0.0
+        },
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 2.221
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 10.731
+        }
+      ]
+    },
+    {
+      "rank": 17,
+      "task_id": "TSK-007",
+      "vehicle_id": "VEH-007",
+      "type": "repair",
+      "priority": "normal",
+      "location_id": "LOC-07",
+      "district": "信義",
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-04",
+      "distance_km": 0.0,
+      "candidates": [
+        {
+          "worker_id": "WRK-04",
+          "worker_name": "模擬員工04",
+          "origin_location_id": "LOC-07",
+          "distance_km": 0.0
+        },
+        {
+          "worker_id": "WRK-03",
+          "worker_name": "模擬員工03",
+          "origin_location_id": "LOC-05",
+          "distance_km": 1.193
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 4.279
+        }
+      ]
+    },
+    {
+      "rank": 18,
+      "task_id": "TSK-019",
+      "vehicle_id": "VEH-019",
+      "type": "repair",
+      "priority": "normal",
+      "location_id": "LOC-07",
+      "district": "信義",
+      "release_minute": 0,
+      "deadline_minute": 210,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-04",
+      "distance_km": 0.0,
+      "candidates": [
+        {
+          "worker_id": "WRK-04",
+          "worker_name": "模擬員工04",
+          "origin_location_id": "LOC-07",
+          "distance_km": 0.0
+        },
+        {
+          "worker_id": "WRK-03",
+          "worker_name": "模擬員工03",
+          "origin_location_id": "LOC-05",
+          "distance_km": 1.193
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 4.279
+        }
+      ]
+    },
+    {
+      "rank": 19,
+      "task_id": "TSK-012",
+      "vehicle_id": "VEH-012",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-12",
+      "district": "文山",
+      "release_minute": 30,
+      "deadline_minute": 240,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 6.785,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 6.785
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 7.094
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 15.891
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "task_id": "TSK-011",
+      "vehicle_id": "VEH-011",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-11",
+      "district": "南港",
+      "release_minute": 90,
+      "deadline_minute": 240,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 9.028,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 9.028
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 10.908
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 14.029
+        }
+      ]
+    },
+    {
+      "rank": 21,
+      "task_id": "TSK-008",
+      "vehicle_id": "VEH-008",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-08",
+      "district": "士林",
+      "release_minute": 0,
+      "deadline_minute": 300,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-05",
+      "distance_km": 5.1,
+      "candidates": [
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 5.1
+        },
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 5.156
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 6.99
+        }
+      ]
+    },
+    {
+      "rank": 22,
+      "task_id": "TSK-020",
+      "vehicle_id": "VEH-020",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-08",
+      "district": "士林",
+      "release_minute": 0,
+      "deadline_minute": 300,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-05",
+      "distance_km": 5.1,
+      "candidates": [
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 5.1
+        },
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 5.156
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 6.99
+        }
+      ]
+    },
+    {
+      "rank": 23,
+      "task_id": "TSK-016",
+      "vehicle_id": "VEH-016",
+      "type": "repair",
+      "priority": "normal",
+      "location_id": "LOC-04",
+      "district": "中山",
+      "release_minute": 90,
+      "deadline_minute": 300,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-03",
+      "distance_km": 3.221,
+      "candidates": [
+        {
+          "worker_id": "WRK-03",
+          "worker_name": "模擬員工03",
+          "origin_location_id": "LOC-05",
+          "distance_km": 3.221
+        },
+        {
+          "worker_id": "WRK-04",
+          "worker_name": "模擬員工04",
+          "origin_location_id": "LOC-07",
+          "distance_km": 3.878
+        },
+        {
+          "worker_id": "WRK-06",
+          "worker_name": "模擬員工06",
+          "origin_location_id": "LOC-11",
+          "distance_km": 7.423
+        }
+      ]
+    },
+    {
+      "rank": 24,
+      "task_id": "TSK-002",
+      "vehicle_id": "VEH-002",
+      "type": "cleaning",
+      "priority": "normal",
+      "location_id": "LOC-02",
+      "district": "大同",
+      "release_minute": 30,
+      "deadline_minute": 330,
+      "state": "RECOMMENDED",
+      "reason": "依固定出發座標，推薦直線距離最近的合格人員",
+      "blocked_by": [],
+      "recommended_worker_id": "WRK-01",
+      "distance_km": 1.785,
+      "candidates": [
+        {
+          "worker_id": "WRK-01",
+          "worker_name": "模擬員工01",
+          "origin_location_id": "LOC-01",
+          "distance_km": 1.785
+        },
+        {
+          "worker_id": "WRK-02",
+          "worker_name": "模擬員工02",
+          "origin_location_id": "LOC-03",
+          "distance_km": 3.337
+        },
+        {
+          "worker_id": "WRK-05",
+          "worker_name": "模擬員工05",
+          "origin_location_id": "LOC-09",
+          "distance_km": 7.746
+        }
+      ]
+    }
+  ]
+}

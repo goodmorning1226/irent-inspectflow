@@ -1,0 +1,210 @@
+{
+  "stage": "B",
+  "scenario_id": "TAIPEI-BASE-001",
+  "solver": "Gurobi",
+  "status_code": 2,
+  "runtime_seconds": 0.003957033157348633,
+  "has_solution": true,
+  "notice": "批次指派建議，不是完整排程。僅計服務工時容量與固定起點直線距離；未計交通工時、時窗、前置完成時間或回程。",
+  "excluded_tasks": [],
+  "is_synthetic": true,
+  "assignments": [
+    {
+      "task_id": "TSK-001",
+      "worker_id": "WRK-03",
+      "duration_minutes": 60,
+      "origin_distance_km": 4.753
+    },
+    {
+      "task_id": "TSK-002",
+      "worker_id": "WRK-01",
+      "duration_minutes": 20,
+      "origin_distance_km": 1.785
+    },
+    {
+      "task_id": "TSK-003",
+      "worker_id": "WRK-02",
+      "duration_minutes": 40,
+      "origin_distance_km": 0.0
+    },
+    {
+      "task_id": "TSK-004",
+      "worker_id": "WRK-03",
+      "duration_minutes": 45,
+      "origin_distance_km": 3.221
+    },
+    {
+      "task_id": "TSK-005",
+      "worker_id": "WRK-01",
+      "duration_minutes": 20,
+      "origin_distance_km": 4.753
+    },
+    {
+      "task_id": "TSK-006",
+      "worker_id": "WRK-01",
+      "duration_minutes": 30,
+      "origin_distance_km": 3.955
+    },
+    {
+      "task_id": "TSK-007",
+      "worker_id": "WRK-04",
+      "duration_minutes": 60,
+      "origin_distance_km": 0.0
+    },
+    {
+      "task_id": "TSK-008",
+      "worker_id": "WRK-05",
+      "duration_minutes": 20,
+      "origin_distance_km": 5.1
+    },
+    {
+      "task_id": "TSK-009",
+      "worker_id": "WRK-05",
+      "duration_minutes": 30,
+      "origin_distance_km": 0.0
+    },
+    {
+      "task_id": "TSK-010",
+      "worker_id": "WRK-03",
+      "duration_minutes": 75,
+      "origin_distance_km": 3.347
+    },
+    {
+      "task_id": "TSK-011",
+      "worker_id": "WRK-01",
+      "duration_minutes": 20,
+      "origin_distance_km": 9.028
+    },
+    {
+      "task_id": "TSK-012",
+      "worker_id": "WRK-01",
+      "duration_minutes": 30,
+      "origin_distance_km": 6.785
+    },
+    {
+      "task_id": "TSK-013",
+      "worker_id": "WRK-03",
+      "duration_minutes": 75,
+      "origin_distance_km": 4.753
+    },
+    {
+      "task_id": "TSK-014",
+      "worker_id": "WRK-01",
+      "duration_minutes": 30,
+      "origin_distance_km": 1.785
+    },
+    {
+      "task_id": "TSK-015",
+      "worker_id": "WRK-02",
+      "duration_minutes": 20,
+      "origin_distance_km": 0.0
+    },
+    {
+      "task_id": "TSK-016",
+      "worker_id": "WRK-03",
+      "duration_minutes": 75,
+      "origin_distance_km": 3.221
+    },
+    {
+      "task_id": "TSK-017",
+      "worker_id": "WRK-01",
+      "duration_minutes": 30,
+      "origin_distance_km": 4.753
+    },
+    {
+      "task_id": "TSK-018",
+      "worker_id": "WRK-01",
+      "duration_minutes": 20,
+      "origin_distance_km": 3.955
+    },
+    {
+      "task_id": "TSK-019",
+      "worker_id": "WRK-04",
+      "duration_minutes": 60,
+      "origin_distance_km": 0.0
+    },
+    {
+      "task_id": "TSK-020",
+      "worker_id": "WRK-05",
+      "duration_minutes": 30,
+      "origin_distance_km": 5.1
+    },
+    {
+      "task_id": "TSK-021",
+      "worker_id": "WRK-05",
+      "duration_minutes": 15,
+      "origin_distance_km": 10.731
+    },
+    {
+      "task_id": "TSK-022",
+      "worker_id": "WRK-06",
+      "duration_minutes": 15,
+      "origin_distance_km": 5.817
+    },
+    {
+      "task_id": "TSK-023",
+      "worker_id": "WRK-06",
+      "duration_minutes": 15,
+      "origin_distance_km": 4.445
+    },
+    {
+      "task_id": "TSK-024",
+      "worker_id": "WRK-05",
+      "duration_minutes": 15,
+      "origin_distance_km": 10.731
+    }
+  ],
+  "unassigned": [],
+  "objective_values": [
+    {
+      "name": "urgent_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "high_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "all_unassigned",
+      "value": 0.0
+    },
+    {
+      "name": "origin_distance_km",
+      "value": 98.01938639121111
+    }
+  ],
+  "worker_loads": [
+    {
+      "worker_id": "WRK-01",
+      "service_minutes": 200,
+      "capacity_minutes": 450
+    },
+    {
+      "worker_id": "WRK-02",
+      "service_minutes": 60,
+      "capacity_minutes": 450
+    },
+    {
+      "worker_id": "WRK-03",
+      "service_minutes": 330,
+      "capacity_minutes": 450
+    },
+    {
+      "worker_id": "WRK-04",
+      "service_minutes": 120,
+      "capacity_minutes": 450
+    },
+    {
+      "worker_id": "WRK-05",
+      "service_minutes": 110,
+      "capacity_minutes": 450
+    },
+    {
+      "worker_id": "WRK-06",
+      "service_minutes": 30,
+      "capacity_minutes": 450
+    }
+  ],
+  "proven_optimal": true,
+  "quality_notice": "多目標各階段界限尚未收集；未宣稱單一 MIPGap 能代表全部目標品質。"
+}
