@@ -1,0 +1,37 @@
+# These rules only ignore untracked files; existing tracked files stay intact.
+# Put personal Flutter SDK paths in VS Code user settings, not workspace settings.
+# Local editor and operating system settings
+/.vscode/settings.json
+.DS_Store
+.idea/
+
+# Temporary review files and browser profiles
+/tmp/
+
+# Dependencies, build output and test caches
+node_modules/
+build/
+dist/
+.dart_tool/
+.pub-cache/
+.pub/
+.flutter-plugins-dependencies
+.vite/
+coverage/
+*.tsbuildinfo
+__pycache__/
+*.pyc
+
+# Machine-specific Android configuration
+local.properties
+key.properties
+
+# Environment secrets and signing credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.jks
+*.keystore
+*.p12
+*.pfx
