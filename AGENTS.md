@@ -1,7 +1,7 @@
 # iRent InspectFlow 專案交接文件
 
 最後更新：2026-10-11  
-目前階段：初賽提案簡報修改中；手機端全車連續掃描已改為六個不同視角、全區待掃描起始、帶移動過場的單一還車主線，最新自動與 Web 建置驗證已完成，實際瀏覽器不中斷演練待補驗；後台端已收斂為三個核心頁面，自動驗證已通過，瀏覽器視覺補驗待執行
+目前階段：初賽提案簡報修改中；手機端全車連續掃描已改為六個不同視角、全區待掃描起始、帶移動過場的單一還車主線，最新自動與 Web 建置驗證已完成，並已補上 iOS 工程與 Windows 遠端建置設定，等待首次 GitHub Actions 未簽署 IPA 建置及 iPhone 實機安裝；後台端已收斂為三個核心頁面，自動驗證已通過，瀏覽器視覺補驗待執行
 
 本文件提供後續參與本專案的人員與 AI Agent 快速接手使用。開始修改前，請先閱讀本文件及 `plan/iRent_智能車況管家_完整產品設計與落地計畫書.md`，並確認目前檔案狀態，避免把 Prototype 模擬內容誤認為已完成的正式功能。
 
@@ -312,6 +312,9 @@ prototype/
 - 後台展示介面已進一步收斂為「車況比對、任務分配、索賠審查」三個入口，移除總覽、通知、稽核成效與角色切換。任務只呈現清潔與維修並可指派對應員工；索賠候選依嚴重程度排序並提供三種人工結論。底層既有流程資料仍保留。
 - 後台車況比對詳情已補齊車頭、左側、車尾、右側、前座及後座六區縮圖總覽；營運人員可直接切換各區查看取車前／還車後影像，有異常的左側仍保留多角度補掃證據，後座則保留污漬案例。
 - 後台 S01 至 S07 已改用七組不同車牌，S03 保留與手機主線一致的 `ABC-1234`。S07 已改為左前車燈破裂案例，並加入專用的車頭廣角與近距離影像。
+- Windows iPhone 開發工具已安裝：iTunes 12.13.11.1、ios-builder v0.11.0 與 MobAI 3.3.2；ios-builder 已完成 GitHub OAuth，MobAI 本機服務可正常連線。
+- Flutter 手機端已新增 iOS 工程，Bundle ID 為 `tw.irent.inspectflow.mobile`，App 顯示名稱為 `iRent InspectFlow`，並保留直向一般流程與左右橫向掃描支援。新增的 GitHub Actions workflow 已依 monorepo 結構改為從 `prototype/mobile` 執行 Flutter 建置。
+- iOS 工程加入後已重新通過 `flutter analyze --no-pub` 與 25 項 Flutter 測試。免費 Apple ID 採「GitHub Actions 建立未簽署 IPA，再由 MobAI 安裝時重新簽署」流程，不設定需要付費 Apple Developer Program 的 App Store Connect API Key。
 
 ### 6.2 正在進行
 
@@ -319,6 +322,7 @@ prototype/
 - 確認每頁能在沒有口頭說明的情況下獨立閱讀。
 - 手機端第 8 階段與完整總驗證已完成。
 - 手機端全車連續掃描改造第 6 階段已完成自動、尺寸、視覺快照、離線素材及 Web 建置驗證；目前只待實際 Chrome 或 Android 裝置完成約 24 秒不中斷展示演練。
+- iOS 真機流程正在設定：待 workflow 提交至 GitHub、首次未簽署 IPA 建置、USB 偵測 iPhone、MobAI 重新簽署與安裝，以及約 24 秒不中斷展示演練。Apple ID、密碼與雙重驗證碼只能由使用者本人在 MobAI 視窗輸入，不得寫入專案或對話。
 - 後台端已完成展示介面收斂，且重新通過格式化、Lint、TypeScript、14 項測試與 Production Build；目前等待瀏覽器尺寸、視覺、鍵盤及展示演練補驗。補驗完成且取得使用者確認前，不開始正式跨端整合。
 - 等待官方解題資源，以修正流程假設及企業介接需求。
 
@@ -337,6 +341,15 @@ prototype/
 ```text
 AGENTS.md
   本交接文件。流程、狀態或目錄改變時必須同步更新。
+
+builder.json
+  ios-builder 專案設定；iOS 路徑為 `prototype/mobile/ios`，預設建立未簽署 IPA。
+
+.github/workflows/
+  ios-build.yml
+    GitHub Actions 的 iOS IPA 建置流程，已調整為支援目前 monorepo 目錄。
+  ios-share.yml
+    MobAI 遠端 iOS Simulator 分享流程，已調整為支援目前 monorepo 目錄。
 
 plan/
   iRent_智能車況管家_完整產品設計與落地計畫書.md
@@ -399,6 +412,8 @@ slide-redesign/
 prototype/mobile/
   README.md
     Flutter 手機端執行方式、操作路徑與目前完成範圍。
+  ios/
+    Flutter iOS Runner 與 Xcode 專案；Bundle ID 為 `tw.irent.inspectflow.mobile`。
   lib/
     手機端六區檢查、掃描、摘要、上傳、完成與完工複檢程式碼。
   assets/

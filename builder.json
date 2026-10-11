@@ -1,0 +1,21 @@
+{
+  "project": "inspectflow-mobile",
+  "platform": "ios",
+  "github": {
+    "owner": "goodmorning1226",
+    "repo": "irent-inspectflow"
+  },
+  "provider": "github",
+  "codemagic": {},
+  "bitrise": {},
+  "ios": {
+    "path": "prototype/mobile/ios",
+    "bundleId": "tw.irent.inspectflow.mobile"
+  },
+  "flutter": {
+    "watch": {}
+  },
+  "reactNative": {},
+  "kmp": {},
+  "mobai": {}
+}
