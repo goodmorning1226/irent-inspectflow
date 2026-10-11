@@ -1,7 +1,7 @@
 # iRent InspectFlow 專案交接文件
 
 最後更新：2026-10-11  
-目前階段：初賽提案簡報修改中；手機端全車連續掃描已改為六個不同視角、全區待掃描起始、帶移動過場的單一還車主線，最新自動與 Web 建置驗證已完成，並已補上 iOS 工程與 Windows 遠端建置設定，等待首次 GitHub Actions 未簽署 IPA 建置及 iPhone 實機安裝；後台端已收斂為三個核心頁面，自動驗證已通過，瀏覽器視覺補驗待執行
+目前階段：初賽提案簡報修改中；手機端全車連續掃描已改為六個不同視角、全區待掃描起始、帶移動過場的單一還車主線，最新自動與 Web 建置驗證已完成，iOS Release IPA 亦已透過 GitHub Actions、iLoader 2.3.6 與免費 Apple ID 成功安裝並在 iPhone 實機啟動；後台端已收斂為三個核心頁面，自動驗證已通過，瀏覽器視覺補驗待執行
 
 本文件提供後續參與本專案的人員與 AI Agent 快速接手使用。開始修改前，請先閱讀本文件及 `plan/iRent_智能車況管家_完整產品設計與落地計畫書.md`，並確認目前檔案狀態，避免把 Prototype 模擬內容誤認為已完成的正式功能。
 
@@ -314,8 +314,8 @@ prototype/
 - 後台 S01 至 S07 已改用七組不同車牌，S03 保留與手機主線一致的 `ABC-1234`。S07 已改為左前車燈破裂案例，並加入專用的車頭廣角與近距離影像。
 - Windows iPhone 開發工具已安裝：iTunes 12.13.11.1、ios-builder v0.11.0 與 MobAI 3.3.2；ios-builder 已完成 GitHub OAuth，MobAI 本機服務可正常連線。
 - Flutter 手機端已新增 iOS 工程，Bundle ID 為 `tw.irent.inspectflow.mobile`，App 顯示名稱為 `iRent InspectFlow`，並保留直向一般流程與左右橫向掃描支援。新增的 GitHub Actions workflow 已依 monorepo 結構改為從 `prototype/mobile` 執行 Flutter 建置。
-- iOS 工程加入後已重新通過 `flutter analyze --no-pub` 與 25 項 Flutter 測試。免費 Apple ID 採「GitHub Actions 建立未簽署 IPA，再由 MobAI 安裝時重新簽署」流程，不設定需要付費 Apple Developer Program 的 App Store Connect API Key。
-- 首次 GitHub Actions 未簽署建置已驗證 monorepo 偵測、Flutter 安裝及 `pub get` 正常，但 workflow 預設取得 Flutter 3.47.7 時在 Xcode 26.6 錯誤要求 Development Team；`builder.json` 已固定為與本機一致的 Flutter 3.41.7。第二次建置已成功產生 `Runner.app`，但封裝步驟仍從儲存庫根目錄尋找產物；workflow 已改為從 `prototype/mobile/build/ios/iphoneos` 封裝 IPA，等待第三次驗證。
+- iOS 工程加入後已重新通過 `flutter analyze --no-pub` 與 25 項 Flutter 測試。免費 Apple ID 採「GitHub Actions 建立未簽署 IPA，再由 iLoader 在 Windows 重新簽署」流程，不設定需要付費 Apple Developer Program 的 App Store Connect API Key。
+- GitHub Actions 已完成 monorepo 路徑、Flutter 3.41.7 與 IPA 封裝修正。Debug IPA 雖可簽署安裝，但從主畫面獨立啟動會退出；`builder.json` 已固定使用 `Release`，Release IPA 已由 iLoader 2.3.6 簽署、覆蓋安裝並成功在 iPhone 實機啟動。重複更新與新 Flutter App 操作流程記錄於 `prototype/mobile/docs/windows-iphone-build-and-install-guide.md`。
 
 ### 6.2 正在進行
 
@@ -323,7 +323,7 @@ prototype/
 - 確認每頁能在沒有口頭說明的情況下獨立閱讀。
 - 手機端第 8 階段與完整總驗證已完成。
 - 手機端全車連續掃描改造第 6 階段已完成自動、尺寸、視覺快照、離線素材及 Web 建置驗證；目前只待實際 Chrome 或 Android 裝置完成約 24 秒不中斷展示演練。
-- iOS 真機流程正在設定：待 workflow 提交至 GitHub、首次未簽署 IPA 建置、USB 偵測 iPhone、MobAI 重新簽署與安裝，以及約 24 秒不中斷展示演練。Apple ID、密碼與雙重驗證碼只能由使用者本人在 MobAI 視窗輸入，不得寫入專案或對話。
+- iOS Release IPA 已成功安裝並啟動；目前只待在 iPhone 上執行約 24 秒完整不中斷掃描展示演練。Apple ID、密碼與雙重驗證碼只能由使用者本人在 iLoader 視窗輸入，不得寫入專案或對話。
 - 後台端已完成展示介面收斂，且重新通過格式化、Lint、TypeScript、14 項測試與 Production Build；目前等待瀏覽器尺寸、視覺、鍵盤及展示演練補驗。補驗完成且取得使用者確認前，不開始正式跨端整合。
 - 等待官方解題資源，以修正流程假設及企業介接需求。
 
@@ -344,13 +344,17 @@ AGENTS.md
   本交接文件。流程、狀態或目錄改變時必須同步更新。
 
 builder.json
-  ios-builder 專案設定；iOS 路徑為 `prototype/mobile/ios`，預設建立未簽署 IPA。
+  ios-builder 專案設定；iOS 路徑為 `prototype/mobile/ios`，預設建立未簽署 Release IPA。
 
 .github/workflows/
   ios-build.yml
     GitHub Actions 的 iOS IPA 建置流程，已調整為支援目前 monorepo 目錄。
   ios-share.yml
     MobAI 遠端 iOS Simulator 分享流程，已調整為支援目前 monorepo 目錄。
+
+prototype/mobile/docs/
+  windows-iphone-build-and-install-guide.md
+    Windows 更新 InspectFlow、建立其他 Flutter App、GitHub Actions Release IPA 建置與 iLoader 實機安裝指南。
 
 plan/
   iRent_智能車況管家_完整產品設計與落地計畫書.md
@@ -514,4 +518,4 @@ tmp/
 - 最新方向已停止採用 Three.js 車輛動畫，改回手機端既有的同車同場景照片；後續影片以照片定點掃描、合成步行過場及 Flutter UI 疊加為主。舊 V1 至 V3 成品只保留作為比較參考。
 - 已完成第一段「車側到車頭」照片步行過場測試，成品位於 `prototype/video-demo/output/still-walk-side-to-front-test-3s.mp4`。影片為 1920×1080、60 FPS、3.2 秒、H.264、無聲音及無 UI；可重複產生的 Pillow／NumPy／FFmpeg 腳本與說明分別位於 `prototype/video-demo/scripts/render-still-walk-transition.py` 及 `prototype/video-demo/STILL_TRANSITION_TEST.md`。
 - 已進一步完成七角度逐幀步行測試：以原始車側、ImageGen 產生的 15°／30°／45°／60°／75° 視角及原始車頭建立連續軌跡，再用免費 MIT 授權的 RIFE NCNN Vulkan 補至 60 FPS。通過檢查的成品為 `prototype/video-demo/output/rife-multikeyframe-walk-side-to-front-test.mp4`，規格為 1920×1080、60 FPS、205 幀、3.4167 秒、H.264、無 UI／聲音；腳本、提示詞及工具來源分別記錄於 `prototype/video-demo/scripts/render-multikeyframe-walk.py`、`prototype/video-demo/assets/still-walk-keyframes/PROMPTS.md` 與 `prototype/video-demo/ATTRIBUTION.md`。傳統 FFmpeg 光流版本有輪圈重影，只保留比較，不應作為展示成品。
-- 逐幀／Three.js 動畫效果未採用，手機 App 繼續使用既有 `full_vehicle_scan.mp4`。最新掃描 HUD 已移除上下黑色工具列、頁面標題、偵測 Badge、品質進度條、完成結果文字及 `X / 6` 進度，只保留浮動返回鍵、Prototype 標示、左下固定單行指令、大型藍／綠掃描框與右下六區俯視圖；掃描時使用沉浸式全螢幕。每次只顯示一個動作，執行中為藍色、達標短暫轉綠後換下一個動作，刮痕補掃與車外轉車內的複合指令亦已拆開。最新 `flutter analyze --no-pub` 無問題，完整 25 項測試全數通過，掃描 Golden 已更新。
+- 逐幀／Three.js 動畫效果未採用，手機 App 的 `full_vehicle_scan.mp4` 已改為固定影格硬切版本：區域完成後由原畫面承接移動指令，接著直接切至下一角度，不再使用滑動、縮放或交叉淡化，也不模擬收起手機。右下六區俯視圖及其他 HUD 全程保持固定，掃描框會在移動階段隱藏並於下一角度重新出現；左下指令已移除 `AnimatedSwitcher`，避免新舊文字重疊。影片可由 `prototype/mobile/tool/render_full_vehicle_scan.ps1` 重製，規格維持 960×540、30 FPS、714 幀、23.8 秒。最新 `flutter analyze --no-pub` 無問題，掃描時間軸與控制器共 4 項測試通過。

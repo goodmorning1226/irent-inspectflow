@@ -79,18 +79,14 @@ class _ScanInstruction extends StatelessWidget {
               Icon(_instructionIcon(event.phase), color: accent, size: 21),
               const SizedBox(width: AppSpacing.sm),
               Expanded(
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 180),
-                  child: Text(
-                    event.prompt,
-                    key: ValueKey(event.prompt),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: accent,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w800,
-                    ),
+                child: Text(
+                  event.prompt,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: accent,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
