@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "asset": "output/inspectflow-camera-only-test-v2-10s.mp4",
+  "durationSeconds": 10,
+  "fps": 60,
+  "frameSize": { "width": 1920, "height": 1080, "aspectRatio": "16:9" },
+  "containsBakedUi": false,
+  "segments": [
+    {
+      "id": "left_side_stable",
+      "startFrame": 0,
+      "endFrame": 161,
+      "zone": "left_side",
+      "cameraState": "stationary",
+      "futureFlutterEvent": "recognizing_left_side"
+    },
+    {
+      "id": "walk_to_front",
+      "startFrame": 162,
+      "endFrame": 281,
+      "zone": "transition",
+      "cameraState": "moving",
+      "futureFlutterEvent": "left_side_complete_move_to_front"
+    },
+    {
+      "id": "front_stable",
+      "startFrame": 282,
+      "endFrame": 599,
+      "zone": "front",
+      "cameraState": "stationary",
+      "futureFlutterEvent": "recognizing_front"
+    }
+  ],
+  "overlaySafeAreas": {
+    "topStatus": { "x": 672, "y": 40, "width": 576, "height": 144 },
+    "bottomRightVehicleMap": { "x": 1500, "y": 720, "width": 360, "height": 300 }
+  }
+}

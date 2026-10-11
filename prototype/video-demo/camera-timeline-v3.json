@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "asset": "output/inspectflow-threejs-camera-test-v3-10s.mp4",
+  "durationSeconds": 10,
+  "fps": 60,
+  "frameSize": { "width": 1920, "height": 1080, "aspectRatio": "16:9" },
+  "containsBakedUi": false,
+  "rendering": "React + Three.js, frame-controlled capture, FFmpeg H.264",
+  "segments": [
+    {
+      "id": "left_side_stable",
+      "startFrame": 0,
+      "endFrame": 188,
+      "zone": "left_side",
+      "cameraState": "stationary_no_vertical_bob",
+      "futureFlutterEvent": "recognizing_left_side"
+    },
+    {
+      "id": "walk_left_side_to_front",
+      "startFrame": 189,
+      "endFrame": 449,
+      "zone": "transition",
+      "cameraState": "moving_smooth_arc_with_subtle_walk_motion",
+      "futureFlutterEvent": "left_side_complete_move_to_front"
+    },
+    {
+      "id": "front_stable",
+      "startFrame": 450,
+      "endFrame": 599,
+      "zone": "front",
+      "cameraState": "stationary_no_vertical_bob",
+      "futureFlutterEvent": "recognizing_front"
+    }
+  ],
+  "overlaySafeAreas": {
+    "topStatus": { "x": 672, "y": 40, "width": 576, "height": 144 },
+    "bottomRightVehicleMap": { "x": 1500, "y": 720, "width": 360, "height": 300 }
+  },
+  "prototypeBoundary": "Camera motion and visual scene only; no AI inference is performed."
+}

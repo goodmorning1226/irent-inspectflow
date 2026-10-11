@@ -15,6 +15,7 @@ class InspectionEntryPage extends StatelessWidget {
 
     return IrentFlowScaffold(
       title: '確認還車車況',
+      showIrentBrand: true,
       bottom: FilledButton(
         key: const Key('enter-inspection-button'),
         onPressed: () => Navigator.of(context).pushNamed(AppRoutes.inspection),
@@ -28,10 +29,7 @@ class InspectionEntryPage extends StatelessWidget {
           AppSpacing.xxl,
         ),
         children: [
-          Text(
-            '還車前，先留下清楚的車況紀錄',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          Text('還車階段', style: Theme.of(context).textTheme.headlineMedium),
           const SizedBox(height: AppSpacing.sm),
           Text(
             '開啟一次掃描後，InspectFlow 會自動辨識車外四側與車內前後座，逐區確認品質並保存影像。',
@@ -50,8 +48,6 @@ class InspectionEntryPage extends StatelessWidget {
             location: session.order.returnLocation,
             timeLabel: session.order.returnTimeLabel,
           ),
-          const SizedBox(height: AppSpacing.xl),
-          const _InspectionNotice(),
         ],
       ),
     );
@@ -186,16 +182,17 @@ class _DetailRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.md,
+      ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Icon(icon, size: 22, color: AppColors.mutedInk),
+          const SizedBox(width: AppSpacing.sm),
           SizedBox(
-            width: 44,
-            child: Icon(icon, size: 20, color: AppColors.mutedInk),
-          ),
-          SizedBox(
-            width: 72,
+            width: 76,
             child: Text(
               label,
               style: Theme.of(
@@ -203,44 +200,20 @@ class _DetailRow extends StatelessWidget {
               ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),
             ),
           ),
+          const SizedBox(width: AppSpacing.sm),
           Expanded(
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+              softWrap: true,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                height: 1.35,
+              ),
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _InspectionNotice extends StatelessWidget {
-  const _InspectionNotice();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Icon(
-          Icons.info_outline_rounded,
-          size: 20,
-          color: AppColors.mutedInk,
-        ),
-        const SizedBox(width: AppSpacing.sm),
-        Expanded(
-          child: Text(
-            '目前為 Prototype 模擬流程。還車掃描會依序展示車頭、車尾、左右側與前後座六區。',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),
-          ),
-        ),
-      ],
     );
   }
 }

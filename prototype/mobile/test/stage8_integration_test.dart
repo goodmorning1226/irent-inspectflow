@@ -77,7 +77,8 @@ void main() {
     await tester.tap(find.text('返回 iRent 還車流程'));
     await tester.pumpAndSettle();
     expect(find.text('0 / 6 已完成'), findsOneWidget);
-    expect(find.text('一次掃描，系統自動辨識六區'), findsOneWidget);
+    expect(find.text('車況掃描'), findsOneWidget);
+    expect(find.text('一次掃描，系統自動辨識六區'), findsNothing);
     expect(find.text('開始全車掃描'), findsOneWidget);
   });
 }

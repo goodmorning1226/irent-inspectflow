@@ -35,10 +35,14 @@ class _ScanScaffoldState extends State<ScanScaffold> {
         DeviceOrientation.landscapeRight,
       ]),
     );
+    unawaited(
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky),
+    );
   }
 
   @override
   void dispose() {
+    unawaited(SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge));
     unawaited(
       SystemChrome.setPreferredOrientations(const [
         DeviceOrientation.portraitUp,
@@ -56,25 +60,50 @@ class _ScanScaffoldState extends State<ScanScaffold> {
       ),
       child: Scaffold(
         backgroundColor: AppColors.scanBackground,
-        appBar: AppBar(
-          backgroundColor: AppColors.scanBackground,
-          foregroundColor: AppColors.white,
-          surfaceTintColor: AppColors.scanBackground,
-          title: Text(widget.title),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: AppSpacing.md),
-              child: Center(
-                child: GestureDetector(
-                  onLongPress: widget.onPrototypeLongPress,
-                  child: const PrototypeBanner(dark: true),
-                ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            widget.body,
+            Positioned(
+              top: MediaQuery.paddingOf(context).top + AppSpacing.sm,
+              left: AppSpacing.md,
+              right: AppSpacing.md,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const _FloatingBackButton(),
+                  GestureDetector(
+                    onLongPress: widget.onPrototypeLongPress,
+                    child: const PrototypeBanner(dark: true),
+                  ),
+                ],
               ),
             ),
+            if (widget.bottom != null)
+              Positioned(left: 0, right: 0, bottom: 0, child: widget.bottom!),
           ],
         ),
-        body: SafeArea(top: false, child: widget.body),
-        bottomNavigationBar: widget.bottom,
+      ),
+    );
+  }
+}
+
+class _FloatingBackButton extends StatelessWidget {
+  const _FloatingBackButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.ink.withValues(alpha: 0.72),
+      shape: const CircleBorder(),
+      clipBehavior: Clip.antiAlias,
+      child: IconButton(
+        key: const Key('scan-back-button'),
+        tooltip: '返回上一步',
+        onPressed: () => Navigator.of(context).maybePop(),
+        icon: const Icon(Icons.arrow_back_rounded),
+        color: AppColors.white,
       ),
     );
   }

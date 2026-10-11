@@ -276,30 +276,12 @@ class _ScanPrototypePageState extends State<ScanPrototypePage> {
               session: _scanSession,
               event: event,
               isInterior: isInterior,
-              resultLabel: _scanSession.isComplete
-                  ? '掃描完成，已記錄 2 處待確認影像'
-                  : event.phase == ScanPhase.evidenceCapturing && event.capture
-                  ? '已保存${_evidenceViewLabel(event.evidenceView)}視角'
-                  : event.finding == ScanFindingKind.stain && event.capture
-                  ? '已記錄後座污漬'
-                  : event.phase == ScanPhase.captured && currentZone != null
-                  ? '${currentZone.label}已自動擷取'
-                  : null,
-              resultDetail: _scanSession.isComplete
-                  ? '左側疑似刮痕與後座污漬將在背景進行後續比對，正在開啟摘要'
-                  : event.finding == ScanFindingKind.stain
-                  ? '後座右側座墊，等待後續處理'
-                  : null,
-              resultIsAnomaly:
-                  currentZone != null && _anomalyZones.contains(currentZone),
               video: LocalScanVideo(
                 assetPath: _videoAsset,
                 fallbackAsset: _fallbackAsset,
                 controller: _videoController,
                 onPositionChanged: timeline.updatePosition,
               ),
-              onReplay: _replay,
-              onStartDetail: null,
               anomalyZones: _anomalyZones,
             );
           },
@@ -307,13 +289,6 @@ class _ScanPrototypePageState extends State<ScanPrototypePage> {
       },
     );
   }
-
-  String _evidenceViewLabel(EvidenceView? view) => switch (view) {
-    EvidenceView.center => '中央',
-    EvidenceView.left => '左側',
-    EvidenceView.right => '右側',
-    null => '補充',
-  };
 }
 
 class _LoadFailure extends StatelessWidget {

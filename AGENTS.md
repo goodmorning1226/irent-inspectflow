@@ -1,6 +1,6 @@
 # iRent InspectFlow 專案交接文件
 
-最後更新：2026-10-10  
+最後更新：2026-10-11  
 目前階段：初賽提案簡報修改中；手機端全車連續掃描已改為六個不同視角、全區待掃描起始、帶移動過場的單一還車主線，最新自動與 Web 建置驗證已完成，實際瀏覽器不中斷演練待補驗；後台端已收斂為三個核心頁面，自動驗證已通過，瀏覽器視覺補驗待執行
 
 本文件提供後續參與本專案的人員與 AI Agent 快速接手使用。開始修改前，請先閱讀本文件及 `plan/iRent_智能車況管家_完整產品設計與落地計畫書.md`，並確認目前檔案狀態，避免把 Prototype 模擬內容誤認為已完成的正式功能。
@@ -284,6 +284,9 @@ prototype/
 - 第 6 階段後依最新展示需求補齊車頭、車尾、右側與前座影像，重新製作 23.8 秒六視角影片。六區初始全部為待掃描，區域切換包含 0.8 秒滑動／淡化過場及步行提示；取車與完工複檢入口已移除，只保留還車檢查主線。最新 `flutter analyze --no-pub` 無問題、25 項測試全數通過、Web Debug Build 成功，離線素材為 5 份 JSON、13 張影格與 5 段 MP4。
 - 最新流程在六區完成後顯示約 0.9 秒完成狀態，隨即自動離開橫向掃描並直接開啟摘要，不再提供完成按鈕；模擬上傳只展示正常逐區完成，不包含失敗或重試。
 - 手機完成頁已移除「重設 Prototype，再次展示」，隱藏 Demo 控制器也不再提供重設按鈕。畫面只保留「返回 iRent 還車流程」；返回時直接準備下一次流程，但不向使用者顯示或說明重設行為。
+- 還車入口頁標題已改為「還車階段車況掃描」，移除頁尾 Prototype 模擬流程說明，並修正還車地點與時間資訊列的左右內距、欄距及長文字換行。
+- 還車入口與六區總覽頁左上角已將「確認還車車況」改為紅色車輛圖示與 `iRent` 文字品牌標題；其他摘要與完成頁仍保留功能型頁面標題。
+- 還車入口頁內容標題已進一步縮短為「還車階段」；六區總覽移除「一次掃描，系統自動辨識六區」及其說明段落，改在車號卡片上方顯示「車況掃描」。
 - React 後台端 Prototype 第 1 階段：建立 `prototype/backend/` React 19、TypeScript、Vite 工程骨架、React Router、共用設計 Token、桌面 App Shell、左側導覽、角色顯示、Prototype 標示、營運總覽佔位頁、階段佔位路由、錯誤邊界與 404 頁。
 - 後台第 1 階段已通過 Prettier、ESLint、TypeScript 靜態檢查及 Production Build；npm 安裝掃描未發現已知漏洞。
 - React 後台端 Prototype 第 2 階段：建立完整領域型別、S01–S07 固定 JSON、與手機端一致的 `INS-DEMO-001`／`ABC-1234`／左側刮痕／後座污漬資料、Zustand Store、案件查詢與狀態更新、稽核事件、版本化 Local Storage、案例切換及重設展示資料。
@@ -476,3 +479,23 @@ tmp/
 - 清潔、巡檢、維修與索賠的現行 SOP 及 SLA。
 - 影像保存期限、個資規範與後台權限。
 - 初賽簡報最終文字、PPTX 與影片版本。
+
+## 12. 影片 Demo 最新進度（2026-10-11）
+
+- 已建立 `prototype/video-demo/`，採 React、Three.js、無頭 Chrome 與 FFmpeg，未使用付費影片生成 API。
+- 已完成 10 秒測試場景：第一人稱由汽車左側完成掃描，平滑步行轉向車頭，右下角六區俯視圖會自動把左側填綠並切換車頭辨識。
+- 測試成品位於 `prototype/video-demo/output/inspectflow-scan-test-10s-final.mp4`，規格已驗證為 1920×1080、60 FPS、600 幀、10.00 秒、H.264。
+- 車輛使用 Khronos `CarConcept` CC BY 4.0 模型；停車場背景與影像式光照使用 Poly Haven `Mall Parking Lot` CC0 素材，完整來源記錄於 `prototype/video-demo/ATTRIBUTION.md`。
+- `prototype/video-demo/qa/` 保存左側、走動、車頭三張靜幀與成品 contact sheet；目前等待使用者確認測試場景品質。
+- 完整十步驟影片尚未開始。使用者確認測試場景後，應沿用同一場景、車輛、HUD 與鏡頭系統擴充右側刮痕靠近確認、車尾、前座、後座污漬及六區完成結果。
+- 影片 V2 已改採純相機素材，不再把 HUD、提示、品質條或右下角六區圖燒錄進 MP4；Flutter 將依 `prototype/video-demo/camera-timeline-v2.json` 疊加介面。
+- V2 10 秒測試成品為 `prototype/video-demo/output/inspectflow-camera-only-test-v2-10s.mp4`：白色一般五門掀背／小型休旅車、真實有樹都市停車場、16:9 橫向畫面；定點掃描完全穩定，僅轉身段加入短暫模糊。
+- V2 規格已驗證為 1920×1080、60 FPS、600 幀、10.00 秒、H.264，且已完成全片解碼測試。流程分層規劃位於 `prototype/video-demo/CAMERA_ONLY_PIPELINE.md`。
+- 依最新要求另完成 V3 純 Three.js 鏡頭測試，不使用照片轉場，也不把 App UI 燒錄進影片。V3 使用 React、Three.js、逐幀 Chrome 擷取及 FFmpeg H.264 編碼，成品位於 `prototype/video-demo/output/inspectflow-threejs-camera-test-v3-10s.mp4`。
+- V3 場景使用白色無品牌五門掀背車與 Poly Haven 有樹停車場 HDRI；側面取景讓車身接近滿版，0–3.15 秒及 7.5–10 秒定點段完全取消上下晃動，3.15–7.5 秒以平滑弧線由左側走向車頭。
+- V3 已由 FFprobe 驗證為 1920×1080、60 FPS、600 幀、10.00 秒、H.264。Flutter 對齊事件及安全疊圖區記錄於 `prototype/video-demo/camera-timeline-v3.json`，素材授權記錄於 `prototype/video-demo/ATTRIBUTION.md`。
+- V3 最新構圖保留清楚的多車位白色格線並移除所有圍牆幾何，遠端柏油地面以透明漸層自然銜接樹景。車模改為較低車頂、斜後窗的五門掀背輪廓，使用白色 clearcoat 物理車漆；車頭、車尾、車頂與輪胎在定點及移動關鍵影格均未超出 1920×1080 畫面。
+- 最新方向已停止採用 Three.js 車輛動畫，改回手機端既有的同車同場景照片；後續影片以照片定點掃描、合成步行過場及 Flutter UI 疊加為主。舊 V1 至 V3 成品只保留作為比較參考。
+- 已完成第一段「車側到車頭」照片步行過場測試，成品位於 `prototype/video-demo/output/still-walk-side-to-front-test-3s.mp4`。影片為 1920×1080、60 FPS、3.2 秒、H.264、無聲音及無 UI；可重複產生的 Pillow／NumPy／FFmpeg 腳本與說明分別位於 `prototype/video-demo/scripts/render-still-walk-transition.py` 及 `prototype/video-demo/STILL_TRANSITION_TEST.md`。
+- 已進一步完成七角度逐幀步行測試：以原始車側、ImageGen 產生的 15°／30°／45°／60°／75° 視角及原始車頭建立連續軌跡，再用免費 MIT 授權的 RIFE NCNN Vulkan 補至 60 FPS。通過檢查的成品為 `prototype/video-demo/output/rife-multikeyframe-walk-side-to-front-test.mp4`，規格為 1920×1080、60 FPS、205 幀、3.4167 秒、H.264、無 UI／聲音；腳本、提示詞及工具來源分別記錄於 `prototype/video-demo/scripts/render-multikeyframe-walk.py`、`prototype/video-demo/assets/still-walk-keyframes/PROMPTS.md` 與 `prototype/video-demo/ATTRIBUTION.md`。傳統 FFmpeg 光流版本有輪圈重影，只保留比較，不應作為展示成品。
+- 逐幀／Three.js 動畫效果未採用，手機 App 繼續使用既有 `full_vehicle_scan.mp4`。最新掃描 HUD 已移除上下黑色工具列、頁面標題、偵測 Badge、品質進度條、完成結果文字及 `X / 6` 進度，只保留浮動返回鍵、Prototype 標示、左下固定單行指令、大型藍／綠掃描框與右下六區俯視圖；掃描時使用沉浸式全螢幕。每次只顯示一個動作，執行中為藍色、達標短暫轉綠後換下一個動作，刮痕補掃與車外轉車內的複合指令亦已拆開。最新 `flutter analyze --no-pub` 無問題，完整 25 項測試全數通過，掃描 Golden 已更新。

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inspectflow_mobile/app/inspectflow_app.dart';
 
@@ -14,7 +15,10 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(tester.takeException(), isNull);
-    expect(find.text('還車前，先留下清楚的車況紀錄'), findsOneWidget);
+    expect(find.text('還車階段'), findsOneWidget);
+    expect(find.textContaining('Prototype 模擬流程'), findsNothing);
+    expect(find.byKey(const Key('irent-brand-title')), findsOneWidget);
+    expect(find.text('確認還車車況'), findsNothing);
     expect(find.text('進入車況檢查'), findsOneWidget);
   });
 }

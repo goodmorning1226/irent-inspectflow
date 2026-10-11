@@ -1,0 +1,23 @@
+{
+  "name": "inspectflow-video-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "qa:stills": "npm run build && node scripts/capture-stills.mjs",
+    "render:test": "npm run build && node scripts/render-test.mjs",
+    "render:camera-v2": "node scripts/render-camera-test-v2.mjs",
+    "qa:camera-v3": "npm run build && node scripts/capture-camera-v3-stills.mjs",
+    "render:camera-v3": "npm run build && node scripts/render-camera-v3.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "puppeteer-core": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "latest",
+    "vite": "latest"
+  }
+}

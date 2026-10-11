@@ -12,12 +12,14 @@ class IrentFlowScaffold extends StatelessWidget {
     super.key,
     this.bottom,
     this.showBackButton = false,
+    this.showIrentBrand = false,
   });
 
   final String title;
   final Widget body;
   final Widget? bottom;
   final bool showBackButton;
+  final bool showIrentBrand;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class IrentFlowScaffold extends StatelessWidget {
                       )
                     : null,
                 titleSpacing: showBackButton ? 0 : AppSpacing.lg,
-                title: Text(title),
+                title: showIrentBrand ? const _IrentBrandTitle() : Text(title),
                 actions: const [
                   Padding(
                     padding: EdgeInsets.only(right: AppSpacing.md),
@@ -83,6 +85,41 @@ class IrentFlowScaffold extends StatelessWidget {
                     ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _IrentBrandTitle extends StatelessWidget {
+  const _IrentBrandTitle();
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: 'iRent',
+      child: FittedBox(
+        key: const Key('irent-brand-title'),
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.directions_car_filled_rounded,
+              size: 24,
+              color: AppColors.brandRed,
+            ),
+            const SizedBox(width: AppSpacing.xs),
+            Text(
+              'iRent',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: AppColors.brandRed,
+                fontWeight: FontWeight.w800,
+                letterSpacing: -0.3,
+              ),
+            ),
+          ],
         ),
       ),
     );

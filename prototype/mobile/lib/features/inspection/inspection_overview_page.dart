@@ -130,6 +130,7 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
 
     return IrentFlowScaffold(
       title: '確認還車車況',
+      showIrentBrand: true,
       showBackButton: true,
       bottom: FilledButton(
         key: const Key('zone-primary-action'),
@@ -144,19 +145,12 @@ class _InspectionOverviewPageState extends State<InspectionOverviewPage> {
           AppSpacing.xxl,
         ),
         children: [
+          Text('車況掃描', style: Theme.of(context).textTheme.headlineMedium),
+          const SizedBox(height: AppSpacing.md),
           _VehicleStrip(
             plateNumber: session.vehicle.plateNumber,
             modelName: session.vehicle.modelName,
             completedCount: completedCount,
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          Text('一次掃描，系統自動辨識六區', style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: AppSpacing.xs),
-          Text(
-            '開啟掃描後直接繞車並查看車內，系統會自動辨識六個區域、鎖定品質並逐區保存影像。',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),
           ),
           const SizedBox(height: AppSpacing.lg),
           _ZoneTrack(zones: _zones, onOpenSummary: _openZoneSummary),

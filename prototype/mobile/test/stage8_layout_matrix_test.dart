@@ -61,8 +61,10 @@ void main() {
         MaterialApp(theme: AppTheme.light, home: const ScanPrototypePage()),
       );
       await tester.pump(const Duration(seconds: 1));
-      expect(find.text('全車連續掃描'), findsOneWidget);
+      expect(find.byKey(const Key('scan-back-button')), findsOneWidget);
       expect(find.text('Prototype 模擬結果'), findsOneWidget);
+      expect(find.text('全車進度'), findsNothing);
+      expect(find.byKey(const Key('quality-lock-progress')), findsNothing);
       expect(tester.takeException(), isNull);
     });
   }
