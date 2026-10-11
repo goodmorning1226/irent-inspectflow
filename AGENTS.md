@@ -315,6 +315,7 @@ prototype/
 - Windows iPhone 開發工具已安裝：iTunes 12.13.11.1、ios-builder v0.11.0 與 MobAI 3.3.2；ios-builder 已完成 GitHub OAuth，MobAI 本機服務可正常連線。
 - Flutter 手機端已新增 iOS 工程，Bundle ID 為 `tw.irent.inspectflow.mobile`，App 顯示名稱為 `iRent InspectFlow`，並保留直向一般流程與左右橫向掃描支援。新增的 GitHub Actions workflow 已依 monorepo 結構改為從 `prototype/mobile` 執行 Flutter 建置。
 - iOS 工程加入後已重新通過 `flutter analyze --no-pub` 與 25 項 Flutter 測試。免費 Apple ID 採「GitHub Actions 建立未簽署 IPA，再由 MobAI 安裝時重新簽署」流程，不設定需要付費 Apple Developer Program 的 App Store Connect API Key。
+- 首次 GitHub Actions 未簽署建置已驗證 monorepo 偵測、Flutter 安裝及 `pub get` 正常，但 workflow 預設取得 Flutter 3.47.7 時在 Xcode 26.6 錯誤要求 Development Team；`builder.json` 已固定為與本機一致的 Flutter 3.41.7，等待重跑驗證。
 
 ### 6.2 正在進行
 

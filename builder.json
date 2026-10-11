@@ -13,6 +13,7 @@
     "bundleId": "tw.irent.inspectflow.mobile"
   },
   "flutter": {
+    "version": "3.41.7",
     "watch": {}
   },
   "reactNative": {},
