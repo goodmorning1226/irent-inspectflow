@@ -35,3 +35,6 @@ key.properties
 *.keystore
 *.p12
 *.pfx
+
+# Official competition dataset (local only; may contain large or restricted files)
+/iRent 競賽數據/

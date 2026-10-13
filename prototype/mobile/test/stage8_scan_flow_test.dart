@@ -69,7 +69,9 @@ void main() {
       ),
     );
     await tester.pump(const Duration(seconds: 1));
-    await tester.longPress(find.text('Prototype 模擬結果'));
+    await tester.longPress(
+      find.byKey(const Key('scan-back-long-press-target')),
+    );
     await tester.pumpAndSettle();
 
     expect(find.text('全車掃描 Demo 控制器'), findsOneWidget);

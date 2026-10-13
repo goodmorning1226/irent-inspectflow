@@ -15,6 +15,7 @@ import 'models/scan_completion.dart';
 import 'models/scan_timeline.dart';
 import 'widgets/full_vehicle_scan_hud.dart';
 import 'widgets/local_scan_video.dart';
+import 'widgets/timeline_panorama.dart';
 
 class ScanPrototypePage extends StatefulWidget {
   const ScanPrototypePage({this.zone, super.key});
@@ -28,7 +29,7 @@ class ScanPrototypePage extends StatefulWidget {
 }
 
 class _ScanPrototypePageState extends State<ScanPrototypePage> {
-  static const _videoAsset = 'assets/videos/full_vehicle_scan.mp4';
+  static const _videoAsset = 'assets/videos/full_vehicle_scan_panorama_v3.mp4';
   static const _scriptAsset = 'assets/scripts/full_vehicle_scan.json';
   static const _fallbackAsset = 'assets/frames/exterior_clean_best.png';
 
@@ -276,11 +277,23 @@ class _ScanPrototypePageState extends State<ScanPrototypePage> {
               session: _scanSession,
               event: event,
               isInterior: isInterior,
-              video: LocalScanVideo(
-                assetPath: _videoAsset,
-                fallbackAsset: _fallbackAsset,
-                controller: _videoController,
-                onPositionChanged: timeline.updatePosition,
+              video: Stack(
+                fit: StackFit.expand,
+                children: [
+                  LocalScanVideo(
+                    assetPath: _videoAsset,
+                    fallbackAsset: _fallbackAsset,
+                    controller: _videoController,
+                    onPositionChanged: timeline.updatePosition,
+                  ),
+                  if (event.previewAsset case final String previewAsset)
+                    TimelinePanorama(
+                      assetPath: previewAsset,
+                      event: event,
+                      position: timeline.position,
+                      key: const Key('timeline-preview-asset'),
+                    ),
+                ],
               ),
               anomalyZones: _anomalyZones,
             );

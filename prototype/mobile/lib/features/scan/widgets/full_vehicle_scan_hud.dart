@@ -31,7 +31,10 @@ class FullVehicleScanHud extends StatelessWidget {
       builder: (context, _) => Stack(
         fit: StackFit.expand,
         children: [
-          video,
+          _PreviewAlignmentOffset(
+            offsetFractionX: event.previewOffsetX,
+            child: video,
+          ),
           ScanGuideOverlay(event: event, isInterior: isInterior),
           Positioned(
             left: AppSpacing.md,
@@ -44,6 +47,32 @@ class FullVehicleScanHud extends StatelessWidget {
             child: _CoverageCard(session: session, anomalyZones: anomalyZones),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _PreviewAlignmentOffset extends StatelessWidget {
+  const _PreviewAlignmentOffset({
+    required this.offsetFractionX,
+    required this.child,
+  });
+
+  final double offsetFractionX;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRect(
+      child: LayoutBuilder(
+        builder: (context, constraints) => Transform.translate(
+          key: const Key('preview-alignment-offset'),
+          offset: Offset(constraints.maxWidth * offsetFractionX, 0),
+          child: Transform.scale(
+            scale: offsetFractionX == 0 ? 1 : 1.04,
+            child: child,
+          ),
+        ),
       ),
     );
   }

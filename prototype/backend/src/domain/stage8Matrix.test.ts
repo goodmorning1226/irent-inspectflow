@@ -20,7 +20,11 @@ describe('Stage 8 scenario and offline matrix', () => {
         vehicle: 'REVIEW_REQUIRED',
         finding: true,
       },
-      S04: { caseStatus: 'RESOLVED', vehicle: 'READY', finding: true },
+      S04: {
+        caseStatus: 'PENDING_REVIEW',
+        vehicle: 'REVIEW_REQUIRED',
+        finding: true,
+      },
       S05: {
         caseStatus: 'PENDING_INSPECTION',
         vehicle: 'REVIEW_REQUIRED',
@@ -42,7 +46,9 @@ describe('Stage 8 scenario and offline matrix', () => {
       const target = expected[dataset.meta.id];
       expect(dataset.cases[0]?.status).toBe(target.caseStatus);
       expect(dataset.vehicles[0]?.availability).toBe(target.vehicle);
-      expect(dataset.findings.length > 0).toBe(target.finding);
+      expect((dataset.cases[0]?.findingIds.length ?? 0) > 0).toBe(
+        target.finding,
+      );
       expect(dataset.meta.dataNotice).toMatch(/Prototype|展示|模型/);
     }
     expect(getScenarioDataset('S05').findings[0]?.possiblyNew).toBeNull();
@@ -62,7 +68,7 @@ describe('Stage 8 scenario and offline matrix', () => {
     const active = getScenarioDataset('S01');
     const caseRows = buildCaseRows(active);
     const taskRows = buildTaskRows(active);
-    expect(caseRows).toHaveLength(7);
+    expect(caseRows).toHaveLength(24);
     for (const row of caseRows) {
       const workspace = buildCaseWorkspace(row.id, active);
       expect(workspace?.currentCase.id).toBe(row.id);
@@ -78,6 +84,20 @@ describe('Stage 8 scenario and offline matrix', () => {
       expect(buildTaskWorkspace(row.id, active)?.task.id).toBe(row.id);
     }
     expect(taskRows.some((row) => row.type === 'claim_review')).toBe(true);
+
+    const reviewQueue = caseRows.filter(
+      (row) =>
+        row.status === 'PENDING_REVIEW' &&
+        !row.hasActiveTask &&
+        !row.inClaimQueue &&
+        row.anomalyType !== 'none',
+    );
+    expect(reviewQueue).toHaveLength(4);
+    expect(reviewQueue.some((row) => row.id === 'CASE-S04-001')).toBe(true);
+    expect(reviewQueue.find((row) => row.id === 'CASE-S04-001')).toMatchObject({
+      anomalyType: 'scratch',
+      anomalyLabel: '刮痕',
+    });
 
     const headlightWorkspace = buildCaseWorkspace(
       'CASE-S07-001',

@@ -18,6 +18,8 @@ enum EvidenceView { center, left, right }
 
 enum ScanFindingKind { stain }
 
+enum ScanAdjustmentDirection { left, right, upLeft, downRight, forward }
+
 class NormalizedScanBox {
   const NormalizedScanBox({
     required this.left,
@@ -55,6 +57,23 @@ class ScanTimelineEvent {
     this.evidenceStep,
     this.evidenceTotal,
     this.finding,
+    this.adjustmentDirection,
+    this.adjustmentSatisfied = false,
+    this.previewOffsetX = 0,
+    this.previewAsset,
+    this.previewPanX = 0,
+    this.previewPanY = 0,
+    this.previewPanToX,
+    this.previewPanToY,
+    this.previewTranslateX = 0,
+    this.previewTranslateY = 0,
+    this.previewTranslateToX,
+    this.previewTranslateToY,
+    this.previewMotionDelay = Duration.zero,
+    this.previewMotionDuration = Duration.zero,
+    this.previewWalking = false,
+    this.previewScale = 1.04,
+    this.previewScaleTo,
     this.box,
     this.anomalyBox,
   });
@@ -83,6 +102,33 @@ class ScanTimelineEvent {
         final String finding => ScanFindingKind.values.byName(finding),
         _ => null,
       },
+      adjustmentDirection: switch (json['adjustmentDirection'] ??
+          json['horizontalAdjustment']) {
+        final String direction => ScanAdjustmentDirection.values.byName(
+          direction,
+        ),
+        _ => null,
+      },
+      adjustmentSatisfied: json['adjustmentSatisfied'] as bool? ?? false,
+      previewOffsetX: (json['previewOffsetX'] as num?)?.toDouble() ?? 0,
+      previewAsset: json['previewAsset'] as String?,
+      previewPanX: (json['previewPanX'] as num?)?.toDouble() ?? 0,
+      previewPanY: (json['previewPanY'] as num?)?.toDouble() ?? 0,
+      previewPanToX: (json['previewPanToX'] as num?)?.toDouble(),
+      previewPanToY: (json['previewPanToY'] as num?)?.toDouble(),
+      previewTranslateX: (json['previewTranslateX'] as num?)?.toDouble() ?? 0,
+      previewTranslateY: (json['previewTranslateY'] as num?)?.toDouble() ?? 0,
+      previewTranslateToX: (json['previewTranslateToX'] as num?)?.toDouble(),
+      previewTranslateToY: (json['previewTranslateToY'] as num?)?.toDouble(),
+      previewMotionDelay: Duration(
+        milliseconds: json['previewMotionDelayMs'] as int? ?? 0,
+      ),
+      previewMotionDuration: Duration(
+        milliseconds: json['previewMotionDurationMs'] as int? ?? 0,
+      ),
+      previewWalking: json['previewWalking'] as bool? ?? false,
+      previewScale: (json['previewScale'] as num?)?.toDouble() ?? 1.04,
+      previewScaleTo: (json['previewScaleTo'] as num?)?.toDouble(),
       box: switch (json['box']) {
         final Map<String, dynamic> box => NormalizedScanBox.fromJson(box),
         _ => null,
@@ -106,6 +152,23 @@ class ScanTimelineEvent {
   final int? evidenceStep;
   final int? evidenceTotal;
   final ScanFindingKind? finding;
+  final ScanAdjustmentDirection? adjustmentDirection;
+  final bool adjustmentSatisfied;
+  final double previewOffsetX;
+  final String? previewAsset;
+  final double previewPanX;
+  final double previewPanY;
+  final double? previewPanToX;
+  final double? previewPanToY;
+  final double previewTranslateX;
+  final double previewTranslateY;
+  final double? previewTranslateToX;
+  final double? previewTranslateToY;
+  final Duration previewMotionDelay;
+  final Duration previewMotionDuration;
+  final bool previewWalking;
+  final double previewScale;
+  final double? previewScaleTo;
   final NormalizedScanBox? box;
   final NormalizedScanBox? anomalyBox;
 }

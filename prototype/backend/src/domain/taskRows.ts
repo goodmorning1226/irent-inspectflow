@@ -1,4 +1,8 @@
-import { getAllScenarioDatasets, getScenarioDataset } from '../data/scenarios';
+import {
+  getAllRuntimeScenarioDatasets,
+  getRuntimeScenarioDataset,
+} from '../data/scenarios';
+import { getRepairVendor } from './repairVendors';
 import type {
   Assignment,
   ScenarioDataset,
@@ -11,9 +15,10 @@ import type {
 
 export const taskTypeLabels: Record<TaskType, string> = {
   cleaning: '清潔',
-  inspection: '巡檢',
+  inspection: '保養',
   repair: '維修',
-  claim_review: '索賠待審',
+  suspension: '停用',
+  claim_review: '索賠請求',
 };
 
 export const taskStatusLabels: Record<TaskStatus, string> = {
@@ -42,10 +47,11 @@ export interface TaskRow {
   reservationRisk: boolean;
   overdue: boolean;
   assignee: string;
+  progressNote: string;
 }
 
 export function buildTaskRows(activeDataset: ScenarioDataset): TaskRow[] {
-  return getAllScenarioDatasets()
+  return getAllRuntimeScenarioDatasets()
     .map((dataset) =>
       dataset.meta.id === activeDataset.meta.id ? activeDataset : dataset,
     )
@@ -63,6 +69,7 @@ export function buildTaskRows(activeDataset: ScenarioDataset): TaskRow[] {
         const worker = dataset.workers.find(
           (item) => item.id === assignment?.workerId,
         );
+        const repairVendor = getRepairVendor(task.repairVendorId);
         return {
           id: task.id,
           scenarioId: dataset.meta.id,
@@ -82,10 +89,71 @@ export function buildTaskRows(activeDataset: ScenarioDataset): TaskRow[] {
             dataset.meta.id === 'S03' &&
             task.type === 'claim_review' &&
             task.status !== 'COMPLETED',
-          assignee: worker?.displayName ?? '未指派',
+          assignee:
+            task.type === 'repair'
+              ? (repairVendor?.name ?? '待安排送修')
+              : (worker?.displayName ?? '未指派'),
+          progressNote: task.progressNote ?? '處理請求已送出',
         };
       }),
     );
+}
+
+const defaultProcessingTaskIds = [
+  'TSK-S01-OPS-CLEAN-001',
+  'TSK-S01-OPS-CLEAN-002',
+  'TSK-S01-OPS-REPAIR-001',
+  'TSK-S01-OPS-REPAIR-004',
+  'TSK-S01-OPS-REPAIR-006',
+] as const;
+
+const processingPriorityRank: Record<TaskRow['priority'], number> = {
+  urgent: 0,
+  high: 1,
+  normal: 2,
+};
+
+export interface ProcessingTaskRow extends TaskRow {
+  claimRequested: boolean;
+}
+
+export function selectProcessingRows(rows: TaskRow[]): ProcessingTaskRow[] {
+  const activeRows = rows.filter(
+    (row) =>
+      row.type !== 'claim_review' &&
+      row.status !== 'COMPLETED' &&
+      row.status !== 'CANCELLED',
+  );
+  const claimCases = new Set(
+    rows
+      .filter(
+        (row) => row.type === 'claim_review' && row.status !== 'CANCELLED',
+      )
+      .map((row) => row.caseId),
+  );
+  const createdFromRequest = activeRows.filter(
+    (row) => row.progressNote === '處理請求已送出，等待外部系統回傳進度',
+  );
+  const defaultRows = defaultProcessingTaskIds.flatMap((taskId) => {
+    const row = activeRows.find((item) => item.id === taskId);
+    return row ? [row] : [];
+  });
+  const selectedRows = [...createdFromRequest, ...defaultRows].filter(
+    (row, index, collection) =>
+      collection.findIndex((item) => item.caseId === row.caseId) === index,
+  );
+
+  return selectedRows
+    .sort(
+      (left, right) =>
+        processingPriorityRank[left.priority] -
+          processingPriorityRank[right.priority] ||
+        left.plateNumber.localeCompare(right.plateNumber),
+    )
+    .map((row) => ({
+      ...row,
+      claimRequested: claimCases.has(row.caseId),
+    }));
 }
 
 export interface TaskWorkspace {
@@ -108,7 +176,7 @@ export function buildTaskWorkspace(
   const dataset =
     activeDataset.meta.id === scenarioId
       ? activeDataset
-      : getScenarioDataset(scenarioId);
+      : getRuntimeScenarioDataset(scenarioId);
   const task = dataset.tasks.find((item) => item.id === taskId);
   if (!task) return null;
   const currentCase = dataset.cases.find((item) => item.id === task.caseId);
@@ -139,7 +207,7 @@ export interface WorkerSuggestion {
 export function getWorkerSuggestions(type: TaskType): WorkerSuggestion[] {
   const workers = new Map<string, Worker>();
   const assignments = new Map<string, number>();
-  for (const dataset of getAllScenarioDatasets()) {
+  for (const dataset of getAllRuntimeScenarioDatasets()) {
     for (const worker of dataset.workers) workers.set(worker.id, worker);
     for (const assignment of dataset.assignments) {
       assignments.set(

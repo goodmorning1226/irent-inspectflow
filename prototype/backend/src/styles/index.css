@@ -19,7 +19,7 @@ body {
   color: var(--color-ink);
   background: var(--color-workspace);
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -79,7 +79,7 @@ a {
 
 .brand-lockup div > span {
   color: #aeb3b9;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .brand-mark {
@@ -294,13 +294,7 @@ a {
 
 .breadcrumb {
   color: var(--color-muted);
-  font-size: 12px;
-}
-
-.topbar-actions {
-  display: flex;
-  gap: var(--space-4);
-  align-items: center;
+  font-size: 13px;
 }
 
 .role-indicator {
@@ -1259,32 +1253,6 @@ a {
   font-size: 8px;
   font-style: normal;
 }
-.reflection-effect {
-  position: absolute;
-  top: -15%;
-  bottom: -15%;
-  width: 13%;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.82),
-    rgba(255, 255, 255, 0.16),
-    transparent
-  );
-  filter: blur(5px);
-  transform: rotate(17deg);
-  mix-blend-mode: screen;
-}
-.reflection-effect--reflection-wide {
-  left: 56%;
-}
-.reflection-effect--reflection-left {
-  left: 31%;
-}
-.reflection-effect--reflection-right {
-  left: 71%;
-}
 .comparability-reason {
   padding: 10px var(--space-4);
   margin: 0;
@@ -1679,19 +1647,6 @@ a {
   width: 100%;
   max-height: calc(100vh - 160px);
   object-fit: contain;
-}
-
-.reflection-effect--completion-clean {
-  top: 55%;
-  bottom: auto;
-  left: 51%;
-  width: 25%;
-  height: 27%;
-  background: rgba(112, 115, 112, 0.64);
-  border-radius: 50%;
-  filter: blur(14px);
-  transform: none;
-  mix-blend-mode: color;
 }
 
 .task-create-panel {
@@ -3515,11 +3470,6 @@ a {
     position: static;
     gap: var(--space-3);
     padding: var(--space-3) var(--space-4);
-  }
-
-  .topbar-actions {
-    width: 100%;
-    justify-content: space-between;
   }
 
   .workspace-content {

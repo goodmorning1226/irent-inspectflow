@@ -1,4 +1,4 @@
-import { getScenarioDataset } from '../data/scenarios';
+import { getRuntimeScenarioDataset } from '../data/scenarios';
 import type {
   Finding,
   FindingSeverity,
@@ -7,18 +7,14 @@ import type {
   ScenarioId,
 } from './types';
 
-export type EvidenceEffect =
-  | 'none'
-  | 'reflection-wide'
-  | 'reflection-left'
-  | 'reflection-right'
-  | 'completion-clean';
+export type EvidenceEffect = 'none';
 
 const exteriorClean = '/exterior_clean_best.png';
 const damageCenter = '/exterior_damage_detail_center.png';
 const damageLeft = '/exterior_damage_detail_left.png';
 const damageRight = '/exterior_damage_detail_right.png';
 const damageWide = '/exterior_damage_wide.png';
+const interiorClean = '/interior_clean_best.png';
 const interiorDirty = '/interior_dirty_best.png';
 const headlightDamageWide = '/headlight_damage_wide.png';
 const headlightDamageDetail = '/headlight_damage_detail.png';
@@ -63,10 +59,18 @@ export const findingTypeLabels: Record<FindingType, string> = {
   stain: '污漬',
   litter: '垃圾',
   leftItem: '遺留物',
-  reflection: '反光干擾',
   obstruction: '遮蔽',
   unknown: '待確認',
 };
+
+export function formatFindingType(finding: Finding): string {
+  if (['stain', 'litter', 'leftItem', 'obstruction'].includes(finding.type)) {
+    return ['frontSeat', 'rearSeat'].includes(finding.zone)
+      ? '車內髒污'
+      : '車外髒污';
+  }
+  return findingTypeLabels[finding.type];
+}
 
 export const severityLabels: Record<FindingSeverity, string> = {
   low: '輕微',
@@ -77,19 +81,19 @@ export const severityLabels: Record<FindingSeverity, string> = {
 
 const commonBefore: EvidenceImage = {
   id: 'before-left',
-  label: '取車前基準',
-  caption: '同車左側車身，取車前有效歷史影像',
+  label: '本次取車前',
+  caption: '同車左側車身，本次租程取車前掃描影像',
   src: exteriorClean,
   effect: 'none',
-  sourceLabel: 'Prototype 歷史基準',
+  sourceLabel: '本次租程・取車前掃描',
 };
 
 const presentations: Partial<Record<ScenarioId, EvidencePresentation>> = {
   S02: {
     baseline: {
       id: 'before-interior-missing',
-      label: '取車前基準',
-      caption: '本案例未提供可比的後座近照',
+      label: '本次取車前',
+      caption: '本案例未提供可比的本次取車前後座近照',
       src: null,
       effect: 'none',
       sourceLabel: '基準缺少',
@@ -104,7 +108,7 @@ const presentations: Partial<Record<ScenarioId, EvidencePresentation>> = {
     },
     angles: [],
     comparability: 'limited',
-    comparabilityLabel: '可判讀，但歷史近照有限',
+    comparabilityLabel: '可判讀，但取車前近照有限',
     comparabilityReason: '本次污漬清楚可見；責任與費用仍需人員依規範確認。',
     conclusion: '建議建立清潔任務，完工後對同一座墊重新掃描。',
   },
@@ -153,42 +157,43 @@ const presentations: Partial<Record<ScenarioId, EvidencePresentation>> = {
   S04: {
     baseline: commonBefore,
     current: {
-      id: 'reflection-wide',
+      id: 'minor-scratch-wide',
       label: '還車後影像',
-      caption: '廣角畫面出現線狀高光',
-      src: exteriorClean,
-      effect: 'reflection-wide',
-      sourceLabel: 'Prototype 反光模擬',
+      caption: '左前車門下半部出現疑似細微刮痕',
+      src: damageWide,
+      effect: 'none',
+      sourceLabel: 'INS-DEMO-001・leftSide',
     },
     angles: [
       {
-        id: 'reflection-left',
-        label: '左側視角',
-        caption: '高光位置隨視角向左移動',
-        src: exteriorClean,
-        effect: 'reflection-left',
+        id: 'minor-scratch-center',
+        label: '中央視角',
+        caption: '近距離影像可見細微表面痕跡',
+        src: damageCenter,
+        effect: 'none',
         sourceLabel: '補掃 1／2',
       },
       {
-        id: 'reflection-right',
-        label: '右側視角',
-        caption: '原疑似痕跡消失並移至右側高光',
-        src: exteriorClean,
-        effect: 'reflection-right',
+        id: 'minor-scratch-left',
+        label: '左側視角',
+        caption: '換角度後痕跡仍位於相同車身位置',
+        src: damageLeft,
+        effect: 'none',
         sourceLabel: '補掃 2／2',
       },
     ],
     comparability: 'comparable',
     comparabilityLabel: '視角可比',
     comparabilityReason:
-      '車門輪廓一致；疑似痕跡會隨拍攝角度移動，不符合固定車損特徵。',
-    conclusion: '多角度證據支持反光干擾，建議不建立車損任務。',
+      '影像已通過成像品質門檻，車門輪廓與取車前基準可比；細微痕跡仍需人工確認。',
+    conclusion:
+      '多角度都能看到相同位置的細微痕跡，建議人工確認是否為新增刮痕。',
   },
   S05: {
     baseline: {
       id: 'baseline-unavailable',
-      label: '取車前基準',
-      caption: '找不到同車、同區域且視角可比的有效歷史影像',
+      label: '本次取車前',
+      caption: '找不到本次取車前或上次還車的同區域可比影像',
       src: null,
       effect: 'none',
       sourceLabel: '證據不足',
@@ -205,17 +210,17 @@ const presentations: Partial<Record<ScenarioId, EvidencePresentation>> = {
     comparability: 'unavailable',
     comparabilityLabel: '無法比較',
     comparabilityReason:
-      '缺少同車同區域的有效歷史基準，因此不能判斷異常是否為本次新增。',
+      '缺少本次取車前與上次還車的同區域有效基準，因此不能判斷異常是否為本次新增。',
     conclusion: '只能標示證據不足並安排補件或現場巡檢，不進入索賠判斷。',
   },
   S07: {
     baseline: {
       id: 'before-front',
-      label: '取車前基準',
-      caption: '同車車頭，取車前有效歷史影像',
+      label: '本次取車前',
+      caption: '同車車頭，本次租程取車前掃描影像',
       src: vehicleFront,
       effect: 'none',
-      sourceLabel: 'Prototype 歷史基準',
+      sourceLabel: '本次租程・取車前掃描',
     },
     current: {
       id: 'headlight-damage-wide',
@@ -270,10 +275,14 @@ const zoneDefinitions: Array<{
   { id: 'rear', label: '車尾', src: vehicleRear },
   { id: 'rightSide', label: '右側', src: vehicleRightSide },
   { id: 'frontSeat', label: '前座', src: vehicleFrontSeat },
-  { id: 'rearSeat', label: '後座', src: interiorDirty },
+  { id: 'rearSeat', label: '後座', src: interiorClean },
 ];
 
-function getFocusZone(scenarioId: ScenarioId): InspectionZoneId {
+function getFocusZone(
+  scenarioId: ScenarioId,
+  finding?: Finding,
+): InspectionZoneId {
+  if (finding) return finding.zone;
   if (scenarioId === 'S02') return 'rearSeat';
   if (scenarioId === 'S05') return 'rightSide';
   if (scenarioId === 'S01' || scenarioId === 'S07') return 'front';
@@ -284,9 +293,8 @@ function buildZoneEvidence(
   scenarioId: ScenarioId,
   focusPresentation: EvidencePresentation,
   hasFinding: boolean,
+  focusZone: InspectionZoneId,
 ): ZoneEvidencePresentation[] {
-  const focusZone = getFocusZone(scenarioId);
-
   return zoneDefinitions.map((zone) => {
     if (zone.id === focusZone) {
       return {
@@ -310,11 +318,11 @@ function buildZoneEvidence(
 
     const baseline: EvidenceImage = {
       id: `${scenarioId}-${zone.id}-before`,
-      label: '取車前基準',
-      caption: `${zone.label}的歷史有效影像`,
+      label: '本次取車前',
+      caption: `${zone.label}在本次租程取車前的掃描影像`,
       src: zone.src,
       effect: 'none',
-      sourceLabel: 'Prototype 歷史基準',
+      sourceLabel: '本次租程・取車前掃描',
     };
     const current: EvidenceImage = {
       id: `${scenarioId}-${zone.id}-after`,
@@ -335,7 +343,7 @@ function buildZoneEvidence(
       angles: [],
       comparability: 'comparable',
       comparabilityLabel: '視角可比',
-      comparabilityReason: `${zone.label}的取車前基準與還車後影像均已留存，可供人工快速確認。`,
+      comparabilityReason: `${zone.label}的本次取車前掃描與還車後影像均已留存，可供人工快速確認；上次還車影像可作為補充基準。`,
       conclusion: `${zone.label}未發現需要另外處理的明顯異常。`,
     };
   });
@@ -362,7 +370,7 @@ export function buildCaseWorkspace(
   const dataset =
     activeDataset.meta.id === scenarioId
       ? activeDataset
-      : getScenarioDataset(scenarioId);
+      : getRuntimeScenarioDataset(scenarioId);
   const currentCase = dataset.cases.find((item) => item.id === caseId);
   if (!currentCase) return null;
   const vehicle = dataset.vehicles.find(
@@ -375,7 +383,20 @@ export function buildCaseWorkspace(
   const findings = dataset.findings.filter((item) =>
     currentCase.findingIds.includes(item.id),
   );
-  const presentation = presentations[scenarioId] ?? fallbackPresentation;
+  const primaryFinding = findings[0];
+  const presentation =
+    presentations[scenarioId] ??
+    (primaryFinding &&
+    ['stain', 'litter', 'leftItem', 'obstruction'].includes(primaryFinding.type)
+      ? presentations.S02
+      : primaryFinding &&
+          ['scratch', 'dent', 'crack'].includes(primaryFinding.type)
+        ? presentations.S03
+        : primaryFinding?.type === 'unknown'
+          ? presentations.S05
+          : undefined) ??
+    fallbackPresentation;
+  const focusZone = getFocusZone(scenarioId, primaryFinding);
   return {
     dataset,
     currentCase,
@@ -387,8 +408,9 @@ export function buildCaseWorkspace(
       scenarioId,
       presentation,
       findings.length > 0,
+      focusZone,
     ),
-    defaultZoneId: getFocusZone(scenarioId),
+    defaultZoneId: focusZone,
   };
 }
 

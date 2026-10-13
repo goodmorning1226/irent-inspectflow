@@ -15,10 +15,13 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(tester.takeException(), isNull);
-    expect(find.text('還車階段'), findsOneWidget);
+    expect(find.text('掃描'), findsOneWidget);
+    expect(find.text('檢查車輛狀況'), findsOneWidget);
     expect(find.textContaining('Prototype 模擬流程'), findsNothing);
-    expect(find.byKey(const Key('irent-brand-title')), findsOneWidget);
+    expect(find.byKey(const Key('entry-vehicle-image')), findsNothing);
+    expect(find.byKey(const Key('entry-vehicle-card')), findsOneWidget);
+    expect(find.byKey(const Key('entry-coverage-card')), findsOneWidget);
     expect(find.text('確認還車車況'), findsNothing);
-    expect(find.text('進入車況檢查'), findsOneWidget);
+    expect(find.text('掃描車輛狀況'), findsOneWidget);
   });
 }

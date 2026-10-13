@@ -1,4 +1,4 @@
-import { getAllScenarioDatasets } from '../data/scenarios';
+import { getAllRuntimeScenarioDatasets } from '../data/scenarios';
 import type {
   CaseStatus,
   FindingType,
@@ -16,6 +16,7 @@ export interface CaseRow {
   title: string;
   plateNumber: string;
   anomalyType: FindingType | 'none';
+  anomalyZone: ScenarioDataset['findings'][number]['zone'] | null;
   anomalyLabel: string;
   risk: CaseRisk;
   confidence: number | null;
@@ -27,6 +28,8 @@ export interface CaseRow {
   location: string;
   availability: VehicleAvailability;
   taskStatus: TaskStatus | null;
+  hasActiveTask: boolean;
+  inClaimQueue: boolean;
   isDueSoon: boolean;
   evidenceInsufficient: boolean;
 }
@@ -63,7 +66,6 @@ const anomalyLabels: Record<FindingType | 'none', string> = {
   stain: '污漬',
   litter: '垃圾',
   leftItem: '遺留物',
-  reflection: '反光干擾',
   obstruction: '遮蔽',
   unknown: '待確認',
 };
@@ -86,14 +88,14 @@ const reviewerLabels: Record<string, string> = {
 };
 
 export function buildCaseRows(activeDataset: ScenarioDataset): CaseRow[] {
-  return getAllScenarioDatasets()
+  return getAllRuntimeScenarioDatasets()
     .map((initialDataset) =>
       initialDataset.meta.id === activeDataset.meta.id
         ? activeDataset
         : initialDataset,
     )
     .flatMap((dataset) =>
-      dataset.cases.map((currentCase) => {
+      dataset.cases.map((currentCase): CaseRow => {
         const vehicle = dataset.vehicles.find(
           (item) => item.id === currentCase.vehicleId,
         );
@@ -106,19 +108,26 @@ export function buildCaseRows(activeDataset: ScenarioDataset): CaseRow[] {
         const task = dataset.tasks.find(
           (item) => item.caseId === currentCase.id,
         );
+        const activeTasks = dataset.tasks.filter(
+          (item) =>
+            item.caseId === currentCase.id && item.status !== 'CANCELLED',
+        );
         const assignment = dataset.assignments.find(
           (item) => item.taskId === task?.id,
         );
         const worker = dataset.workers.find(
           (item) => item.id === assignment?.workerId,
         );
-        const anomalyType = finding?.type ?? 'none';
+        const anomalyType =
+          finding?.type ??
+          (currentCase.status === 'PENDING_REVIEW' ? 'unknown' : 'none');
         return {
           id: currentCase.id,
           scenarioId: currentCase.scenarioId,
           title: currentCase.title,
           plateNumber: vehicle?.plateNumber ?? '—',
           anomalyType,
+          anomalyZone: finding?.zone ?? null,
           anomalyLabel: anomalyLabels[anomalyType],
           risk: currentCase.priority,
           confidence: finding?.confidence ?? null,
@@ -134,6 +143,12 @@ export function buildCaseRows(activeDataset: ScenarioDataset): CaseRow[] {
           location: rental?.returnLocation ?? '未提供',
           availability: vehicle?.availability ?? 'REVIEW_REQUIRED',
           taskStatus: task?.status ?? null,
+          hasActiveTask: activeTasks.some(
+            (item) => item.type !== 'claim_review',
+          ),
+          inClaimQueue:
+            currentCase.status === 'CLAIM_REVIEW' ||
+            activeTasks.some((item) => item.type === 'claim_review'),
           isDueSoon: Boolean(
             task?.etaLabel &&
             task.status !== 'COMPLETED' &&
@@ -142,6 +157,11 @@ export function buildCaseRows(activeDataset: ScenarioDataset): CaseRow[] {
           evidenceInsufficient: finding?.evidenceState === 'insufficient',
         };
       }),
+    )
+    .sort(
+      (left, right) =>
+        riskRank[left.risk] - riskRank[right.risk] ||
+        Date.parse(right.createdAt) - Date.parse(left.createdAt),
     );
 }
 

@@ -15,7 +15,6 @@ class ScanTimelineController extends ChangeNotifier {
   void updatePosition(Duration position) {
     _position = position;
     final next = script.eventAt(position);
-    if (identical(next, _event)) return;
     _event = next;
     notifyListeners();
   }

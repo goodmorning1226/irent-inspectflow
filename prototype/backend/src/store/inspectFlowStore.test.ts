@@ -1,7 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { getScenarioDataset, SCENARIO_IDS } from '../data/scenarios';
+import {
+  getScenarioDataset,
+  resetRuntimeScenarioDatasets,
+  SCENARIO_IDS,
+} from '../data/scenarios';
 import { buildAuditTimeline } from '../domain/auditTimeline';
+import { buildCaseRows } from '../domain/caseRows';
+import { buildFleetRecords } from '../domain/fleetRows';
+import { buildTaskRows, selectProcessingRows } from '../domain/taskRows';
 import {
   DEFAULT_SCENARIO_ID,
   evaluateReleaseGate,
@@ -12,7 +19,11 @@ import {
 
 describe('InspectFlow prototype store', () => {
   beforeEach(() => {
-    useInspectFlowStore.getState().loadScenario(DEFAULT_SCENARIO_ID);
+    resetRuntimeScenarioDatasets();
+    useInspectFlowStore.setState({
+      activeScenarioId: DEFAULT_SCENARIO_ID,
+      dataset: getScenarioDataset(DEFAULT_SCENARIO_ID),
+    });
   });
 
   it('loads all seven fixed scenarios with matching identifiers', () => {
@@ -34,6 +45,135 @@ describe('InspectFlow prototype store', () => {
 
     useInspectFlowStore.getState().resetActiveScenario();
     expect(useInspectFlowStore.getState().dataset).toEqual(initial);
+  });
+
+  it('keeps cross-page queue changes while switching between case scenarios', () => {
+    const initialDataset = useInspectFlowStore.getState().dataset;
+    const initialReviewRows = buildCaseRows(initialDataset).filter(
+      (row) =>
+        row.status === 'PENDING_REVIEW' &&
+        !row.hasActiveTask &&
+        !row.inClaimQueue,
+    );
+    expect(initialReviewRows).toHaveLength(4);
+    expect(selectProcessingRows(buildTaskRows(initialDataset))).toHaveLength(5);
+
+    useInspectFlowStore.getState().loadScenario('S02');
+    const current = useInspectFlowStore.getState().dataset;
+    const currentCase = current.cases.find(
+      (item) => item.id === 'CASE-S02-001',
+    )!;
+    const finding = current.findings.find((item) =>
+      currentCase.findingIds.includes(item.id),
+    )!;
+    const review = useInspectFlowStore.getState().submitReview({
+      caseId: currentCase.id,
+      findingId: finding.id,
+      outcome: 'CONFIRMED_ANOMALY',
+      correctedType: finding.type,
+      correctedSeverity: finding.severity,
+      vehicleStatus: 'CLEANING',
+      reason: '確認需要清潔處理。',
+      note: '',
+      reviewerId: 'USR-OPS-001',
+    });
+    expect(review.ok).toBe(true);
+    expect(
+      useInspectFlowStore.getState().createTask({
+        caseId: currentCase.id,
+        type: 'cleaning',
+        title: '後座污漬清潔處理',
+        actorId: 'USR-OPS-001',
+        priority: currentCase.priority,
+      }).ok,
+    ).toBe(true);
+
+    let active = useInspectFlowStore.getState().dataset;
+    expect(
+      buildCaseRows(active).filter(
+        (row) =>
+          row.status === 'PENDING_REVIEW' &&
+          !row.hasActiveTask &&
+          !row.inClaimQueue,
+      ),
+    ).toHaveLength(3);
+    expect(selectProcessingRows(buildTaskRows(active))).toHaveLength(6);
+
+    useInspectFlowStore.getState().loadScenario('S04');
+    active = useInspectFlowStore.getState().dataset;
+    expect(
+      buildCaseRows(active).filter(
+        (row) =>
+          row.status === 'PENDING_REVIEW' &&
+          !row.hasActiveTask &&
+          !row.inClaimQueue,
+      ),
+    ).toHaveLength(3);
+    expect(selectProcessingRows(buildTaskRows(active))).toHaveLength(6);
+  });
+
+  it('moves a managed vehicle into review or cleaning without duplicating records', () => {
+    const reviewRecord = buildFleetRecords(
+      useInspectFlowStore.getState().dataset,
+    ).find((record) => record.vehicle.availability === 'READY')!;
+
+    useInspectFlowStore
+      .getState()
+      .updateCaseStatus(reviewRecord.currentCase.id, 'PENDING_REVIEW');
+    useInspectFlowStore
+      .getState()
+      .updateVehicleStatus(
+        reviewRecord.vehicle.id,
+        'REVIEW_REQUIRED',
+        '營運人員標記車況異常，等待人工覆核',
+      );
+
+    const reviewRows = buildCaseRows(useInspectFlowStore.getState().dataset);
+    expect(
+      reviewRows.some(
+        (row) =>
+          row.id === reviewRecord.currentCase.id &&
+          row.status === 'PENDING_REVIEW' &&
+          row.anomalyType === 'unknown',
+      ),
+    ).toBe(true);
+    expect(
+      buildFleetRecords(useInspectFlowStore.getState().dataset).some(
+        (record) => record.vehicle.id === reviewRecord.vehicle.id,
+      ),
+    ).toBe(false);
+
+    resetRuntimeScenarioDatasets();
+    useInspectFlowStore.setState({
+      activeScenarioId: DEFAULT_SCENARIO_ID,
+      dataset: getScenarioDataset(DEFAULT_SCENARIO_ID),
+    });
+    const cleaningRecord = buildFleetRecords(
+      useInspectFlowStore.getState().dataset,
+    ).find((record) => record.vehicle.availability === 'READY')!;
+    useInspectFlowStore
+      .getState()
+      .updateCaseStatus(cleaningRecord.currentCase.id, 'PENDING_CLEANING');
+    useInspectFlowStore
+      .getState()
+      .updateVehicleStatus(
+        cleaningRecord.vehicle.id,
+        'CLEANING',
+        '營運人員透過 API 送出清潔處理請求',
+      );
+    const created = useInspectFlowStore.getState().createTask({
+      caseId: cleaningRecord.currentCase.id,
+      type: 'cleaning',
+      title: `${cleaningRecord.vehicle.plateNumber} 清潔處理`,
+      actorId: 'USR-OPS-001',
+      priority: 'normal',
+    });
+    expect(created.ok).toBe(true);
+    expect(
+      selectProcessingRows(
+        buildTaskRows(useInspectFlowStore.getState().dataset),
+      ).some((row) => row.caseId === cleaningRecord.currentCase.id),
+    ).toBe(true);
   });
 
   it('falls back to S01 when persisted data has a different version or invalid shape', () => {
@@ -96,18 +236,24 @@ describe('InspectFlow prototype store', () => {
     useInspectFlowStore.getState().loadScenario('S04');
     useInspectFlowStore.getState().submitReview({
       caseId: 'CASE-S04-001',
-      findingId: 'FND-S04-REFLECTION-001',
-      outcome: 'NOT_DAMAGE',
-      correctedType: 'reflection',
+      findingId: 'FND-S04-SCRATCH-001',
+      outcome: 'CONFIRMED_ANOMALY',
+      correctedType: 'scratch',
       correctedSeverity: 'low',
-      vehicleStatus: 'READY',
-      reason: '疑似痕跡會隨視角移動，確認為反光。',
+      vehicleStatus: 'MAINTENANCE',
+      reason: '合格影像與多角度補掃皆可見相同位置的細微刮痕。',
       note: '',
       reviewerId: 'USR-OPS-001',
     });
     expect(
       useInspectFlowStore.getState().dataset.reviewDecisions[0]?.outcome,
-    ).toBe('NOT_DAMAGE');
+    ).toBe('CONFIRMED_ANOMALY');
+    expect(useInspectFlowStore.getState().dataset.cases[0]?.status).toBe(
+      'PENDING_INSPECTION',
+    );
+    expect(
+      useInspectFlowStore.getState().dataset.vehicles[0]?.availability,
+    ).toBe('MAINTENANCE');
 
     useInspectFlowStore.getState().loadScenario('S05');
     useInspectFlowStore.getState().submitReview({
@@ -149,9 +295,18 @@ describe('InspectFlow prototype store', () => {
       type: 'cleaning',
       title: '清潔後座右側座墊',
       actorId: 'USR-OPS-001',
+      priority: 'urgent',
     });
     expect(created.ok).toBe(true);
     const taskId = created.entityId!;
+    expect(
+      useInspectFlowStore
+        .getState()
+        .dataset.tasks.find((task) => task.id === taskId),
+    ).toMatchObject({
+      priority: 'urgent',
+      etaLabel: '展示 ETA：急迫',
+    });
     const duplicate = useInspectFlowStore.getState().createTask({
       caseId,
       type: 'cleaning',
@@ -166,11 +321,7 @@ describe('InspectFlow prototype store', () => {
         .getState()
         .transitionTask(taskId, 'IN_PROGRESS', 'USR-OPS-001').ok,
     ).toBe(false);
-    expect(
-      useInspectFlowStore
-        .getState()
-        .assignTask(taskId, 'WRK-CLEAN-01', '', 'USR-DISPATCH-001').ok,
-    ).toBe(true);
+    useInspectFlowStore.getState().updateTaskStatus(taskId, 'ASSIGNED');
     expect(
       useInspectFlowStore
         .getState()
@@ -255,9 +406,7 @@ describe('InspectFlow prototype store', () => {
       ready: false,
     });
 
-    useInspectFlowStore
-      .getState()
-      .assignTask(followUp!.id, 'WRK-CLEAN-01', '', 'USR-DISPATCH-001');
+    useInspectFlowStore.getState().updateTaskStatus(followUp!.id, 'ASSIGNED');
     useInspectFlowStore
       .getState()
       .transitionTask(followUp!.id, 'IN_PROGRESS', 'USR-OPS-001');
@@ -381,6 +530,42 @@ describe('InspectFlow prototype store', () => {
           index === 0 ||
           new Date(timeline[index - 1]!.occurredAt).getTime() <=
             new Date(item.occurredAt).getTime(),
+      ),
+    ).toBe(true);
+  });
+
+  it('creates API processing and idempotent claim requests', () => {
+    useInspectFlowStore.getState().loadScenario('S02');
+    const processing = useInspectFlowStore.getState().createTask({
+      caseId: 'CASE-S02-001',
+      type: 'cleaning',
+      title: 'ABC-1234 清潔處理',
+      actorId: 'USR-OPS-001',
+      priority: 'high',
+    });
+    expect(processing.ok).toBe(true);
+    expect(processing.entityId).toBeDefined();
+
+    const firstClaim = useInspectFlowStore
+      .getState()
+      .requestClaim('CASE-S02-001');
+    const secondClaim = useInspectFlowStore
+      .getState()
+      .requestClaim('CASE-S02-001');
+    const dataset = useInspectFlowStore.getState().dataset;
+
+    expect(firstClaim.ok).toBe(true);
+    expect(secondClaim.ok).toBe(false);
+    expect(secondClaim.entityId).toBe(firstClaim.entityId);
+    expect(
+      dataset.tasks.filter(
+        (task) =>
+          task.caseId === 'CASE-S02-001' && task.type === 'claim_review',
+      ),
+    ).toHaveLength(1);
+    expect(
+      dataset.auditEvents.some(
+        (event) => event.action === 'CLAIM_REQUEST_SENT',
       ),
     ).toBe(true);
   });

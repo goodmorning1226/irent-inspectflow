@@ -97,7 +97,7 @@
     .fact-row{display:grid;grid-template-columns:210px 1fr 300px;gap:24px;padding:15px 0;border-bottom:1px solid var(--line);align-items:start}.fact-row h3,.fact-row p{margin:0}.fact-row p{font-size:var(--type-caption);line-height:1.4}.fact-row .result{font-size:var(--type-caption);font-weight:800;color:#087989}
     .fact-head{background:var(--navy-900);color:#fff;font-size:var(--type-caption);font-weight:900;padding:12px 18px}
     .pipeline{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:24px}.pipeline-item{position:relative;padding:18px 14px 14px;background:#f4f8fa;border-top:5px solid var(--cyan);min-height:190px}.pipeline-item:nth-child(n+5){border-color:var(--orange)}.pipeline-item:not(:last-child)::after{content:"›";position:absolute;right:-11px;top:70px;color:#7aaeb4;font-size:var(--type-heading);font-weight:900;z-index:2}.pipeline-item b{display:block;font-size:var(--type-body);line-height:1.25;margin:8px 0}.pipeline-item p{font-size:var(--type-caption);line-height:1.38;color:var(--muted);margin:0}.pipeline-item .io{font-size:var(--type-caption);font-weight:900;color:var(--cyan-dark);letter-spacing:.06em}
-    .audience-heading{display:flex;align-items:center;gap:16px;margin-top:22px;font-size:var(--type-caption);font-weight:900;color:#31485c}.audience-heading::after{content:"";height:1px;background:var(--line);flex:1}.audience-timeline{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(3,32px);gap:6px 12px;margin-top:12px}.audience-bar{display:flex;align-items:center;padding:0 14px;border-radius:6px;font-size:var(--type-caption);font-weight:900;white-space:nowrap}.audience-user{grid-column:1 / 4;grid-row:1;background:#dff8fb;color:#087989;border-left:5px solid var(--cyan)}.audience-ops{grid-column:4 / 8;grid-row:2;background:#fff0e9;color:#b84b22;border-left:5px solid var(--orange)}.audience-field{grid-column:6 / 8;grid-row:3;background:#f1eafd;color:#6f42b5;border-left:5px solid #8b5cf6}.audience-note{font-size:var(--type-caption);line-height:1.35;color:var(--muted);margin:10px 0 0}
+    .audience-heading{display:flex;align-items:center;gap:16px;margin-top:22px;font-size:var(--type-caption);font-weight:900;color:#31485c}.audience-heading::after{content:"";height:1px;background:var(--line);flex:1}.audience-timeline{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(2,32px);gap:6px 12px;margin-top:12px}.audience-bar{display:flex;align-items:center;padding:0 14px;border-radius:6px;font-size:var(--type-caption);font-weight:900;white-space:nowrap}.audience-user{grid-column:1 / 4;grid-row:1;background:#dff8fb;color:#087989;border-left:5px solid var(--cyan)}.audience-ops{grid-column:4 / 8;grid-row:2;background:#fff0e9;color:#b84b22;border-left:5px solid var(--orange)}.audience-note{font-size:var(--type-caption);line-height:1.35;color:var(--muted);margin:10px 0 0}
     .scan-stage{display:grid;grid-template-columns:230px 1fr 280px;gap:24px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}.scan-stage h3,.scan-stage p{margin:0}.scan-stage p{font-size:var(--type-caption);line-height:1.38}.scan-stage .out{font-size:var(--type-caption);color:var(--muted)}
     .proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.proto-shot{min-width:0}.proto-shot img{width:100%;height:300px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.proto-shot h3{font-size:var(--type-body);margin:12px 0 5px}.proto-shot p{font-size:var(--type-caption);line-height:1.35;color:var(--muted);margin:0}
     .backend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.backend-shot img{width:100%;height:285px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.backend-shot h3{font-size:var(--type-body);margin:12px 0 5px}.backend-shot p{font-size:var(--type-caption);line-height:1.38;color:var(--muted);margin:0}
@@ -129,7 +129,6 @@
     .cover .team{font-size:var(--type-body)}
     .scan-stage{grid-template-columns:155px minmax(0,1fr);gap:6px 18px}
     .scan-stage .out{grid-column:2}
-    .audience-field{grid-column:5 / 8}
     .audience-bar{white-space:normal;line-height:1.3}
     /* Tables share cell spacing, borders and header treatment. */
     .slide .table{border:1px solid var(--line);border-collapse:collapse}
@@ -228,13 +227,13 @@
       <h2 style="margin-bottom:22px">提案摘要</h2>
       <div class="summary-grid">
         <div class="key">團隊名稱</div><div class="value">尖銳吉吉今晚考駕照</div>
-        <div class="key">產品／服務名稱</div><div class="value"><b>iRent InspectFlow：AI 智能車況檢查與整備管家</b></div>
+        <div class="key">產品／服務名稱</div><div class="value"><b>iRent InspectFlow：AI 車況掃描與異常處理平台</b></div>
         <div class="key">企業挑戰題目</div><div class="value">運用 AI 打造 iRent 智能車況管家：優化租還車體驗與營運效率</div>
-        <div class="key">目標對象</div><div class="value">iRent 租車使用者、負責車況比對與任務安排的後台營運人員，以及實際執行清潔與維修的現場人員。</div>
+        <div class="key">目標對象</div><div class="value">iRent 服務使用者，以及負責車況審核與後續處理的後台客服及營運人員。</div>
         <div class="key">解決方案設計重點<br><span class="small">至多 3 項</span></div>
-        <div class="value"><ol><li>即時引導掃描：拍攝當下檢查位置、距離、角度、清晰度與覆蓋率，合格後自動擷取。</li><li>歷史車況比對：比對同車輛相同區域的有效影像，辨識新車損、既有損傷與車內髒污。</li><li>營運與索賠閉環：將異常轉成整備或索賠待審案件，完工後以相同區域影像驗證。</li></ol></div>
-        <div class="key">運用到的 AI 技術、服務或模型等資源</div><div class="value">裝置端影像品質判斷、車身與內裝部件定位、影像特徵對齊、損傷與髒污分割、整潔度分類、信心校準、規則引擎及任務優先排序。</div>
-        <div class="key">預期效益簡述</div><div class="value">提升照片可判讀性，<strong>降低重拍與人工看片負擔</strong>；提早攔截車損及髒污，縮短異常建單、整備與索賠覆核時間，並以完整證據降低責任爭議。</div>
+        <div class="value"><ol><li>掃描確保品質：以六區即時引導取代自由拍照，影像合格後自動擷取。</li><li>AI 判斷並攔截異常：比較取車前、還車後與可信歷史影像，疑似異常先暫停供租並交由人工確認。</li><li>營運一次到位：集中審核、車輛管理及清潔、維修、停用、索賠請求，降低工作量與人工失誤。</li></ol></div>
+        <div class="key">運用到的 AI 技術、服務或模型等資源</div><div class="value"><b>Prototype：</b>Flutter、React、TypeScript、Vite 與固定腳本。<b>正式版規劃：</b>手機端以影像規則檢查模糊與曝光，並以 TensorFlow Lite／Core ML 輕量模型辨識視角、覆蓋範圍與遮擋；雲端執行影像檢索與對齊、車體／內裝分割、車損與髒污辨識及證據整合。</div>
+        <div class="key">預期效益簡述</div><div class="value">提高車況影像的可判讀性；由 AI 自動完成高信心正常事件，並暫停疑似異常或低信心車輛，<strong>減少人工看片量、疲勞與遺漏風險</strong>；集中車輛管理與請求送出，縮短異常處理時間。實際改善幅度將於試點階段驗證。</div>
       </div>
     </section>
 
@@ -249,17 +248,17 @@
         <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
       </nav>
 <div class="eyebrow">1. 提案概述</div>
-      <h2>取還車照片目前只完成留存，尚未形成即時管理能力</h2>
-      <p class="doc-lead">我們觀察到，現行取還車流程雖然要求使用者上傳照片，但<strong>自由拍攝無法確保角度、清晰度與車身覆蓋範圍一致</strong>。這使營運人員仍須逐張檢查影像，也讓後續清潔、維修與索賠流程缺少可以直接採用的判斷依據。</p>
+      <h2>從可靠掃描、異常攔截，到營運一次到位</h2>
+      <p class="doc-lead">InspectFlow 不只辨識一張照片是否異常，而是重新串起影像取得、前後比較與後續處理。系統先確保輸入影像品質，再由 AI 篩選需要人員關注的例外案件，最後讓營運人員在同一工作台完成車輛管理與請求送出。</p>
       <table class="table table-three overview-table">
-        <thead><tr><th>流程階段</th><th>主要問題</th><th>對應需求</th></tr></thead>
+        <thead><tr><th>核心價值</th><th>設計方式</th><th>帶來的改善</th></tr></thead>
         <tbody>
-          <tr><td><b>拍攝完成</b></td><td>使用者按下快門<strong>並不代表照片可用</strong>。過遠、失焦、逆光、反光、遮擋與漏拍都可能讓車況無法判讀。</td><td>需要在拍攝當下確認品質</td></tr>
-          <tr><td><b>辨識完成</b></td><td>單張異常框無法回答「<strong>是否為本次新增</strong>」。系統必須取回同車、同區域、時間較早且可比較的基準影像。</td><td>需要前後影像與多角度證據</td></tr>
-          <tr><td><b>處理完成</b></td><td>發現髒污或損傷之後，仍須決定<strong>車輛能否出租</strong>、建立何種任務、是否進入索賠待審，以及何時恢復上線。</td><td>需要可執行的後台工作流</td></tr>
+          <tr><td><b>掃描確保品質</b></td><td>以六區即時引導取代自由拍照，當下排除失焦、反光、角度及覆蓋不足。</td><td>取得品質良好、區域完整且可比較的影像</td></tr>
+          <tr><td><b>AI 判斷與攔截</b></td><td>比較取車前、還車後與可信歷史影像；疑似異常或低信心案件先暫停供租並進入人工審核。</td><td>高信心正常事件不必逐張查看，異常車輛不直接放行</td></tr>
+          <tr><td><b>營運一次到位</b></td><td>集中異常審核、處理中案件、車輛管理與清潔、維修、停用、索賠請求。</td><td>降低工作量與失誤，縮短處理與跨系統轉送時間</td></tr>
         </tbody>
       </table>
-      <div class="panel"><p style="margin:0;"><b>提案目標：</b>將「拍攝、比較、分流、執行、複檢」串成<strong>同一筆可追溯的車況紀錄</strong>。</p></div>
+      <div class="panel"><p style="margin:0;"><b>提案目標：</b>讓人員只需處理真正需要判斷的例外案件，並以<strong>同一筆可追溯的車況紀錄</strong>完成後續處置。</p></div>
     </section>
 
     <section class="slide has-chapter-progress soft dense" data-label="3 / 15">
@@ -273,14 +272,13 @@
         <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
       </nav>
       <div class="eyebrow">2. 目標對象與痛點分析</div>
-      <h2>一筆可信的車況資料，串起前台、後台與現場處理</h2>
-      <p class="doc-lead">我們將目標對象收斂為租車使用者、後台營運人員，以及清潔與維修人員三類。使用者負責取得合格影像，營運人員在單一工作台完成車況比對、任務安排與索賠審查，現場人員則依任務處理異常。三者<strong>共用同一筆車況證據</strong>，不必在不同角色與系統間反覆查找資訊。</p>
+      <h2>一筆可信的車況資料，連接使用者與營運決策</h2>
+      <p class="doc-lead">目標對象收斂為 iRent 服務使用者，以及後台客服與營運人員兩類。使用者依引導取得合格影像；後台人員在單一工作台完成車況比對與人工覆核，再把確認後的處理或索賠請求送往既有系統。清潔、維修與索賠流程是<strong>後續協作與介接端</strong>，不是 InspectFlow 另行設計的使用者介面。</p>
       <table class="table table-three">
         <thead><tr><th>目標角色</th><th>主要痛點</th><th>對應解方</th></tr></thead>
         <tbody>
-          <tr><td><b>租車使用者</b></td><td>不知道是否拍對位置，失焦、反光或漏拍通常要等到照片上傳後才被發現。</td><td>以即時掃描提供位置與品質提示，畫面連續合格後自動擷取，只有異常區域需要補掃。</td></tr>
-          <tr><td><b>後台營運人員</b></td><td>需要人工尋找前後照片，並在不同流程中完成車況判斷、派工與索賠確認。</td><td>以單一工作台集中前後比對、清潔與維修派工，以及依嚴重度排序的索賠候選清單。</td></tr>
-          <tr><td><b>清潔與維修人員</b></td><td>工單缺少明確的異常位置與影像，完工後也沒有一致的複檢方式。</td><td>在任務中附上異常位置與照片，處理完成後要求同區域重新掃描並回傳證據。</td></tr>
+          <tr><td><b>iRent 服務使用者</b></td><td>不知道是否拍對位置，失焦、反光或漏拍通常要等到照片上傳後才被發現。</td><td>以即時掃描提供位置與品質提示，畫面連續合格後自動擷取，只有異常區域需要補掃。</td></tr>
+          <tr><td><b>後台客服及營運人員</b></td><td>正常與異常事件混在一起，需要持續逐張監看；人工搜尋、判讀與跨系統轉錄容易疲勞、遺漏或出錯。</td><td>AI 自動完成高信心正常事件，疑似異常或低信心車輛先暫停供租；人員只需覆核例外案件，並在同一工作台管理車輛及送出清潔、維修、停用或索賠請求。</td></tr>
         </tbody>
       </table>
       <div class="panel warn"><p style="margin:0;"><b>核心問題：</b>照片品質決定後續判斷上限。若前端影像不可用，再好的辨識模型也無法補回缺失的證據。</p></div>
@@ -298,23 +296,22 @@
       </nav>
       <div class="eyebrow">3. 解決方案設計</div>
       <h2>InspectFlow 完整解方與資料 Pipeline</h2>
-      <p class="doc-lead">針對上述痛點，我們重新設計取還車檢查流程。InspectFlow 先以手機即時掃描協助使用者取得<strong>品質一致的照片</strong>，再由雲端比對同車輛的歷史影像並判讀車況。系統會依判讀結果建立對應任務，員工完成處理後再以<strong>相同區域影像複檢</strong>，使本次結果成為下一次檢查可直接使用的基準。</p>
+      <p class="doc-lead">針對上述痛點，我們重新設計取還車檢查流程。InspectFlow 先以手機即時掃描協助使用者取得<strong>品質一致的照片</strong>，還車時再優先比對本次取車前掃描，並以上次還車或可信完工影像補充。系統會依判讀結果建立對應任務，員工完成處理後再以<strong>相同區域影像複檢</strong>，使本次結果成為下一次檢查可直接使用的基準。</p>
       <div class="pipeline">
         <div class="pipeline-item"><span class="io">INPUT</span><b>建立檢查任務</b><p>由訂單帶入車號、車型、取還車節點與必拍區域。</p></div>
-        <div class="pipeline-item"><span class="io">EDGE AI</span><b>即時引導掃描</b><p>連續讀取相機畫面，判斷位置、距離、角度及影像品質。</p></div>
+        <div class="pipeline-item"><span class="io">MOBILE VISION</span><b>即時引導掃描</b><p>以影像規則與輕量模型判斷位置、距離、角度及影像品質。</p></div>
         <div class="pipeline-item"><span class="io">EVIDENCE</span><b>自動擷取與補掃</b><p>連續合格後擷取。疑似異常才要求近距離多角度影像。</p></div>
-        <div class="pipeline-item"><span class="io">CLOUD AI</span><b>歷史基準比對</b><p>檢索同車同區域舊照，對齊視角並判讀新增變化。</p></div>
+        <div class="pipeline-item"><span class="io">CLOUD AI</span><b>租程與歷史基準</b><p>優先比對本次取車前影像，再以上次還車或完工影像補充。</p></div>
         <div class="pipeline-item"><span class="io">DECISION</span><b>風險與證據分流</b><p>輸出正常、髒污、損傷或<strong>證據不足</strong>，附位置與信心。</p></div>
-        <div class="pipeline-item"><span class="io">WORKFLOW</span><b>案件與任務</b><p>更新車輛狀態，建立清潔、巡檢、維修或索賠待審。</p></div>
-        <div class="pipeline-item"><span class="io">FEEDBACK</span><b>完工複檢</b><p>以相<strong>同區域重新掃描</strong>，通過後恢復上線並更新基準。</p></div>
+        <div class="pipeline-item"><span class="io">WORKFLOW</span><b>案件與請求</b><p>人工確認後，以 API 送出清潔、維修、保養、停用或索賠請求。</p></div>
+        <div class="pipeline-item"><span class="io">FEEDBACK</span><b>狀態同步</b><p>接收既有系統的處理進度與結果，更新案件及車輛狀態。</p></div>
       </div>
       <div class="audience-heading">目標客群參與區段</div>
       <div class="audience-timeline" aria-label="Pipeline 節點與目標客群對應時間條">
         <div class="audience-bar audience-user">租車使用者｜建立檢查、即時掃描與異常補掃</div>
-        <div class="audience-bar audience-ops">後台營運人員｜比對車況、安排任務並審查索賠候選</div>
-        <div class="audience-bar audience-field">清潔與維修人員｜執行任務並回傳完工證據</div>
+        <div class="audience-bar audience-ops">後台客服及營運人員｜比對車況、人工覆核並送出處理或索賠請求</div>
       </div>
-      <p class="audience-note">若未發現異常，使用者完成掃描後即可結束流程。只有發現異常或<strong>證據不足</strong>時，後續角色才會依案件需要接續處理。</p>
+      <p class="audience-note">若未發現異常，使用者完成掃描後即可結束流程。只有發現異常或<strong>證據不足</strong>時，後台人員才需要接續覆核；後續執行由既有系統承接。</p>
     </section>
 
     <section class="slide has-chapter-progress soft" data-label="5 / 15">
@@ -359,7 +356,7 @@
       <div class="proto-grid">
         <div class="proto-shot"><img src="assets/scan-left.png" alt="車身區域即時掃描模擬畫面"><h3>① 六區引導掃描</h3><p>畫面框線提示位置與距離。品質<strong>連續合格後自動擷取</strong>，完成區域同步標記。</p></div>
         <div class="proto-shot"><img src="assets/scan-anomaly.png" alt="疑似異常偵測模擬畫面"><h3>② 疑似異常提示</h3><p>在廣角影像框出刮痕或髒污候選區，顯示原因並引導使用者靠近。</p></div>
-        <div class="proto-shot"><img src="assets/detail-scan.png" alt="異常近距離多角度掃描模擬畫面"><h3>③ 近距離多角度補掃</h3><p>依中央、左側、右側順序取證。<strong>多視角一致性</strong>可協助區分反光與表面損傷。</p></div>
+        <div class="proto-shot"><img src="assets/detail-scan.png" alt="異常近距離多角度掃描模擬畫面"><h3>③ 近距離多角度補掃</h3><p>依中央、左側、右側順序取證。<strong>多視角一致性</strong>用來確認異常位置與表面特徵是否持續存在；強反光已在擷取前由品質門檻排除。</p></div>
         <div class="proto-shot"><img src="assets/interior-cleanliness.png" alt="車內整潔度掃描模擬畫面"><h3>④ 車內整潔檢查</h3><p>辨識垃圾、污漬及遺留物。嚴重髒污會<strong>建立清潔任務</strong>，遮蔽損傷時則安排清潔後複檢。</p></div>
       </div>
       <div class="panel"><p style="margin:0"><b>完成條件：</b>必拍區域均取得合格影像，異常補掃完成或明確標示無法補拍，才結束本次檢查並上傳證據。</p></div>
@@ -381,11 +378,11 @@
       <div class="grid-2 wide-left" style="align-items:start;gap:42px">
         <div class="image-frame concept-frame" style="min-height:430px">
           <img class="photo" src="assets/condition-comparison.png" alt="同一車輛相同區域的歷史與本次車況比對概念圖" />
-          <div class="overlay-label" style="left:24px;bottom:24px">歷史車況基準</div>
+          <div class="overlay-label" style="left:24px;bottom:24px">本次取車前／上次還車</div>
           <div class="overlay-label" style="right:24px;bottom:24px;border-color:var(--orange)">本次影像變化</div>
         </div>
         <div>
-          <div class="concept-item"><div class="concept-index">01</div><div><h3>跟什麼比對</h3><p>取得同一車輛、相同區域且時間較早的有效照片，作為本次檢查的車況基準。</p></div></div>
+          <div class="concept-item"><div class="concept-index">01</div><div><h3>跟什麼比對</h3><p>還車影像優先比對同一租程的取車前掃描；若缺失或不可比，再以上次還車或可信完工影像補充。</p></div></div>
           <div class="concept-item"><div class="concept-index">02</div><div><h3>大概檢查什麼</h3><p>比較前後外觀是否出現明顯變化，例如新的表面損傷、髒污或車內整潔問題。</p></div></div>
           <div class="concept-item"><div class="concept-index">03</div><div><h3>這一步的目的</h3><p>將差異整理成簡明的車況摘要，協助後台判斷是否需要建立清潔、巡檢、維修或索賠覆核任務。</p></div></div>
         </div>
@@ -416,9 +413,9 @@
       </div>
       <div class="grid-2 dense" style="margin-top:44px;align-items:start">
         <div><h3 class="accent">其他判讀結果</h3><p>若系統判斷為車身損傷，後台會建立巡檢或維修任務。若前後影像顯示疑似新增損傷，系統則會另外建立<strong>索賠候選案件</strong>，交由授權人員覆核。</p></div>
-        <div><h3 class="orange">證據不足時的處理</h3><p>當歷史影像缺失、視角無法比較或污損遮住車身時，系統<strong>不會直接認定損傷</strong>，而是要求補拍、人工查看，或先完成清潔後再重新掃描。</p></div>
+        <div><h3 class="orange">證據不足時的處理</h3><p>當本次取車前與上次還車影像皆缺失、視角無法比較或污損遮住車身時，系統<strong>不會直接認定損傷</strong>，而是要求補拍、人工查看，或先完成清潔後再重新掃描。</p></div>
       </div>
-      <p class="note">任務類型、車輛狀態與派工方式可依 iRent 現行營運流程及 API 定義調整。</p>
+      <p class="note">InspectFlow 不假設 iRent 的內部派工方式；正式導入時只依企業 API 契約送出處理證據與請求，並同步外部處理狀態。</p>
     </section>
 
     <section class="slide has-chapter-progress soft" data-label="9 / 15">
@@ -435,8 +432,8 @@
       <h2>後台功能與 Prototype 工作畫面</h2>
       <p class="doc-lead">當雲端完成車況判讀後，所有異常會以案件形式進入後台。營運人員可以在同一筆案件中查看前後影像、確認系統建立的任務，並追蹤員工的完工回報。若人員修正 AI 結果，系統也會<strong>保存修正內容</strong>，作為後續模型校準與流程改善的資料。</p>
       <div class="backend-grid">
-        <div class="backend-shot"><img src="assets/claim-review.png" alt="索賠證據覆核工作台模擬畫面"><h3>① 索賠證據覆核</h3><p>並列取車前與還車後的同區域照片，顯示時間軸、多角度證據、對齊品質及模型信心。人員可判定新增、既有、誤報或要求補件。</p></div>
-        <div class="backend-shot"><img src="assets/ops-dashboard.png" alt="營運派工工作台模擬畫面"><h3>② 車況與任務分流</h3><p>地圖顯示異常車輛與目前狀態。工作佇列依安全性、預約時間、位置、技能與 SLA 排序，支援清潔、巡檢、維修及拖運。</p></div>
+        <div class="backend-shot"><img src="assets/claim-review.png" alt="索賠證據覆核工作台模擬畫面"><h3>① 索賠證據覆核</h3><p>還車影像預設比對本次取車前掃描，也可切換上次還車基準；畫面同步顯示多角度證據、對齊品質與模型限制。</p></div>
+        <div class="backend-shot"><img src="assets/ops-dashboard.png" alt="營運處理工作台模擬畫面"><h3>② 處理請求與狀態追蹤</h3><p>營運人員確認異常後選擇清潔、維修、保養或停用，系統以 API 把車況證據送往既有處理系統；需要時可同步送出索賠請求。</p></div>
         <div class="backend-shot"><img src="assets/completion-verify.png" alt="完工證據確認模擬畫面"><h3>③ 完工與重新上線</h3><p>執行人員依原異常區域回傳完工照片。系統比較處理前後影像，通過後更新任務與車輛狀態，未通過則退回重做。</p></div>
       </div>
       <div class="panel"><p style="margin:0"><b>稽核紀錄：</b>保存原始影像、模型版本、門檻、系統建議、人工覆核結果、狀態異動與完工證據，支援客訴或索賠案件回溯。</p></div>
@@ -455,18 +452,18 @@
       </nav>
       <div class="eyebrow">3. 解決方案設計</div>
       <h2>索賠判斷採用證據鏈與人工覆核</h2>
-      <p class="doc-lead">當前後影像出現疑似新增損傷時，InspectFlow 會先檢查照片是否具備足夠的時間關係與可比性，再整理成<strong>索賠候選案件</strong>。系統的工作是提供完整證據與判讀建議，<strong>最終責任與賠償金額仍由授權人員</strong>依公司政策及法務規範決定。</p>
+      <p class="doc-lead">當還車影像相較本次取車前掃描出現疑似新增損傷時，InspectFlow 會先檢查時間關係與可比性，並以上次還車及完工紀錄排除既有異常，再整理成<strong>索賠候選案件</strong>。系統只提供證據與判讀建議，<strong>最終責任與賠償金額仍由授權人員</strong>依公司政策及法務規範決定。</p>
       <div class="grid-2" style="align-items:start;gap:48px">
         <div>
           <h3 class="accent">案件成立前的五項檢查</h3>
-          <ol class="bullets compact"><li><b>時間關係：</b>異常首次出現在本次取還車區間內。</li><li><b>區域一致：</b>前後照片屬於同一車輛與同一部位。</li><li><b>影像可比：</b>視角、尺度、曝光與遮擋程度允許比較。</li><li><b>異常持續：</b>近照及多角度影像皆能觀察到同一特徵。</li><li><b>既有紀錄排除：</b>歷史車損清單中沒有相同位置與形態。</li></ol>
+          <ol class="bullets compact"><li><b>時間關係：</b>異常首次出現在本次取車前至還車後的區間內。</li><li><b>區域一致：</b>前後照片屬於同一車輛與同一部位。</li><li><b>影像可比：</b>視角、尺度、曝光與遮擋程度允許比較。</li><li><b>異常持續：</b>近照及多角度影像皆能觀察到同一特徵。</li><li><b>既有紀錄排除：</b>上次還車、完工與車損清單中沒有相同位置與形態。</li></ol>
           <div class="panel warn"><p class="small" style="margin:0"><b>任一關鍵條件不足：</b>標示「<strong>證據不足</strong>」並轉人工補證據，<strong>不自動歸責</strong>。</p></div>
         </div>
         <div>
           <h3 class="orange">系統產生的索賠證據包</h3>
           <table class="table"><tbody>
             <tr><td><b>訂單資料</b></td><td>會員、車號、取還車時間與地點。</td></tr>
-            <tr><td><b>前後影像</b></td><td>同區域基準照、還車照與近距離補掃。</td></tr>
+            <tr><td><b>前後影像</b></td><td>本次取車前、還車後、上次還車基準與近距離補掃。</td></tr>
             <tr><td><b>AI 說明</b></td><td>異常框、差異區域、類型、嚴重度、信心及限制。</td></tr>
             <tr><td><b>歷史紀錄</b></td><td>既有車損、前次整備與完工照片。</td></tr>
             <tr><td><b>人工決策</b></td><td>覆核者、結論、理由、補件、聯繫及結案紀錄。</td></tr>
@@ -488,17 +485,17 @@
       </nav>
       <div class="eyebrow">4. AI 應用方法</div>
       <h2>技術分工與實作可行性</h2>
-      <p class="doc-lead">為了兼顧拍攝速度與辨識能力，我們將系統拆成<strong>手機端、雲端與營運後台</strong>三個部分。手機端負責需要立即回應的拍攝品質判斷，雲端執行計算量較高的歷史影像檢索與車況比較，後台則依企業規則把判讀結果轉成任務。這種分工可以先用現有技術完成 Prototype，再逐步接入真實模型與 iRent 系統。</p>
+      <p class="doc-lead">為了兼顧即時回應與判讀準確度，系統分為<strong>手機端、雲端與營運後台</strong>。手機端只處理拍攝品質與視角引導，雲端負責較複雜的影像對齊、前後差異及車損與髒污判讀，營運後台則呈現證據並送出處理請求。這樣可避免在手機上執行過重的模型，也能逐步接入 iRent 既有系統。</p>
       <table class="table table-four">
         <thead><tr><th>功能模組</th><th>實作方法</th><th>落地可行性</th><th>驗證項目</th></tr></thead>
         <tbody>
-          <tr><td><b>即時掃描</b></td><td>Flutter Camera 串流、輕量物件偵測、車體關鍵點、模糊與曝光指標。</td><td>只需輸出品質與導引訊號，可在裝置端低延遲執行，弱網仍可完成拍攝。</td><td>分手機效能、車型、夜間與停車環境測試鎖定時間。</td></tr>
-          <tr><td><b>歷史影像檢索</b></td><td>區域標籤加影像特徵向量，依同車與視角相似度取得基準。</td><td>先利用訂單與區域縮小範圍，再做相似度排序，資料量可控。</td><td>確認既有影像覆蓋率及可比較比例。</td></tr>
+          <tr><td><b>即時掃描</b></td><td>Flutter 相機串流、模糊與曝光檢查、輕量視角與車體位置辨識。</td><td>手機端只輸出品質與移動提示，低延遲且不依賴持續網路連線。</td><td>依手機效能、車型、光線與停車環境測試提示延遲及擷取成功率。</td></tr>
+          <tr><td><b>基準影像檢索</b></td><td>以租程、區域與來源標籤先取本次取車前影像，再以特徵向量搜尋上次還車或完工基準。</td><td>先利用訂單與區域縮小範圍，再做相似度排序，資料量可控。</td><td>確認各來源覆蓋率及可比較比例。</td></tr>
           <tr><td><b>對齊與差異</b></td><td>特徵點匹配、透視校正、損傷或髒污分割、時序差異分類。</td><td>把「是否新增」拆成對齊品質與局部差異，結果可留下視覺證據供人工檢查。</td><td>依異常類型設定召回率、誤報率與拒答門檻。</td></tr>
-          <tr><td><b>營運分流</b></td><td>規則引擎、工作流服務、任務優先分數，後續可加入路線最佳化。</td><td>第一階段可先沿用人工確認，只把既有政策轉成可追蹤流程。</td><td>對照現行 SOP、SLA、權限與車輛狀態 API。</td></tr>
+          <tr><td><b>營運處理</b></td><td>信心分級、人工覆核、處理與索賠 API 請求。</td><td>先由營運人員確認，再將結構化證據送往既有系統，不重做既有派工流程。</td><td>確認現行 SOP、權限、車輛狀態與 API 回傳規則。</td></tr>
         </tbody>
       </table>
-      <div class="panel"><p style="margin:0"><b>Prototype 實作方式：</b>手機端與後台可先以假資料展示完整流程，保留 API 介面與狀態設計。正式技術導入再逐步替換為真實模型與企業系統介接。</p></div>
+      <div class="panel"><p style="margin:0"><b>目前 Prototype：</b>Flutter 手機端以預錄影像與時間軸模擬掃描判斷，React 後台以固定資料展示審核與處理流程。正式版再以官方影像資料訓練模型，並串接 iRent API。</p></div>
     </section>
 
     <section class="slide has-chapter-progress" data-label="12 / 15">
@@ -513,10 +510,10 @@
       </nav>
       <div class="eyebrow">4. AI 應用方法</div>
       <h2>資料流、模型輸出與人工控制點</h2>
-      <p class="doc-lead">整體資料流以「<strong>模型提供判讀依據，人員保留關鍵決策權</strong>」為原則。照片先通過裝置端品質門檻，再送往雲端產生車況 Finding。規則引擎只依既定政策建立建議任務，<strong>高風險、低信心與索賠案件仍交由人員覆核</strong>，並保存每次修改紀錄。</p>
+      <p class="doc-lead">整體資料流以「<strong>模型整理證據，人員確認處理方式</strong>」為原則。照片先通過手機端品質門檻，再送往雲端產生車況 Finding。系統只提出異常與處理建議，<strong>高風險、低信心與索賠案件仍交由人員覆核</strong>，並保存每次修改紀錄。</p>
       <div class="flow" style="margin-top:18px">
         <div class="step"><div class="step-num">資料輸入</div><div class="step-title">訂單與影像</div><div class="step-note">車號、車型、區域、時間、取還車照片</div></div>
-        <div class="step"><div class="step-num">裝置端</div><div class="step-title">品質門檻</div><div class="step-note">未合格影格不進入雲端車況判讀</div></div>
+        <div class="step"><div class="step-num">手機端</div><div class="step-title">品質與視角檢查</div><div class="step-note">不合格影格不自動擷取</div></div>
         <div class="step"><div class="step-num">雲端</div><div class="step-title">比較與辨識</div><div class="step-note">輸出 Finding、信心、證據與限制</div></div>
         <div class="step"><div class="step-num">規則端</div><div class="step-title">風險分流</div><div class="step-note">依安全、預約、證據與政策建立任務</div></div>
         <div class="step"><div class="step-num">人工端</div><div class="step-title">覆核與撤銷</div><div class="step-note">高風險、低信心與索賠案件保留人工控制</div></div>
@@ -545,7 +542,7 @@
       <div class="compare">
         <div class="head"><b>一般做法</b></div><div class="head"><b>InspectFlow</b></div>
         <div>自由拍照，上傳後才知道照片不可用</div><div>預覽串流即時判斷位置與品質，連續合格後自動擷取</div>
-        <div>用單張照片辨識損傷</div><div>結合同車同區域歷史影像、廣角與多角度近照</div>
+        <div>用單張照片辨識損傷</div><div>結合本次取車前、上次還車、廣角與多角度近照</div>
         <div>輸出正常或異常標籤</div><div>輸出位置、類型、嚴重度、是否新增、信心與限制</div>
         <div>無法判斷時仍產生低可信結果</div><div>歷史不足、對齊失敗或遮蔽時明確拒答並轉人工</div>
         <div>異常清單與整備流程分離</div><div>直接更新車輛狀態，建立清潔、維修、巡檢或索賠待審</div>
@@ -593,14 +590,14 @@
           <div class="phase"><h3>輔助決策</h3><p>後台顯示證據與建議，人員確認後才建單、下線或建立<strong>索賠候選案件</strong>。</p></div>
           <div class="phase"><h3>受控自動化</h3><p>只對高信心且低爭議情境自動建單。人工可撤銷，所有狀態異動保留紀錄。</p></div>
           <h3 class="accent" style="margin-top:24px">必要企業資源</h3>
-          <p class="small muted">正式拍攝規則、同車歷史影像、既有車損及索賠案例、訂單與預約、車輛狀態 API、整備 SOP、人員權限與 SLA。</p>
+          <p class="small muted">正式拍攝規則、本次取車與還車影像、同車歷史影像、既有車損及索賠案例、訂單與預約、車輛狀態 API、整備 SOP、人員權限與 SLA。</p>
         </div>
         <div>
           <h3 class="orange">主要風險與控制方式</h3>
           <table class="table"><tbody>
-            <tr><td><b>歷史影像不足</b></td><td>標示證據不足，不自動認定新增損傷。</td></tr>
+            <tr><td><b>基準影像不足</b></td><td>本次取車前不可比時改查上次還車；仍不足則拒答並轉人工。</td></tr>
             <tr><td><b>髒污遮蔽車身</b></td><td>先清潔，再以相同區域重新掃描。</td></tr>
-            <tr><td><b>夜間與強反光</b></td><td>即時品質門檻、補光提示與人工拒答。</td></tr>
+            <tr><td><b>夜間與強反光</b></td><td>掃描端即時提示補光或改變角度；不合格影格不擷取、不上傳。</td></tr>
             <tr><td><b>錯誤下線</b></td><td>分級門檻、人工撤銷及狀態異動稽核。</td></tr>
             <tr><td><b>個資與非目標影像</b></td><td>用途告知、臉部與非目標車牌遮罩、權限及保存規範。</td></tr>
             <tr><td><b>模型漂移</b></td><td>分車型、手機與環境監控，支援灰度發布及快速回滾。</td></tr>
@@ -623,13 +620,13 @@
       <h2>正式產品系統架構</h2>
       <p class="doc-lead">正式產品可沿用 iRent App 作為使用者入口，新增 Flutter 掃描模組處理相機導引與弱網暫存。影像上傳後由雲端 AI 服務完成車況判讀，再透過工作流服務連接營運及索賠後台。各模組以 API 交換資料，方便依企業既有架構<strong>分階段導入</strong>。</p>
       <div class="flow" style="margin-top:22px">
-        <div class="step"><div class="step-num">APP</div><div class="step-title">Flutter 掃描模組</div><div class="step-note">相機、裝置端推論、弱網暫存</div></div>
+        <div class="step"><div class="step-num">APP</div><div class="step-title">Flutter 掃描模組</div><div class="step-note">相機、品質與視角檢查、弱網暫存</div></div>
         <div class="step"><div class="step-num">API</div><div class="step-title">身份與影像接收</div><div class="step-note">訂單驗證、預簽上傳、完整性檢查</div></div>
-        <div class="step"><div class="step-num">AI</div><div class="step-title">車況推論服務</div><div class="step-note">基準檢索、影像對齊、損傷與整潔度</div></div>
+        <div class="step"><div class="step-num">AI</div><div class="step-title">車況推論服務</div><div class="step-note">租程／歷史基準檢索、影像對齊、損傷與整潔度</div></div>
         <div class="step"><div class="step-num">FLOW</div><div class="step-title">案件與工作流</div><div class="step-note">分流、人工覆核、重試與通知</div></div>
-        <div class="step"><div class="step-num">OPS</div><div class="step-title">營運與索賠後台</div><div class="step-note">車況、派工、證據、完工</div></div>
+        <div class="step"><div class="step-num">OPS</div><div class="step-title">營運處理工作台</div><div class="step-note">車況、請求、證據、狀態</div></div>
       </div>
-      <div class="grid-3" style="margin-top:72px"><div><h3>核心資料</h3><p class="small" style="color:var(--muted)">檢查任務、影像、異常、案件、任務、車輛狀態與模型決策</p></div><div><h3>必要介接</h3><p class="small" style="color:var(--muted)">訂單、會員、車輛主檔、預約、人員班表、工單與通知</p></div><div><h3>部署原則</h3><p class="small" style="color:var(--muted)">裝置端低延遲判斷；雲端執行影像比較與營運最佳化</p></div></div>
+      <div class="grid-3" style="margin-top:72px"><div><h3>核心資料</h3><p class="small" style="color:var(--muted)">檢查任務、影像、異常、案件、處理請求、車輛狀態與模型決策</p></div><div><h3>必要介接</h3><p class="small" style="color:var(--muted)">訂單、會員、車輛主檔、處理系統、索賠系統與通知</p></div><div><h3>部署原則</h3><p class="small" style="color:var(--muted)">手機端即時檢查拍攝品質；雲端執行影像比對與異常判讀</p></div></div>
     </section>
 
     <section class="slide has-chapter-progress soft" data-label="附錄 A2">
@@ -644,9 +641,9 @@
       </nav>
       <div class="eyebrow">7. 補充資料</div>
       <h2>模型驗收與持續改善</h2>
-      <p class="doc-lead">模型驗收不能只看整體準確率。我們會<strong>依車型、手機、光線與停車場域分組測試</strong>，並針對<strong>安全相關損傷優先降低漏判</strong>。上線後則持續監控不可判讀率、人工覆寫與客訴結果，確認模型在真實環境中仍符合營運需求。</p>
+      <p class="doc-lead">官方影像可提供真實租還車場域，但上傳分類與實際內容可能不一致，也沒有完整的損傷框或遮罩。我們會先清理資料並補充標註，再<strong>依車輛切分訓練、驗證與測試資料</strong>，避免同車影像洩漏造成成效高估。</p>
       <div class="grid-2">
-        <div><h3>離線與試點驗證</h3><ul class="bullets"><li>依車輛切分訓練、驗證與測試資料</li><li>分車型、手機、光線與場地測試</li><li>安全損傷優先降低漏判</li><li>一般損傷平衡召回率、誤報成本與人工量</li></ul></div>
+        <div><h3>資料準備與驗證</h3><ul class="bullets"><li>清理上傳分類與實際內容不一致的照片</li><li>補標損傷位置、類型、品質與可比性</li><li>依車輛切分資料，避免同車影像洩漏</li><li>分車型、光線與場地檢查模型表現</li></ul></div>
         <div><h3>上線後監控</h3><ul class="bullets"><li>監控資料漂移、不可判讀率與人工覆寫率</li><li>人工覆核、完工結果與客訴案例回流</li><li>保存模型版本、門檻、輸入摘要與輸出</li><li>支援灰度發布、快速回滾與門檻調整</li></ul></div>
       </div>
       <div class="panel"><p style="margin:0;line-height:1.48;color:#33485d"><strong>模型準確率只是驗收的一部分</strong>；<strong>車輛停駛成本、人工覆核量與客訴翻案</strong>同樣需要監控。</p></div>
@@ -664,16 +661,17 @@
       </nav>
       <div class="eyebrow">7. 補充資料</div>
       <h2>提案假設與責任邊界</h2>
-      <p class="doc-lead">由於官方解題資源尚未取得，目前部分流程與數值仍屬<strong>產品設計假設</strong>。以下項目會在取得 iRent 正式規範與企業資料後重新確認，避免將 Prototype 設計目標誤認為已驗證成果。</p>
+      <p class="doc-lead">目前已取得官方流程圖、照片清單、索賠案例及未標註的真實使用者影像，可用來校正流程與建立模型資料集。企業 API、營運規則、模型成效與效益數值仍需進一步確認，避免將 Prototype 設計誤認為正式成果。</p>
       <table class="table table-two">
         <thead><tr><th>項目</th><th>目前提案處理方式</th></tr></thead>
         <tbody>
-          <tr><td>六區掃描</td><td>目前為產品設計假設，取得官方拍攝清單後調整。</td></tr>
+          <tr><td>六區掃描</td><td>官方流程包含四個車外角度及前、後車內；Prototype 轉譯為車頭、左側、車尾、右側、前座與後座。</td></tr>
           <tr><td>1–2 秒</td><td>單區品質鎖定的設計目標，需依手機、車型與環境驗證。</td></tr>
           <tr><td>Prototype 視覺</td><td>呈現使用者及營運流程，不代表模型已完成正式驗證。</td></tr>
           <tr><td>索賠責任</td><td>AI 提供證據與建議；授權人員決定責任與賠償。</td></tr>
           <tr><td>新損傷判斷</td><td>歷史資料不足或視角不可比時，標示證據不足。</td></tr>
           <tr><td>效益估算</td><td>取得企業現況基準後，再設定改善幅度與投資效益。</td></tr>
+          <tr><td>官方影像資料</td><td>可用於資料分析與模型開發，但需先清理弱標籤並補充損傷與品質標註。</td></tr>
           <tr><td>資料與隱私</td><td>正式導入需完成用途告知、遮罩、權限、保存與刪除規範。</td></tr>
         </tbody>
       </table>

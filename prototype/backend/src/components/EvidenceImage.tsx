@@ -14,12 +14,6 @@ export function EvidenceImage({
   const content = evidence.src ? (
     <>
       <img alt={evidence.caption} src={evidence.src} />
-      {evidence.effect !== 'none' && (
-        <span
-          aria-label="Prototype 反光效果"
-          className={`reflection-effect reflection-effect--${evidence.effect}`}
-        />
-      )}
       <span className="evidence-image__zoom">放大</span>
     </>
   ) : (

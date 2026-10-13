@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
-import 'prototype_banner.dart';
 
 class ScanScaffold extends StatefulWidget {
   const ScanScaffold({
@@ -67,17 +66,10 @@ class _ScanScaffoldState extends State<ScanScaffold> {
             Positioned(
               top: MediaQuery.paddingOf(context).top + AppSpacing.sm,
               left: AppSpacing.md,
-              right: AppSpacing.md,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const _FloatingBackButton(),
-                  GestureDetector(
-                    onLongPress: widget.onPrototypeLongPress,
-                    child: const PrototypeBanner(dark: true),
-                  ),
-                ],
+              child: GestureDetector(
+                key: const Key('scan-back-long-press-target'),
+                onLongPress: widget.onPrototypeLongPress,
+                child: const _FloatingBackButton(),
               ),
             ),
             if (widget.bottom != null)
@@ -100,9 +92,8 @@ class _FloatingBackButton extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: IconButton(
         key: const Key('scan-back-button'),
-        tooltip: '返回上一步',
         onPressed: () => Navigator.of(context).maybePop(),
-        icon: const Icon(Icons.arrow_back_rounded),
+        icon: const Icon(Icons.arrow_back_rounded, semanticLabel: '返回上一步'),
         color: AppColors.white,
       ),
     );

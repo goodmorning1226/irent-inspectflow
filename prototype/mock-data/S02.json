@@ -14,6 +14,13 @@
       "modelName": "TOYOTA YARIS",
       "colorName": "極光銀",
       "availability": "REVIEW_REQUIRED"
+    },
+    {
+      "id": "VEH-CMW-2741",
+      "plateNumber": "CMW-2741",
+      "modelName": "TOYOTA YARIS",
+      "colorName": "雪貂白",
+      "availability": "REVIEW_REQUIRED"
     }
   ],
   "rentals": [
@@ -25,6 +32,15 @@
       "pickupLocation": "台北市大安區・信義安和站",
       "returnAt": "2026-10-10T18:12:00+08:00",
       "returnLocation": "台北市信義區・市府停車場"
+    },
+    {
+      "id": "RNT-20261010-002",
+      "vehicleId": "VEH-CMW-2741",
+      "memberIdMasked": "MBR-****-5217",
+      "pickupAt": "2026-10-10T13:25:00+08:00",
+      "pickupLocation": "台中市西屯區・市政站",
+      "returnAt": "2026-10-10T18:05:00+08:00",
+      "returnLocation": "台中市西屯區・朝馬停車場"
     }
   ],
   "inspectionSessions": [
@@ -39,6 +55,24 @@
           "zone": "rearSeat",
           "capturedAt": "2026-10-10T18:10:00+08:00",
           "qualitySummary": "已記錄後座污漬，等待後續處理",
+          "sourceImages": [
+            "prototype/mobile/assets/frames/interior_dirty_best.png"
+          ]
+        }
+      ],
+      "isPrototype": true
+    },
+    {
+      "id": "INS-S02-002",
+      "rentalId": "RNT-20261010-002",
+      "vehicleId": "VEH-CMW-2741",
+      "type": "return",
+      "capturedAt": "2026-10-10T18:05:00+08:00",
+      "zoneCaptures": [
+        {
+          "zone": "rearSeat",
+          "capturedAt": "2026-10-10T18:04:00+08:00",
+          "qualitySummary": "後座腳踏區偵測到垃圾，等待人工確認",
           "sourceImages": [
             "prototype/mobile/assets/frames/interior_dirty_best.png"
           ]
@@ -63,6 +97,22 @@
       ],
       "limitations": ["需由人員確認清潔方式，不自動判定費用或責任"],
       "isPrototype": true
+    },
+    {
+      "id": "FND-S02-LITTER-002",
+      "inspectionSessionId": "INS-S02-002",
+      "location": "後座右側腳踏區",
+      "zone": "rearSeat",
+      "type": "litter",
+      "severity": "low",
+      "possiblyNew": true,
+      "confidence": 0.87,
+      "evidenceState": "sufficient",
+      "sourceImages": [
+        "prototype/mobile/assets/frames/interior_dirty_best.png"
+      ],
+      "limitations": ["垃圾類型與清潔方式仍需由人員確認"],
+      "isPrototype": true
     }
   ],
   "cases": [
@@ -79,6 +129,21 @@
       "suggestedAction": "人工確認後建立清潔任務，完工後同區域複檢",
       "createdAt": "2026-10-10T18:13:00+08:00",
       "updatedAt": "2026-10-10T18:13:00+08:00",
+      "isPrototype": true
+    },
+    {
+      "id": "CASE-S02-002",
+      "scenarioId": "S02",
+      "title": "後座腳踏區疑似垃圾",
+      "status": "PENDING_REVIEW",
+      "priority": "normal",
+      "vehicleId": "VEH-CMW-2741",
+      "rentalId": "RNT-20261010-002",
+      "inspectionSessionIds": ["INS-S02-002"],
+      "findingIds": ["FND-S02-LITTER-002"],
+      "suggestedAction": "人工確認後建立清潔任務，避免影響下一位使用者",
+      "createdAt": "2026-10-10T18:06:00+08:00",
+      "updatedAt": "2026-10-10T18:06:00+08:00",
       "isPrototype": true
     }
   ],

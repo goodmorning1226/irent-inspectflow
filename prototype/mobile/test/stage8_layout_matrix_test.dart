@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inspectflow_mobile/app/inspectflow_app.dart';
 import 'package:inspectflow_mobile/features/completion_review/completion_review_page.dart';
-import 'package:inspectflow_mobile/features/inspection/inspection_overview_page.dart';
 import 'package:inspectflow_mobile/features/scan/scan_prototype_page.dart';
 import 'package:inspectflow_mobile/theme/app_theme.dart';
 
@@ -16,7 +15,7 @@ void main() {
   const landscapeSizes = [Size(800, 360), Size(844, 390), Size(932, 430)];
 
   for (final size in portraitSizes) {
-    testWidgets('entry and overview fit ${size.width}x${size.height}', (
+    testWidgets('entry fits and opens scan at ${size.width}x${size.height}', (
       tester,
     ) async {
       _setSize(tester, size);
@@ -27,9 +26,12 @@ void main() {
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
 
+      _setSize(tester, const Size(844, 390));
+      await tester.pump();
       await tester.tap(find.byKey(const Key('enter-inspection-button')));
-      await tester.pumpAndSettle();
-      expect(find.byType(InspectionOverviewPage), findsOneWidget);
+      await tester.pump();
+      await tester.pump(const Duration(seconds: 1));
+      expect(find.byType(ScanPrototypePage), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
 
@@ -62,7 +64,7 @@ void main() {
       );
       await tester.pump(const Duration(seconds: 1));
       expect(find.byKey(const Key('scan-back-button')), findsOneWidget);
-      expect(find.text('Prototype 模擬結果'), findsOneWidget);
+      expect(find.text('Prototype 模擬結果'), findsNothing);
       expect(find.text('全車進度'), findsNothing);
       expect(find.byKey(const Key('quality-lock-progress')), findsNothing);
       expect(tester.takeException(), isNull);

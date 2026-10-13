@@ -1,4 +1,4 @@
-import { getAllScenarioDatasets } from '../data/scenarios';
+import { getAllRuntimeScenarioDatasets } from '../data/scenarios';
 import { findingTypeLabels, severityLabels } from './caseEvidence';
 import type { FindingSeverity, ScenarioDataset, ScenarioId } from './types';
 
@@ -23,12 +23,21 @@ export interface ClaimRow {
 }
 
 export function buildClaimRows(activeDataset: ScenarioDataset): ClaimRow[] {
-  return getAllScenarioDatasets()
+  return getAllRuntimeScenarioDatasets()
     .map((dataset) =>
       dataset.meta.id === activeDataset.meta.id ? activeDataset : dataset,
     )
     .flatMap((dataset) =>
       dataset.cases.flatMap((currentCase) => {
+        const isQueuedForClaim =
+          currentCase.status === 'CLAIM_REVIEW' ||
+          dataset.tasks.some(
+            (task) =>
+              task.caseId === currentCase.id &&
+              task.type === 'claim_review' &&
+              task.status !== 'CANCELLED',
+          );
+        if (!isQueuedForClaim) return [];
         const finding = dataset.findings.find(
           (item) =>
             currentCase.findingIds.includes(item.id) &&

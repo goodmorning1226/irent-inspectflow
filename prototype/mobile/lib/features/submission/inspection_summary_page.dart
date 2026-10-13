@@ -53,13 +53,6 @@ class InspectionSummaryPage extends StatelessWidget {
             '六個區域均已留下可判讀影像',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
-          const SizedBox(height: AppSpacing.xs),
-          Text(
-            '請確認各區域的記錄結果。上傳後系統會在背景比對前後車況，不需要留在原地等待。',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.mutedInk),
-          ),
           const SizedBox(height: AppSpacing.lg),
           DecoratedBox(
             decoration: BoxDecoration(
@@ -76,30 +69,6 @@ class InspectionSummaryPage extends StatelessWidget {
                 ],
               ],
             ),
-          ),
-          if (result.findings.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.lg),
-            const _FollowUpNotice(),
-          ],
-          const SizedBox(height: AppSpacing.lg),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Icon(
-                Icons.lock_outline_rounded,
-                size: 18,
-                color: AppColors.mutedInk,
-              ),
-              const SizedBox(width: AppSpacing.sm),
-              Expanded(
-                child: Text(
-                  '此 Prototype 只會在本機產生示範資料，不會傳送至 iRent 或其他外部系統。',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: AppColors.mutedInk),
-                ),
-              ),
-            ],
           ),
         ],
       ),
@@ -152,40 +121,6 @@ class _ZoneSummaryRow extends StatelessWidget {
             size: 22,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _FollowUpNotice extends StatelessWidget {
-  const _FollowUpNotice();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF5EC),
-        border: Border.all(color: const Color(0xFFF3C59E)),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Icon(
-              Icons.info_outline_rounded,
-              color: AppColors.warningOrange,
-            ),
-            const SizedBox(width: AppSpacing.sm),
-            Expanded(
-              child: Text(
-                '部分區域已記錄需要後續確認的影像。系統只會整理證據並安排處理，不會在會員端直接判定責任或費用。',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

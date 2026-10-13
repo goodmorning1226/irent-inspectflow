@@ -2,6 +2,7 @@ export type ScenarioId = 'S01' | 'S02' | 'S03' | 'S04' | 'S05' | 'S06' | 'S07';
 
 export type VehicleAvailability =
   | 'READY'
+  | 'RENTED'
   | 'REVIEW_REQUIRED'
   | 'CLEANING'
   | 'MAINTENANCE'
@@ -18,7 +19,6 @@ export type FindingType =
   | 'stain'
   | 'litter'
   | 'leftItem'
-  | 'reflection'
   | 'obstruction'
   | 'unknown';
 
@@ -31,7 +31,8 @@ export type CaseStatus =
   | 'PENDING_INSPECTION'
   | 'PENDING_REPAIR'
   | 'CLAIM_REVIEW';
-export type TaskType = 'cleaning' | 'inspection' | 'repair' | 'claim_review';
+export type TaskType =
+  'cleaning' | 'inspection' | 'repair' | 'suspension' | 'claim_review';
 export type TaskStatus =
   | 'PENDING'
   | 'ASSIGNED'
@@ -66,6 +67,7 @@ export interface Vehicle {
   modelName: string;
   colorName: string;
   availability: VehicleAvailability;
+  cleanliness?: 'normal' | 'clean';
 }
 
 export interface Rental {
@@ -155,6 +157,7 @@ export interface Task {
   requiredTools?: string[];
   reservationRisk?: boolean;
   progressNote?: string;
+  repairVendorId?: string;
   isPrototype: true;
 }
 

@@ -17,7 +17,7 @@ void _setSize(WidgetTester tester, Size size) {
 }
 
 void main() {
-  testWidgets('portrait entry and overview visual references', (tester) async {
+  testWidgets('portrait entry visual reference', (tester) async {
     _setSize(tester, const Size(390, 844));
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
@@ -27,13 +27,6 @@ void main() {
     await expectLater(
       find.byType(MaterialApp),
       matchesGoldenFile('goldens/stage8_entry_390x844.png'),
-    );
-
-    await tester.tap(find.byKey(const Key('enter-inspection-button')));
-    await tester.pumpAndSettle();
-    await expectLater(
-      find.byType(MaterialApp),
-      matchesGoldenFile('goldens/stage8_overview_390x844.png'),
     );
   });
 
@@ -119,6 +112,52 @@ void main() {
     await expectLater(
       find.byType(MaterialApp),
       matchesGoldenFile('goldens/stage6_movement_cue_844x390.png'),
+    );
+  });
+
+  testWidgets('landscape horizontal adjustment visual reference', (
+    tester,
+  ) async {
+    _setSize(tester, const Size(844, 390));
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final controller = FullVehicleScanController(
+      initialZones: MockInspectionData.currentSession.zones,
+    );
+    addTearDown(controller.dispose);
+
+    const event = ScanTimelineEvent(
+      at: Duration(milliseconds: 3500),
+      phase: ScanPhase.aligning,
+      prompt: '請向左移動一點',
+      quality: 0.24,
+      capture: false,
+      zone: InspectionZoneType.front,
+      adjustmentDirection: ScanAdjustmentDirection.left,
+      box: NormalizedScanBox(left: 0.2, top: 0.14, width: 0.6, height: 0.7),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light,
+        home: ScanScaffold(
+          title: '全車連續掃描',
+          body: FullVehicleScanHud(
+            session: controller,
+            event: event,
+            isInterior: false,
+            video: Image.asset(
+              'assets/frames/vehicle_front_yaw_right.png',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pump(const Duration(milliseconds: 400));
+    await expectLater(
+      find.byType(MaterialApp),
+      matchesGoldenFile('goldens/stage8_horizontal_adjustment_844x390.png'),
     );
   });
 

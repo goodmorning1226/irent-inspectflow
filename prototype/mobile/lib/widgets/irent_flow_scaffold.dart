@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
-import 'prototype_banner.dart';
 
 class IrentFlowScaffold extends StatelessWidget {
   const IrentFlowScaffold({
@@ -13,6 +12,11 @@ class IrentFlowScaffold extends StatelessWidget {
     this.bottom,
     this.showBackButton = false,
     this.showIrentBrand = false,
+    this.centerTitle = false,
+    this.appBarActions,
+    this.appBarProgress,
+    this.bottomHasDivider = true,
+    this.bottomColor = AppColors.white,
   });
 
   final String title;
@@ -20,6 +24,11 @@ class IrentFlowScaffold extends StatelessWidget {
   final Widget? bottom;
   final bool showBackButton;
   final bool showIrentBrand;
+  final bool centerTitle;
+  final List<Widget>? appBarActions;
+  final double? appBarProgress;
+  final bool bottomHasDivider;
+  final Color bottomColor;
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +57,16 @@ class IrentFlowScaffold extends StatelessWidget {
                       )
                     : null,
                 titleSpacing: showBackButton ? 0 : AppSpacing.lg,
+                centerTitle: centerTitle,
                 title: showIrentBrand ? const _IrentBrandTitle() : Text(title),
-                actions: const [
-                  Padding(
-                    padding: EdgeInsets.only(right: AppSpacing.md),
-                    child: Center(child: PrototypeBanner()),
+                actions: appBarActions,
+                bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(
+                    appBarProgress == null ? 1 : 4,
                   ),
-                ],
-                bottom: const PreferredSize(
-                  preferredSize: Size.fromHeight(1),
-                  child: Divider(height: 1),
+                  child: appBarProgress == null
+                      ? const Divider(height: 1)
+                      : _FlowProgress(value: appBarProgress!),
                 ),
               ),
               body: SafeArea(top: false, child: body),
@@ -65,27 +74,57 @@ class IrentFlowScaffold extends StatelessWidget {
                   ? null
                   : SafeArea(
                       top: false,
-                      child: DecoratedBox(
-                        decoration: const BoxDecoration(
-                          color: AppColors.white,
-                          border: Border(
-                            top: BorderSide(color: AppColors.divider),
+                      child: ColoredBox(
+                        color: bottomColor,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: bottomHasDivider
+                                ? const Border(
+                                    top: BorderSide(color: AppColors.divider),
+                                  )
+                                : null,
                           ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                            AppSpacing.lg,
-                            AppSpacing.md,
-                            AppSpacing.lg,
-                            AppSpacing.md,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                              AppSpacing.lg,
+                              AppSpacing.md,
+                              AppSpacing.lg,
+                              AppSpacing.md,
+                            ),
+                            child: bottom,
                           ),
-                          child: bottom,
                         ),
                       ),
                     ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _FlowProgress extends StatelessWidget {
+  const _FlowProgress({required this.value});
+
+  final double value;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 4,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          const ColoredBox(color: AppColors.divider),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: FractionallySizedBox(
+              widthFactor: value.clamp(0.0, 1.0),
+              child: const ColoredBox(color: AppColors.brandRed),
+            ),
+          ),
+        ],
       ),
     );
   }

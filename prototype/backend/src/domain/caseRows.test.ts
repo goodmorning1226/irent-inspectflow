@@ -39,7 +39,28 @@ describe('case queue filters', () => {
     });
     expect(result.map((row) => row.status).sort()).toEqual([
       'CLAIM_REVIEW',
+      'CLAIM_REVIEW',
+      'PENDING_REVIEW',
+      'PENDING_REVIEW',
+      'PENDING_REVIEW',
       'PENDING_REVIEW',
     ]);
+  });
+
+  it('keeps exactly four unprocessed cases in the anomaly review queue', () => {
+    const result = rows.filter(
+      (row) =>
+        row.status === 'PENDING_REVIEW' &&
+        !row.hasActiveTask &&
+        !row.inClaimQueue,
+    );
+
+    expect(result.map((row) => row.id).sort()).toEqual([
+      'CASE-S02-001',
+      'CASE-S02-002',
+      'CASE-S04-001',
+      'CASE-S07-002',
+    ]);
+    expect(result).toHaveLength(4);
   });
 });

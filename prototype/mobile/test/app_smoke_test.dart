@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inspectflow_mobile/app/inspectflow_app.dart';
+import 'package:inspectflow_mobile/features/scan/scan_prototype_page.dart';
 
 void main() {
-  testWidgets('app starts and opens the six-zone overview', (tester) async {
+  testWidgets('entry opens the continuous scan directly', (tester) async {
     await tester.pumpWidget(const InspectFlowApp());
 
-    expect(find.byKey(const Key('irent-brand-title')), findsOneWidget);
+    expect(find.text('掃描'), findsOneWidget);
+    expect(find.text('檢查車輛狀況'), findsOneWidget);
     expect(find.text('ABC-1234'), findsOneWidget);
-    expect(find.text('Prototype 模擬結果'), findsOneWidget);
+    expect(find.text('0 / 6 已完成'), findsOneWidget);
+    expect(find.byKey(const Key('entry-vehicle-card')), findsOneWidget);
+    expect(find.byKey(const Key('entry-coverage-card')), findsOneWidget);
+    expect(find.byKey(const Key('vehicle-coverage-map')), findsOneWidget);
     expect(find.byKey(const Key('enter-inspection-button')), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('enter-inspection-button')));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 1));
 
-    expect(find.text('車況掃描'), findsOneWidget);
-    expect(find.text('一次掃描，系統自動辨識六區'), findsNothing);
-    expect(find.text('開始全車掃描'), findsOneWidget);
-    expect(find.text('0 / 6 已完成'), findsOneWidget);
-    expect(find.text('待掃描'), findsNWidgets(6));
-    expect(find.byKey(const Key('zone-front')), findsOneWidget);
-    expect(find.byKey(const Key('zone-leftSide')), findsOneWidget);
-    expect(find.byKey(const Key('zone-rear')), findsOneWidget);
-    expect(find.byKey(const Key('zone-rightSide')), findsOneWidget);
-    expect(find.byKey(const Key('zone-frontSeat')), findsOneWidget);
-    expect(find.byKey(const Key('zone-rearSeat')), findsOneWidget);
+    expect(find.byType(ScanPrototypePage), findsOneWidget);
+    expect(find.text('開始全車掃描'), findsNothing);
+    expect(find.byKey(const Key('scan-back-button')), findsOneWidget);
   });
 }

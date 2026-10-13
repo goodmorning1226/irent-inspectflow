@@ -1,8 +1,6 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 import { AppIcon, type IconName } from '../components/AppIcon';
-import { PrototypeBadge } from '../components/PrototypeBadge';
-import { ScenarioControl } from '../components/ScenarioControl';
 
 interface NavigationItem {
   label: string;
@@ -11,16 +9,18 @@ interface NavigationItem {
 }
 
 const navigationItems: NavigationItem[] = [
-  { label: '車況比對', to: '/cases', icon: 'cases' },
-  { label: '任務分配', to: '/tasks', icon: 'tasks' },
-  { label: '索賠審查', to: '/claims', icon: 'claims' },
+  { label: '異常審核', to: '/cases', icon: 'cases' },
+  { label: '處理中案件', to: '/processing', icon: 'tasks' },
+  { label: '車輛管理', to: '/fleet', icon: 'fleet' },
 ];
 
 function pageTitle(pathname: string) {
-  return (
-    navigationItems.find((item) => pathname.startsWith(item.to))?.label ??
-    '營運工作台'
-  );
+  if (pathname.startsWith('/cases/')) return '異常審核詳情';
+  if (pathname.startsWith('/processing/')) return '處理案件詳情';
+  if (pathname.startsWith('/cases')) return '異常案件審核';
+  if (pathname.startsWith('/processing')) return '處理中案件';
+  if (pathname.startsWith('/fleet')) return '車輛管理';
+  return '營運工作台';
 }
 
 export function AppShell() {
@@ -53,13 +53,6 @@ export function AppShell() {
             </NavLink>
           ))}
         </nav>
-
-        <ScenarioControl />
-
-        <div className="sidebar-note">
-          <AppIcon name="shield" />
-          <p>AI 整理車況證據；派工與索賠仍由營運人員確認。</p>
-        </div>
       </aside>
 
       <section className="workspace">
@@ -67,10 +60,6 @@ export function AppShell() {
           <div>
             <span className="breadcrumb">InspectFlow／營運工作台</span>
             <h1>{pageTitle(location.pathname)}</h1>
-          </div>
-          <div className="topbar-actions">
-            <span className="workspace-mode">單一營運視角</span>
-            <PrototypeBadge />
           </div>
         </header>
 

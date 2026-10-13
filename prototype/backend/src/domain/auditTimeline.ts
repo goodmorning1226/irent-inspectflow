@@ -1,4 +1,4 @@
-import { getAllScenarioDatasets } from '../data/scenarios';
+import { getAllRuntimeScenarioDatasets } from '../data/scenarios';
 import type { ScenarioDataset } from './types';
 
 export interface AuditTimelineItem {
@@ -19,6 +19,8 @@ const actionLabels: Record<string, string> = {
   TASK_CREATED: '建立處理任務',
   TASK_ASSIGNED: '任務完成指派',
   TASK_REASSIGNED: '人工改派任務',
+  REPAIR_VENDOR_ASSIGNED: '確認合作維修廠',
+  REPAIR_VENDOR_CHANGED: '變更合作維修廠',
   TASK_STATUS_UPDATED: '任務進度更新',
   COMPLETION_REVIEW_PASSED: '完工複檢通過',
   COMPLETION_REVIEW_RETURNED: '完工複檢退回',
@@ -48,14 +50,19 @@ export function buildAuditTimeline(
         : '未發現需要立即處理的異常。',
     actor: 'SYSTEM-PROTOTYPE',
   }));
-  const assignmentItems = dataset.assignments.map((assignment) => ({
-    id: `assignment-${assignment.id}`,
-    occurredAt: assignment.assignedAt,
-    category: 'task' as const,
-    title: '任務完成指派',
-    detail: `${assignment.taskId} 指派給 ${assignment.workerId}`,
-    actor: assignment.assignedBy,
-  }));
+  const assignmentItems = dataset.assignments
+    .filter((assignment) => {
+      const task = dataset.tasks.find((item) => item.id === assignment.taskId);
+      return task?.type !== 'repair';
+    })
+    .map((assignment) => ({
+      id: `assignment-${assignment.id}`,
+      occurredAt: assignment.assignedAt,
+      category: 'task' as const,
+      title: '任務完成指派',
+      detail: `${assignment.taskId} 指派給 ${assignment.workerId}`,
+      actor: assignment.assignedBy,
+    }));
   const events = dataset.auditEvents.map((event) => ({
     id: event.id,
     occurredAt: event.occurredAt,
@@ -81,7 +88,7 @@ export interface ManagementMetric {
 export function buildManagementMetrics(
   activeDataset: ScenarioDataset,
 ): ManagementMetric[] {
-  const datasets = getAllScenarioDatasets().map((dataset) =>
+  const datasets = getAllRuntimeScenarioDatasets().map((dataset) =>
     dataset.meta.id === activeDataset.meta.id ? activeDataset : dataset,
   );
   const sessions = datasets.flatMap((dataset) => dataset.inspectionSessions);

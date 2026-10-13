@@ -2,10 +2,10 @@
   "schemaVersion": "prototype-1.0",
   "meta": {
     "id": "S04",
-    "name": "左側強反光",
-    "purpose": "多角度排除誤判",
-    "summary": "廣角影像曾出現疑似痕跡，但痕跡隨補掃角度改變而消失，因此不建立車損任務。",
-    "dataNotice": "反光排除結果為 Prototype 腳本，用於說明多角度證據的價值。"
+    "name": "左前車門疑似細痕",
+    "purpose": "低信心車損人工覆核",
+    "summary": "掃描影像已通過反光與成像品質門檻，但左前車門仍出現細微痕跡，因此送交營運人員確認。",
+    "dataNotice": "細微刮痕與判讀結果為 Prototype 腳本，用於展示低信心異常的人工覆核流程。"
   },
   "vehicles": [
     {
@@ -13,7 +13,7 @@
       "plateNumber": "DPL-4206",
       "modelName": "TOYOTA YARIS",
       "colorName": "極光銀",
-      "availability": "READY"
+      "availability": "REVIEW_REQUIRED"
     }
   ],
   "rentals": [
@@ -38,11 +38,11 @@
         {
           "zone": "leftSide",
           "capturedAt": "2026-10-10T18:09:00+08:00",
-          "qualitySummary": "多角度補掃完成，疑似痕跡未持續出現",
+          "qualitySummary": "影像品質合格，左前車門疑似細痕持續可見",
           "sourceImages": [
-            "mock://S04/left-wide.jpg",
-            "mock://S04/left-angle-a.jpg",
-            "mock://S04/left-angle-b.jpg"
+            "/exterior_damage_wide.png",
+            "/exterior_damage_detail_center.png",
+            "/exterior_damage_detail_left.png"
           ]
         }
       ],
@@ -51,21 +51,21 @@
   ],
   "findings": [
     {
-      "id": "FND-S04-REFLECTION-001",
+      "id": "FND-S04-SCRATCH-001",
       "inspectionSessionId": "INS-DEMO-001",
-      "location": "左前車門中段",
+      "location": "左前車門下半部",
       "zone": "leftSide",
-      "type": "reflection",
+      "type": "scratch",
       "severity": "low",
-      "possiblyNew": false,
-      "confidence": 0.82,
+      "possiblyNew": true,
+      "confidence": 0.74,
       "evidenceState": "sufficient",
       "sourceImages": [
-        "mock://S04/left-wide.jpg",
-        "mock://S04/left-angle-a.jpg",
-        "mock://S04/left-angle-b.jpg"
+        "/exterior_damage_wide.png",
+        "/exterior_damage_detail_center.png",
+        "/exterior_damage_detail_left.png"
       ],
-      "limitations": ["Prototype 以固定多角度影像模擬反光排除"],
+      "limitations": ["痕跡範圍較小，仍需人工確認是否為新增表面損傷"],
       "isPrototype": true
     }
   ],
@@ -73,16 +73,16 @@
     {
       "id": "CASE-S04-001",
       "scenarioId": "S04",
-      "title": "左側疑似痕跡多角度覆核",
-      "status": "RESOLVED",
+      "title": "左前車門疑似輕微刮痕",
+      "status": "PENDING_REVIEW",
       "priority": "normal",
       "vehicleId": "VEH-DPL-4206",
       "rentalId": "RNT-20261010-001",
       "inspectionSessionIds": ["INS-DEMO-001"],
-      "findingIds": ["FND-S04-REFLECTION-001"],
-      "suggestedAction": "判定為反光干擾，不建立車損任務",
+      "findingIds": ["FND-S04-SCRATCH-001"],
+      "suggestedAction": "合格影像中仍可看到細微痕跡，建議人工確認是否為新增刮痕",
       "createdAt": "2026-10-10T18:13:00+08:00",
-      "updatedAt": "2026-10-10T18:16:00+08:00",
+      "updatedAt": "2026-10-10T18:13:00+08:00",
       "isPrototype": true
     }
   ],
@@ -107,10 +107,10 @@
       "id": "AUD-S04-001",
       "entityType": "case",
       "entityId": "CASE-S04-001",
-      "action": "FALSE_POSITIVE_EXCLUDED",
-      "detail": "疑似痕跡未在多角度影像持續出現",
-      "actorId": "USR-OPS-001",
-      "occurredAt": "2026-10-10T18:16:00+08:00",
+      "action": "CASE_CREATED",
+      "detail": "低信心細微刮痕已整理為待審案件，等待人工確認",
+      "actorId": "SYSTEM-PROTOTYPE",
+      "occurredAt": "2026-10-10T18:13:00+08:00",
       "isPrototype": true
     }
   ]
