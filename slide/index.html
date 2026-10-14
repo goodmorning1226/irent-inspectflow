@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>iRent InspectFlow｜初賽提案簡報</title>
+  <title>Be CARful｜AI 智能車況檢查與整備管家｜初賽提案簡報</title>
   <style>
     :root {
       --red: #df252b; --red-dark: #ad161d; --red-soft: #fff0f1;
@@ -49,12 +49,13 @@
     .overview-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 52px; align-items: stretch; margin-top: 62px; }
     .value-list { display: grid; grid-template-rows: repeat(3, 1fr); gap: 0; height: 400px; padding-top: 0; }
     .value-item { display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: center; }
+    .value-item + .value-item { border-top: 1px solid #d8dde1; }
     .value-num { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--red); color: #fff; font-size: 22px; font-weight: 900; }
     .value-item h3 { margin: 1px 0 5px; }
     .value-item p { margin: 0; color: var(--body); font-size: 20px; }
     .overview-route { display: grid; grid-template-rows: repeat(3, 1fr); height: 400px; padding: 0 8px 0 24px; }
     .route-row { display: grid; grid-template-columns: 112px 1fr; gap: 18px; align-items: center; padding: 0; }
-    .route-row:last-child { border-bottom: 0; }
+    .route-row + .route-row { border-top: 1px solid #d8dde1; }
     .route-label { color: var(--red); font-size: 18px; font-weight: 850; }
     .route-row p { margin: 0; color: var(--body); font-size: 20px; }
     .audience-grid { display: grid; gap: 38px; margin-top: 44px; }
@@ -71,21 +72,22 @@
     .pipeline-stage { display: grid; grid-template-columns: 132px 1fr; gap: 22px; align-items: stretch; margin-bottom: 0; padding: 22px 0 30px; }
     .pipeline-stage + .pipeline-stage { border-top: 2px solid #d7dbe0; padding-top: 30px; }
     .stage-name { display: flex; align-items: center; padding: 0; color: var(--ink); font-size: 22px; font-weight: 900; }
-    .pipeline-nodes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; }
+    .pipeline-nodes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px; }
     .pipeline-node { position: relative; display: flex; min-height: 94px; flex-direction: column; justify-content: center; padding: 8px 4px; }
-    .pipeline-node:not(:last-child)::after { content: "→"; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: #8a929a; font-size: 44px; line-height: 1; font-weight: 900; }
+    .pipeline-node:first-child { padding-right: 28px; }
+    .pipeline-node:not(:last-child)::after { content: "→"; position: absolute; right: -56px; top: 50%; transform: translateY(-50%); color: #8a929a; font-size: 44px; line-height: 1; font-weight: 900; }
     .pipeline-node b { display: block; margin-bottom: 5px; font-size: 21px; }
     .pipeline-node span { color: var(--body); font-size: 18px; line-height: 1.42; }
     .pipeline-result { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 24px 0 0 154px; }
     .result-path { padding-top: 13px; font-size: 18px; font-weight: 850; }
     .result-path.normal { color: #267d55; }
     .result-path.exception { color: var(--red-dark); }
-    .mobile-story { display: grid; grid-template-columns: 210px 1fr 210px; gap: 30px; align-items: center; margin-top: 18px; }
-    .phone-shot { height: 505px; width: 100%; object-fit: contain; display: block; filter: drop-shadow(0 12px 20px rgba(0,0,0,.16)); }
+    .mobile-story { display: grid; grid-template-columns: 210px 1fr 210px; gap: 30px; align-items: start; margin-top: 18px; }
+    .mobile-visual { height: 460px; display: flex; align-items: flex-end; justify-content: center; }
+    .phone-shot { height: 460px; width: 100%; object-fit: contain; object-position: center bottom; display: block; filter: drop-shadow(0 12px 20px rgba(0,0,0,.16)); }
     .scan-shot { width: 100%; height: 390px; object-fit: contain; display: block; border-radius: 14px; box-shadow: 0 14px 32px rgba(30,32,36,.17); }
     .shot-caption { margin: 12px 0 0; text-align: center; color: var(--body); font-size: 18px; line-height: 1.4; }
-    .mobile-story > div:first-child .shot-caption, .mobile-story > div:last-child .shot-caption { margin-top: -2px; }
-    .mobile-main .feature-line { display: flex; justify-content: center; gap: 12px; margin-top: 98px; }
+    .mobile-main .feature-line { display: flex; justify-content: center; gap: 12px; margin-top: 12px; }
     .chip { color: #087887; font-size: 16px; font-weight: 850; }
     .chip:not(:last-child)::after { content: "／"; margin-left: 12px; color: #a2a8ae; }
     .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 42px; margin-top: 28px; }
@@ -109,8 +111,9 @@
     .evidence-layer h3 { margin: 0 0 5px; font-size: 20px; }
     .evidence-layer p { margin: 0; color: var(--body); font-size: 17px; line-height: 1.45; }
     .boundary { margin-top: 14px; color: var(--red-dark); font-size: 17px; line-height: 1.4; font-weight: 850; }
-    .architecture { display: grid; grid-template-columns: 1fr 54px 1fr 54px 1fr 54px 1fr; align-items: center; gap: 12px; margin-top: 70px; }
+    .architecture { display: grid; grid-template-columns: 1fr 54px 1fr 54px 1fr 54px 1fr; align-items: start; gap: 12px; margin-top: 70px; }
     .arch-layer { min-height: 410px; padding: 8px 6px; }
+    .architecture > .diagram-arrow { align-self: center; }
     .arch-index { margin-bottom: 16px; color: var(--red); font-size: 48px; line-height: 1; font-weight: 900; }
     .arch-layer:nth-of-type(3) .arch-index { color: var(--cyan); }
     .arch-layer:nth-of-type(5) .arch-index { color: var(--green); }
@@ -192,6 +195,28 @@
     .resource-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 54px; margin-top: 34px; }
     .resource-row h3 { margin-bottom: 7px; font-size: 21px; }
     .resource-row p { margin: 0; color: var(--body); font-size: 18px; }
+    .supplement-flow { display: grid; grid-template-columns: 1fr 46px 1fr 46px 1fr 46px 1fr 46px 1fr; align-items: center; gap: 12px; margin-top: 72px; }
+    .supplement-step { min-width: 0; }
+    .supplement-step .step-no { margin-bottom: 14px; color: var(--red); font-size: 38px; line-height: 1; font-weight: 900; }
+    .supplement-step:nth-of-type(3) .step-no { color: var(--cyan); }
+    .supplement-step:nth-of-type(5) .step-no { color: var(--green); }
+    .supplement-step:nth-of-type(7) .step-no { color: var(--red-dark); }
+    .supplement-step:nth-of-type(9) .step-no { color: var(--cyan); }
+    .supplement-step h3 { margin-bottom: 10px; font-size: 21px; }
+    .supplement-step p { margin: 0; color: var(--body); font-size: 17px; line-height: 1.46; }
+    .supplement-note { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 82px; padding-top: 28px; border-top: 1px solid #d8dde1; }
+    .supplement-note h3 { margin-bottom: 8px; font-size: 21px; }
+    .supplement-note p { margin: 0; color: var(--body); font-size: 18px; }
+    .validation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; margin-top: 64px; }
+    .validation-column + .validation-column { border-left: 1px solid #d8dde1; padding-left: 72px; }
+    .validation-column h3 { margin-bottom: 24px; color: var(--red); font-size: 26px; }
+    .validation-column ol { margin: 0; padding: 0; list-style: none; counter-reset: validation; }
+    .validation-column li { position: relative; min-height: 78px; padding: 0 0 22px 56px; color: var(--body); font-size: 19px; }
+    .validation-column li::before { counter-increment: validation; content: counter(validation, decimal-leading-zero); position: absolute; left: 0; top: 0; color: var(--cyan); font-size: 25px; line-height: 1; font-weight: 900; }
+    .assumption-table { width: 100%; margin-top: 38px; border-collapse: collapse; table-layout: fixed; }
+    .assumption-table th, .assumption-table td { padding: 17px 20px; border-top: 1px solid #d8dde1; text-align: left; vertical-align: top; font-size: 18px; line-height: 1.42; }
+    .assumption-table th { color: var(--red); font-weight: 900; }
+    .assumption-table th:first-child, .assumption-table td:first-child { width: 250px; color: var(--ink); font-weight: 850; }
     #controls { z-index: 20; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 7px 16px; color: #e8eaed; background: #17191d; border-top: 1px solid #30343a; }
     #controls button { padding: 6px 13px; border: 1px solid #4a5058; border-radius: 7px; background: #272a2f; color: #fff; font: inherit; cursor: pointer; }
     #position { min-width: 92px; text-align: center; font-weight: 800; }
@@ -209,29 +234,29 @@
   <main id="viewport"><div id="deck">
     <section class="slide" data-chapter="0" data-chapter-page="0">
       <div class="slide-meta"><span>01｜提案摘要</span><span>不計入 15 頁</span></div>
-      <h1>把每次車況都變成可靠證據</h1>
+      <h1>提案摘要</h1>
       <div class="proposal-table" aria-label="提案摘要表格">
         <div class="key">團隊名稱</div><div>尖銳吉吉今晚考駕照</div>
-        <div class="key">產品／服務名稱</div><div><strong>iRent InspectFlow</strong>｜AI 智能車況檢查與整備管家</div>
+        <div class="key">產品／服務名稱</div><div><strong>Be CARful</strong>｜AI 智能車況檢查與整備管家</div>
         <div class="key">企業挑戰題目</div><div>運用 AI 打造 iRent 智能車況管家：優化租還車體驗與營運效率</div>
         <div class="key">目標對象</div><div>iRent 服務使用者、後台客服與營運人員</div>
         <div class="key">解決方案設計重點<br><span class="small">至多 3 項</span></div>
         <div><ol>
-          <li>AI 逐幀檢查掃描位置與影像品質，引導完成六區掃描並自動保存合格影像。</li>
+          <li>我們將原本的自由拍照改為連續掃描；手機 AI 逐幀檢查掃描位置與影像品質，引導使用者完成六區掃描，並自動保存合格影像。</li>
           <li>AI 比較取車前與還車後影像，辨識疑似新車損與整潔異常，並暫停疑似異常車輛。</li>
           <li>AI 自動處理高信心正常事件，讓車輛返回一般服務流程；人員只審核例外並送出清潔、維修、停用與索賠請求。</li>
         </ol></div>
         <div class="key">運用到的 AI 技術、<br>服務或模型等資源</div>
         <div>手機端以輕量 AI 即時辨識拍攝區域與影像品質（MobileNetV3、OpenCV，透過 TFLite／Core ML 執行）；雲端 AI 負責尋找基準影像、修正角度並辨識前後差異（DINOv2、LightGlue、影像分割與差異模型）。正式組合仍須以官方資料驗證。</div>
-        <div class="key">預期效益簡述</div><div>InspectFlow 可提高影像可判讀性，減少人員審核正常事件的工作量與失誤；系統也能更早攔截疑似異常車輛，並讓營運人員集中管理車輛與處理請求。實際成效將以試點量測。</div>
+        <div class="key">預期效益簡述</div><div>Be CARful 可提高影像可判讀性，減少人員審核正常事件的工作量與失誤；系統也能更早攔截疑似異常車輛，並讓營運人員集中管理車輛與處理請求。實際成效將以試點量測。</div>
       </div>
       <div class="page-label">提案摘要｜不計入 15 頁</div>
     </section>
 
     <section class="slide" data-chapter="1" data-chapter-page="0">
-      <div class="slide-meta"><span>02｜提案概述</span><span>InspectFlow</span></div>
+      <div class="slide-meta"><span>02｜提案概述</span><span>Be CARful</span></div>
       <h2>先把影像拍對，再讓 AI 判對</h2>
-      <p class="lead">我們把 InspectFlow 嵌入 iRent 原有取還車流程，將自由拍照改為引導式連續掃描。手機端先確保影像清楚、完整且可比較，雲端再整理前後差異與異常證據，讓人員只處理真正需要判斷的案件。</p>
+      <p class="lead">我們把 Be CARful 嵌入 iRent 原有取還車流程，將自由拍照改為引導式連續掃描。手機端先確保影像清楚、完整且可比較，雲端再整理前後差異與異常證據，讓人員只處理真正需要判斷的案件。</p>
       <div class="overview-grid">
         <div class="value-list">
           <div class="value-item"><div class="value-num">1</div><div><h3>掃描當下確保影像品質</h3><p>AI 逐幀檢查位置與品質，只保留符合條件的六區影像。</p></div></div>
@@ -281,11 +306,11 @@
           <div class="pipeline-node"><b>4　雲端 AI 對齊與比較</b><span>雲端 AI 取得同車同區域的基準影像，整理異常位置、類型與判讀信心。</span></div>
         </div></div>
         <div class="pipeline-stage"><div class="stage-name">營運處理</div><div class="pipeline-nodes">
-          <div class="pipeline-node"><b>5　InspectFlow 依結果分流</b><span>InspectFlow 自動處理高信心正常事件，讓車輛返回一般服務流程；疑似異常或低信心車輛先暫停供租。</span></div>
+          <div class="pipeline-node"><b>5　Be CARful 依結果分流</b><span>Be CARful 自動處理高信心正常事件，讓車輛返回一般服務流程；疑似異常或低信心車輛先暫停供租。</span></div>
           <div class="pipeline-node"><b>6　營運人員確認並送出請求</b><span>營運人員決定放行，或透過 API 送出清潔、維修、停用與索賠請求。</span></div>
         </div></div>
       </div>
-      <div class="pipeline-result"><div class="result-path normal">高信心正常 → 車輛自動返回一般服務流程</div><div class="result-path exception">InspectFlow 暫停疑似異常或低信心車輛，營運人員進行審核</div></div>
+      <div class="pipeline-result"><div class="result-path normal">高信心正常 → 車輛自動返回一般服務流程</div><div class="result-path exception">Be CARful 暫停疑似異常或低信心車輛，營運人員進行審核</div></div>
       <div class="page-label">4 / 16</div>
     </section>
 
@@ -294,9 +319,9 @@
       <h2>一鍵開始，跟著引導完成六區掃描</h2>
       <p class="lead">我們保留使用者熟悉的 iRent 還車介面，按下「掃描車輛狀況」後直接進入橫向掃描；系統自動辨識區域、保存合格影像，完成後回到摘要與原有還車流程。</p>
       <div class="mobile-story">
-        <div><img class="phone-shot" src="assets/prototype/mobile-entry-390x844.png" alt="手機端掃描入口" /><p class="shot-caption"><strong>單一入口</strong><br>六區皆由待掃描開始</p></div>
-        <div class="mobile-main"><img class="scan-shot" src="assets/prototype/mobile-front-guidance-844x390.png" alt="橫向掃描與方向引導" /><div class="feature-line"><span class="chip">即時方向引導</span><span class="chip">品質鎖定</span><span class="chip">自動擷取</span></div><p class="shot-caption">橫向全畫面掃描，右下角同步顯示六區進度。</p></div>
-        <div><img class="phone-shot" src="assets/prototype/mobile-summary-390x844.png" alt="手機端六區摘要" /><p class="shot-caption"><strong>完成摘要</strong><br>確認六區結果後上傳</p></div>
+        <div><div class="mobile-visual"><img class="phone-shot" src="assets/prototype/mobile-entry-390x844.png" alt="手機端掃描入口" /></div><p class="shot-caption"><strong>單一入口</strong><br>六區皆由待掃描開始</p></div>
+        <div class="mobile-main"><div class="mobile-visual"><img class="scan-shot" src="assets/prototype/mobile-front-guidance-844x390.png" alt="橫向掃描與方向引導" /></div><div class="feature-line"><span class="chip">即時方向引導</span><span class="chip">品質鎖定</span><span class="chip">自動擷取</span></div><p class="shot-caption">橫向全畫面掃描，右下角同步顯示六區進度。</p></div>
+        <div><div class="mobile-visual"><img class="phone-shot" src="assets/prototype/mobile-summary-390x844.png" alt="手機端六區摘要" /></div><p class="shot-caption"><strong>完成摘要</strong><br>確認六區結果後上傳</p></div>
       </div>
       <div class="page-label">5 / 16</div>
     </section>
@@ -309,7 +334,7 @@
         <div class="detail-card"><img src="assets/prototype/mobile-front-guidance-844x390.png" alt="車頭方向引導" /><div><h3>辨識區域與方向</h3><p>手機 AI 會持續辨識目前拍攝的車身區域。畫面偏離時，系統只顯示一個方向提示，讓使用者立即修正。</p><span class="tech">技術：用輕量影像模型辨識視角（MobileNetV3）</span></div></div>
         <div class="detail-card"><img src="assets/prototype/mobile-damage-detected-844x390.png" alt="刮痕異常框選" /><div><h3>發現疑似異常</h3><p>手機 AI 先在廣角影像中標出疑似刮痕或髒污。只有需要確認的區域，App 才要求使用者靠近補充影像。</p><span class="tech">技術：用物件偵測與影像分割標出異常範圍</span></div></div>
         <div class="detail-card"><img src="assets/prototype/mobile-damage-closeup-844x390.png" alt="向前靠近刮痕的移動引導" /><div><h3>連續移動補掃</h3><p>App 先讓箭頭停留，使用者看清方向後再開始移動。到達適合距離時，系統直接擷取異常特寫。</p><span class="tech">技術：讓 AI 在手機上快速執行（TFLite／Core ML）</span></div></div>
-        <div class="detail-card"><img src="assets/prototype/mobile-interior-finding-844x390.png" alt="車內髒污辨識" /><div><h3>車內整潔辨識</h3><p>手機 AI 會定位座椅與腳踏區的污漬或垃圾，再把整潔程度分成髒污、普通與乾淨，只有髒污會建立異常。</p><span class="tech">技術：影像處理搭配輕量分類模型（OpenCV）</span></div></div>
+        <div class="detail-card"><img src="assets/scan-left.png" alt="正常車側即時掃描" /><div><h3>即時逐幀檢驗</h3><p>手機 AI 持續檢查每一幀的拍攝區域與影像品質。位置、距離或清晰度不合格時，App 立即提示調整；畫面穩定後才自動擷取。</p><span class="tech">技術：輕量影像辨識與即時影像處理（MobileNetV3、OpenCV）</span></div></div>
       </div>
       <div class="page-label">6 / 16</div>
     </section>
@@ -335,7 +360,6 @@
           <div class="evidence-layer"><h3>1　影像證據</h3><p>工作台把同區域的取車前、還車後與異常特寫放在一起，讓營運人員直接確認問題是否為本次新增。</p></div>
           <div class="evidence-layer"><h3>2　AI 判讀結果</h3><p>雲端 AI 先找出同車同區域的基準影像並修正角度差，再標出異常位置、類型、嚴重度、信心與判讀限制。技術包含 DINOv2、LightGlue、影像分割與前後差異模型。</p></div>
           <div class="evidence-layer"><h3>3　人工處理</h3><p>營運人員根據影像與 AI 限制決定放行，或選擇清潔、維修、停用，並視需要同步送出索賠請求。</p></div>
-          <div class="boundary">AI 不判定法律責任或賠償金額；模型與門檻須以官方資料驗證。</div>
         </div>
       </div>
       <div class="page-label">8 / 16</div>
@@ -348,11 +372,11 @@
       <div class="architecture">
         <div class="arch-layer"><div class="arch-index">01</div><h3>iRent App 與手機端 AI</h3><p><strong>接收資料</strong>App 取得訂單、車輛資訊與相機即時畫面。</p><p><strong>執行工作</strong>手機 AI 逐幀辨識六區與影像品質，畫面穩定後保存最清楚的影格。</p><div class="model-note">在手機上即時回應，不必等待影像上傳。技術：MobileNetV3、OpenCV、TFLite／Core ML</div></div>
         <div class="diagram-arrow">→</div>
-        <div class="arch-layer"><div class="arch-index">02</div><h3>InspectFlow 雲端 AI</h3><p><strong>接收資料</strong>雲端取得本次掃描，以及同車同區域的取車前或可信歷史影像。</p><p><strong>執行工作</strong>雲端 AI 先修正影像角度差，再辨識新增車損與整潔異常。</p><div class="model-note">技術：影像檢索、特徵配對、影像分割與前後差異模型</div></div>
+        <div class="arch-layer"><div class="arch-index">02</div><h3>Be CARful 雲端 AI</h3><p><strong>接收資料</strong>雲端取得本次掃描，以及同車同區域的取車前或可信歷史影像。</p><p><strong>執行工作</strong>雲端 AI 先修正影像角度差，再辨識新增車損與整潔異常。</p><div class="model-note">技術：影像檢索、特徵配對、影像分割與前後差異模型</div></div>
         <div class="diagram-arrow">→</div>
         <div class="arch-layer"><div class="arch-index">03</div><h3>營運工作台</h3><p><strong>呈現資料</strong>工作台把前後影像、異常特寫、AI 信心與限制放在同一頁。</p><p><strong>人工決策</strong>客服與營運人員確認是否放行，以及是否需要清潔、維修或停用。</p></div>
         <div class="diagram-arrow">→</div>
-        <div class="arch-layer"><div class="arch-index">04</div><h3>iRent 既有系統</h3><p><strong>接收請求</strong>既有系統接收 InspectFlow 整理好的車況證據、處理方式與索賠請求。</p><p><strong>承接作業</strong>iRent 原有流程繼續管理人員、廠商、進度與最終結果。</p><div class="model-note">InspectFlow 透過 API 傳送請求，不取代現有營運系統</div></div>
+        <div class="arch-layer"><div class="arch-index">04</div><h3>iRent 既有系統</h3><p><strong>接收請求</strong>既有系統接收 Be CARful 整理好的車況證據、處理方式與索賠請求。</p><p><strong>承接作業</strong>iRent 原有流程繼續管理人員、廠商、進度與最終結果。</p><div class="model-note">Be CARful 透過 API 傳送請求，不取代現有營運系統</div></div>
       </div>
       <div class="page-label">9 / 16</div>
     </section>
@@ -375,7 +399,7 @@
     <section class="slide" data-chapter="4" data-chapter-page="2">
       <div class="slide-meta"><span>11｜AI 應用方法</span><span>資料流與處理位置</span></div>
       <h2>每次判讀都有來源，每個決策都能追溯</h2>
-      <p class="lead">InspectFlow 會保留來源影像、比較基準與人工決策。手機 AI 先選出合格影像，雲端 AI 再建立車況判讀結果；營運人員確認後，系統才產生 API 請求並接收外部處理狀態。</p>
+      <p class="lead">Be CARful 會保留來源影像、比較基準與人工決策。手機 AI 先選出合格影像，雲端 AI 再建立車況判讀結果；營運人員確認後，系統才產生 API 請求並接收外部處理狀態。</p>
       <div class="data-flow">
         <div class="data-step system"><div class="step-no">1</div><h3>租程資料</h3><p>iRent 提供車號、取還車時間與地點。</p></div><div class="diagram-arrow">→</div>
         <div class="data-step mobile"><div class="step-no">2</div><h3>合格影格</h3><p>手機 AI 只保存通過品質門檻的六區影像與必要特寫。</p></div><div class="diagram-arrow">→</div>
@@ -395,12 +419,12 @@
     <section class="slide" data-chapter="5" data-chapter-page="0">
       <div class="slide-meta"><span>12｜獨特優勢與差異化</span><span>完整證據流程</span></div>
       <h2>先改善影像來源，再提升判讀效率</h2>
-      <p class="lead">InspectFlow 不只辨識車損。我們先讓使用者取得可比較的影像，再建立前後差異、人工覆核與後續請求的完整流程，讓 AI 減少工作量，同時保留營運決策的人工控制。</p>
+      <p class="lead">Be CARful 不只辨識車損。我們先讓使用者取得可比較的影像，再建立前後差異、人工覆核與後續請求的完整流程，讓 AI 減少工作量，同時保留營運決策的人工控制。</p>
       <div class="evidence-path">
         <div class="path-step"><div class="step-no">01</div><h3>掃描時排除無效影像</h3><p>手機 AI 在拍攝當下檢查位置與品質。反光、失焦或範圍不足的影格不會被保存，也不會進入後台形成假異常。</p></div><div class="diagram-arrow">→</div>
         <div class="path-step"><div class="step-no">02</div><h3>比較有一致基準</h3><p>雲端 AI 優先使用同一租程的取車前影像；資料不足時，系統才補充可信的歷史紀錄。</p></div><div class="diagram-arrow">→</div>
-        <div class="path-step"><div class="step-no">03</div><h3>人員只看例外案件</h3><p>InspectFlow 自動處理高信心正常事件，讓車輛返回一般服務流程；只有疑似異常與低信心案件會進入人工覆核。</p></div><div class="diagram-arrow">→</div>
-        <div class="path-step"><div class="step-no">04</div><h3>既有流程直接承接</h3><p>InspectFlow 以 API 傳送證據與處理方式，iRent 既有系統繼續管理人員、廠商與索賠作業。</p></div>
+        <div class="path-step"><div class="step-no">03</div><h3>人員只看例外案件</h3><p>Be CARful 自動處理高信心正常事件，讓車輛返回一般服務流程；只有疑似異常與低信心案件會進入人工覆核。</p></div><div class="diagram-arrow">→</div>
+        <div class="path-step"><div class="step-no">04</div><h3>既有流程直接承接</h3><p>Be CARful 以 API 傳送證據與處理方式，iRent 既有系統繼續管理人員、廠商與索賠作業。</p></div>
       </div>
       <div class="page-label">12 / 16</div>
     </section>
@@ -410,7 +434,7 @@
       <h2>少一點重拍與看片，多一點直接處理</h2>
       <p class="lead">導入前，使用者自行判斷拍攝內容，後台人員再從大量角度不一的照片中搜尋與比較。導入後，App 先產生可比較影像，AI 自動處理正常事件、讓車輛返回一般服務流程，並整理例外證據供營運人員決策。</p>
       <div class="comparison">
-        <div></div><div class="head before">使用 InspectFlow 前</div><div></div><div class="head after">使用 InspectFlow 後</div>
+        <div></div><div class="head before">使用 Be CARful 前</div><div></div><div class="head after">使用 Be CARful 後</div>
         <div class="compare-row"><div class="topic">使用者操作</div><div class="before">自由拍照並逐張確認，品質問題常在上傳後才發現。</div><div class="compare-arrow">→</div><div class="after">依單一指令完成六區掃描，App 即時檢查並自動擷取合格影格。</div></div>
         <div class="compare-row"><div class="topic">車況比較</div><div class="before">人員自行尋找角度不一致的前後照片。</div><div class="compare-arrow">→</div><div class="after">系統整理同車同區域影像、異常特寫與可比程度。</div></div>
         <div class="compare-row"><div class="topic">人工審核</div><div class="before">正常與異常事件都需要人員查看。</div><div class="compare-arrow">→</div><div class="after">AI 自動處理高信心正常事件，讓車輛返回一般服務流程；人員只覆核例外案件。</div></div>
@@ -442,7 +466,7 @@
     <section class="slide" data-chapter="6" data-chapter-page="1">
       <div class="slide-meta"><span>15｜預期效益與落地評估</span><span>預期效益</span></div>
       <h2>使用者更安心，營運人員更專注</h2>
-      <p class="lead">InspectFlow 先提高車況影像品質，再用 AI 分流正常與例外事件。使用者可以完成較可靠的紀錄，後台人員則減少原本必須人工審核的正常事件，更早處理真正需要注意的車輛。</p>
+      <p class="lead">Be CARful 先提高車況影像品質，再用 AI 分流正常與例外事件。使用者可以完成較可靠的紀錄，後台人員則減少原本必須人工審核的正常事件，更早處理真正需要注意的車輛。</p>
       <div class="benefits-grid">
         <div class="benefit"><div class="benefit-mark">U</div><div><h3>對租車使用者</h3><p>降低不知道怎麼拍、反覆重拍與漏拍的負擔，留下較完整的車況紀錄。</p></div></div>
         <div class="benefit"><div class="benefit-mark">O</div><div><h3>對客服與營運人員</h3><p>減少即時看片與搜尋歷史照片的工作，降低疲勞、遺漏與誤放風險。</p></div></div>
@@ -455,7 +479,7 @@
     <section class="slide" data-chapter="6" data-chapter-page="2">
       <div class="slide-meta"><span>16｜預期效益與落地評估</span><span>條件、時程與資源</span></div>
       <h2>先小規模驗證，再逐步擴大導入</h2>
-      <p class="lead">InspectFlow 可先以獨立車況分析服務接入現有流程，不需要一次替換 iRent 既有系統。導入重點是取得可配對影像與人工覆核資料，確認 API 與權限規則，再逐步擴大自動化範圍。</p>
+      <p class="lead">Be CARful 可先以獨立車況分析服務接入現有流程，不需要一次替換 iRent 既有系統。導入重點是取得可配對影像與人工覆核資料，確認 API 與權限規則，再逐步擴大自動化範圍。</p>
       <div class="phases">
         <div class="phase-step"><div class="step-no">1</div><h3>資料盤點與離線驗證</h3><div class="duration">第 1 至 2 個月</div><p>資料團隊整理官方資料並建立標註規則，模型團隊先離線驗證影像品質與異常辨識能力。</p></div><div class="diagram-arrow">→</div>
         <div class="phase-step"><div class="step-no">2</div><h3>小規模試點與影子模式</h3><div class="duration">第 3 至 4 個月</div><p>iRent 選擇少量車型與區域試用，團隊比較 AI 與人工結果，但不讓 AI 直接改變車輛狀態。</p></div><div class="diagram-arrow">→</div>
@@ -469,6 +493,7 @@
       </div>
       <div class="page-label">16 / 16</div>
     </section>
+
   </div></main>
 
   <nav id="controls" aria-label="簡報控制列">
