@@ -3,721 +3,525 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <title>iRent InspectFlow｜2026 和泰 AI 黑客松初賽提案</title>
+  <title>iRent InspectFlow｜初賽提案簡報</title>
   <style>
     :root {
-      --navy-950:#07111f; --navy-900:#0a1728; --navy-800:#10243a;
-      --ink:#102033; --muted:#66778a; --line:#dce5ec; --paper:#f6f9fb;
-      --cyan:#16c7d7; --cyan-dark:#078a9a; --cyan-soft:#dff8fb;
-      --orange:#ff6b35; --orange-soft:#fff0e9; --red:#ef4444; --green:#21b57a;
-      --shadow:0 28px 80px rgba(0,0,0,.28);
-      --type-cover:94px; --type-subtitle:32px; --type-title:48px;
-      --type-heading:24px; --type-body:20px; --type-caption:18px;
-      --type-metric:64px; --type-index:32px;
-      --surface:#f4f8fa; --surface-alt:#f7fafc;
-      --box-radius:12px; --cell-pad:14px 18px; --box-pad:18px 24px;
+      --red: #df252b; --red-dark: #ad161d; --red-soft: #fff0f1;
+      --cyan: #12a9bc; --cyan-soft: #e8f8fa;
+      --green: #2f9e69; --green-soft: #eaf7f0;
+      --ink: #222326; --body: #45484d; --muted: #72777f;
+      --line: #d9dde2; --surface: #f3f5f7; --paper: #fbfbfa;
+      --shadow: 0 22px 70px rgba(20, 24, 31, .24);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;overflow:hidden;background:#030914;color:var(--ink);font-size:var(--type-caption);font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif}
-    body{display:grid;grid-template-rows:1fr 56px}
-    #viewport{position:relative;display:grid;place-items:center;overflow:hidden}
-    #deck{position:relative;width:1600px;height:900px;transform-origin:center center;background:white;box-shadow:var(--shadow);overflow:hidden}
-    .slide{position:absolute;inset:0;display:none;background:#fff;padding:70px 86px 58px;overflow:hidden}
-    .slide.active{display:block}
-    .slide.dark{background:linear-gradient(135deg,var(--navy-950),var(--navy-800));color:white}
-    .slide.soft{background:linear-gradient(145deg,#fff 0%,#f3f8fb 100%)}
-    .slide::after{content:attr(data-label);position:absolute;right:46px;bottom:24px;font-size:var(--type-caption);font-weight:700;letter-spacing:.08em;color:#8b9aa9}
-    .slide.dark::after{color:#6f879d}
-    .eyebrow{font-size:var(--type-caption);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan-dark);margin-bottom:14px}
-    h1,h2,h3,p{margin-top:0}
-    h1{font-size:var(--type-cover);line-height:1.06;letter-spacing:-.045em;margin-bottom:22px}
-    h2{font-size:var(--type-title);line-height:1.15;letter-spacing:-.035em;margin-bottom:34px}
-    h3{font-size:var(--type-heading);line-height:1.25;margin-bottom:14px}
-    p,li,td,th{font-size:var(--type-body);line-height:1.48}
-    .lead{font-size:var(--type-heading);line-height:1.42;color:#33485d;max-width:1120px}
-    .dark .lead{color:#cfe0eb}
-    .accent{color:var(--cyan-dark)} .orange{color:var(--orange)} .muted{color:var(--muted)}
-    .small{font-size:var(--type-caption);line-height:1.45}.micro{font-size:var(--type-caption);line-height:1.35}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
-    .grid-2.wide-left{grid-template-columns:1.22fr .78fr}
-    .grid-2.wide-right{grid-template-columns:.78fr 1.22fr}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
-    .rule{height:1px;background:var(--line);margin:24px 0}
-    .bullets{margin:0;padding-left:1.15em}.bullets li{margin:10px 0}.bullets.compact li{margin:5px 0}
-    .plain{list-style:none;padding:0;margin:0}.plain li{margin:10px 0;padding-left:28px;position:relative}.plain li::before{content:"";position:absolute;left:0;top:.65em;width:10px;height:10px;border-radius:50%;background:var(--cyan)}
-    .panel{border-left:6px solid var(--cyan);padding:20px 24px;background:#f4fafc}
-    .panel.warn{border-color:var(--orange);background:var(--orange-soft)}
-    .metric{font-size:var(--type-metric);font-weight:900;line-height:1;color:var(--cyan-dark);letter-spacing:-.04em}
-    .metric-label{font-size:var(--type-caption);color:var(--muted);margin-top:10px}
-    .photo{width:100%;height:100%;object-fit:cover;border-radius:26px;display:block;box-shadow:0 18px 42px rgba(9,32,52,.18)}
-    .photo.contain{object-fit:contain;background:var(--navy-900)}
-    .image-frame{position:relative;overflow:hidden;border-radius:28px;min-height:470px}
-    .image-frame .photo{position:absolute;inset:0}
-    .image-frame::after{content:"Prototype 模擬畫面";position:absolute;top:20px;right:20px;padding:8px 14px;border-radius:999px;background:rgba(7,17,31,.78);color:#fff;font-size:var(--type-caption);font-weight:800;letter-spacing:.06em}
-    .image-frame.concept-frame::after{content:"概念示意"}
-    .tag{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--cyan-soft);color:#087989;font-weight:800;font-size:var(--type-caption)}
-    .tag.warn{background:var(--orange-soft);color:#c4481a}
-    .flow{display:flex;align-items:stretch;gap:12px;margin-top:26px}
-    .flow .step{flex:1;position:relative;padding:22px 18px 18px;border-top:4px solid var(--cyan);background:#f5f9fb;min-height:150px}
-    .flow .step::after{content:"";position:absolute;right:-12px;top:42%;width:12px;height:2px;background:#9ccbd1}
-    .flow .step:last-child::after{display:none}
-    .dark .flow .step{color:var(--ink)}.dark .flow .step-note{color:var(--muted)}
-    .step-num{font-size:var(--type-caption);font-weight:900;color:var(--cyan-dark);margin-bottom:12px}
-    .step-title{font-size:var(--type-body);font-weight:900;line-height:1.25}
-    .step-note{font-size:var(--type-caption);color:var(--muted);line-height:1.4;margin-top:8px}
-    .table{width:100%;border-collapse:collapse}.table th{text-align:left;background:var(--navy-900);color:white;padding:16px 18px;font-size:var(--type-caption)}.table td{padding:15px 18px;border-bottom:1px solid var(--line);vertical-align:top;font-size:var(--type-caption)}.table tr:nth-child(even) td{background:#f7fafc}
-    .compare{display:grid;grid-template-columns:.82fr 1.18fr;border-top:1px solid var(--line)}
-    .compare>div{padding:15px 18px;border-bottom:1px solid var(--line);font-size:var(--type-body);line-height:1.35}
-    .compare>div:nth-child(odd){color:var(--muted)}.compare>div:nth-child(even){font-weight:750;background:#f4fbfc}
-    .quote{font-size:var(--type-subtitle);line-height:1.35;font-weight:850;letter-spacing:-.025em;max-width:1250px}
-    .note{position:absolute;left:86px;bottom:25px;font-size:var(--type-caption);color:#7d8b98;max-width:1230px}
-    .section-band{position:absolute;left:0;top:0;bottom:0;width:22px;background:var(--cyan)}
-    .cover{padding:0;background:var(--navy-950);color:white}
-    .cover-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;filter:brightness(1.2)}
-    .cover-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,34,51,1) 0%,rgba(17,34,51,.86) 22%,rgba(17,34,51,.62) 42%,rgba(17,34,51,.32) 62%,rgba(17,34,51,.1) 82%,rgba(17,34,51,0) 100%)}
-    .cover-copy{position:absolute;left:92px;top:125px;width:800px}
-    .cover h1{font-size:var(--type-cover)}.cover .subtitle{font-size:var(--type-subtitle);color:#d3e4ee;margin:0 0 32px}.cover .team{position:absolute;left:94px;bottom:66px;font-size:var(--type-body);color:#9fb4c4}
-    .summary-grid{display:grid;grid-template-columns:290px 1fr;border:2px solid #1c2e40;border-bottom:0}
-    .summary-grid>div{border-bottom:2px solid #1c2e40;padding:15px 18px;font-size:var(--type-caption);line-height:1.38}
-    .summary-grid .key{font-weight:900;background:#edf4f7}.summary-grid .value{color:#33485d}
-    .summary-grid ol{margin:0;padding-left:1.25em}.summary-grid li{font-size:var(--type-caption);margin:3px 0}
-    .roles{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:36px}
-    .role{padding-top:20px;border-top:5px solid var(--cyan)}.role:nth-child(2){border-color:#3f91d3}.role:nth-child(3){border-color:var(--orange)}.role:nth-child(4){border-color:#8b5cf6}
-    .role .index{font-size:var(--type-index);font-weight:900;color:#d9e7ec;line-height:1}.role p{font-size:var(--type-caption);color:var(--muted)}
-    .problem-row{display:grid;grid-template-columns:180px 1fr 240px;gap:28px;align-items:center;padding:23px 0;border-bottom:1px solid var(--line)}
-    .problem-row h3{margin:0}.problem-row p{font-size:var(--type-body);margin:0;color:var(--muted)}.problem-row .impact{font-size:var(--type-body);font-weight:850;color:#ba4d25}
-    .zone-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 24px}.zone{padding:15px 0;border-top:3px solid var(--cyan);font-size:var(--type-body);font-weight:800}
-    .stack{display:grid;gap:18px}.stack-item{display:grid;grid-template-columns:210px 1fr;gap:28px;padding:18px 0;border-bottom:1px solid var(--line)}.stack-item h3{margin:0}.stack-item p{font-size:var(--type-caption);margin:0;color:var(--muted)}
-    .risk-line{display:grid;grid-template-columns:180px 1fr 230px;gap:20px;padding:15px 0;border-bottom:1px solid var(--line);align-items:center}.risk-level{font-weight:900;font-size:var(--type-body)}.risk-action{font-size:var(--type-caption);color:var(--muted)}
-    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}.kpi-col{padding-top:20px;border-top:5px solid var(--cyan)}.kpi-col:nth-child(2){border-color:var(--orange)}.kpi-col:nth-child(3){border-color:#3f91d3}.kpi-col li{font-size:var(--type-caption);margin:6px 0}
-    .phase{display:grid;grid-template-columns:190px 1fr;gap:28px;padding:17px 0;border-bottom:1px solid var(--line)}.phase h3{margin:0}.phase p{margin:0;font-size:var(--type-caption);color:var(--muted)}
-    .doc-lead{font-size:var(--type-body);line-height:1.46;color:#405468;margin:-12px 0 26px;max-width:1390px}
-    .dense p,.dense li{font-size:var(--type-caption);line-height:1.42}.dense h3{font-size:var(--type-body);margin-bottom:9px}
-    .fact-row{display:grid;grid-template-columns:210px 1fr 300px;gap:24px;padding:15px 0;border-bottom:1px solid var(--line);align-items:start}.fact-row h3,.fact-row p{margin:0}.fact-row p{font-size:var(--type-caption);line-height:1.4}.fact-row .result{font-size:var(--type-caption);font-weight:800;color:#087989}
-    .fact-head{background:var(--navy-900);color:#fff;font-size:var(--type-caption);font-weight:900;padding:12px 18px}
-    .pipeline{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:24px}.pipeline-item{position:relative;padding:18px 14px 14px;background:#f4f8fa;border-top:5px solid var(--cyan);min-height:190px}.pipeline-item:nth-child(n+5){border-color:var(--orange)}.pipeline-item:not(:last-child)::after{content:"›";position:absolute;right:-11px;top:70px;color:#7aaeb4;font-size:var(--type-heading);font-weight:900;z-index:2}.pipeline-item b{display:block;font-size:var(--type-body);line-height:1.25;margin:8px 0}.pipeline-item p{font-size:var(--type-caption);line-height:1.38;color:var(--muted);margin:0}.pipeline-item .io{font-size:var(--type-caption);font-weight:900;color:var(--cyan-dark);letter-spacing:.06em}
-    .audience-heading{display:flex;align-items:center;gap:16px;margin-top:22px;font-size:var(--type-caption);font-weight:900;color:#31485c}.audience-heading::after{content:"";height:1px;background:var(--line);flex:1}.audience-timeline{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(2,32px);gap:6px 12px;margin-top:12px}.audience-bar{display:flex;align-items:center;padding:0 14px;border-radius:6px;font-size:var(--type-caption);font-weight:900;white-space:nowrap}.audience-user{grid-column:1 / 4;grid-row:1;background:#dff8fb;color:#087989;border-left:5px solid var(--cyan)}.audience-ops{grid-column:4 / 8;grid-row:2;background:#fff0e9;color:#b84b22;border-left:5px solid var(--orange)}.audience-note{font-size:var(--type-caption);line-height:1.35;color:var(--muted);margin:10px 0 0}
-    .scan-stage{display:grid;grid-template-columns:230px 1fr 280px;gap:24px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}.scan-stage h3,.scan-stage p{margin:0}.scan-stage p{font-size:var(--type-caption);line-height:1.38}.scan-stage .out{font-size:var(--type-caption);color:var(--muted)}
-    .proto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.proto-shot{min-width:0}.proto-shot img{width:100%;height:300px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.proto-shot h3{font-size:var(--type-body);margin:12px 0 5px}.proto-shot p{font-size:var(--type-caption);line-height:1.35;color:var(--muted);margin:0}
-    .backend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.backend-shot img{width:100%;height:285px;object-fit:cover;border-radius:18px;box-shadow:0 12px 30px rgba(9,32,52,.18)}.backend-shot h3{font-size:var(--type-body);margin:12px 0 5px}.backend-shot p{font-size:var(--type-caption);line-height:1.38;color:var(--muted);margin:0}
-    .logic-table{display:grid;grid-template-columns:170px 1fr 1fr 250px;border-top:1px solid var(--line)}.logic-table>div{padding:12px 14px;border-bottom:1px solid var(--line);font-size:var(--type-caption);line-height:1.36}.logic-table .head{background:var(--navy-900);color:#fff;font-weight:900}.logic-table .level{font-weight:900}.logic-table>div:nth-child(8n+5),.logic-table>div:nth-child(8n+6),.logic-table>div:nth-child(8n+7),.logic-table>div:nth-child(8n+8){background:#f7fafc}
-    .mini-note{font-size:var(--type-caption);line-height:1.35;color:var(--muted)}
-    .concept-item{display:grid;grid-template-columns:54px 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--line)}.concept-item:first-child{border-top:4px solid var(--cyan)}.concept-index{font-size:var(--type-index);font-weight:900;color:#b9d7dd;line-height:1}.concept-item h3{font-size:var(--type-body);margin:0 0 7px}.concept-item p{font-size:var(--type-caption);line-height:1.42;color:var(--muted);margin:0}
-    .overlay-label{position:absolute;background:rgba(7,17,31,.86);color:white;border:1px solid rgba(22,199,215,.75);padding:12px 16px;border-radius:12px;font-weight:800;font-size:var(--type-caption);box-shadow:0 10px 24px rgba(0,0,0,.25)}
-    .label-interior{right:38px;bottom:42px}.label-claim{right:38px;top:38px}.label-ops{left:35px;bottom:35px}.label-complete{right:38px;bottom:38px}
-    #controls{display:flex;align-items:center;justify-content:center;gap:16px;background:#07111f;color:#d4e3ed;border-top:1px solid #1d3045;padding:8px 18px;z-index:20}
-    #controls button{border:1px solid #39536b;background:#10243a;color:white;border-radius:9px;padding:8px 15px;font-size:var(--type-caption);cursor:pointer}#controls button:hover{background:#173450}
-    #position{min-width:140px;text-align:center;font-weight:800;font-size:var(--type-caption);color:#9fc6d3}
-    .progress{width:280px;height:4px;background:#24384b;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--cyan);width:0}
-    /* Shared hierarchy for all content slides; cover has its own display scale. */
-    .slide:not(.cover){background:#fff;padding:64px 86px 58px}
-    .slide h2{font-size:var(--type-title);font-weight:800;line-height:1.15;margin-bottom:28px}
-    .slide h3,.dense h3,.concept-item h3,.proto-shot h3,.backend-shot h3{font-size:var(--type-heading);font-weight:800;line-height:1.3}
-    .slide p,.slide li{font-size:var(--type-body);line-height:1.45}
-    .slide .doc-lead{font-size:var(--type-body);line-height:1.5;margin:0 0 26px;max-width:none}
-    .slide .note,.slide .mini-note,.slide .micro,.slide .audience-note,.slide .step-note,.slide .pipeline-item p,.slide .proto-shot p,.slide .backend-shot p,.slide .scan-stage .out{font-size:var(--type-caption);line-height:1.4}
-    .slide .note{margin:0;bottom:25px;max-width:1230px}
-    .slide .eyebrow,.slide .tag,.slide .io,.slide .step-num,.slide::after{font-size:var(--type-caption)}
-    .slide .step-title,.slide .pipeline-item b,.slide .audience-heading,.slide .fact-row .result,.slide .zone{font-size:var(--type-body)}
-    .slide .table td,.slide .table th,.slide .summary-grid>div,.slide .summary-grid li,.slide .logic-table>div,.slide .compare>div{font-size:var(--type-caption);line-height:1.45}
-    .slide .table th,.slide .logic-table .head,.slide .fact-head{background:var(--navy-900);color:#fff;font-weight:800}
-    .slide .panel{padding:18px 24px;border-left-width:4px}
-    .slide .panel p{font-size:var(--type-body);line-height:1.45}
-    .slide strong,.slide b{font-weight:800}
-    .cover .subtitle{font-size:var(--type-subtitle)}
-    .cover .team{font-size:var(--type-body)}
-    .scan-stage{grid-template-columns:155px minmax(0,1fr);gap:6px 18px}
-    .scan-stage .out{grid-column:2}
-    .audience-bar{white-space:normal;line-height:1.3}
-    /* Tables share cell spacing, borders and header treatment. */
-    .slide .table{border:1px solid var(--line);border-collapse:collapse}
-    .slide .table th,.slide .table td{padding:var(--cell-pad);border:1px solid var(--line);vertical-align:top}
-    .slide .table td{color:var(--ink);font-weight:400;background:#fff}
-    .slide .table tr:nth-child(even) td{background:var(--surface-alt)}
-    .slide .table:not(:has(thead)) td:first-child{background:var(--navy-900);color:#fff;font-weight:800;width:28%}
-    .slide .summary-grid,.slide .compare,.slide .logic-table{border:1px solid var(--line);gap:1px;background:var(--line)}
-    .slide .summary-grid>div,.slide .compare>div,.slide .logic-table>div{padding:var(--cell-pad);border:0;background:#fff;color:var(--ink);font-weight:400}
-    .slide .summary-grid .key,.slide .compare .head,.slide .logic-table .head{background:var(--navy-900);color:#fff;font-weight:800}
-    .slide .summary-grid>div:nth-child(4n),.slide .compare>div:nth-child(4n+3),.slide .compare>div:nth-child(4n+4){background:var(--surface-alt)}
-    .slide .compare>div:nth-child(-n+2){background:var(--navy-900);color:#fff}
-    .slide .summary-grid .value,.slide .summary-grid .small{color:var(--ink)}
-    .slide .summary-grid .key .small{color:#fff}
-    /* Text boxes and flow cards share one surface and border vocabulary. */
-    .slide .panel{margin-top:24px;padding:var(--box-pad);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--cyan);border-radius:var(--box-radius)}
-    .slide .panel.warn{background:var(--orange-soft);border:1px solid var(--line);border-left:4px solid var(--orange)}
-    .slide .panel p{margin:0;color:var(--ink);line-height:1.45}
-    .slide .pipeline-item,.slide .flow .step{padding:18px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--cyan);border-radius:var(--box-radius)}
-    .slide .pipeline-item:nth-child(n+5){border-top-color:var(--cyan)}
-    .slide .image-frame,.slide .photo,.slide .proto-shot img,.slide .backend-shot img{border-radius:var(--box-radius)}
-    .slide .overlay-label{border-radius:var(--box-radius);padding:12px 18px}
-    /* Proposal summary retains the original form-style table. */
-    .slide .summary-grid{gap:0;background:transparent;border:2px solid #1c2e40;border-bottom:0}
-    .slide .summary-grid>div{padding:15px 18px;border-bottom:2px solid #1c2e40;background:transparent;font-size:var(--type-caption);line-height:1.38}
-    .slide .summary-grid .key{background:#edf4f7;color:var(--ink);font-weight:900}
-    .slide .summary-grid .value{background:transparent;color:#33485d}
-    .slide .summary-grid .key .small{color:inherit}
-    /* Chapter progress: 16px is an explicit exception to the body type scale. */
-    .chapter-progress{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:flex-start;gap:0;padding:18px 86px;background:#f2f3f5;border:0;border-bottom:2px solid #cbd3da;border-radius:0}
-    .chapter-group{display:flex;align-items:center;gap:8px;min-width:0;color:#66778a}
-    .chapter-group:not(:last-child){flex:1}
-    .chapter-group:not(:last-child)::after{content:"";display:block;flex:1;min-width:8px;height:1px;background:#bdc8d1;margin:0}
-    .chapter-group:not(:last-child){gap:0}
-    .chapter-group:not(:last-child) .chapter-dots{margin-left:8px}
-    .chapter-name,.chapter-dots{flex-shrink:0}
-    .chapter-name{font-size:16px;line-height:1.2;white-space:nowrap;font-weight:500}
-    .chapter-group.current{color:var(--cyan-dark)}
-    .chapter-group.current .chapter-name{font-weight:800}
-    .chapter-dots{display:flex;align-items:center;gap:4px}
-    .chapter-dot{width:8px;height:8px;border:1px solid #a8bac5;border-radius:50%;display:block}
-    .chapter-dot.current{background:var(--cyan-dark);border-color:var(--cyan-dark)}
-    .slide.has-chapter-progress:not(.cover){padding-top:94px}
-    .cover .chapter-progress{background:#f2f3f5;border-color:#cbd3da}
-    .cover .chapter-group{color:#66778a}
-    .cover .chapter-group.current{color:var(--cyan-dark)}
-    .cover .chapter-dot{border-color:#a8bac5}
-    .cover .chapter-dot.current{background:var(--cyan-dark);border-color:var(--cyan-dark)}
-    /* Matching table types use shared column proportions. */
-    .slide .table{table-layout:fixed}
-    .slide .table th{font-weight:800}
-    .slide .table td b,.slide .table td strong{font-weight:800}
-    .slide .table td:first-child{font-weight:800}
-    .slide .table-three th:first-child{width:20%}
-    .slide .table-three th:nth-child(2),.slide .table-three th:nth-child(3){width:40%}
-    .slide .table-four th:first-child{width:18%}
-    .slide .table-four th:nth-child(n+2){width:27.3333%}
-    .slide .table-two th:first-child,.slide .table:not(:has(thead)) td:first-child{width:28%}
-    .slide .table-two th:nth-child(2){width:72%}
-    .slide .compare{grid-template-columns:1fr 1fr}
-    @media print{
-      html,body{overflow:visible;background:white;height:auto} body{display:block} #viewport{display:block;overflow:visible} #deck{width:auto;height:auto;transform:none!important;box-shadow:none;overflow:visible} .slide{position:relative;display:block!important;width:1600px;height:900px;page-break-after:always} #controls{display:none}
-      @page{size:16.6667in 9.375in;margin:0}
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body { overflow: hidden; display: grid; grid-template-rows: 1fr 52px; color: var(--ink); background: #17191d; font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif; }
+    #viewport { display: grid; place-items: center; overflow: hidden; }
+    #deck { position: relative; width: 1600px; height: 900px; overflow: hidden; transform-origin: center; background: var(--paper); box-shadow: var(--shadow); }
+    .slide { position: absolute; inset: 0; display: none; padding: 112px 78px 42px; overflow: hidden; background: radial-gradient(circle at 100% 100%, rgba(223, 37, 43, .035), transparent 28%), var(--paper); }
+    .slide.active { display: block; }
+    .chapter-progress { position: absolute; top: 0; left: 0; right: 0; height: 70px; display: flex; align-items: center; padding: 0 78px; background: #f1f3f5; border-bottom: 1px solid #cfd4da; }
+    .chapter-group { display: flex; align-items: center; min-width: 0; color: #7a838d; }
+    .chapter-group:not(:last-child) { flex: 1; }
+    .chapter-group:not(:last-child)::after { content: ""; height: 1px; flex: 1; min-width: 18px; margin: 0 14px; background: #c7cdd3; }
+    .chapter-name { font-size: 16px; font-weight: 800; white-space: nowrap; }
+    .chapter-dots { display: inline-flex; gap: 5px; margin-left: 8px; }
+    .chapter-dot { width: 9px; height: 9px; border: 1.5px solid #b7c0c9; border-radius: 50%; background: transparent; }
+    .chapter-group.current .chapter-name { color: var(--red); }
+    .chapter-dot.done { border-color: var(--red); background: var(--red); }
+    .chapter-dot.current { border-color: var(--red); background: var(--red); box-shadow: 0 0 0 4px rgba(223, 37, 43, .12); }
+    .slide-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; color: var(--red); font-size: 18px; font-weight: 850; letter-spacing: .04em; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { margin-bottom: 14px; letter-spacing: -.035em; }
+    h1 { font-size: 46px; line-height: 1.12; }
+    h2 { font-size: 42px; line-height: 1.16; }
+    h3 { font-size: 24px; line-height: 1.3; }
+    p, li, td, th { font-size: 20px; line-height: 1.5; }
+    .lead { margin-bottom: 24px; color: var(--body); font-size: 22px; line-height: 1.55; }
+    .small { font-size: 17px; line-height: 1.45; }
+    .muted { color: var(--muted); }
+    .page-label { position: absolute; right: 38px; bottom: 20px; color: #8a9097; font-size: 15px; font-weight: 750; }
+    .proposal-table { display: grid; grid-template-columns: 270px 1fr; border: 2px solid #25282c; background: #25282c; gap: 1px; }
+    .proposal-table > div { padding: 19px 18px; background: #fff; font-size: 19px; line-height: 1.42; }
+    .proposal-table .key { display: flex; align-items: center; background: #f0f2f4; font-weight: 850; }
+    .proposal-table ol { margin: 0; padding-left: 1.25em; }
+    .proposal-table li { margin: 3px 0; font-size: 19px; line-height: 1.38; }
+    .overview-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 52px; align-items: stretch; margin-top: 62px; }
+    .value-list { display: grid; grid-template-rows: repeat(3, 1fr); gap: 0; height: 400px; padding-top: 0; }
+    .value-item { display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: center; }
+    .value-num { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--red); color: #fff; font-size: 22px; font-weight: 900; }
+    .value-item h3 { margin: 1px 0 5px; }
+    .value-item p { margin: 0; color: var(--body); font-size: 20px; }
+    .overview-route { display: grid; grid-template-rows: repeat(3, 1fr); height: 400px; padding: 0 8px 0 24px; }
+    .route-row { display: grid; grid-template-columns: 112px 1fr; gap: 18px; align-items: center; padding: 0; }
+    .route-row:last-child { border-bottom: 0; }
+    .route-label { color: var(--red); font-size: 18px; font-weight: 850; }
+    .route-row p { margin: 0; color: var(--body); font-size: 20px; }
+    .audience-grid { display: grid; gap: 38px; margin-top: 44px; }
+    .audience { padding: 0; }
+    .audience + .audience { padding-top: 38px; border-top: 2px solid #d7dbe0; }
+    .audience-title { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+    .audience-icon { width: 46px; height: 46px; display: grid; place-items: center; border: 2px solid currentColor; border-radius: 50%; color: var(--red); font-size: 18px; font-weight: 900; }
+    .audience:nth-child(2) .audience-icon { color: var(--cyan); }
+    .audience h3 { margin: 0; }
+    .audience ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin: 0 0 0 62px; padding: 0; list-style: none; }
+    .audience:nth-child(2) ul { grid-template-columns: repeat(4, 1fr); }
+    .audience li { position: relative; margin: 0; color: var(--body); font-size: 20px; line-height: 1.58; }
+    .pipeline-wrap { margin-top: 34px; }
+    .pipeline-stage { display: grid; grid-template-columns: 132px 1fr; gap: 22px; align-items: stretch; margin-bottom: 0; padding: 22px 0 30px; }
+    .pipeline-stage + .pipeline-stage { border-top: 2px solid #d7dbe0; padding-top: 30px; }
+    .stage-name { display: flex; align-items: center; padding: 0; color: var(--ink); font-size: 22px; font-weight: 900; }
+    .pipeline-nodes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; }
+    .pipeline-node { position: relative; display: flex; min-height: 94px; flex-direction: column; justify-content: center; padding: 8px 4px; }
+    .pipeline-node:not(:last-child)::after { content: "→"; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: #8a929a; font-size: 44px; line-height: 1; font-weight: 900; }
+    .pipeline-node b { display: block; margin-bottom: 5px; font-size: 21px; }
+    .pipeline-node span { color: var(--body); font-size: 18px; line-height: 1.42; }
+    .pipeline-result { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 24px 0 0 154px; }
+    .result-path { padding-top: 13px; font-size: 18px; font-weight: 850; }
+    .result-path.normal { color: #267d55; }
+    .result-path.exception { color: var(--red-dark); }
+    .mobile-story { display: grid; grid-template-columns: 210px 1fr 210px; gap: 30px; align-items: center; margin-top: 18px; }
+    .phone-shot { height: 505px; width: 100%; object-fit: contain; display: block; filter: drop-shadow(0 12px 20px rgba(0,0,0,.16)); }
+    .scan-shot { width: 100%; height: 390px; object-fit: contain; display: block; border-radius: 14px; box-shadow: 0 14px 32px rgba(30,32,36,.17); }
+    .shot-caption { margin: 12px 0 0; text-align: center; color: var(--body); font-size: 18px; line-height: 1.4; }
+    .mobile-story > div:first-child .shot-caption, .mobile-story > div:last-child .shot-caption { margin-top: -2px; }
+    .mobile-main .feature-line { display: flex; justify-content: center; gap: 12px; margin-top: 98px; }
+    .chip { color: #087887; font-size: 16px; font-weight: 850; }
+    .chip:not(:last-child)::after { content: "／"; margin-left: 12px; color: #a2a8ae; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 42px; margin-top: 28px; }
+    .detail-card { display: grid; grid-template-columns: 282px 1fr; gap: 20px; align-items: center; min-height: 220px; }
+    .detail-card img { width: 282px; height: 201px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 24px rgba(20,24,31,.15); }
+    .detail-card h3 { margin: 0 0 7px; font-size: 21px; }
+    .detail-card p { margin: 0; color: var(--body); font-size: 18px; line-height: 1.45; }
+    .tech { display: inline-block; margin-top: 9px; color: #087887; font-size: 16px; line-height: 1.4; font-weight: 850; }
+    .backend-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px; }
+    .backend-card { min-width: 0; }
+    .backend-card img { width: 100%; height: 385px; object-fit: cover; object-position: top; border-radius: 12px; box-shadow: 0 12px 28px rgba(20,24,31,.15); }
+    .backend-card h3 { margin: 14px 0 6px; font-size: 22px; }
+    .backend-card p { margin: 0; color: var(--body); font-size: 18px; line-height: 1.45; }
+    .backend-note { margin-top: 26px; color: var(--body); font-size: 18px; font-weight: 750; }
+    .evidence-layout { display: grid; grid-template-columns: 940px 1fr; gap: 34px; align-items: start; margin-top: 18px; }
+    .evidence-shot { width: 940px; height: 570px; object-fit: cover; object-position: top; border-radius: 12px; box-shadow: 0 14px 34px rgba(20,24,31,.16); }
+    .evidence-stack { display: grid; gap: 14px; }
+    .evidence-layer { padding: 12px 0 18px; }
+    .evidence-layer:nth-child(2) { border-left-color: var(--cyan); }
+    .evidence-layer:nth-child(3) { border-left-color: var(--green); }
+    .evidence-layer h3 { margin: 0 0 5px; font-size: 20px; }
+    .evidence-layer p { margin: 0; color: var(--body); font-size: 17px; line-height: 1.45; }
+    .boundary { margin-top: 14px; color: var(--red-dark); font-size: 17px; line-height: 1.4; font-weight: 850; }
+    .architecture { display: grid; grid-template-columns: 1fr 54px 1fr 54px 1fr 54px 1fr; align-items: center; gap: 12px; margin-top: 70px; }
+    .arch-layer { min-height: 410px; padding: 8px 6px; }
+    .arch-index { margin-bottom: 16px; color: var(--red); font-size: 48px; line-height: 1; font-weight: 900; }
+    .arch-layer:nth-of-type(3) .arch-index { color: var(--cyan); }
+    .arch-layer:nth-of-type(5) .arch-index { color: var(--green); }
+    .arch-layer:nth-of-type(7) .arch-index { color: var(--red-dark); }
+    .arch-layer h3 { margin-bottom: 15px; font-size: 24px; }
+    .arch-layer p { margin-bottom: 24px; color: var(--body); font-size: 19px; }
+    .arch-layer strong { display: block; margin-bottom: 5px; }
+    .diagram-arrow { color: #8b929a; font-size: 40px; line-height: 1; font-weight: 900; text-align: center; }
+    .training-flow > .diagram-arrow, .data-flow > .diagram-arrow, .evidence-path > .diagram-arrow { align-self: center; }
+    .model-note { color: #087887; font-size: 17px; line-height: 1.42; font-weight: 850; }
+    .training-flow { display: grid; grid-template-columns: 1fr 48px 1fr 48px 1fr 48px 1fr 48px 1fr; align-items: start; gap: 8px; margin-top: 74px; }
+    .training-step { min-height: 0; }
+    .training-step .step-no, .data-step .step-no, .path-step .step-no, .phase-step .step-no { color: var(--red); font-size: 42px; line-height: 1; font-weight: 900; }
+    .training-step h3 { margin: 16px 0 10px; font-size: 22px; }
+    .training-step p { margin: 0; color: var(--body); font-size: 18px; }
+    .feedback-loop { display: grid; grid-template-columns: 1fr 70px 2.2fr; align-items: center; margin-top: 52px; color: var(--body); }
+    .feedback-loop strong { font-size: 21px; }
+    .feedback-loop p { margin: 0; font-size: 18px; }
+    .data-flow { display: grid; grid-template-columns: repeat(11, auto); align-items: start; justify-content: space-between; gap: 8px; margin-top: 68px; }
+    .data-step { width: 185px; min-height: 0; }
+    .data-step h3 { margin: 14px 0 9px; font-size: 21px; }
+    .data-step p { margin: 0; color: var(--body); font-size: 17px; line-height: 1.45; }
+    .data-step.mobile .step-no { color: var(--red); }
+    .data-step.cloud .step-no { color: var(--cyan); }
+    .data-step.human .step-no { color: var(--green); }
+    .data-step.system .step-no { color: var(--red-dark); }
+    .data-note { margin-top: 74px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; }
+    .data-note div { font-size: 18px; line-height: 1.5; color: var(--body); }
+    .data-note strong { display: block; margin-bottom: 7px; font-size: 20px; color: var(--ink); }
+    .evidence-path { display: grid; grid-template-columns: 1fr 62px 1fr 62px 1fr 62px 1fr; align-items: center; gap: 12px; margin-top: 106px; }
+    .path-step { min-height: 0; }
+    .path-step h3 { margin: 18px 0 12px; font-size: 23px; }
+    .path-step p { margin: 0; color: var(--body); font-size: 19px; }
+    .path-step:nth-of-type(3) .step-no { color: var(--cyan); }
+    .path-step:nth-of-type(5) .step-no { color: var(--green); }
+    .path-step:nth-of-type(7) .step-no { color: var(--red-dark); }
+    .comparison { display: grid; grid-template-columns: 225px 1fr 64px 1fr; column-gap: 28px; row-gap: 0; margin-top: 50px; align-items: stretch; }
+    .comparison .head { padding-bottom: 22px; font-size: 24px; font-weight: 900; }
+    .comparison .head.before { color: #737981; }
+    .comparison .head.after { color: var(--red); }
+    .comparison .topic { font-size: 20px; font-weight: 850; }
+    .comparison .before, .comparison .after { color: var(--body); font-size: 19px; line-height: 1.5; }
+    .comparison .after { font-weight: 750; }
+    .compare-row { display: contents; }
+    .compare-row > * { display: flex; align-items: center; padding: 26px 0; border-top: 1px solid #d8dde1; }
+    .compare-row:last-child > * { border-bottom: 1px solid #d8dde1; }
+    .comparison .compare-arrow { justify-content: center; color: #8b929a; font-size: 38px; line-height: 1; font-weight: 900; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 42px; margin-top: 48px; }
+    .metric-group { min-height: 380px; }
+    .metric-no { margin-bottom: 16px; color: var(--red); font-size: 48px; line-height: 1; font-weight: 900; }
+    .metric-group:nth-child(2) .metric-no { color: var(--cyan); }
+    .metric-group:nth-child(3) .metric-no { color: var(--green); }
+    .metric-group:nth-child(4) .metric-no { color: var(--red-dark); }
+    .metric-group h3 { margin-bottom: 14px; font-size: 24px; }
+    .metric-group ul { margin: 0; padding-left: 1.1em; }
+    .metric-group li { margin: 11px 0; color: var(--body); font-size: 18px; }
+    .metric-method { margin-top: 30px; display: grid; grid-template-columns: 1fr 56px 1fr 56px 1fr; gap: 18px; align-items: center; color: var(--body); }
+    .method-step { display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: center; }
+    .method-no { color: var(--red); font-size: 34px; line-height: 1; font-weight: 900; }
+    .method-step:nth-of-type(3) .method-no { color: var(--cyan); }
+    .method-step:nth-of-type(5) .method-no { color: var(--green); }
+    .method-step strong { display: block; margin-bottom: 3px; font-size: 19px; }
+    .method-step span { color: var(--body); font-size: 16px; line-height: 1.35; }
+    .method-arrow { color: #8b929a; font-size: 38px; line-height: 1; font-weight: 900; text-align: center; }
+    .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 104px 78px; margin-top: 86px; }
+    .benefit { display: grid; grid-template-columns: 58px 1fr; gap: 18px; }
+    .benefit .benefit-mark { color: var(--red); font-size: 44px; line-height: 1; font-weight: 900; }
+    .benefit:nth-child(2) .benefit-mark { color: var(--cyan); }
+    .benefit:nth-child(3) .benefit-mark { color: var(--green); }
+    .benefit:nth-child(4) .benefit-mark { color: var(--red-dark); }
+    .benefit h3 { margin: 0 0 10px; font-size: 24px; }
+    .benefit p { margin: 0; color: var(--body); font-size: 19px; }
+    .phases { display: grid; grid-template-columns: 1fr 50px 1fr 50px 1fr 50px 1fr; align-items: start; gap: 12px; margin-top: 40px; }
+    .phase-step { min-height: 0; }
+    .phases > .diagram-arrow { align-self: center; }
+    .phase-step h3 { margin: 14px 0 5px; font-size: 22px; }
+    .phase-step .duration { margin-bottom: 12px; color: var(--red); font-size: 17px; font-weight: 850; }
+    .phase-step p { margin: 0; color: var(--body); font-size: 18px; }
+    .resource-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 54px; margin-top: 34px; }
+    .resource-row h3 { margin-bottom: 7px; font-size: 21px; }
+    .resource-row p { margin: 0; color: var(--body); font-size: 18px; }
+    #controls { z-index: 20; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 7px 16px; color: #e8eaed; background: #17191d; border-top: 1px solid #30343a; }
+    #controls button { padding: 6px 13px; border: 1px solid #4a5058; border-radius: 7px; background: #272a2f; color: #fff; font: inherit; cursor: pointer; }
+    #position { min-width: 92px; text-align: center; font-weight: 800; }
+    @media print {
+      @page { size: 16.6667in 9.375in; margin: 0; }
+      html, body { width: 1600px; height: auto; overflow: visible; background: #fff; }
+      body { display: block; }
+      #viewport, #deck { width: 1600px; height: auto; display: block; overflow: visible; transform: none !important; box-shadow: none; }
+      .slide { position: relative; display: block !important; width: 1600px; height: 900px; break-after: page; page-break-after: always; }
+      #controls { display: none; }
     }
   </style>
 </head>
 <body>
-<main id="viewport">
-  <div id="deck">
-
-    <section class="slide has-chapter-progress cover active" data-label="1 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <img class="cover-bg" src="assets/scan-left.png" alt="手機引導掃描車身概念畫面" />
-      <div class="cover-overlay"></div>
-      <div class="cover-copy">
-        <div class="eyebrow" style="color:#56e2ec">2026 和泰 AI 黑客松</div>
-        <h1>iRent<br><span style="color:#38d7e3">InspectFlow</span></h1>
-        <p class="subtitle">AI 智能車況檢查與整備管家</p>
-        <span class="tag">引導掃描</span>
-        <span class="tag" style="margin-left:10px">車況辨識</span>
-        <span class="tag warn" style="margin-left:10px">索賠覆核</span>
-      </div>
-      <div class="team">尖銳吉吉今晚考駕照</div>
-    </section>
-
-    <section class="slide soft" data-label="提案摘要｜不計入 15 頁">
-      <div class="eyebrow">Proposal summary</div>
-      <h2 style="margin-bottom:22px">提案摘要</h2>
-      <div class="summary-grid">
-        <div class="key">團隊名稱</div><div class="value">尖銳吉吉今晚考駕照</div>
-        <div class="key">產品／服務名稱</div><div class="value"><b>iRent InspectFlow：AI 車況掃描與異常處理平台</b></div>
-        <div class="key">企業挑戰題目</div><div class="value">運用 AI 打造 iRent 智能車況管家：優化租還車體驗與營運效率</div>
-        <div class="key">目標對象</div><div class="value">iRent 服務使用者，以及負責車況審核與後續處理的後台客服及營運人員。</div>
+  <main id="viewport"><div id="deck">
+    <section class="slide" data-chapter="0" data-chapter-page="0">
+      <div class="slide-meta"><span>01｜提案摘要</span><span>不計入 15 頁</span></div>
+      <h1>把每次車況都變成可靠證據</h1>
+      <div class="proposal-table" aria-label="提案摘要表格">
+        <div class="key">團隊名稱</div><div>尖銳吉吉今晚考駕照</div>
+        <div class="key">產品／服務名稱</div><div><strong>iRent InspectFlow</strong>｜AI 智能車況檢查與整備管家</div>
+        <div class="key">企業挑戰題目</div><div>運用 AI 打造 iRent 智能車況管家：優化租還車體驗與營運效率</div>
+        <div class="key">目標對象</div><div>iRent 服務使用者、後台客服與營運人員</div>
         <div class="key">解決方案設計重點<br><span class="small">至多 3 項</span></div>
-        <div class="value"><ol><li>掃描確保品質：以六區即時引導取代自由拍照，影像合格後自動擷取。</li><li>AI 判斷並攔截異常：比較取車前、還車後與可信歷史影像，疑似異常先暫停供租並交由人工確認。</li><li>營運一次到位：集中審核、車輛管理及清潔、維修、停用、索賠請求，降低工作量與人工失誤。</li></ol></div>
-        <div class="key">運用到的 AI 技術、服務或模型等資源</div><div class="value"><b>Prototype：</b>Flutter、React、TypeScript、Vite 與固定腳本。<b>正式版規劃：</b>手機端以影像規則檢查模糊與曝光，並以 TensorFlow Lite／Core ML 輕量模型辨識視角、覆蓋範圍與遮擋；雲端執行影像檢索與對齊、車體／內裝分割、車損與髒污辨識及證據整合。</div>
-        <div class="key">預期效益簡述</div><div class="value">提高車況影像的可判讀性；由 AI 自動完成高信心正常事件，並暫停疑似異常或低信心車輛，<strong>減少人工看片量、疲勞與遺漏風險</strong>；集中車輛管理與請求送出，縮短異常處理時間。實際改善幅度將於試點階段驗證。</div>
+        <div><ol>
+          <li>AI 逐幀檢查掃描位置與影像品質，引導完成六區掃描並自動保存合格影像。</li>
+          <li>AI 比較取車前與還車後影像，辨識疑似新車損與整潔異常，並暫停疑似異常車輛。</li>
+          <li>AI 自動處理高信心正常事件，讓車輛返回一般服務流程；人員只審核例外並送出清潔、維修、停用與索賠請求。</li>
+        </ol></div>
+        <div class="key">運用到的 AI 技術、<br>服務或模型等資源</div>
+        <div>手機端以輕量 AI 即時辨識拍攝區域與影像品質（MobileNetV3、OpenCV，透過 TFLite／Core ML 執行）；雲端 AI 負責尋找基準影像、修正角度並辨識前後差異（DINOv2、LightGlue、影像分割與差異模型）。正式組合仍須以官方資料驗證。</div>
+        <div class="key">預期效益簡述</div><div>InspectFlow 可提高影像可判讀性，減少人員審核正常事件的工作量與失誤；系統也能更早攔截疑似異常車輛，並讓營運人員集中管理車輛與處理請求。實際成效將以試點量測。</div>
       </div>
+      <div class="page-label">提案摘要｜不計入 15 頁</div>
     </section>
 
-    <section class="slide has-chapter-progress" data-label="2 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group current"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot current" aria-current="step" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-<div class="eyebrow">1. 提案概述</div>
-      <h2>從可靠掃描、異常攔截，到營運一次到位</h2>
-      <p class="doc-lead">InspectFlow 不只辨識一張照片是否異常，而是重新串起影像取得、前後比較與後續處理。系統先確保輸入影像品質，再由 AI 篩選需要人員關注的例外案件，最後讓營運人員在同一工作台完成車輛管理與請求送出。</p>
-      <table class="table table-three overview-table">
-        <thead><tr><th>核心價值</th><th>設計方式</th><th>帶來的改善</th></tr></thead>
-        <tbody>
-          <tr><td><b>掃描確保品質</b></td><td>以六區即時引導取代自由拍照，當下排除失焦、反光、角度及覆蓋不足。</td><td>取得品質良好、區域完整且可比較的影像</td></tr>
-          <tr><td><b>AI 判斷與攔截</b></td><td>比較取車前、還車後與可信歷史影像；疑似異常或低信心案件先暫停供租並進入人工審核。</td><td>高信心正常事件不必逐張查看，異常車輛不直接放行</td></tr>
-          <tr><td><b>營運一次到位</b></td><td>集中異常審核、處理中案件、車輛管理與清潔、維修、停用、索賠請求。</td><td>降低工作量與失誤，縮短處理與跨系統轉送時間</td></tr>
-        </tbody>
-      </table>
-      <div class="panel"><p style="margin:0;"><b>提案目標：</b>讓人員只需處理真正需要判斷的例外案件，並以<strong>同一筆可追溯的車況紀錄</strong>完成後續處置。</p></div>
-    </section>
-
-    <section class="slide has-chapter-progress soft dense" data-label="3 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot current" aria-current="step" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">2. 目標對象與痛點分析</div>
-      <h2>一筆可信的車況資料，連接使用者與營運決策</h2>
-      <p class="doc-lead">目標對象收斂為 iRent 服務使用者，以及後台客服與營運人員兩類。使用者依引導取得合格影像；後台人員在單一工作台完成車況比對與人工覆核，再把確認後的處理或索賠請求送往既有系統。清潔、維修與索賠流程是<strong>後續協作與介接端</strong>，不是 InspectFlow 另行設計的使用者介面。</p>
-      <table class="table table-three">
-        <thead><tr><th>目標角色</th><th>主要痛點</th><th>對應解方</th></tr></thead>
-        <tbody>
-          <tr><td><b>iRent 服務使用者</b></td><td>不知道是否拍對位置，失焦、反光或漏拍通常要等到照片上傳後才被發現。</td><td>以即時掃描提供位置與品質提示，畫面連續合格後自動擷取，只有異常區域需要補掃。</td></tr>
-          <tr><td><b>後台客服及營運人員</b></td><td>正常與異常事件混在一起，需要持續逐張監看；人工搜尋、判讀與跨系統轉錄容易疲勞、遺漏或出錯。</td><td>AI 自動完成高信心正常事件，疑似異常或低信心車輛先暫停供租；人員只需覆核例外案件，並在同一工作台管理車輛及送出清潔、維修、停用或索賠請求。</td></tr>
-        </tbody>
-      </table>
-      <div class="panel warn"><p style="margin:0;"><b>核心問題：</b>照片品質決定後續判斷上限。若前端影像不可用，再好的辨識模型也無法補回缺失的證據。</p></div>
-    </section>
-
-    <section class="slide has-chapter-progress" data-label="4 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot current" aria-current="step" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">3. 解決方案設計</div>
-      <h2>InspectFlow 完整解方與資料 Pipeline</h2>
-      <p class="doc-lead">針對上述痛點，我們重新設計取還車檢查流程。InspectFlow 先以手機即時掃描協助使用者取得<strong>品質一致的照片</strong>，還車時再優先比對本次取車前掃描，並以上次還車或可信完工影像補充。系統會依判讀結果建立對應任務，員工完成處理後再以<strong>相同區域影像複檢</strong>，使本次結果成為下一次檢查可直接使用的基準。</p>
-      <div class="pipeline">
-        <div class="pipeline-item"><span class="io">INPUT</span><b>建立檢查任務</b><p>由訂單帶入車號、車型、取還車節點與必拍區域。</p></div>
-        <div class="pipeline-item"><span class="io">MOBILE VISION</span><b>即時引導掃描</b><p>以影像規則與輕量模型判斷位置、距離、角度及影像品質。</p></div>
-        <div class="pipeline-item"><span class="io">EVIDENCE</span><b>自動擷取與補掃</b><p>連續合格後擷取。疑似異常才要求近距離多角度影像。</p></div>
-        <div class="pipeline-item"><span class="io">CLOUD AI</span><b>租程與歷史基準</b><p>優先比對本次取車前影像，再以上次還車或完工影像補充。</p></div>
-        <div class="pipeline-item"><span class="io">DECISION</span><b>風險與證據分流</b><p>輸出正常、髒污、損傷或<strong>證據不足</strong>，附位置與信心。</p></div>
-        <div class="pipeline-item"><span class="io">WORKFLOW</span><b>案件與請求</b><p>人工確認後，以 API 送出清潔、維修、保養、停用或索賠請求。</p></div>
-        <div class="pipeline-item"><span class="io">FEEDBACK</span><b>狀態同步</b><p>接收既有系統的處理進度與結果，更新案件及車輛狀態。</p></div>
-      </div>
-      <div class="audience-heading">目標客群參與區段</div>
-      <div class="audience-timeline" aria-label="Pipeline 節點與目標客群對應時間條">
-        <div class="audience-bar audience-user">租車使用者｜建立檢查、即時掃描與異常補掃</div>
-        <div class="audience-bar audience-ops">後台客服及營運人員｜比對車況、人工覆核並送出處理或索賠請求</div>
-      </div>
-      <p class="audience-note">若未發現異常，使用者完成掃描後即可結束流程。只有發現異常或<strong>證據不足</strong>時，後台人員才需要接續覆核；後續執行由既有系統承接。</p>
-    </section>
-
-    <section class="slide has-chapter-progress soft" data-label="5 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">3. 解決方案設計</div>
-      <h2>即時掃描如何在拍攝當下建立可比較的車況影像</h2>
-      <p class="doc-lead">為了從源頭改善照片品質，我們將原本的<strong>手動拍照改為即時掃描</strong>。App 會持續分析相機預覽畫面，逐幀確認使用者正在拍攝的車身區域、距離、角度與成像品質。當畫面連續達到標準時，系統會<strong>自動保存最清晰的影格</strong>，讓不同使用者在不同時間取得視角與尺度相近的照片。</p>
-      <div class="grid-2 wide-right" style="align-items:start;gap:34px">
-        <div class="image-frame" style="min-height:500px"><img class="photo" src="assets/scan-left.png" alt="即時掃描與自動擷取模擬畫面" /><div class="overlay-label" style="left:28px;bottom:28px">連續合格後自動擷取</div></div>
-        <div>
-          <div class="scan-stage"><h3>1. 區域定位</h3><p>辨識目前是車頭、左側、車尾、右側、前座或後座，並套用該區域的取景框。</p><div class="out">輸出：區域與覆蓋率</div></div>
-          <div class="scan-stage"><h3>2. 幾何品質</h3><p>利用車身輪廓與關鍵點估算距離、水平、視角和遮擋，畫面偏離時即時提示移動方向。</p><div class="out">輸出：距離、角度、取景</div></div>
-          <div class="scan-stage"><h3>3. 成像品質</h3><p>檢查失焦、手震、曝光、逆光與強反光。<strong>未達門檻的影格不進入後續判斷</strong>。</p><div class="out">輸出：品質分數與原因</div></div>
-          <div class="scan-stage"><h3>4. 穩定擷取</h3><p><strong>多個連續影格均達標</strong>後選取最清晰的一張，避免偶發單幀誤判造成錯拍。</p><div class="out">設計目標：單區 1 至 2 秒鎖定</div></div>
-          <div class="scan-stage"><h3>5. 異常觸發</h3><p>廣角影像若出現疑似刮痕、凹陷或髒污，系統只針對該區要求近距離多角度補掃。</p><div class="out">輸出：異常框與補掃指示</div></div>
+    <section class="slide" data-chapter="1" data-chapter-page="0">
+      <div class="slide-meta"><span>02｜提案概述</span><span>InspectFlow</span></div>
+      <h2>先把影像拍對，再讓 AI 判對</h2>
+      <p class="lead">我們把 InspectFlow 嵌入 iRent 原有取還車流程，將自由拍照改為引導式連續掃描。手機端先確保影像清楚、完整且可比較，雲端再整理前後差異與異常證據，讓人員只處理真正需要判斷的案件。</p>
+      <div class="overview-grid">
+        <div class="value-list">
+          <div class="value-item"><div class="value-num">1</div><div><h3>掃描當下確保影像品質</h3><p>AI 逐幀檢查位置與品質，只保留符合條件的六區影像。</p></div></div>
+          <div class="value-item"><div class="value-num">2</div><div><h3>AI 判斷差異與異常</h3><p>系統比較本次取車前與還車後影像，疑似異常不直接放行。</p></div></div>
+          <div class="value-item"><div class="value-num">3</div><div><h3>一次支援營運處理</h3><p>AI 自動處理高信心正常事件，讓車輛返回一般服務流程；人員集中審核例外並送出處理請求。</p></div></div>
+        </div>
+        <div class="overview-route">
+          <div class="route-row"><div class="route-label">使用者端</div><p>App 依畫面引導使用者完成六區掃描；只有疑似異常區域需要補充近距離影像。</p></div>
+          <div class="route-row"><div class="route-label">AI 判讀</div><p>雲端 AI 比對同車同區域的基準影像，找出前後差異並整理異常位置與可信程度。</p></div>
+          <div class="route-row"><div class="route-label">營運端</div><p>客服與營運人員只查看待確認案件，再決定放行或送出清潔、維修、停用與索賠請求。</p></div>
         </div>
       </div>
-      <p class="note">1 至 2 秒是車身已對準且環境可判讀時的單區鎖定目標，並非完成全車檢查所需時間。六區設定將依 iRent 正式規範調整。</p>
+      <div class="page-label">2 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress" data-label="6 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">3. 解決方案設計</div>
-      <h2>手機端功能與 Prototype 完整流程</h2>
-      <p class="doc-lead">手機端流程以降低使用者負擔為設計原則。一般情況下，使用者只需依序掃描指定區域，系統會<strong>自動完成品質確認與影像擷取</strong>。當廣角畫面發現疑似刮痕、凹陷或髒污時，App 才會引導使用者補拍<strong>近距離與多角度影像</strong>，為後續判讀提供足夠證據。</p>
-      <div class="proto-grid">
-        <div class="proto-shot"><img src="assets/scan-left.png" alt="車身區域即時掃描模擬畫面"><h3>① 六區引導掃描</h3><p>畫面框線提示位置與距離。品質<strong>連續合格後自動擷取</strong>，完成區域同步標記。</p></div>
-        <div class="proto-shot"><img src="assets/scan-anomaly.png" alt="疑似異常偵測模擬畫面"><h3>② 疑似異常提示</h3><p>在廣角影像框出刮痕或髒污候選區，顯示原因並引導使用者靠近。</p></div>
-        <div class="proto-shot"><img src="assets/detail-scan.png" alt="異常近距離多角度掃描模擬畫面"><h3>③ 近距離多角度補掃</h3><p>依中央、左側、右側順序取證。<strong>多視角一致性</strong>用來確認異常位置與表面特徵是否持續存在；強反光已在擷取前由品質門檻排除。</p></div>
-        <div class="proto-shot"><img src="assets/interior-cleanliness.png" alt="車內整潔度掃描模擬畫面"><h3>④ 車內整潔檢查</h3><p>辨識垃圾、污漬及遺留物。嚴重髒污會<strong>建立清潔任務</strong>，遮蔽損傷時則安排清潔後複檢。</p></div>
+    <section class="slide" data-chapter="2" data-chapter-page="0">
+      <div class="slide-meta"><span>03｜目標對象與痛點分析</span><span>兩類直接使用者</span></div>
+      <h2>拍得更清楚，判得更省力</h2>
+      <p class="lead">我們聚焦 iRent 服務使用者與後台客服、營運人員；兩端問題都源自取車與還車影像的角度、範圍及品質缺乏一致標準。</p>
+      <div class="audience-grid">
+        <article class="audience"><div class="audience-title"><div class="audience-icon">U</div><h3>iRent 服務使用者</h3></div><ul>
+          <li><strong>拍攝位置難以確認：</strong>使用者不確定目前角度與車身範圍是否符合判讀需求。</li>
+          <li><strong>影像品質缺少回饋：</strong>問題常在上傳後才被發現，容易漏拍或需要重新補拍。</li>
+          <li><strong>既有問題難以說清楚：</strong>接手車輛時如果已有髒污或車損，使用者很難用目前的照片證明不是自己造成的。</li>
+        </ul></article>
+        <article class="audience"><div class="audience-title"><div class="audience-icon">O</div><h3>後台客服與營運人員</h3></div><ul>
+          <li><strong>正常照片仍須人工查看：</strong>大量即時看片增加工作量，也容易造成疲勞與遺漏。</li>
+          <li><strong>前後影像難以比較：</strong>角度與範圍不同，難以快速確認是否為本次新增異常。</li>
+          <li><strong>放行與停用容易誤判：</strong>證據不足可能放行異常車輛，或不必要地停用正常車輛。</li>
+          <li><strong>處理資訊需要再整理：</strong>完成判斷後仍須彙整車況，再送往既有系統處理。</li>
+        </ul></article>
       </div>
-      <div class="panel"><p style="margin:0"><b>完成條件：</b>必拍區域均取得合格影像，異常補掃完成或明確標示無法補拍，才結束本次檢查並上傳證據。</p></div>
+      <div class="page-label">3 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress soft dense" data-label="7 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">3. 解決方案設計</div>
-      <h2>雲端車況比對的概念</h2>
-      <p class="doc-lead">手機端已確保上傳照片具備一致的拍攝位置與品質，因此雲端的主要任務，是確認本次車況與先前紀錄相比是否出現值得處理的變化。系統會以<strong>同一車輛、相同區域的歷史照片</strong>作為基準，<strong>對齊前後影像後整理差異</strong>，供後台人員安排後續工作。</p>
-      <div class="grid-2 wide-left" style="align-items:start;gap:42px">
-        <div class="image-frame concept-frame" style="min-height:430px">
-          <img class="photo" src="assets/condition-comparison.png" alt="同一車輛相同區域的歷史與本次車況比對概念圖" />
-          <div class="overlay-label" style="left:24px;bottom:24px">本次取車前／上次還車</div>
-          <div class="overlay-label" style="right:24px;bottom:24px;border-color:var(--orange)">本次影像變化</div>
-        </div>
-        <div>
-          <div class="concept-item"><div class="concept-index">01</div><div><h3>跟什麼比對</h3><p>還車影像優先比對同一租程的取車前掃描；若缺失或不可比，再以上次還車或可信完工影像補充。</p></div></div>
-          <div class="concept-item"><div class="concept-index">02</div><div><h3>大概檢查什麼</h3><p>比較前後外觀是否出現明顯變化，例如新的表面損傷、髒污或車內整潔問題。</p></div></div>
-          <div class="concept-item"><div class="concept-index">03</div><div><h3>這一步的目的</h3><p>將差異整理成簡明的車況摘要，協助後台判斷是否需要建立清潔、巡檢、維修或索賠覆核任務。</p></div></div>
-        </div>
+    <section class="slide" data-chapter="3" data-chapter-page="0">
+      <div class="slide-meta"><span>04｜解方設計</span><span>整體產品與資料 Pipeline</span></div>
+      <h2>一條流程，串起掃描、判讀與處理</h2>
+      <p class="lead">我們將流程收斂為三個階段：先取得合格影像，再由 AI 建立可比較的車況結果，最後只把例外案件交給營運人員。</p>
+      <div class="pipeline-wrap">
+        <div class="pipeline-stage"><div class="stage-name">取得影像</div><div class="pipeline-nodes">
+          <div class="pipeline-node"><b>1　使用者完成六區掃描</b><span>使用者依 App 引導，依序掃描車頭、左側、車尾、右側、前座與後座。</span></div>
+          <div class="pipeline-node"><b>2　手機 AI 即時檢查</b><span>手機 AI 逐幀檢查位置與品質，並自動保存合格影格；只有疑似異常才要求補掃。</span></div>
+        </div></div>
+        <div class="pipeline-stage"><div class="stage-name">AI 判讀</div><div class="pipeline-nodes">
+          <div class="pipeline-node"><b>3　App 上傳合格影像</b><span>App 確認六區完成後上傳影像，使用者立即返回 iRent 原有服務流程。</span></div>
+          <div class="pipeline-node"><b>4　雲端 AI 對齊與比較</b><span>雲端 AI 取得同車同區域的基準影像，整理異常位置、類型與判讀信心。</span></div>
+        </div></div>
+        <div class="pipeline-stage"><div class="stage-name">營運處理</div><div class="pipeline-nodes">
+          <div class="pipeline-node"><b>5　InspectFlow 依結果分流</b><span>InspectFlow 自動處理高信心正常事件，讓車輛返回一般服務流程；疑似異常或低信心車輛先暫停供租。</span></div>
+          <div class="pipeline-node"><b>6　營運人員確認並送出請求</b><span>營運人員決定放行，或透過 API 送出清潔、維修、停用與索賠請求。</span></div>
+        </div></div>
       </div>
-      <div class="panel"><p style="margin:0"><b>判讀原則：</b>雲端負責找出並整理前後變化，後台人員仍可查看原始影像，再依營運規則決定實際處理方式。</p></div>
+      <div class="pipeline-result"><div class="result-path normal">高信心正常 → 車輛自動返回一般服務流程</div><div class="result-path exception">InspectFlow 暫停疑似異常或低信心車輛，營運人員進行審核</div></div>
+      <div class="page-label">4 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress" data-label="8 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">3. 解決方案設計</div>
-      <h2>使用情境：從發現污損到完成整備</h2>
-      <p class="doc-lead">以下情境說明 InspectFlow 如何把一次車況檢查轉成實際的營運任務。當使用者還車時掃描到明顯污損，系統會保留異常位置與照片，並依「清潔」分類建立任務。後台人員確認後即可安排員工處理，員工則以<strong>相同區域重新拍攝</strong>作為完工證據。</p>
-      <div class="pipeline" style="grid-template-columns:repeat(6,1fr);margin-top:38px">
-        <div class="pipeline-item"><span class="io">使用者端</span><b>完成還車掃描</b><p>App 確認六個指定區域都取得品質合格的影像。</p></div>
-        <div class="pipeline-item"><span class="io">車況辨識</span><b>發現車內污損</b><p>系統標記污損位置、影響範圍與來源照片。</p></div>
-        <div class="pipeline-item"><span class="io">任務建立</span><b>建立清潔任務</b><p>判讀類型直接對應處理任務，並附上異常影像。</p></div>
-        <div class="pipeline-item"><span class="io">後台處理</span><b>確認並安排人員</b><p>營運人員查看證據後，將任務交給合適的整備人員。</p></div>
-        <div class="pipeline-item"><span class="io">完工回報</span><b>清潔後重新掃描</b><p>員工依原異常位置回傳同區域的完工影像。</p></div>
-        <div class="pipeline-item"><span class="io">流程完成</span><b>複檢並更新狀態</b><p>污損已排除後關閉任務，並保存新的車況基準。</p></div>
+    <section class="slide" data-chapter="3" data-chapter-page="1">
+      <div class="slide-meta"><span>05｜手機端產品設計</span><span>沿用 iRent 操作語彙</span></div>
+      <h2>一鍵開始，跟著引導完成六區掃描</h2>
+      <p class="lead">我們保留使用者熟悉的 iRent 還車介面，按下「掃描車輛狀況」後直接進入橫向掃描；系統自動辨識區域、保存合格影像，完成後回到摘要與原有還車流程。</p>
+      <div class="mobile-story">
+        <div><img class="phone-shot" src="assets/prototype/mobile-entry-390x844.png" alt="手機端掃描入口" /><p class="shot-caption"><strong>單一入口</strong><br>六區皆由待掃描開始</p></div>
+        <div class="mobile-main"><img class="scan-shot" src="assets/prototype/mobile-front-guidance-844x390.png" alt="橫向掃描與方向引導" /><div class="feature-line"><span class="chip">即時方向引導</span><span class="chip">品質鎖定</span><span class="chip">自動擷取</span></div><p class="shot-caption">橫向全畫面掃描，右下角同步顯示六區進度。</p></div>
+        <div><img class="phone-shot" src="assets/prototype/mobile-summary-390x844.png" alt="手機端六區摘要" /><p class="shot-caption"><strong>完成摘要</strong><br>確認六區結果後上傳</p></div>
       </div>
-      <div class="grid-2 dense" style="margin-top:44px;align-items:start">
-        <div><h3 class="accent">其他判讀結果</h3><p>若系統判斷為車身損傷，後台會建立巡檢或維修任務。若前後影像顯示疑似新增損傷，系統則會另外建立<strong>索賠候選案件</strong>，交由授權人員覆核。</p></div>
-        <div><h3 class="orange">證據不足時的處理</h3><p>當本次取車前與上次還車影像皆缺失、視角無法比較或污損遮住車身時，系統<strong>不會直接認定損傷</strong>，而是要求補拍、人工查看，或先完成清潔後再重新掃描。</p></div>
-      </div>
-      <p class="note">InspectFlow 不假設 iRent 的內部派工方式；正式導入時只依企業 API 契約送出處理證據與請求，並同步外部處理狀態。</p>
+      <div class="page-label">5 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress soft" data-label="9 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">3. 解決方案設計</div>
-      <h2>後台功能與 Prototype 工作畫面</h2>
-      <p class="doc-lead">當雲端完成車況判讀後，所有異常會以案件形式進入後台。營運人員可以在同一筆案件中查看前後影像、確認系統建立的任務，並追蹤員工的完工回報。若人員修正 AI 結果，系統也會<strong>保存修正內容</strong>，作為後續模型校準與流程改善的資料。</p>
+    <section class="slide" data-chapter="3" data-chapter-page="2">
+      <div class="slide-meta"><span>06｜手機端功能細部</span><span>邊緣 AI 即時回應</span></div>
+      <h2>即時看懂畫面，當下完成引導</h2>
+      <p class="lead">我們將區域辨識、拍攝品質與自動擷取放在手機端執行；影像不合格時立即引導調整，疑似異常才增加近距離補掃，避免把反光或失焦送進後台成為假異常。</p>
+      <div class="detail-grid">
+        <div class="detail-card"><img src="assets/prototype/mobile-front-guidance-844x390.png" alt="車頭方向引導" /><div><h3>辨識區域與方向</h3><p>手機 AI 會持續辨識目前拍攝的車身區域。畫面偏離時，系統只顯示一個方向提示，讓使用者立即修正。</p><span class="tech">技術：用輕量影像模型辨識視角（MobileNetV3）</span></div></div>
+        <div class="detail-card"><img src="assets/prototype/mobile-damage-detected-844x390.png" alt="刮痕異常框選" /><div><h3>發現疑似異常</h3><p>手機 AI 先在廣角影像中標出疑似刮痕或髒污。只有需要確認的區域，App 才要求使用者靠近補充影像。</p><span class="tech">技術：用物件偵測與影像分割標出異常範圍</span></div></div>
+        <div class="detail-card"><img src="assets/prototype/mobile-damage-closeup-844x390.png" alt="向前靠近刮痕的移動引導" /><div><h3>連續移動補掃</h3><p>App 先讓箭頭停留，使用者看清方向後再開始移動。到達適合距離時，系統直接擷取異常特寫。</p><span class="tech">技術：讓 AI 在手機上快速執行（TFLite／Core ML）</span></div></div>
+        <div class="detail-card"><img src="assets/prototype/mobile-interior-finding-844x390.png" alt="車內髒污辨識" /><div><h3>車內整潔辨識</h3><p>手機 AI 會定位座椅與腳踏區的污漬或垃圾，再把整潔程度分成髒污、普通與乾淨，只有髒污會建立異常。</p><span class="tech">技術：影像處理搭配輕量分類模型（OpenCV）</span></div></div>
+      </div>
+      <div class="page-label">6 / 16</div>
+    </section>
+
+    <section class="slide" data-chapter="3" data-chapter-page="3">
+      <div class="slide-meta"><span>07｜後台端產品設計</span><span>單一營運工作台</span></div>
+      <h2>三個頁面，處理所有車況例外</h2>
+      <p class="lead">我們不重新建立人員分配、廠商或索賠覆核系統，而是在同一工作台完成例外確認與請求送出，再由 API 交給 iRent 既有流程承接。</p>
       <div class="backend-grid">
-        <div class="backend-shot"><img src="assets/claim-review.png" alt="索賠證據覆核工作台模擬畫面"><h3>① 索賠證據覆核</h3><p>還車影像預設比對本次取車前掃描，也可切換上次還車基準；畫面同步顯示多角度證據、對齊品質與模型限制。</p></div>
-        <div class="backend-shot"><img src="assets/ops-dashboard.png" alt="營運處理工作台模擬畫面"><h3>② 處理請求與狀態追蹤</h3><p>營運人員確認異常後選擇清潔、維修、保養或停用，系統以 API 把車況證據送往既有處理系統；需要時可同步送出索賠請求。</p></div>
-        <div class="backend-shot"><img src="assets/completion-verify.png" alt="完工證據確認模擬畫面"><h3>③ 完工與重新上線</h3><p>執行人員依原異常區域回傳完工照片。系統比較處理前後影像，通過後更新任務與車輛狀態，未通過則退回重做。</p></div>
+        <article class="backend-card"><img src="assets/prototype/backend-review-list-1600x900.png" alt="異常審核清單" /><h3>異常審核</h3><p>異常審核頁只顯示等待確認的案件，並依急迫程度排序。營運人員點選整列即可查看影像證據與處理選項。</p></article>
+        <article class="backend-card"><img src="assets/prototype/backend-processing-list-1600x900.png" alt="處理中案件清單" /><h3>處理中案件</h3><p>處理中案件頁追蹤已送出的清潔、維修或停用請求，也會同步顯示索賠請求是否已送出。</p></article>
+        <article class="backend-card"><img src="assets/prototype/backend-vehicle-list-1600x900.png" alt="車輛管理清單" /><h3>車輛管理</h3><p>車輛管理頁只列正常車輛。營運人員可直接送出清潔請求，或將疑似異常送入待審核。</p></article>
       </div>
-      <div class="panel"><p style="margin:0"><b>稽核紀錄：</b>保存原始影像、模型版本、門檻、系統建議、人工覆核結果、狀態異動與完工證據，支援客訴或索賠案件回溯。</p></div>
-      <p class="note">本頁皆為 Prototype 模擬畫面，欄位與權限可依 iRent 實際後台流程調整。</p>
+      <div class="page-label">7 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress dense" data-label="10 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">3. 解決方案設計</div>
-      <h2>索賠判斷採用證據鏈與人工覆核</h2>
-      <p class="doc-lead">當還車影像相較本次取車前掃描出現疑似新增損傷時，InspectFlow 會先檢查時間關係與可比性，並以上次還車及完工紀錄排除既有異常，再整理成<strong>索賠候選案件</strong>。系統只提供證據與判讀建議，<strong>最終責任與賠償金額仍由授權人員</strong>依公司政策及法務規範決定。</p>
-      <div class="grid-2" style="align-items:start;gap:48px">
-        <div>
-          <h3 class="accent">案件成立前的五項檢查</h3>
-          <ol class="bullets compact"><li><b>時間關係：</b>異常首次出現在本次取車前至還車後的區間內。</li><li><b>區域一致：</b>前後照片屬於同一車輛與同一部位。</li><li><b>影像可比：</b>視角、尺度、曝光與遮擋程度允許比較。</li><li><b>異常持續：</b>近照及多角度影像皆能觀察到同一特徵。</li><li><b>既有紀錄排除：</b>上次還車、完工與車損清單中沒有相同位置與形態。</li></ol>
-          <div class="panel warn"><p class="small" style="margin:0"><b>任一關鍵條件不足：</b>標示「<strong>證據不足</strong>」並轉人工補證據，<strong>不自動歸責</strong>。</p></div>
-        </div>
-        <div>
-          <h3 class="orange">系統產生的索賠證據包</h3>
-          <table class="table"><tbody>
-            <tr><td><b>訂單資料</b></td><td>會員、車號、取還車時間與地點。</td></tr>
-            <tr><td><b>前後影像</b></td><td>本次取車前、還車後、上次還車基準與近距離補掃。</td></tr>
-            <tr><td><b>AI 說明</b></td><td>異常框、差異區域、類型、嚴重度、信心及限制。</td></tr>
-            <tr><td><b>歷史紀錄</b></td><td>既有車損、前次整備與完工照片。</td></tr>
-            <tr><td><b>人工決策</b></td><td>覆核者、結論、理由、補件、聯繫及結案紀錄。</td></tr>
-          </tbody></table>
+    <section class="slide" data-chapter="3" data-chapter-page="4">
+      <div class="slide-meta"><span>08｜後台端功能細部</span><span>證據先於結論</span></div>
+      <h2>AI 整理證據，人員做最後決定</h2>
+      <div class="evidence-layout">
+        <div><img class="evidence-shot" src="assets/prototype/backend-review-detail-1600x900.png" alt="異常審核詳情與前後影像比較" /></div>
+        <div class="evidence-stack">
+          <div class="evidence-layer"><h3>1　影像證據</h3><p>工作台把同區域的取車前、還車後與異常特寫放在一起，讓營運人員直接確認問題是否為本次新增。</p></div>
+          <div class="evidence-layer"><h3>2　AI 判讀結果</h3><p>雲端 AI 先找出同車同區域的基準影像並修正角度差，再標出異常位置、類型、嚴重度、信心與判讀限制。技術包含 DINOv2、LightGlue、影像分割與前後差異模型。</p></div>
+          <div class="evidence-layer"><h3>3　人工處理</h3><p>營運人員根據影像與 AI 限制決定放行，或選擇清潔、維修、停用，並視需要同步送出索賠請求。</p></div>
+          <div class="boundary">AI 不判定法律責任或賠償金額；模型與門檻須以官方資料驗證。</div>
         </div>
       </div>
-      <p class="note">賠償規則、責任認定與通知程序需遵循和雲既有政策及法務規範。</p>
+      <div class="page-label">8 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress soft dense" data-label="11 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot current" aria-current="step" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">4. AI 應用方法</div>
-      <h2>技術分工與實作可行性</h2>
-      <p class="doc-lead">為了兼顧即時回應與判讀準確度，系統分為<strong>手機端、雲端與營運後台</strong>。手機端只處理拍攝品質與視角引導，雲端負責較複雜的影像對齊、前後差異及車損與髒污判讀，營運後台則呈現證據並送出處理請求。這樣可避免在手機上執行過重的模型，也能逐步接入 iRent 既有系統。</p>
-      <table class="table table-four">
-        <thead><tr><th>功能模組</th><th>實作方法</th><th>落地可行性</th><th>驗證項目</th></tr></thead>
-        <tbody>
-          <tr><td><b>即時掃描</b></td><td>Flutter 相機串流、模糊與曝光檢查、輕量視角與車體位置辨識。</td><td>手機端只輸出品質與移動提示，低延遲且不依賴持續網路連線。</td><td>依手機效能、車型、光線與停車環境測試提示延遲及擷取成功率。</td></tr>
-          <tr><td><b>基準影像檢索</b></td><td>以租程、區域與來源標籤先取本次取車前影像，再以特徵向量搜尋上次還車或完工基準。</td><td>先利用訂單與區域縮小範圍，再做相似度排序，資料量可控。</td><td>確認各來源覆蓋率及可比較比例。</td></tr>
-          <tr><td><b>對齊與差異</b></td><td>特徵點匹配、透視校正、損傷或髒污分割、時序差異分類。</td><td>把「是否新增」拆成對齊品質與局部差異，結果可留下視覺證據供人工檢查。</td><td>依異常類型設定召回率、誤報率與拒答門檻。</td></tr>
-          <tr><td><b>營運處理</b></td><td>信心分級、人工覆核、處理與索賠 API 請求。</td><td>先由營運人員確認，再將結構化證據送往既有系統，不重做既有派工流程。</td><td>確認現行 SOP、權限、車輛狀態與 API 回傳規則。</td></tr>
-        </tbody>
-      </table>
-      <div class="panel"><p style="margin:0"><b>目前 Prototype：</b>Flutter 手機端以預錄影像與時間軸模擬掃描判斷，React 後台以固定資料展示審核與處理流程。正式版再以官方影像資料訓練模型，並串接 iRent API。</p></div>
-    </section>
-
-    <section class="slide has-chapter-progress" data-label="12 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">4. AI 應用方法</div>
-      <h2>資料流、模型輸出與人工控制點</h2>
-      <p class="doc-lead">整體資料流以「<strong>模型整理證據，人員確認處理方式</strong>」為原則。照片先通過手機端品質門檻，再送往雲端產生車況 Finding。系統只提出異常與處理建議，<strong>高風險、低信心與索賠案件仍交由人員覆核</strong>，並保存每次修改紀錄。</p>
-      <div class="flow" style="margin-top:18px">
-        <div class="step"><div class="step-num">資料輸入</div><div class="step-title">訂單與影像</div><div class="step-note">車號、車型、區域、時間、取還車照片</div></div>
-        <div class="step"><div class="step-num">手機端</div><div class="step-title">品質與視角檢查</div><div class="step-note">不合格影格不自動擷取</div></div>
-        <div class="step"><div class="step-num">雲端</div><div class="step-title">比較與辨識</div><div class="step-note">輸出 Finding、信心、證據與限制</div></div>
-        <div class="step"><div class="step-num">規則端</div><div class="step-title">風險分流</div><div class="step-note">依安全、預約、證據與政策建立任務</div></div>
-        <div class="step"><div class="step-num">人工端</div><div class="step-title">覆核與撤銷</div><div class="step-note">高風險、低信心與索賠案件保留人工控制</div></div>
+    <section class="slide" data-chapter="4" data-chapter-page="0">
+      <div class="slide-meta"><span>09｜AI 應用方法</span><span>系統架構與 AI 位置</span></div>
+      <h2>手機即時回應，雲端深入判讀</h2>
+      <p class="lead">我們把需要立即回應的判斷留在手機端，將跨租程比較與異常分析交給雲端。營運人員保留最後決策，iRent 既有系統則繼續管理後續處理。</p>
+      <div class="architecture">
+        <div class="arch-layer"><div class="arch-index">01</div><h3>iRent App 與手機端 AI</h3><p><strong>接收資料</strong>App 取得訂單、車輛資訊與相機即時畫面。</p><p><strong>執行工作</strong>手機 AI 逐幀辨識六區與影像品質，畫面穩定後保存最清楚的影格。</p><div class="model-note">在手機上即時回應，不必等待影像上傳。技術：MobileNetV3、OpenCV、TFLite／Core ML</div></div>
+        <div class="diagram-arrow">→</div>
+        <div class="arch-layer"><div class="arch-index">02</div><h3>InspectFlow 雲端 AI</h3><p><strong>接收資料</strong>雲端取得本次掃描，以及同車同區域的取車前或可信歷史影像。</p><p><strong>執行工作</strong>雲端 AI 先修正影像角度差，再辨識新增車損與整潔異常。</p><div class="model-note">技術：影像檢索、特徵配對、影像分割與前後差異模型</div></div>
+        <div class="diagram-arrow">→</div>
+        <div class="arch-layer"><div class="arch-index">03</div><h3>營運工作台</h3><p><strong>呈現資料</strong>工作台把前後影像、異常特寫、AI 信心與限制放在同一頁。</p><p><strong>人工決策</strong>客服與營運人員確認是否放行，以及是否需要清潔、維修或停用。</p></div>
+        <div class="diagram-arrow">→</div>
+        <div class="arch-layer"><div class="arch-index">04</div><h3>iRent 既有系統</h3><p><strong>接收請求</strong>既有系統接收 InspectFlow 整理好的車況證據、處理方式與索賠請求。</p><p><strong>承接作業</strong>iRent 原有流程繼續管理人員、廠商、進度與最終結果。</p><div class="model-note">InspectFlow 透過 API 傳送請求，不取代現有營運系統</div></div>
       </div>
-      <div class="grid-3 dense" style="margin-top:55px">
-        <div><h3>模型拒答</h3><p class="muted">資料不足時輸出原因，包括無基準、對齊失敗、遮蔽或影像品質不足，避免硬做結論。</p></div>
-        <div><h3>完整追溯</h3><p class="muted">每次判讀<strong>保存模型版本、門檻、輸入摘要、輸出及人工修改</strong>，支援稽核與回滾。</p></div>
-        <div><h3>回饋學習</h3><p class="muted">人工覆核、清潔後複檢、維修結果及客訴案件回流，形成重新標註與門檻校準資料。</p></div>
+      <div class="page-label">9 / 16</div>
+    </section>
+
+    <section class="slide" data-chapter="4" data-chapter-page="1">
+      <div class="slide-meta"><span>10｜AI 應用方法</span><span>訓練與使用方式</span></div>
+      <h2>真實資料反覆驗證，模型持續改善</h2>
+      <p class="lead">官方提供的 500 組真實使用者照片可支援早期資料盤點與模型研究。正式訓練前，我們仍須確認照片內容、建立一致標註，並將同一車輛的前後影像整理成可比較組合。</p>
+      <div class="training-flow">
+        <div class="training-step"><div class="step-no">1</div><h3>資料團隊整理與標註</h3><p>資料團隊人工確認每張照片的拍攝區域、品質問題、異常類型與實際位置，建立一致答案。</p></div><div class="diagram-arrow">→</div>
+        <div class="training-step"><div class="step-no">2</div><h3>資料團隊切分資料</h3><p>資料團隊以車輛或租程分開訓練、驗證與測試資料，避免同一台車的相似照片出現在不同資料組。</p></div><div class="diagram-arrow">→</div>
+        <div class="training-step"><div class="step-no">3</div><h3>模型團隊分別訓練</h3><p>不同模型分別學習拍攝視角與品質、車身區域，以及取車前後的影像差異。</p></div><div class="diagram-arrow">→</div>
+        <div class="training-step"><div class="step-no">4</div><h3>團隊先做影子驗證</h3><p>團隊比較 AI 與人工結果，確認準確度前不讓 AI 直接改變車輛狀態。</p></div><div class="diagram-arrow">→</div>
+        <div class="training-step"><div class="step-no">5</div><h3>iRent 受控上線</h3><p>iRent 保留低信心與證據不足案件的人工確認，再依驗證結果逐步調整門檻。</p></div>
       </div>
-      <p class="note" style="color:var(--muted)">模型與雲端服務名稱皆為候選方案，正式選型需符合和雲現有架構、資安及採購規範。</p>
+      <div class="feedback-loop"><strong>營運人員的覆核結果</strong><div class="diagram-arrow">↺</div><p>系統將人工結論回存為新的驗證資料，資料與模型團隊再用它改善標註、模型與判讀門檻。</p></div>
+      <div class="page-label">10 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress" data-label="13 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot current" aria-current="step" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">5. 獨特優勢與差異化</div>
-      <h2>差異在於先提高證據品質，再把判斷連接營運</h2>
-      <p class="doc-lead">現有車損辨識通常從一張已經拍好的照片開始，因此無法控制照片是否清楚、角度是否一致，也難以直接判斷損傷發生的時間。InspectFlow 將拍攝階段納入 AI 流程，<strong>先建立可比較的影像</strong>，再把每個判讀結果連接到任務、人工覆核與完工複檢。下表整理本方案與一般做法的差異。</p>
-      <div class="compare">
-        <div class="head"><b>一般做法</b></div><div class="head"><b>InspectFlow</b></div>
-        <div>自由拍照，上傳後才知道照片不可用</div><div>預覽串流即時判斷位置與品質，連續合格後自動擷取</div>
-        <div>用單張照片辨識損傷</div><div>結合本次取車前、上次還車、廣角與多角度近照</div>
-        <div>輸出正常或異常標籤</div><div>輸出位置、類型、嚴重度、是否新增、信心與限制</div>
-        <div>無法判斷時仍產生低可信結果</div><div>歷史不足、對齊失敗或遮蔽時明確拒答並轉人工</div>
-        <div>異常清單與整備流程分離</div><div>直接更新車輛狀態，建立清潔、維修、巡檢或索賠待審</div>
-        <div>處理完成後沒有一致驗證</div><div>依原異常區域重新掃描，完工證據成為新基準</div>
+    <section class="slide" data-chapter="4" data-chapter-page="2">
+      <div class="slide-meta"><span>11｜AI 應用方法</span><span>資料流與處理位置</span></div>
+      <h2>每次判讀都有來源，每個決策都能追溯</h2>
+      <p class="lead">InspectFlow 會保留來源影像、比較基準與人工決策。手機 AI 先選出合格影像，雲端 AI 再建立車況判讀結果；營運人員確認後，系統才產生 API 請求並接收外部處理狀態。</p>
+      <div class="data-flow">
+        <div class="data-step system"><div class="step-no">1</div><h3>租程資料</h3><p>iRent 提供車號、取還車時間與地點。</p></div><div class="diagram-arrow">→</div>
+        <div class="data-step mobile"><div class="step-no">2</div><h3>合格影格</h3><p>手機 AI 只保存通過品質門檻的六區影像與必要特寫。</p></div><div class="diagram-arrow">→</div>
+        <div class="data-step cloud"><div class="step-no">3</div><h3>比較基準</h3><p>雲端取得同車同區域的取車前或可信歷史影像。</p></div><div class="diagram-arrow">→</div>
+        <div class="data-step cloud"><div class="step-no">4</div><h3>AI 車況判讀</h3><p>雲端 AI 記錄異常位置、類型、嚴重度、信心、影像來源與判讀限制。</p></div><div class="diagram-arrow">→</div>
+        <div class="data-step human"><div class="step-no">5</div><h3>人工決策</h3><p>營運人員確認放行或選擇處理與索賠請求。</p></div><div class="diagram-arrow">→</div>
+        <div class="data-step system"><div class="step-no">6</div><h3>狀態回傳</h3><p>既有系統回傳進度，更新案件與車輛紀錄。</p></div>
       </div>
-    </section>
-
-    <section class="slide has-chapter-progress soft" data-label="14 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot current" aria-current="step" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">6. 預期效益與落地評估</div>
-      <h2>成效指標對應每一段流程，而非只看模型準確率</h2>
-      <p class="doc-lead">為了確認 InspectFlow 是否真正改善租還車體驗與營運效率，<strong>正式導入前需要先量測現行流程</strong>的拍攝時間、照片可用率、人工處理量與車輛停駛時間。試點期間再以<strong>相同車隊或相似場域</strong>進行比較，並從使用者體驗、車況判讀與營運處理三個面向檢查成效。</p>
-      <div class="kpis">
-        <div class="kpi-col"><h3>拍攝體驗</h3><p class="small muted">確認即時導引是否真的降低重拍，而非增加流程負擔。</p><ul class="bullets compact"><li>平均單區鎖定時間</li><li>首次拍攝合格率</li><li>平均補拍次數</li><li>全流程完成率與中斷點</li></ul></div>
-        <div class="kpi-col"><h3>車況與索賠</h3><p class="small muted">確認影像可比性與證據包能否降低爭議。</p><ul class="bullets compact"><li>不可判讀率與對齊成功率</li><li>安全損傷召回率</li><li>既有損傷誤判率</li><li>人工補件率、覆寫率與翻案率</li></ul></div>
-        <div class="kpi-col"><h3>營運效率</h3><p class="small muted">確認分流與任務流程能否縮短實際處理時間。</p><ul class="bullets compact"><li>單案人工查看時間</li><li>異常至建單時間</li><li>清潔與維修 SLA 達成率</li><li>平均停駛時間與完工退回率</li></ul></div>
+      <div class="data-note">
+        <div><strong>手機端 AI</strong>手機端 AI 只處理必須立即回應的區域辨識、品質檢查與影格擷取。</div>
+        <div><strong>雲端 AI</strong>雲端 AI 負責對齊不同時間的影像、比較前後差異並整理異常證據。</div>
+        <div><strong>人工控制點</strong>客服與營運人員保留放行、處理方式與索賠請求的最終確認權。</div>
       </div>
+      <div class="page-label">11 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress dense" data-label="15 / 15">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">6. 預期效益與落地評估</div>
-      <h2>導入方式、必要資源與風險控制</h2>
-      <p class="doc-lead">正式導入時，我們建議先讓 AI 在<strong>不改變車輛狀態</strong>的情況下產生判讀結果，並與現行人工流程比較。當品質門檻與分流規則完成校準後，再逐步開放輔助決策及低風險自動建單。涉及安全下線、低信心結果與索賠歸責的案件仍保留<strong>人工確認</strong>。</p>
-      <div class="grid-2" style="align-items:start;gap:48px">
-        <div>
-          <h3 class="accent">導入階段</h3>
-          <div class="phase"><h3>影子模式</h3><p>AI 產生結果但<strong>不改變車輛狀態</strong>，對照人工判斷並校準品質、損傷及分流門檻。</p></div>
-          <div class="phase"><h3>輔助決策</h3><p>後台顯示證據與建議，人員確認後才建單、下線或建立<strong>索賠候選案件</strong>。</p></div>
-          <div class="phase"><h3>受控自動化</h3><p>只對高信心且低爭議情境自動建單。人工可撤銷，所有狀態異動保留紀錄。</p></div>
-          <h3 class="accent" style="margin-top:24px">必要企業資源</h3>
-          <p class="small muted">正式拍攝規則、本次取車與還車影像、同車歷史影像、既有車損及索賠案例、訂單與預約、車輛狀態 API、整備 SOP、人員權限與 SLA。</p>
-        </div>
-        <div>
-          <h3 class="orange">主要風險與控制方式</h3>
-          <table class="table"><tbody>
-            <tr><td><b>基準影像不足</b></td><td>本次取車前不可比時改查上次還車；仍不足則拒答並轉人工。</td></tr>
-            <tr><td><b>髒污遮蔽車身</b></td><td>先清潔，再以相同區域重新掃描。</td></tr>
-            <tr><td><b>夜間與強反光</b></td><td>掃描端即時提示補光或改變角度；不合格影格不擷取、不上傳。</td></tr>
-            <tr><td><b>錯誤下線</b></td><td>分級門檻、人工撤銷及狀態異動稽核。</td></tr>
-            <tr><td><b>個資與非目標影像</b></td><td>用途告知、臉部與非目標車牌遮罩、權限及保存規範。</td></tr>
-            <tr><td><b>模型漂移</b></td><td>分車型、手機與環境監控，支援灰度發布及快速回滾。</td></tr>
-          </tbody></table>
-        </div>
+    <section class="slide" data-chapter="5" data-chapter-page="0">
+      <div class="slide-meta"><span>12｜獨特優勢與差異化</span><span>完整證據流程</span></div>
+      <h2>先改善影像來源，再提升判讀效率</h2>
+      <p class="lead">InspectFlow 不只辨識車損。我們先讓使用者取得可比較的影像，再建立前後差異、人工覆核與後續請求的完整流程，讓 AI 減少工作量，同時保留營運決策的人工控制。</p>
+      <div class="evidence-path">
+        <div class="path-step"><div class="step-no">01</div><h3>掃描時排除無效影像</h3><p>手機 AI 在拍攝當下檢查位置與品質。反光、失焦或範圍不足的影格不會被保存，也不會進入後台形成假異常。</p></div><div class="diagram-arrow">→</div>
+        <div class="path-step"><div class="step-no">02</div><h3>比較有一致基準</h3><p>雲端 AI 優先使用同一租程的取車前影像；資料不足時，系統才補充可信的歷史紀錄。</p></div><div class="diagram-arrow">→</div>
+        <div class="path-step"><div class="step-no">03</div><h3>人員只看例外案件</h3><p>InspectFlow 自動處理高信心正常事件，讓車輛返回一般服務流程；只有疑似異常與低信心案件會進入人工覆核。</p></div><div class="diagram-arrow">→</div>
+        <div class="path-step"><div class="step-no">04</div><h3>既有流程直接承接</h3><p>InspectFlow 以 API 傳送證據與處理方式，iRent 既有系統繼續管理人員、廠商與索賠作業。</p></div>
       </div>
+      <div class="page-label">12 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress" data-label="附錄 A1">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot current" aria-current="step" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">7. 補充資料</div>
-      <h2>正式產品系統架構</h2>
-      <p class="doc-lead">正式產品可沿用 iRent App 作為使用者入口，新增 Flutter 掃描模組處理相機導引與弱網暫存。影像上傳後由雲端 AI 服務完成車況判讀，再透過工作流服務連接營運及索賠後台。各模組以 API 交換資料，方便依企業既有架構<strong>分階段導入</strong>。</p>
-      <div class="flow" style="margin-top:22px">
-        <div class="step"><div class="step-num">APP</div><div class="step-title">Flutter 掃描模組</div><div class="step-note">相機、品質與視角檢查、弱網暫存</div></div>
-        <div class="step"><div class="step-num">API</div><div class="step-title">身份與影像接收</div><div class="step-note">訂單驗證、預簽上傳、完整性檢查</div></div>
-        <div class="step"><div class="step-num">AI</div><div class="step-title">車況推論服務</div><div class="step-note">租程／歷史基準檢索、影像對齊、損傷與整潔度</div></div>
-        <div class="step"><div class="step-num">FLOW</div><div class="step-title">案件與工作流</div><div class="step-note">分流、人工覆核、重試與通知</div></div>
-        <div class="step"><div class="step-num">OPS</div><div class="step-title">營運處理工作台</div><div class="step-note">車況、請求、證據、狀態</div></div>
+    <section class="slide" data-chapter="5" data-chapter-page="1">
+      <div class="slide-meta"><span>13｜獨特優勢與差異化</span><span>使用前後改進</span></div>
+      <h2>少一點重拍與看片，多一點直接處理</h2>
+      <p class="lead">導入前，使用者自行判斷拍攝內容，後台人員再從大量角度不一的照片中搜尋與比較。導入後，App 先產生可比較影像，AI 自動處理正常事件、讓車輛返回一般服務流程，並整理例外證據供營運人員決策。</p>
+      <div class="comparison">
+        <div></div><div class="head before">使用 InspectFlow 前</div><div></div><div class="head after">使用 InspectFlow 後</div>
+        <div class="compare-row"><div class="topic">使用者操作</div><div class="before">自由拍照並逐張確認，品質問題常在上傳後才發現。</div><div class="compare-arrow">→</div><div class="after">依單一指令完成六區掃描，App 即時檢查並自動擷取合格影格。</div></div>
+        <div class="compare-row"><div class="topic">車況比較</div><div class="before">人員自行尋找角度不一致的前後照片。</div><div class="compare-arrow">→</div><div class="after">系統整理同車同區域影像、異常特寫與可比程度。</div></div>
+        <div class="compare-row"><div class="topic">人工審核</div><div class="before">正常與異常事件都需要人員查看。</div><div class="compare-arrow">→</div><div class="after">AI 自動處理高信心正常事件，讓車輛返回一般服務流程；人員只覆核例外案件。</div></div>
+        <div class="compare-row"><div class="topic">異常處理</div><div class="before">人員重新整理資料，再輸入其他系統。</div><div class="compare-arrow">→</div><div class="after">在同一工作台確認結果，並透過 API 送出請求。</div></div>
       </div>
-      <div class="grid-3" style="margin-top:72px"><div><h3>核心資料</h3><p class="small" style="color:var(--muted)">檢查任務、影像、異常、案件、處理請求、車輛狀態與模型決策</p></div><div><h3>必要介接</h3><p class="small" style="color:var(--muted)">訂單、會員、車輛主檔、處理系統、索賠系統與通知</p></div><div><h3>部署原則</h3><p class="small" style="color:var(--muted)">手機端即時檢查拍攝品質；雲端執行影像比對與異常判讀</p></div></div>
+      <div class="page-label">13 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress soft" data-label="附錄 A2">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="補充資料第 2 頁"></span><span class="chapter-dot" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">7. 補充資料</div>
-      <h2>模型驗收與持續改善</h2>
-      <p class="doc-lead">官方影像可提供真實租還車場域，但上傳分類與實際內容可能不一致，也沒有完整的損傷框或遮罩。我們會先清理資料並補充標註，再<strong>依車輛切分訓練、驗證與測試資料</strong>，避免同車影像洩漏造成成效高估。</p>
-      <div class="grid-2">
-        <div><h3>資料準備與驗證</h3><ul class="bullets"><li>清理上傳分類與實際內容不一致的照片</li><li>補標損傷位置、類型、品質與可比性</li><li>依車輛切分資料，避免同車影像洩漏</li><li>分車型、光線與場地檢查模型表現</li></ul></div>
-        <div><h3>上線後監控</h3><ul class="bullets"><li>監控資料漂移、不可判讀率與人工覆寫率</li><li>人工覆核、完工結果與客訴案例回流</li><li>保存模型版本、門檻、輸入摘要與輸出</li><li>支援灰度發布、快速回滾與門檻調整</li></ul></div>
+    <section class="slide" data-chapter="6" data-chapter-page="0">
+      <div class="slide-meta"><span>14｜預期效益與落地評估</span><span>預期成效指標</span></div>
+      <h2>不先承諾數字，先用試點驗證成效</h2>
+      <p class="lead">目前尚未取得 iRent 的現況基準與正式試點結果，因此我們不預設固定改善比例。導入時先建立基準，再比較使用者完成效率、影像可用性、AI 判讀品質與營運處理效率。</p>
+      <div class="metrics-grid">
+        <div class="metric-group"><div class="metric-no">01</div><h3>使用者體驗</h3><ul><li>掃描完成時間</li><li>首次合格率</li><li>平均調整次數</li><li>流程放棄率</li></ul></div>
+        <div class="metric-group"><div class="metric-no">02</div><h3>影像品質</h3><ul><li>影像可判讀率</li><li>六區完整率</li><li>前後影像可比率</li><li>異常補掃率</li></ul></div>
+        <div class="metric-group"><div class="metric-no">03</div><h3>AI 判讀</h3><ul><li>異常召回率</li><li>誤報率</li><li>人工推翻率</li><li>證據不足比例</li></ul></div>
+        <div class="metric-group"><div class="metric-no">04</div><h3>營運效率</h3><ul><li>單案審核時間</li><li>人工看片量</li><li>異常至請求送出時間</li><li>操作步驟數</li></ul></div>
       </div>
-      <div class="panel"><p style="margin:0;line-height:1.48;color:#33485d"><strong>模型準確率只是驗收的一部分</strong>；<strong>車輛停駛成本、人工覆核量與客訴翻案</strong>同樣需要監控。</p></div>
+      <div class="metric-method">
+        <div class="method-step"><div class="method-no">1</div><div><strong>建立現況基準</strong><span>量測現有流程的四類指標</span></div></div>
+        <div class="method-arrow">→</div>
+        <div class="method-step"><div class="method-no">2</div><div><strong>小規模試點比較</strong><span>比較導入前後的實際差異</span></div></div>
+        <div class="method-arrow">→</div>
+        <div class="method-step"><div class="method-no">3</div><div><strong>達標後逐步擴大</strong><span>依驗收結果增加車型與區域</span></div></div>
+      </div>
+      <div class="page-label">14 / 16</div>
     </section>
 
-    <section class="slide has-chapter-progress" data-label="附錄 A3">
-      <nav class="chapter-progress" aria-label="簡報章節進度">
-        <div class="chapter-group"><span class="chapter-name">1. 提案概述</span><span class="chapter-dots"><span class="chapter-dot" aria-label="提案概述第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">2. 目標與痛點</span><span class="chapter-dots"><span class="chapter-dot" aria-label="目標與痛點第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">3. 解決方案</span><span class="chapter-dots"><span class="chapter-dot" aria-label="解決方案第 1 頁"></span><span class="chapter-dot" aria-label="解決方案第 2 頁"></span><span class="chapter-dot" aria-label="解決方案第 3 頁"></span><span class="chapter-dot" aria-label="解決方案第 4 頁"></span><span class="chapter-dot" aria-label="解決方案第 5 頁"></span><span class="chapter-dot" aria-label="解決方案第 6 頁"></span><span class="chapter-dot" aria-label="解決方案第 7 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">4. AI 應用</span><span class="chapter-dots"><span class="chapter-dot" aria-label="AI 應用第 1 頁"></span><span class="chapter-dot" aria-label="AI 應用第 2 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">5. 獨特優勢</span><span class="chapter-dots"><span class="chapter-dot" aria-label="獨特優勢第 1 頁"></span></span></div>
-        <div class="chapter-group"><span class="chapter-name">6. 預期效益</span><span class="chapter-dots"><span class="chapter-dot" aria-label="預期效益第 1 頁"></span><span class="chapter-dot" aria-label="預期效益第 2 頁"></span></span></div>
-        <div class="chapter-group current"><span class="chapter-name">7. 補充資料</span><span class="chapter-dots"><span class="chapter-dot" aria-label="補充資料第 1 頁"></span><span class="chapter-dot" aria-label="補充資料第 2 頁"></span><span class="chapter-dot current" aria-current="step" aria-label="補充資料第 3 頁"></span></span></div>
-      </nav>
-      <div class="eyebrow">7. 補充資料</div>
-      <h2>提案假設與責任邊界</h2>
-      <p class="doc-lead">目前已取得官方流程圖、照片清單、索賠案例及未標註的真實使用者影像，可用來校正流程與建立模型資料集。企業 API、營運規則、模型成效與效益數值仍需進一步確認，避免將 Prototype 設計誤認為正式成果。</p>
-      <table class="table table-two">
-        <thead><tr><th>項目</th><th>目前提案處理方式</th></tr></thead>
-        <tbody>
-          <tr><td>六區掃描</td><td>官方流程包含四個車外角度及前、後車內；Prototype 轉譯為車頭、左側、車尾、右側、前座與後座。</td></tr>
-          <tr><td>1–2 秒</td><td>單區品質鎖定的設計目標，需依手機、車型與環境驗證。</td></tr>
-          <tr><td>Prototype 視覺</td><td>呈現使用者及營運流程，不代表模型已完成正式驗證。</td></tr>
-          <tr><td>索賠責任</td><td>AI 提供證據與建議；授權人員決定責任與賠償。</td></tr>
-          <tr><td>新損傷判斷</td><td>歷史資料不足或視角不可比時，標示證據不足。</td></tr>
-          <tr><td>效益估算</td><td>取得企業現況基準後，再設定改善幅度與投資效益。</td></tr>
-          <tr><td>官方影像資料</td><td>可用於資料分析與模型開發，但需先清理弱標籤並補充損傷與品質標註。</td></tr>
-          <tr><td>資料與隱私</td><td>正式導入需完成用途告知、遮罩、權限、保存與刪除規範。</td></tr>
-        </tbody>
-      </table>
+    <section class="slide" data-chapter="6" data-chapter-page="1">
+      <div class="slide-meta"><span>15｜預期效益與落地評估</span><span>預期效益</span></div>
+      <h2>使用者更安心，營運人員更專注</h2>
+      <p class="lead">InspectFlow 先提高車況影像品質，再用 AI 分流正常與例外事件。使用者可以完成較可靠的紀錄，後台人員則減少原本必須人工審核的正常事件，更早處理真正需要注意的車輛。</p>
+      <div class="benefits-grid">
+        <div class="benefit"><div class="benefit-mark">U</div><div><h3>對租車使用者</h3><p>降低不知道怎麼拍、反覆重拍與漏拍的負擔，留下較完整的車況紀錄。</p></div></div>
+        <div class="benefit"><div class="benefit-mark">O</div><div><h3>對客服與營運人員</h3><p>減少即時看片與搜尋歷史照片的工作，降低疲勞、遺漏與誤放風險。</p></div></div>
+        <div class="benefit"><div class="benefit-mark">V</div><div><h3>對車輛管理</h3><p>更快隔離需要處理的車輛，也避免正常車輛因證據不足而長時間停用。</p></div></div>
+        <div class="benefit"><div class="benefit-mark">D</div><div><h3>對 iRent 資料</h3><p>統一影像、判讀與請求格式，建立可追溯紀錄與後續模型改善基礎。</p></div></div>
+      </div>
+      <div class="page-label">15 / 16</div>
     </section>
 
-  </div>
-</main>
+    <section class="slide" data-chapter="6" data-chapter-page="2">
+      <div class="slide-meta"><span>16｜預期效益與落地評估</span><span>條件、時程與資源</span></div>
+      <h2>先小規模驗證，再逐步擴大導入</h2>
+      <p class="lead">InspectFlow 可先以獨立車況分析服務接入現有流程，不需要一次替換 iRent 既有系統。導入重點是取得可配對影像與人工覆核資料，確認 API 與權限規則，再逐步擴大自動化範圍。</p>
+      <div class="phases">
+        <div class="phase-step"><div class="step-no">1</div><h3>資料盤點與離線驗證</h3><div class="duration">第 1 至 2 個月</div><p>資料團隊整理官方資料並建立標註規則，模型團隊先離線驗證影像品質與異常辨識能力。</p></div><div class="diagram-arrow">→</div>
+        <div class="phase-step"><div class="step-no">2</div><h3>小規模試點與影子模式</h3><div class="duration">第 3 至 4 個月</div><p>iRent 選擇少量車型與區域試用，團隊比較 AI 與人工結果，但不讓 AI 直接改變車輛狀態。</p></div><div class="diagram-arrow">→</div>
+        <div class="phase-step"><div class="step-no">3</div><h3>受控上線</h3><div class="duration">第 5 至 6 個月</div><p>iRent 保留人工確認，開發團隊串接處理請求與外部狀態回傳。</p></div><div class="diagram-arrow">→</div>
+        <div class="phase-step"><div class="step-no">4</div><h3>擴大導入</h3><div class="duration">第 6 個月後</div><p>團隊依驗收結果增加支援車型與區域，再逐步擴大高信心正常事件的自動化範圍。</p></div>
+      </div>
+      <div class="resource-row">
+        <div><h3>產品與開發</h3><p>產品與服務設計、Flutter、雲端、後台與 API 整合。</p></div>
+        <div><h3>AI 與資料</h3><p>模型開發、資料清理、標註、驗證與監控。</p></div>
+        <div><h3>企業協作與治理</h3><p>iRent 營運、法務、資安、個資治理與權限規則。</p></div>
+      </div>
+      <div class="page-label">16 / 16</div>
+    </section>
+  </div></main>
 
-<nav id="controls" aria-label="投影片控制列">
-  <button id="prev" type="button">← 上一頁</button>
-  <div id="position">1 / 19</div>
-  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
-  <button id="next" type="button">下一頁 →</button>
-  <button id="fullscreen" type="button">全螢幕</button>
-</nav>
-
-<script>
-  const deck = document.getElementById('deck');
-  const slides = [...document.querySelectorAll('.slide')];
-  const position = document.getElementById('position');
-  const progressBar = document.getElementById('progressBar');
-  let current = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
-
-  function resizeDeck(){
+  <nav id="controls" aria-label="簡報控制列">
+    <button id="prev" type="button">上一張</button><div id="position">1 / 8</div><button id="next" type="button">下一張</button><button id="fullscreen" type="button">全螢幕</button>
+  </nav>
+  <script>
+    const chapters = [
+      { name: '1. 提案摘要', pages: 1 }, { name: '2. 提案概述', pages: 1 },
+      { name: '3. 目標與痛點', pages: 1 }, { name: '4. 解方設計', pages: 5 },
+      { name: '5. AI 應用', pages: 3 }, { name: '6. 獨特優勢', pages: 2 },
+      { name: '7. 預期效益', pages: 3 },
+    ];
+    const deck = document.getElementById('deck');
     const viewport = document.getElementById('viewport');
-    const scale = Math.min(viewport.clientWidth / 1600, viewport.clientHeight / 900);
-    deck.style.transform = `scale(${scale})`;
-  }
-  function show(index){
-    current = (index + slides.length) % slides.length;
-    slides.forEach((slide,i)=>slide.classList.toggle('active',i===current));
-    position.textContent = `${current + 1} / ${slides.length}`;
-    progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
-    history.replaceState(null,'',`#${current + 1}`);
-  }
-  document.getElementById('prev').addEventListener('click',()=>show(current-1));
-  document.getElementById('next').addEventListener('click',()=>show(current+1));
-  document.getElementById('fullscreen').addEventListener('click',()=>document.documentElement.requestFullscreen?.());
-  document.addEventListener('keydown',event=>{
-    if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();show(current+1)}
-    if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();show(current-1)}
-    if(event.key==='Home')show(0);
-    if(event.key==='End')show(slides.length-1);
-  });
-  window.addEventListener('resize',resizeDeck);
-  resizeDeck(); show(current);
-</script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const position = document.getElementById('position');
+    function createProgress(slide) {
+      const currentChapter = Number(slide.dataset.chapter);
+      const currentChapterPage = Number(slide.dataset.chapterPage);
+      const nav = document.createElement('nav'); nav.className = 'chapter-progress'; nav.setAttribute('aria-label', '簡報章節進度');
+      chapters.forEach((chapter, chapterIndex) => {
+        const group = document.createElement('div'); group.className = `chapter-group${chapterIndex === currentChapter ? ' current' : ''}`;
+        const name = document.createElement('span'); name.className = 'chapter-name'; name.textContent = chapter.name;
+        const dots = document.createElement('span'); dots.className = 'chapter-dots';
+        for (let pageIndex = 0; pageIndex < chapter.pages; pageIndex += 1) {
+          const dot = document.createElement('span');
+          const isDone = chapterIndex < currentChapter || (chapterIndex === currentChapter && pageIndex < currentChapterPage);
+          const isCurrent = chapterIndex === currentChapter && pageIndex === currentChapterPage;
+          dot.className = `chapter-dot${isDone ? ' done' : ''}${isCurrent ? ' current' : ''}`; dots.appendChild(dot);
+        }
+        group.append(name, dots); nav.appendChild(group);
+      });
+      slide.prepend(nav);
+    }
+    slides.forEach(createProgress);
+    const params = new URLSearchParams(location.search);
+    let current = Math.max(0, Math.min(slides.length - 1, Number(params.get('slide')) - 1 || 0));
+    function resizeDeck() { const scale = Math.min(viewport.clientWidth / 1600, viewport.clientHeight / 900); deck.style.transform = `scale(${scale})`; }
+    function show(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === current));
+      position.textContent = `${current + 1} / ${slides.length}`; params.set('slide', String(current + 1));
+      history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
+    }
+    document.getElementById('prev').addEventListener('click', () => show(current - 1));
+    document.getElementById('next').addEventListener('click', () => show(current + 1));
+    document.getElementById('fullscreen').addEventListener('click', () => document.documentElement.requestFullscreen?.());
+    document.addEventListener('keydown', (event) => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); show(current + 1); }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); show(current - 1); }
+      if (event.key === 'Home') show(0); if (event.key === 'End') show(slides.length - 1);
+    });
+    window.addEventListener('resize', resizeDeck); resizeDeck(); show(current);
+  </script>
 </body>
 </html>
